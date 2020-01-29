@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mohazi.mapper.BoardMapper">
+
+	<!-- 소모임 목록 -->
+  	<select id="getList" resultType="com.mohazi.domain.PartyVO" parameterType="com.mohazi.domain.PartyVO">
+		SELECT * FROM PARTY
+		WHERE TYPE=#{type}
+		
+		<!-- 카테고리, 지역은 중복선택 될 수 있으므로 배열에서 읽어와 WHERE 절에서 IN 으로 검색 하도록! -->
+        <choose>
+            <when test="categoryArr != null">
+                AND CAT_MAIN IN 
+                <foreach collection="categoryArr" item="category" index="index" separator="," open="(" close=")">
+                    #{category}
+                </foreach>
+            </when>
+        </choose>
+
+		<choose>
+            <when test="regionArr != null">
+                AND REGION IN 
+                <foreach collection="regionArr" item="region" index="index" separator="," open="(" close=")">
+                    #{region}
+                </foreach>
+            </when>
+        </choose>
+
+	</select>
+	
+	<!-- CRUD -->
+	<!-- INSERT. nullable column 은 jdbcType 지정해줌 -->
+	<select id="insert">
+		INSERT INTO PARTY (P_NO, TITLE, ID, CAT_MAIN, CAT_SUB, CONTENT, REGION, TAG, PHOTO, PRICE)
+		VALUES(SEQ_PARTY.NEXTVAL, #{title}, #{id}, #{cat_main}, #{cat_sub}, #{content}, #{region}, 
+			   #{tag, jdbcType=VARCHAR}, #{photo, jdbcType=VARCHAR}, #{price, jdbcType=NUMERIC})
+	</select>
+	
+	<!-- READ -->
+	<select id="read" resultType="com.mohazi.domain.PartyVO">
+		SELECT * FROM PARTY 
+		WHERE P_NO = #{p_no}
+	</select>
+	<!-- UPDATE -->
+	<update id="update">
+		UPDATE PARTY SET
+		TITLE = #{title},
+		CAT_MAIN = #{cat_main},
+		CAT_SUB = #{cat_sub},
+		CONTENT = #{content},
+		TAG = #{tag, jdbcType=VARCHAR},
+		PHOTO = #{photo, jdbcType=VARCHAR},
+		PRICE = #{price, jdbcType=NUMERIC}
+		WHERE P_NO = #{p_no}
+	</update>
+	<!-- DEETE -->
+	<delete id="delete">
+		DELETE FROM PARTY
+		WHERE P_NO = #{p_no}
+	</delete>
+	
+</mapper>
