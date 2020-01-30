@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mohazi.mapper.UsersMapper">
+
+	<resultMap type="com.mohazi.domain.UsersVO" id="usersMap">
+		<id property="id" column="id" />
+		<result property="id" column="id" />
+		<result property="pw" column="pw" />
+		<result property="email" column="email" />
+		<result property="name" column="name" />
+		<result property="nickname" column="nickname" />
+		<result property="phone" column="phone" />
+		<result property="birth" column="birth" />
+		<result property="enabled" column="enabled" />
+		<collection property="authList" resultMap="authMap"></collection>
+	</resultMap>
+
+	<resultMap type="com.mohazi.domain.AuthVO" id="authMap">
+		<result property="id" column="id" />
+		<result property="auth" column="auth" />
+	</resultMap>
+
+	<select id="read" resultMap="usersMap">
+		SELECT USERS.ID, USERS.PW, USERS.EMAIL, USERS.NAME, USERS.NICKNAME, USERS.PHONE, USERS.BIRTH, USERS.ENABLED, AUTH.AUTH 
+		FROM USERS LEFT OUTER JOIN USERS_AUTH AUTH ON USERS.ID = AUTH.ID
+		WHERE USERS.ID = #{id}
+	</select>
+	
+	<!-- 회원가입 -->
+	<insert id="insertUser" parameterType="com.mohazi.domain.UsersVO">
+		INSERT INTO USERS(ID, PW, EMAIL, NAME, NICKNAME, PHONE, BIRTH)
+		VALUES(#{id}, #{pw}, #{email}, #{name}, #{nickname}, #{phone}, #{birth})
+	</insert>
+	
+	<insert id="insertAuth" parameterType="com.mohazi.domain.AuthVO">
+		INSERT INTO USERS_AUTH(ID, AUTH)
+		VALUES(#{id}, #{auth, jdbcType=VARCHAR})
+	</insert>
+	
+	
+	
+	
+</mapper>
