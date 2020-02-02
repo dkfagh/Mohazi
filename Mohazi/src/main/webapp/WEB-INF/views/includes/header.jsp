@@ -24,6 +24,54 @@
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-datetimepicker/2.7.1/js/bootstrap-material-datetimepicker.min.js"></script>
 	<!-- 📝 If change language, add language file » https://cdnjs.com/libraries/moment.js  -->
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/locale/ja.js"></script>
+
+<style>
+#sub-header {
+background-color: #fcfcfd;
+border-bottom: 1px solid #dde1e6;
+}
+
+#header {
+position: relative;
+width: 100%;
+height: 120px;
+margin: 0 auto;
+border-bottom:#7bd4ac  solid 1px;
+}
+#logo{
+    padding-top: 35px;
+    float: left;
+    padding-left:5%;
+}
+#login{
+    padding-top: 45px;
+    float: right;
+    padding-right:5%;
+}
+#login button{
+    background-color: #7bd4ac ;
+    color: white;
+}
+.logo {
+    display: inline;    
+    border: solid 1px black;
+}
+.form-inline{
+    padding-top: 45px;
+    padding-right: 12%;
+    float: right;
+}
+#search{
+width:200px !important;
+float: right;
+}
+.input-group button{
+    background-color: #7bd4ac ;
+    color: white;
+}
+</style>
+
+
 </head>
 
 <body>

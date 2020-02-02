@@ -7,72 +7,7 @@
 
 
 
-<style>   
-#sub-header {
-background-color: #fcfcfd;
-border-bottom: 1px solid #dde1e6;
-}
-
-#header {
-position: relative;
-width: 100%;
-height: 120px;
-margin: 0 auto;
-border-bottom:#7bd4ac  solid 1px;
-}
-#logo{
-    padding-top: 35px;
-    float: left;
-    padding-left:5%;
-}
-#login{
-    padding-top: 45px;
-    float: right;
-    padding-right:5%;
-}
-#login button{
-    background-color: #7bd4ac ;
-    color: white;
-}
-.logo {
-    display: inline;    
-    border: solid 1px black;
-}
-.form-inline{
-    padding-top: 45px;
-    padding-right: 12%;
-    float: right;
-}
-#search{
-width:200px !important;
-float: right;
-}
-.input-group button{
-    background-color: #7bd4ac ;
-    color: white;
-}
-
-.navbar{ 
-    height: 50px;   
-    margin-top: 2px;
-    background-color: white;   
-    border-bottom: solid 1px  #7bd4ac ;
-    opacity: 0.9;
-}
-.navbar-nav{
-    padding-left:19%;
-}
-.nav-item{
-    margin-right: 15px;
-}
-.nav-link{
-    color: black;
-}
-.nav-link:hover{
-    color: rgb(161, 159, 159);
-}
-
-
+<style>
 #contents {
 position: relative;
 margin: 0 auto;
@@ -207,14 +142,6 @@ color: #96969d;
     border-top:  1px solid #7bd4ac ;
     border-bottom: 1px solid #7bd4ac ;
 }
-
-#top-btn {    
-    position: fixed;
-    right: 15%;
-    bottom: 70px;
-    display: none;
-    }
-
 </style>
 
 <%-- <h1>MEETING LIST !</h1>

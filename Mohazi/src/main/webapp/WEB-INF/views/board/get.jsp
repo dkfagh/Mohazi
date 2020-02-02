@@ -6,70 +6,7 @@
 <%@ include file="../includes/navigation.jsp" %>
 
 
-<style>   
-#sub-header {
-background-color: #fcfcfd;
-border-bottom: 1px solid #dde1e6;
-}
-
-#header {
-position: relative;
-width: 100%;
-height: 120px;
-margin: 0 auto;
-border-bottom:#7bd4ac  solid 1px;
-}
-#logo{
-    padding-top: 35px;
-    float: left;
-    padding-left:5%;
-}
-#login{
-    padding-top: 45px;
-    float: right;
-    padding-right:5%;
-}
-#login button{
-    background-color: #7bd4ac ;
-    color: white;
-}
-.logo {
-    display: inline;    
-    border: solid 1px black;
-}
-.form-inline{
-    padding-top: 45px;
-    padding-right: 12%;
-    float: right;
-}
-#search{
-width:200px !important;
-float: right;
-}
-.input-group button{
-    background-color: #7bd4ac ;
-    color: white;
-}
-
-.navbar{ 
-    height: 50px;   
-    margin-top: 2px;
-    background-color: white;   
-    border-bottom: solid 1px  #7bd4ac ;
-    opacity: 0.9;
-}
-.navbar-nav{
-    padding-left:19%;
-}
-.nav-item{
-    margin-right: 15px;
-}
-.nav-link{
-    color: black;
-}
-.nav-link:hover{
-    color: rgb(161, 159, 159);
-}
+<style>
 #contents {
 position: relative;
 margin: 0 auto;
@@ -337,15 +274,7 @@ ul.tab li.active a {
     border-bottom: 1px solid #7bd4ac ;
 }
 
-#top-btn {    
-    position: fixed;
-    right: 15%;
-    bottom: 70px;
-    display: none;
-    }
-
-
-    </style>
+</style>
 
 	<div class="container" id="contents">
 		<div class="row">
@@ -545,31 +474,7 @@ ul.tab li.active a {
 				format: 'HH:mm'
 			});
 		});
-		 //nav 상단고정
-		 $(function() {
-                $(window).scroll(function() {
-                    if ($(this).scrollTop() >= 120) {
-                        $('.navbar').addClass('fixed-top');
 
-                    } else {
-                        $('.navbar').removeClass('fixed-top');
-                    }
-                });
-        });
-		  //to top 버튼
-		  $( window ).scroll( function() {
-                if ( $( this ).scrollTop() > 200 ) {
-                    $( '#top-btn' ).fadeIn();
-                } else {
-                    $( '#top-btn' ).fadeOut();
-                }
-                } );
-                $( '#top-btn' ).click( function() {
-                $( 'html, body' ).animate( { scrollTop : 0 }, 400 );
-                return false;
-                } );
-
-		
 	}); 
     //]]>
  </script>

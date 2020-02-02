@@ -3,50 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ include file="./includes/header.jsp" %>
 
-<style>   
-#sub-header {
-background-color: #fcfcfd;
-border-bottom: 1px solid #dde1e6;
-}
-
-#header {
-position: relative;
-width: 100%;
-height: 120px;
-margin: 0 auto;
-border-bottom:#7bd4ac  solid 1px;
-}
-#logo{
-    padding-top: 35px;
-    float: left;
-    padding-left:5%;
-}
-#login{
-    padding-top: 45px;
-    float: right;
-    padding-right:5%;
-}
-#login button{
-    background-color: #7bd4ac ;
-    color: white;
-}
-.logo {
-    display: inline;    
-    border: solid 1px black;
-}
-.form-inline{
-    padding-top: 45px;
-    padding-right: 12%;
-    float: right;
-}
-#search{
-width:200px !important;
-float: right;
-}
-.input-group button{
-    background-color: #7bd4ac ;
-    color: white;
-}
+<style>
 #contents {
 position: relative;
 margin: 0 auto;
@@ -134,12 +91,6 @@ list-style:none; margin:0; padding:0;
     border-radius: 3px;
     cursor: pointer;   
 }
-#top-btn {    
-    position: fixed;
-    right: 15%;
-    bottom: 70px;
-    display: none;
-    }
 </style>
 <!-- 
 <form action="/board/list" method="get">
