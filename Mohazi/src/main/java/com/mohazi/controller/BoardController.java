@@ -23,7 +23,7 @@ public class BoardController {
 	private BoardService service;
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public void list(@RequestParam(value="type", required=false) char type, @RequestParam(value="categoryArr", required=false) List<String> categoryArr, @RequestParam(value="regionArr", required=false) List<String> regionArr, Model model) {
+	public void list(@RequestParam(value="type", required=false) char type, @RequestParam(value="category", required=false) List<String> categoryArr, @RequestParam(value="region", required=false) List<String> regionArr, Model model) {
 		log.info("!!!  LIST !!!");
 
 		log.info("!!! CATEGORY !!!" + categoryArr);
