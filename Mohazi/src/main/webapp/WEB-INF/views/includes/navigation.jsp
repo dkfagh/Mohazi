@@ -27,16 +27,16 @@
         <nav class="navbar navbar-expand-sm ">          
               <ul class="navbar-nav">
                 <li class="nav-item">
-                  <a class="nav-link" href="#">클래스</a>
+                  <a class="nav-link" href="/board/list?type=C">클래스</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">모임</a>
+                  <a class="nav-link" href="/board/list?type=M">모임</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">월드컵</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#">FAQ</a>
+                    <a class="nav-link" href="/FAQ">FAQ</a>
                   </li>
               </ul>            
               <!-- Navbar text

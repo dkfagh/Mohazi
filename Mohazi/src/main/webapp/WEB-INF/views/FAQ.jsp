@@ -9,70 +9,12 @@
             margin:0;
             padding: 0;
         }
-
-      
-        .frame-header{
-            height: 150px;
-            background-color: gray;
-            align-content: center;
-            width:90%;
-            margin-left: 5%;
-        }
         .frame-body{
             position: relative;
             margin-top: 20px;
             clear: both;
             margin-left: 5%;
             display: block;
-        }
-        .frame-footer{
-            position: absolute;
-            width:90%;
-            text-align: center;
-            left:5%;
-            height: 50px;
-            bottom: 0px;
-
-        }
-        .search{
-            position: absolute;
-            width:280px;   
-            left: 35%; 
-        }
-        .search i{
-            font-size: 25px;
-            margin-left: 5px;
-            margin-right: 5px;
-
-        }
-        .search input{
-            
-            margin-top: 10px;
-            height: 30px;
-            
-        }
-        .textsearch{
-            width:220px;
-        }
-        .frame-header h1{
-            
-            margin-left: 50px;
-            position: absolute;
-            margin-right: 5px;
-            
-            
-        }
-        #login, .search, .frame-header h1{
-            top:50px;
-        }
-        #login{
-            position: absolute;
-            right:10%;
-            margin-left: 5px;
-            margin-right:5px;
-            width: 80px;
-            height: 35px;
-            clear: both;
         }
         
         .FAQ-h{
@@ -165,16 +107,8 @@
         
     </style>
     
-        <div id="wrap">
-        <div class="frame-header">
-            <h1>MOHAZI</h1>
-            <div class="search">
-                <i class="fa fa-search"></i>
-                <input class="textsearch" type="text" placeholder="검색">
-            </div>
-            
-            <button id="login" type="button">Login</button>
-        </div> 
+    <div id="wrap">
+
         <div class="frame-body">
 
             <!-- FAQ 페이지 시작 -->
@@ -217,7 +151,7 @@
                  
             </div>
             <!-- FAQ 페이지 끝 -->
-
+        </div>
         
 
 <%@ include file="./includes/footer.jsp" %>

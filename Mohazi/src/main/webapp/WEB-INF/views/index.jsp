@@ -194,8 +194,8 @@ list-style:none; margin:0; padding:0;
             </div>
         </div>       
         <div class="row">
-
+			<!-- 이건 뭐임? -->
 		</div> 
-    </div> 	
+
 
 <%@ include file="./includes/footer.jsp" %>

@@ -50,7 +50,7 @@ border-bottom:#7bd4ac  solid 1px;
     float: right;
     padding-right:5%;
 }
-#login button{
+#login a{
     background-color: #7bd4ac ;
     color: white;
 }
@@ -86,7 +86,8 @@ float: right;
                 </h1>
             </div>
             <div id="login">
-                <button type="button" class="btn  btn-sm">로그인</button>
+            	<a href="/customLogin" class="btn btn-sm">로그인</a>
+                <!-- <button type="button" class="btn btn-sm">로그인</button> -->
              </div>
             <!-- search form--------------------------------- ---->
             <form class="form-inline" action="search.jsp" >
