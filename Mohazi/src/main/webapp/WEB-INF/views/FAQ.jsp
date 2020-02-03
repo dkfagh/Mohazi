@@ -115,8 +115,8 @@
     
             <div class="FAQ-h">
                 <div class="Explanation">
-                    <h3>FAQ</h3>
-                    <h6>FAQ에 없는 질문에 관한 문의는 abc@def.com으로 메일 부탁드립니다.</h5>
+                    <h2>FAQ</h2>
+                    <h6>FAQ에 없는 질문에 관한 문의는 admin@mohazi.com으로 메일 부탁드립니다.</h6>
                 </div>
                 <!-- form tag-->
 
@@ -126,17 +126,31 @@
                 </div>
                 
                 
-                <div id="category" class="dropdown">
+                <!-- <div id="category" class="dropdown">
                     <button type="button" class="btn btn-outline-dark dropdown-toggle" data-toggle="dropdown">
-                    카테고리
+                   		 카테고리
                     </button>
                     <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">참여자</a>
-                    <a class="dropdown-item" href="#">개설자</a>
-                    <a class="dropdown-item" href="#">마이페이지</a>
-                    <a class="dropdown-item" href="#">결제</a>
+	                    <a class="dropdown-item" href="#">전체</a>
+	                    <a class="dropdown-item" href="#">참여자</a>
+	                    <a class="dropdown-item" href="#">개설자</a>
+	                    <a class="dropdown-item" href="#">이용안내</a>
+	                    <a class="dropdown-item" href="#">회원정보</a>
+	                    <a class="dropdown-item" href="#">결제</a>
                     </div>
+                </div> -->
+                
+                <div id="category">
+                	<ul>
+                		<li href="#">전체</li>
+                		<li href="#">참여자</li>
+                		<li href="#">개설자</li>
+                		<li href="#">이용 안내</li>
+                		<li href="#">회원 정보</li>
+                		<li href="#">결제/환불</li>
+                	</ul>
                 </div>
+                
                 
             </div>
                 <!-- form tag end-->
