@@ -195,7 +195,7 @@
                     <span><img src="img/user.png" width="30" align="center"></span>
                 </div>
                 <div id="userName2">
-                    <input type="text" placeholder="이름" name="username">
+                    <input type="text" placeholder="이름" name="name">
                 </div>
             </div>
         </p>
@@ -224,6 +224,7 @@
             </div>
         </p>
 
+
         <!--userPhone 영역시작------------------------------------------------------------>
 
 
@@ -233,7 +234,7 @@
                 <span><img src="img/user.png" width="30" align="center"></span>
             </div>
             <div id="birthDate2">
-                <input type="date" name="birthdate">
+                <input type="date" name="birth">
             </div>
         </div>
 

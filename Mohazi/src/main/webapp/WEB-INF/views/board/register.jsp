@@ -4,7 +4,7 @@
 <%@ include file="../includes/header.jsp" %>
 <%@ include file="../includes/navigation.jsp" %>
 
-<style>
+ <style>
     input::placeholder {
       font-size: 12px;
     }
@@ -24,7 +24,8 @@
     }
 
     .title,
-    .address {
+    .address,
+    .price {
       width: 600px;
     }
 
@@ -88,7 +89,7 @@
   </style>
 
 
- <!-- Container시작 ----------------------------------------------------------------->
+  <!-- Container시작 ----------------------------------------------------------------->
   <div class="container" id="contents">
 
     <!-- registerForm시작 ----------------------------------------------------------------->
@@ -99,39 +100,40 @@
       <!-- Table시작 ----------------------------------------------------------------->
       <table class="table" style="width: 1000px;">
 
-        <!-- 제목입력 -------------------------------------------------------------------------->
         <tbody>
+        <!-- 제목입력 -------------------------------------------------------------------------->
+      
           <tr>
             <th>제목</th>
-            <td class="title"><input type="text" placeholder=" 제목을 입력하세요." /></td>
+            <td class="title"><input type="text" placeholder=" 제목을 입력하세요." name="title"/></td>
           </tr>
 
           <!-- 카테고리입력 -------------------------------------------------------------------------->
           <tr>
             <th>카테고리</th>
             <td>
-              <div class="dropdown">
-                <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
-                  선택하세요
-                </button>
-                <div class="dropdown-menu">
-                  <a class="dropdown-item" href="#">클레스</a>
-                  <a class="dropdown-item" href="#">모임</a>
-                  <a class="dropdown-item" href="#">운동</a>
-                </div>
-              </div>
-            </td>
-            <td>
-              <div class="dropdown">
-                <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
-                  선택하세요
-                </button>
-                <div class="dropdown-menu">
-                  <a class="dropdown-item" href="#">Link 1</a>
-                  <a class="dropdown-item" href="#">Link 2</a>
-                  <a class="dropdown-item" href="#">Link 3</a>
-                </div>
-              </div>
+              <select name="cat_main">
+                <option SELECTED>선택하세요.</option>
+                 <option>클래스</option> 
+                 <option>모임</option> 
+                 <option>클래스</option> 
+                 <option>클래스</option> 
+                 <option>클래스</option> 
+                 <option>클래스</option> 
+              </select>
+        </td>
+
+        <td>
+          <select name="cat_sub">
+            <option SELECTED>선택하세요.</option>
+             <option>운동</option> 
+             <option>모임</option> 
+             <option>클래스</option> 
+             <option>클래스</option> 
+             <option>클래스</option> 
+             <option>클래스</option> 
+          </select>
+            
             </td>
           </tr>
 
@@ -140,14 +142,14 @@
           <tr>
             <th>소개입력</th>
             <td>
-              <div id="summernote"></div>
+              <div id="summernote" name="content"></div>
             </td>
           </tr>
 
           <!-- 위치입력 -------------------------------------------------------------------------->
           <tr>
             <th>위치</th>
-            <td class="address"> <input type="text" id="inputAddress" placeholder="주소를 입력하세요." style="width: 300px;">
+            <td class="address"> <input type="text" id="inputAddress" placeholder="주소를 입력하세요." style="width: 300px;" name="address">
               <input type="button" onclick="sample5_execDaumPostcode()" value="주소 검색"><br>
               <div id="map" style="width:300px;height:300px;margin-top:10px;display:none"></div>
             </td>
@@ -160,7 +162,7 @@
             <td>
               <div style="width: 500px; margin: 0px auto;">
                 <h2 style="font-family:cursive;"></h2>
-                <input name="tags" id="inputTag" style="width:500px !important" />
+                <input name="tags" id="inputTag" style="width:500px !important" name="tag"/>
               </div>
             </td>
           </tr>
@@ -172,7 +174,7 @@
               <div>
                 <div class="inputWrap">
                   <a href="javascript:" onclick="fileUploadAction();" class="photoBtn">사진등록</a>
-                  <input type="file" id="inputImgs" multiple />
+                  <input type="file" id="inputImgs" multiple name="photo"/>
                 </div>
                 <br>
                 <a href="javascript:" class="photoBtn" onclick="submitAction();">업로드</a>
@@ -183,6 +185,13 @@
                 </div>
               </div>
             </td>
+          </tr>
+
+           <!-- 가격입력 -------------------------------------------------------------------------->
+      
+           <tr>
+            <th>가격</th>
+            <td class="price"><input type="text" placeholder="가격을 입력하세요." name="price"/>원</td>
           </tr>
 
           <!-- 등록버튼입력 -------------------------------------------------------------------------->
@@ -203,7 +212,6 @@
 
   </div>
   <!-- Container끝 ----------------------------------------------------------------->
-
 
 <%@ include file="../includes/footer.jsp" %>
 

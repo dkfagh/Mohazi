@@ -70,6 +70,8 @@ public class CommonController {
 	
 	// FAQ 화면
 	@RequestMapping(value = "/FAQ", method = RequestMethod.GET)
-	public void FAQ() {}
+	public void FAQ() {
+		log.info("!!! FAQ !!!");
+	}
 	
 }
