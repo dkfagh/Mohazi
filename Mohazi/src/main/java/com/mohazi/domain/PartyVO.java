@@ -23,6 +23,7 @@ public class PartyVO {
 	private String tag;
 	private String photo;
 	private Long price;
+	// 위치정보 관련 칼럼 추가하기!!
 	
 	private List<String> categoryArr;
 	private List<String> regionArr;

@@ -31,7 +31,7 @@
 	<!-- 회원가입 -->
 	<insert id="insertUser" parameterType="com.mohazi.domain.UsersVO">
 		INSERT INTO USERS(ID, PW, EMAIL, NAME, NICKNAME, PHONE, BIRTH)
-		VALUES(#{id}, #{pw}, #{email}, #{name}, #{nickname}, #{phone}, #{birth})
+		VALUES(#{id}, #{pw}, #{email}, #{name}, #{nickname}, #{phone}, #{birth, jdbcType=DATE})
 	</insert>
 	
 	<insert id="insertAuth" parameterType="com.mohazi.domain.AuthVO">

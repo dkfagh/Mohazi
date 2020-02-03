@@ -6,12 +6,17 @@
 	<title>INDEX</title>
 </head>
 <body>
+
+	<script>
+		location.href="./index";
+	</script>
+<%-- 
 <h1>
 	INDEX PAGE수정수정
 </h1>
 
-<P>  The time on the server is ${serverTime}. </P>
-
+<P>  The time on the server is ${serverTime}. </P> --%>
+<!-- 
 <form action="/board/list" method="get">
 	<select name="type">
 		<option value="M" selected>소모임</option>
@@ -29,6 +34,7 @@
 	
 	<input type="submit" value="GO LIST" />
 </form>
+ -->
 
 </body>
 </html>

@@ -30,7 +30,6 @@
 		<input type="text" name="tag" value="${party.tag}" placeholder="tag"/>
 		<input type="text" name="photo" value="${party.photo}" placeholder="photo"/>
 		<input type="text" name="price" value="${party.price}" placeholder="price"/>
-		
 
 		<input type="hidden" name="type" value="${party.type}" />
 		

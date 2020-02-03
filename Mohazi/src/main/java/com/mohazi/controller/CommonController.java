@@ -68,4 +68,8 @@ public class CommonController {
 		return "successSignup";
 	}
 	
+	// FAQ 화면
+	@RequestMapping(value = "/FAQ", method = RequestMethod.GET)
+	public void FAQ() {}
+	
 }
