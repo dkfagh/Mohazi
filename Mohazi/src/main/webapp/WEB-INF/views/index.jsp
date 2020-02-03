@@ -92,7 +92,7 @@ list-style:none; margin:0; padding:0;
     cursor: pointer;   
 }
 </style>
-<!-- 
+<!--
 <form action="/board/list" method="get">
 	<select name="type">
 		<option value="M" selected>소모임</option>

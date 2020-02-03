@@ -20,16 +20,17 @@
         </choose>
 
 		<!-- REGION 칼럼 사라지고 ADDRESS 추가될 예정. 정규식사용 -->
-		<!-- WHERE REGEXP_LIKE(REGION, '^서울|^경기') -->
-		<choose>
+		<!-- WHERE REGEXP_LIKE(ADRRESS, '^서울|^경기') -->
+		<!-- 수정 필요.(whitespace 제거) -->
+<!-- 		<choose>
 			<when test="regionArr != null">
 				AND REGEXP_LIKE(REGION,
-				<foreach collection="regionArr" item="region" index="index" separator="|^" open="" close=")">
-					#{region}
+				<foreach collection="regionArr" item="region" index="index" separator="|" open="'" close="')">
+					^${region}
 				</foreach>
 			</when>
 		</choose>
-
+ -->
 	</select>
 	
 	<!-- CRUD -->

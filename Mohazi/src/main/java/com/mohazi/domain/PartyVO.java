@@ -18,12 +18,13 @@ public class PartyVO {
 	private String cat_main;
 	private String cat_sub;
 	private String content;
-	private String region;
 	private Date regDate;
 	private String tag;
 	private String photo;
 	private Long price;
-	// 위치정보 관련 칼럼 추가하기!!
+	private float coord_x;
+	private float coord_y;
+	private String address;
 	
 	private List<String> categoryArr;
 	private List<String> regionArr;
