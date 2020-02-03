@@ -4,7 +4,7 @@
 <%@ include file="./includes/header.jsp" %>
 <%@ include file="./includes/navigation.jsp" %>
 
-  <style>
+ <style>
     #userId,
     #userPw {
       width: 310px;
@@ -64,18 +64,10 @@
       border-left: none;
       cursor: pointer;
     }
+    
     input::placeholder{
            font-size: 11px; 
         }
-
-    #pwd_in {
-      height: 40px;
-      float: left;
-      border: 1px solid #bbbbbb;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
 
     input {
       border: none;
@@ -89,7 +81,7 @@
       opacity: 0.2;
     }
 
-    #login {
+    #contents {
       width: 300px;
       margin: auto;
     }
@@ -99,8 +91,7 @@
       height: 20px;
     }
 
-    #autoCheck,
-    #txt {
+    #autoCheck {
       height: 20px;
       font-size: 12px;
       display: flex;
@@ -109,10 +100,6 @@
 
     #autoCheck {
       float: left;
-    }
-
-    #txt {
-      float: right;
     }
 
     .loginBtn {
@@ -125,7 +112,6 @@
       font-size: 16px;
     }
 
-
     .signUpBtn {
       width: 310px;
       height: 50px;
@@ -134,57 +120,56 @@
       border: 2px solid #cccccc;
       font-size: 16px;
     }
-    .logbtn{
+
+    .logBtn{
       width:310px;
       height:40px;
       border: 0px;
       margin: 0px;
     }
 
-    .logimg{
+    .logImg{
       width:290px;
       height:38px;
       border: 0px;
       margin: 0px;
+      background-color: white;
+    }
+
+    .text-center{
+    border-top:  1px solid #7bd4ac ;
+    border-bottom: 1px solid #7bd4ac ;
     }
   
-</style>
+  </style>
 
-<!-- 
-	<form action="/login" method="post">
-		<input type="text" name="username" placeholder="ID" autofocus />
-		<input type="password" name="password" placeholder="PW" />
-		
-		<input type="submit">
-		
-		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-	</form>
- -->
+ <div class="container" id="contents">
+    <div align="center"> <img src="logo.png" width="200"> </div>
 
-<!-- div를 container class로 묶어야 하지 않을까요 -->
-  <div id=login>
-    <div align=center> <img src=logo.png width=200> </div>
 
+    <form method="post" action="/login">
+    
+ <!--<p>태그 css로 추후에 수정하겠습니다.------------------------------------------------------------>
+ 
     <!--userId 영역시작------------------------------------------------------------>
-  	<form action="/login" method="post">
-  	
-      <div id=userId>
-        <div id=userId1>
-          <span><img src=img/user.png width=30 align=center></span>
+    
+      <div id="userId">
+        <div id="userId1">
+          <span><img src="img/user.png" width="30" align="center"></span>
         </div>
-        <div id=userId2>
-          <input type=text name="username" placeholder="아이디">
+        <div id="userId2">
+          <input type="text" placeholder="아이디" name="id">
         </div>
       </div>
 
 
       <!--userPw 영역시작------------------------------------------------------------>
       <p>
-        <div id=userPw>
-            <div id=userPw1> <span><img src=img/userPw.png width=30 align=center></span> </div>
-            <div id=userPw2> <input type=password name="password" placeholder=비밀번호> </div>
-            <div id=userPw3 onclick=chg_icon()>
-                <span class=material-icons id=icon3> visibility </span>
+        <div id="userPw">
+            <div id="userPw1"> <span><img src="img/userPw.png" width="30" align="center"></span> </div>
+            <div id="userPw2"> <input type="password" placeholder="비밀번호" name="pw"> </div>
+            <div id="userPw3" onclick="chg_icon()">
+                <span class="material-icons" id="icon3"> visibility </span>
             </div>
         </div>
     </p>
@@ -193,18 +178,17 @@
       <!--자동로그인,로그인,회원가입버튼 영역시작------------------------------------------------------------>
       <p>
         <div>
-          <div id=autoCheck> <input type=checkbox>자동로그인</div>
+          <div id="autoCheck"> <input type="checkbox" name="rememberme">자동로그인</div>
         </div>
 
         <p>
-          <button type="submit" class=loginBtn>로그인</button>
+          <button type="submit" class="loginBtn" >로그인</button>
         </p>
 
-       <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-	</form>
+        
 
-        <button class="logbtn kakaoBtn" align=center type="submit"><img src="img/naverLogin.png" class="logimg" align=center></button>
-        <button class="logbtn kakaoBtn" align=center type="submit"><img src="img/kakaoLogin.png" class="logimg" align=center></button>
+        <button class="logBtn kakaoBtn" type="submit"><img src="img/naverLogin.png" class="logImg"></button>
+        <button class="logBtn kakaoBtn" type="submit"><img src="img/kakaoLogin.png" class="logImg"></button>
 
         <div>
           <hr style="width:310px;border:none;border-bottom:1px solid #cccccc">
@@ -214,6 +198,10 @@
           <button type="submit" class="signUpBtn">회원가입</button>
         </p>
 
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+      </form>
+
+  </div>
 
   
 <%@ include file="./includes/footer.jsp" %>
