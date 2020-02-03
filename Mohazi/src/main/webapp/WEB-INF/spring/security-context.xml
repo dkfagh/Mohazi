@@ -7,7 +7,7 @@
 
 	<bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
 	<bean id="customUserDetailsService" class="com.mohazi.security.CustomUserDetailsService" />
-	
+
 	<security:http>
 		<security:form-login />
 		<!-- 권한에 따라 intercept-url --> 
