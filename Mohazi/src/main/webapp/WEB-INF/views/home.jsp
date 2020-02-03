@@ -12,7 +12,7 @@
 	</script>
 <%-- 
 <h1>
-	INDEX PAGE
+	INDEX PAGE수정수정
 </h1>
 
 <P>  The time on the server is ${serverTime}. </P> --%>
