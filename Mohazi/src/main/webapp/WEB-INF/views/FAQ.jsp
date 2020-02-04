@@ -52,6 +52,16 @@
         #category button{
             width:160px;
         }
+        
+        #category ul li{
+        	list-style:none;
+        }
+        
+        #category li{        	
+        	float:left;
+        	margin-left:20px;
+        	color:black;
+        }
     
         
         .FAQsearch input{
@@ -104,7 +114,7 @@
                     </div>
                     
                     
-                    <div id="category" class="dropdown">
+                    <!-- <div id="category" class="dropdown">
                         <button type="button" class="btn btn-outline-dark dropdown-toggle" data-toggle="dropdown">
                        		 카테고리
                         </button>
@@ -116,6 +126,16 @@
 	                        <a class="dropdown-item" href="#">회원 정보</a>
 	                        <a class="dropdown-item" href="#">결제/환불</a>
                         </div>
+                    </div>               -->
+                    <div id="category">
+                        <ul>
+                        	<li><a href="#">전체</a></li>
+                        	<li><a href="#">참여자</a></li>
+                        	<li><a href="#">개설자</a></li>
+                        	<li><a href="#">이용 안내</a></li>
+                        	<li><a href="#">회원 정보</a></li>
+                        	<li><a href="#">결제/환불</a></li>
+                        </ul>
                     </div>              
                 </div>
                     <!-- form tag end-->
@@ -138,6 +158,7 @@
          <!-- to top button --->
     </div>
     <!-- 바디 부분 끝 ----------------------------------------------------------------->
+    
     
         <script>
         var acc = document.getElementsByClassName("accordion");

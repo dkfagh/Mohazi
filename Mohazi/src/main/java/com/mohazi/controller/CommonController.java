@@ -10,6 +10,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mohazi.domain.AuthVO;
 import com.mohazi.domain.UsersVO;
+import com.mohazi.service.FAQService;
 import com.mohazi.service.UsersService;
 
 import lombok.AllArgsConstructor;
@@ -21,7 +22,8 @@ import lombok.extern.log4j.Log4j;
 @AllArgsConstructor
 public class CommonController {
 	
-	private UsersService service;
+	private UsersService usersService;
+	private FAQService FAQService;
 	
 	@Setter(onMethod_ = @Autowired)
 	private PasswordEncoder pwencoder;
@@ -62,16 +64,18 @@ public class CommonController {
 		auth.setAuth("ROLE_MEMBER");
 		
 		// 순서 주의! USERS 테이블에 먼저 INSERT
-		service.insertUser(user);
-		service.insertAuth(auth);
+		usersService.insertUser(user);
+		usersService.insertAuth(auth);
 		
 		return "successSignup";
 	}
 	
 	// FAQ 화면
 	@RequestMapping(value = "/FAQ", method = RequestMethod.GET)
-	public void FAQ() {
+	public void FAQ(Model model) {
 		log.info("!!! FAQ !!!");
+		
+		model.addAttribute("FAQ", FAQService.getList());
 	}
 	
 }
