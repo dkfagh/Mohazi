@@ -54,7 +54,8 @@ public class CommonController {
 	@RequestMapping(value = "/signup", method = RequestMethod.POST)
 	public String signup(UsersVO user, RedirectAttributes rttr) {
 		log.info("!!! SIGN UP !!!" + user);
-		
+		log.info("date :" + user.getBirth());
+		System.out.println(user.getId());
 		// 비밀번호 인코딩
 		String encodedPw = pwencoder.encode(user.getPw());
 		user.setPw(encodedPw);
@@ -62,13 +63,21 @@ public class CommonController {
 		AuthVO auth = new AuthVO();
 		auth.setId(user.getId());
 		auth.setAuth("ROLE_MEMBER");
-		
+		log.info("auth id :" + auth.getId());
+		log.info("auth id :" + auth.getAuth());
 		// 순서 주의! USERS 테이블에 먼저 INSERT
 		usersService.insertUser(user);
 		usersService.insertAuth(auth);
 		
 		return "successSignup";
+		/* return "redirect:successSignup"; */
 	}
+	
+	// 회원가입 처리화면
+		@RequestMapping(value = "/successSignup", method = RequestMethod.GET)
+		public void successSignup(Model model) {
+			log.info("!!! SIGN UP SuccessPage !!!");
+		}
 	
 	// FAQ 화면
 	@RequestMapping(value = "/FAQ", method = RequestMethod.GET)
