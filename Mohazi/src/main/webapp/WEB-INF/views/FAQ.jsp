@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ include file="./includes/header.jsp" %>
 <%@ include file="./includes/navigation.jsp" %>
 
@@ -141,9 +142,21 @@
                     <!-- form tag end-->
 
                 <div class="FAQ-b">
-                    <button class="accordion">쿼리들어갈부분</button>
+                    <!-- <button class="accordion">쿼리들어갈부분</button>
                     <div class="panel">
                     	<p>컨텐츠쿼리 들어갈부분</p>
+                    </div> -->
+                    <div id="accordion">
+                    	<c:forEach items="${FAQ}" var="list">
+                    		<h3><c:out value="${list.title}" /></h3>
+                    		<div>
+                    			<p><c:out value="${list.content}" /></p>
+                    		</div>
+                    	</c:forEach>
+                    	<h3>FAQ 제목</h3>
+                    	<div>
+                    		<p> FAQ 내용 </p>
+                    	</div>
                     </div>
                 </div>
                 <!-- FAQ 페이지 끝 -->
@@ -160,7 +173,7 @@
     <!-- 바디 부분 끝 ----------------------------------------------------------------->
     
     
-        <script>
+        <!-- <script>
         var acc = document.getElementsByClassName("accordion");
         var i;
         
@@ -175,6 +188,6 @@
             } 
           });
         }
-    </script>
+    </script> -->
 
 <%@ include file="./includes/footer.jsp" %>
