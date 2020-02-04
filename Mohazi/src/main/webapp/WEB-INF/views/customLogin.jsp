@@ -119,6 +119,13 @@
       color: rgb(250, 246, 246);
       border: 2px solid #cccccc;
       font-size: 16px;
+      text-align:center;
+      margin:auto;
+      line-height:40px;
+    }
+    .signUpBtn:hover{
+    	text-decoration: none;
+    	color:#fff;
     }
 
     .logBtn{
@@ -126,6 +133,7 @@
       height:40px;
       border: 0px;
       margin: 0px;
+      margin-top: 10px;
     }
 
     .logImg{
@@ -144,64 +152,69 @@
   </style>
 
  <div class="container" id="contents">
+ 	<!-- 화면영역 시작 -->
     <div align="center"> <img src="logo.png" width="200"> </div>
 
 
     <form method="post" action="/login">
     
- <!--<p>태그 css로 추후에 수정하겠습니다.------------------------------------------------------------>
+ 	<!--<p>태그 css로 추후에 수정하겠습니다.------------------------------------------------------------>
  
-    <!--userId 영역시작------------------------------------------------------------>
+    	<!--userId 영역시작------------------------------------------------------------>
     
-      <div id="userId">
-        <div id="userId1">
-          <span><img src="img/user.png" width="30" align="center"></span>
-        </div>
-        <div id="userId2">
-          <input type="text" placeholder="아이디" name="id">
-        </div>
-      </div>
+	    <div id="userId">
+	      <div id="userId1">
+	        <span><img src="resources/img/user.png" width="30"></span>
+	      </div>
+	      <div id="userId2">
+	        <input type="text" placeholder="아이디" name="id">
+	      </div>
+	    </div>
+		<!--userId 영역 끝---------------->
 
-
-      <!--userPw 영역시작------------------------------------------------------------>
-      <p>
-        <div id="userPw">
-            <div id="userPw1"> <span><img src="img/userPw.png" width="30" align="center"></span> </div>
-            <div id="userPw2"> <input type="password" placeholder="비밀번호" name="pw"> </div>
-            <div id="userPw3" onclick="chg_icon()">
-                <span class="material-icons" id="icon3"> visibility </span>
-            </div>
-        </div>
-    </p>
-
+      	<!--userPw 영역시작------------------------------------------------------------>
+	    <p />
+	    <div id="userPw">
+	        <div id="userPw1"> <span><img src="resources/img/userPw.png" width="30"></span> </div>
+	        <div id="userPw2"> <input type="password" placeholder="비밀번호" name="pw"> </div>
+	        <div id="userPw3" onclick="chg_icon()">
+	            <span class="material-icons" id="icon3"> visibility </span>
+	        </div>
+	    </div>
+    
+		<!--userPw 영역 끝---------------->
       
-      <!--자동로그인,로그인,회원가입버튼 영역시작------------------------------------------------------------>
-      <p>
+     	<!--자동로그인,로그인,회원가입버튼 영역시작------------------------------------------------------------>
+      	<p />
         <div>
           <div id="autoCheck"> <input type="checkbox" name="rememberme">자동로그인</div>
         </div>
 
-        <p>
-          <button type="submit" class="loginBtn" >로그인</button>
-        </p>
-
+        <p />
+        <button type="submit" class="loginBtn" >로그인</button>
         
-
-        <button class="logBtn kakaoBtn" type="submit"><img src="img/naverLogin.png" class="logImg"></button>
-        <button class="logBtn kakaoBtn" type="submit"><img src="img/kakaoLogin.png" class="logImg"></button>
-
-        <div>
-          <hr style="width:310px;border:none;border-bottom:1px solid #cccccc">
-        </div>
-       
-        <p>
-          <button type="submit" class="signUpBtn">회원가입</button>
-        </p>
-
+		<!--자동로그인,로그인,회원가입버튼 영역 끝 ------>
+        
+		<br>
+        <button class="logBtn" name="naverLog" type="submit"><img src="resources/img/naverLogin.PNG" class="logImg"></button>
+        <button class="logBtn" name="kakaoLog" type="submit"><img src="resources/img/kakaoLogin.png" class="logImg"></button>
+        
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-      </form>
+	</form>
+    
+    <div>
+      <hr style="width:310px;border:none;border-bottom:1px solid #cccccc">
+    </div>
+   
+    <p />
+    <!-- <button type="submit" class="signUpBtn">회원가입</button> -->
+    <a href="/signup" class="signUpBtn" type="button">회원가입</a>
+    
 
-  </div>
+    
+      
+
+  </div><!-- 화면영역 끝 -->
 
   
 <%@ include file="./includes/footer.jsp" %>

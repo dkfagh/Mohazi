@@ -143,115 +143,116 @@
 
         <form action="/signup" method="post">
 
-        <!--userId 영역시작------------------------------------------------------------>
-        <div id="userId">
-            <div id="userId1">
-                <span><img src="img/user.png" width="30" align="center"></span>
-            </div>
-            <div id="userId2" style="font-size: 5px;">
-                <input type="text" placeholder="아이디" name="id">
-            </div>
-        </div>
-
-
-        <!--userPw 영역시작------------------------------------------------------------>
-        <p>
-            <div id="userPw">
-                <div id="userPw1"> <span><img src="img/userPw.png" width="30" align="center"></span> </div>
-                <div id="userPw2"> <input type="password" placeholder="비밀번호" name="pw"> </div>
-                <div id="userPw3" onclick="chg_icon()">
-                    <span class="material-icons" id="icon3"> visibility </span>
-                </div>
-            </div>
-        </p>
-
-        <!--userPwCheck 영역시작------------------------------------------------------------>
-        <p>
-            <div id="userPwCheck">
-                <div id="userPw1"> <span><img src="img/userPwCheck.png" width="30" align="center"></span> </div>
-                <div id="userPw2"> <input type="password" placeholder="비밀번호 확인" name="checkpw"> </div>
-                <div id="userPw3" onclick="chg_icon()">
-                    <span class="material-icons" id="icon3"> visibility </span>
-                </div>
-            </div>
-        </p>
-
-        <!--userEmail 영역시작------------------------------------------------------------>
-        <p>
-            <div id="userEmail">
-                <div id="userEmail1">
-                    <span><img src="img/userEmail.png" width="30" align="center"></span>
-                </div>
-                <div id="userEmail2">
-                    <input type="text" placeholder="이메일" name="email">
-                </div>
-            </div>
-        </p>
-
-        <!--userName 영역시작------------------------------------------------------------>
-        <p>
-            <div id="userName">
-                <div id="userName1">
-                    <span><img src="img/user.png" width="30" align="center"></span>
-                </div>
-                <div id="userName2">
-                    <input type="text" placeholder="이름" name="name">
-                </div>
-            </div>
-        </p>
-
-        <!--userNickName 영역시작------------------------------------------------------------>
-        <p>
-            <div id="userNickName">
-                <div id="userNickName1">
-                    <span><img src="img/userNickName.png" width="30" align="center"></span>
-                </div>
-                <div id="userNickName2">
-                    <input type="text" placeholder="닉네임" name="nickname">
-                </div>
-            </div>
-        </p>
-
-        <!--userPhone 영역시작------------------------------------------------------------>
-        <p>
-            <div id="userPhone">
-                <div id="userPhone1">
-                    <span><img src="img/userPhone.png" width="30" align="center"></span>
-                </div>
-                <div id="userPhone2">
-                    <input type="text" placeholder="휴대폰 번호" name="phone">
-                </div>
-            </div>
-        </p>
-
-
-        <!--userPhone 영역시작------------------------------------------------------------>
-
-
-
-        <div id="birthDate">
-            <div id="birthDate1">
-                <span><img src="img/user.png" width="30" align="center"></span>
-            </div>
-            <div id="birthDate2">
-                <input type="date" name="birth">
-            </div>
-        </div>
-
-
-
-      
-      
-        <!--회원가입버튼 영역시작------------------------------------------------------------>
-        <div>
-            <hr style="width:310px;border:none;border-bottom:1px solid #111111">
-        </div>
-        <p>
-            <button type="submit" class="signUpBtn">회원가입</button>
-        </p>
-
-    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-      </form>
+	        <!--userId 영역시작------------------------------------------------------------>
+	        <div id="userId">
+	            <div id="userId1">
+	                <span><img src="resources/img/user.png" width="30"></span>
+	            </div>
+	            <div id="userId2" style="font-size: 5px;">
+	                <input type="text" placeholder="아이디" name="id">
+	            </div>
+	        </div>
+			<!--userId 영역 끝----------------->
+	
+	        <!--userPw 영역시작------------------------------------------------------------>
+	        <p />
+	        <div id="userPw">
+	            <div id="userPw1"> <span><img src="resources/img/userPw.png" width="30"></span> </div>
+	            <div id="userPw2"> <input type="password" placeholder="비밀번호" name="pw"> </div>
+	            <div id="userPw3" onclick="chg_icon()">
+	                <span class="material-icons" id="icon3"> visibility </span>
+	            </div>
+	        </div>
+	        
+			<!--userPw 영역 끝---------------->
+			
+	        <!--userPwCheck 영역시작------------------------------------------------------------>
+	        <p />
+	        <div id="userPwCheck">
+	            <div id="userPw1"> <span><img src="resources/img/userPwCheck.png" width="30"></span> </div>
+	            <div id="userPw2"> <input type="password" placeholder="비밀번호 확인" name="checkpw"> </div>
+	            <div id="userPw3" onclick="chg_icon()">
+	                <span class="material-icons" id="icon3"> visibility </span>
+	            </div>
+	        </div>
+	        
+	
+	        <!--userEmail 영역시작------------------------------------------------------------>
+	        <p />
+	        <div id="userEmail">
+	            <div id="userEmail1">
+	                <span><img src="resources/img/userEmail.png" width="30"></span>
+	            </div>
+	            <div id="userEmail2">
+	                <input type="text" placeholder="이메일" name="email">
+	            </div>
+	        </div>
+	        
+	
+	        <!--userName 영역시작------------------------------------------------------------>
+	        <p />
+	        <div id="userName">
+	            <div id="userName1">
+	                <span><img src="resources/img/user.png" width="30"></span>
+	            </div>
+	            <div id="userName2">
+	                <input type="text" placeholder="이름" name="name">
+	            </div>
+	        </div>
+	        
+	
+	        <!--userNickName 영역시작------------------------------------------------------------>
+	        <p />
+	        <div id="userNickName">
+	            <div id="userNickName1">
+	                <span><img src="resources/img/userNickName.png" width="30"></span>
+	            </div>
+	            <div id="userNickName2">
+	                <input type="text" placeholder="닉네임" name="nickname">
+	            </div>
+	        </div>
+	        
+	
+	        <!--userPhone 영역시작------------------------------------------------------------>
+	        <p />
+	        <div id="userPhone">
+	            <div id="userPhone1">
+	                <span><img src="resources/img/userPhone.png" width="30"></span>
+	            </div>
+	            <div id="userPhone2">
+	                <input type="text" placeholder="휴대폰 번호" name="phone">
+	            </div>
+	        </div>
+	        
+	
+	
+	        <!--userPhone 영역시작------------------------------------------------------------>
+	
+	
+			<p />
+	        <div id="birthDate">
+	            <div id="birthDate1">
+	                <span><img src="resources/img/user.png" width="30" ></span>
+	            </div>
+	            <div id="birthDate2">
+	                <input type="date" name="birth" style="font-size:11px">
+	            </div>
+	        </div>
+	
+	
+	
+	      
+	      
+	        <!--회원가입버튼 영역시작------------------------------------------------------------>
+	        <div>
+	            <hr style="width:310px;border:none;border-bottom:1px solid #111111">
+	        </div>
+	        <p>
+	            <button type="submit" class="signUpBtn">회원가입</button>
+	        </p>
+	
+	    	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+      	</form>
 
     </div>
     
