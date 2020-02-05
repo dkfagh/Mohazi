@@ -181,7 +181,7 @@
 	                <span><img src="resources/img/userEmail.png" width="30"></span>
 	            </div>
 	            <div id="userEmail2">
-	                <input type="text" placeholder="이메일" name="email">
+	                <input id ="email" type="text" placeholder="이메일" name="email">
 	            </div>
 	        </div><!--userEmail 영역 끝-->
 	        
@@ -217,7 +217,7 @@
 	                <span><img src="resources/img/userPhone.png" width="30"></span>
 	            </div>
 	            <div id="userPhone2">
-	                <input type="text" placeholder="휴대폰 번호" name="phone">
+	                <input id="phone" type="text" placeholder="휴대폰 번호" name="phone">
 	            </div>
 	        </div><!--userPhone 영역 끝-->
 	        
@@ -228,7 +228,7 @@
 	                <span><img src="resources/img/user.png" width="30" ></span>
 	            </div>
 	            <div id="birthDate2">
-	                <input id="date" type="date" name="birth" style="font-size:11px">
+	                <input id="date" type="text" name="birth" style="font-size:11px">
 	            </div>
 	        </div><!--DatePicker 영역 끝--->
 			
@@ -255,16 +255,71 @@
 <!-- 스크립트 영역 -------------------------------------->
 <script>
 $(document).ready(function(){
+	
+	// datePicker
+	$("#date").datepicker({
+		dateFormat: "yy/mm/dd", // 포맷형식
+		shortYearCutoff: -20, // 연도표시인줄 알았더니 뭔지 모르겟음////////
+		dayNamesShort:[ "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat" ], // 요일 숏네임 작동안되는것같음
+		changeYear: true, // 연도 변경 가능설정
+		changeMonth: true, // 월 변경 가능설정
+		
+		showMonthAfterYear: true, // 연도, 월 순서로 표시
+		maxDate: "0d" // 금일 날짜 이후는 선택할 수 없음. 금일로부터 y, m , d 형식으로 변경 선택가능날짜 지정가능
+		
+		
+		
+	});
+	
+	
 	var formObj = $("form[role='form']");
 	console.log("hello signup");
 	   $("button[type='submit']").on("click",function(e){
 		  e.preventDefault();
+
 		  
 		  var pw=$("#pw").val();
 		  var pwEqual=$("#pwEqual").val();
+		  var phone=$("#phone").val();
 		  var date =$("#date").val();
-		  console.log("submit clicked");
-		  console.log("date : "+date);
+		  var email=$("#email").val();
+		  // phone 정규식 : 
+		  var regNumber = /^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/;
+		  // email 정규식 : 
+		  var regEmail=/^[_a-zA-Z0-9-\.]+@[\.a-zA-Z0-9-]+\.[a-zA-Z]+$/;
+		  
+		  if(!regEmail.test(email)) // email 정규식이 맞지 않을 때
+		    {
+		        alert("잘못된 이메일입니다. 다시 입력해주세요.");
+		        console.log("email: "+email);
+		        
+		        
+		        $("#email").val("");
+		        return;
+		    }
+		  
+		    if(!regNumber.test(phone)) // phone 정규식이 맞지 않을 때
+		    {
+		        alert("잘못된 휴대폰 번호입니다. 숫자, - 를 포함한 숫자만 입력하세요.");
+		        console.log("phone1: "+phone);
+		        
+		        
+		        $("#phone").val("");
+		        return;
+		    }
+		    
+		    
+
+		  
+		  ////////// date의 값이 -로는 인식이 되지 않아 /로 replace
+		 /*   date = date.replace("-","/"); 
+		  console.log("date 1 : "+date);
+		  date = date.replace("-","/");
+		  console.log("date 2 : "+date);  // 한번해서는 한개의 값밖에 바뀌지 않아 2번작업
+		  
+		  console.log("submit clicked");  */
+		  
+		  
 		  // 비밀번호 비교 /////////////////////////////
 		  if(pw != pwEqual){
 			  alert("비밀번호가 같지 않습니다.");
