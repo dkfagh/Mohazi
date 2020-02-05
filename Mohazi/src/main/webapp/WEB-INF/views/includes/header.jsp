@@ -97,11 +97,11 @@ border-bottom:#7bd4ac  solid 1px;
         <div id="sub-header">
             <div id="logo">
                 <h1 class="logo">
-                    <a href="/main">로고</a>
+                    <a href="/index">로고</a>
                 </h1>
             </div>
             <div id="login">
-                <button type="button" class="btn  btn-sm">로그인</button>
+                <a href="/customLogin" class="btn btn-sm">로그인</a>
             </div>
             <!-- search form--------------------------------- ---->
             <form class="form-inline" action="search.jsp" >
