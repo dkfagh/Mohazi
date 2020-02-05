@@ -316,11 +316,11 @@ ul.tab li.active a {
 					</div>
 					<div class="detail-info01">
 						<ul class="info-text">
-							<li class="info-location">
+							<%-- <li class="info-location">
 								<i class="fas fa-map-marker-alt"></i>
 								<!-- PartyVO에 위치정보관련 칼럼 추가 후 region을 address로 수정할 것 -->
 								<span><c:out value="${party.region}" /></span>
-							</li>
+							</li> --%>
 							<li class="info-guest" id="scheduleExplainArea">
 								<i class="fas fa-user-friends"></i>
 								<!-- PARTY JOIN TABLE에서 참여인원 가져올 것 -->

@@ -31,58 +31,60 @@
 	<link rel="stylesheet" href="/resources/demos/style.css">
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script>
-    $( function() {
-	  $( "#accordion" ).accordion({
-	    collapsible: true
-	  });
-	} );
-	</script>
+    
 
 <style>
 #sub-header {
-background-color: #fcfcfd;
-border-bottom: 1px solid #dde1e6;
+	background-color: #fcfcfd;
+	border-bottom: 1px solid #dde1e6;
 }
 
 #header {
-position: relative;
-width: 100%;
-height: 120px;
-margin: 0 auto;
-border-bottom:#7bd4ac  solid 1px;
+	position: relative;
+	width: 100%;
+	height: 120px;
+	margin: 0 auto;
+	border-bottom:#7bd4ac  solid 1px;
 }
+
 #logo{
     padding-top: 35px;
     float: left;
     padding-left:5%;
 }
+
 #login{
     padding-top: 45px;
     float: right;
     padding-right:5%;
 }
+
 #login a{
     background-color: #7bd4ac ;
     color: white;
 }
+
 .logo {
     display: inline;    
     border: solid 1px black;
 }
+
 .form-inline{
     padding-top: 45px;
     padding-right: 12%;
     float: right;
 }
+
 #search{
-width:200px !important;
-float: right;
+	width:200px !important;
+	float: right;
 }
+
 .input-group button{
     background-color: #7bd4ac ;
     color: white;
 }
+
 </style>
 
 
