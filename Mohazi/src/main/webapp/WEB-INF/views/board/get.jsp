@@ -269,13 +269,6 @@ ul.tab li.active a {
 	background-color: rgb(60, 189, 157);
 	color: white;
 }
-#top-btn {    
-    position: fixed;
-    right: 15%;
-    bottom: 70px;
-    display: none;
-}
-
 
 </style>
 
@@ -412,14 +405,6 @@ ul.tab li.active a {
 			</div>
 		</div>
 	</div>
-	<!-- to top button ------------------------------------------>
-	<div id="top-btn">
-		<button class="btn btn-outline-secondary">
-			<a href="#" class="top"><i class="fas fa-arrow-up"></i></a>
-		</button>
-	</div>
-	<!-- to top button --->
-
 	<%-- 
 	<h1>GET PAGE</h1>
 	<h3>TITLE : <c:out value="${party.title}" /></h3>
@@ -491,18 +476,7 @@ ul.tab li.active a {
                     }
                 });
         });
-		  //to top 버튼
-		  $( window ).scroll( function() {
-                if ( $( this ).scrollTop() > 200 ) {
-                    $( '#top-btn' ).fadeIn();
-                } else {
-                    $( '#top-btn' ).fadeOut();
-                }
-                } );
-                $( '#top-btn' ).click( function() {
-                $( 'html, body' ).animate( { scrollTop : 0 }, 400 );
-                return false;
-                } );		
+		 
 	}); 
     //]]>
  </script>

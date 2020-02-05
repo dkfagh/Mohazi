@@ -134,15 +134,7 @@
                     </ul>
                 </div>
                 <!-- FAQ 페이지 끝 -->
-            </div><!-- 내정보 네비, 페이지 분할 -->
-            <!-- to top button ------------------------------------------>
-            <div id="top-btn">
-                <button class="btn btn-outline-secondary">
-                    <a href="#" class="top"><i class="fas fa-arrow-up"></i></a>
-                </button>
-            </div>
-        </div>
-         <!-- to top button --->
+          </div><!-- 내정보 네비, 페이지 분할 -->          
     </div>
     <!-- 바디 부분 끝 ----------------------------------------------------------------->
     

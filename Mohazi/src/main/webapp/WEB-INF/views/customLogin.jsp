@@ -142,13 +142,7 @@
       border: 0px;
       margin: 0px;
       background-color: white;
-    }
-
-    .text-center{
-    border-top:  1px solid #7bd4ac ;
-    border-bottom: 1px solid #7bd4ac ;
-    }
-  
+    }  
   </style>
 
  <div class="container" id="contents">

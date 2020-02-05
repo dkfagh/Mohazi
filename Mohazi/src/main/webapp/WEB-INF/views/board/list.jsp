@@ -164,12 +164,6 @@ color: #96969d;
 .list-header{
     border-top: solid 1px#7bd4ac ;
 }
-#top-btn {    
-    position: fixed;
-    right: 15%;
-    bottom: 70px;
-    display: none;
-    }
 </style>
 
 <%-- <h1>MEETING LIST !</h1>
@@ -373,14 +367,6 @@ color: #96969d;
 	            </div>
 			</c:forEach>
 			
-        </div> 
-        
-         <!-- to top button ------------------------------------------>
-     <div id="top-btn">
-        <button class="btn btn-outline-secondary">
-            <a href="#" class="top"><i class="fas fa-arrow-up"></i></a>
-        </button>
-    </div>
-     <!-- to top button --->
+        </div>      
 
 <%@ include file="../includes/footer.jsp" %>

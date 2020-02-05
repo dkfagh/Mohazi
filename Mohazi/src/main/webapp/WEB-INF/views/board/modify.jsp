@@ -1,13 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>수정하기</title>
-</head>
+<%@ include file="../includes/header.jsp" %>
+<%@ include file="../includes/navigation.jsp" %> 
 
-<body>
 	<form action="/board/modify" method="post">
 	
 		<!-- 기존 값 불러와서 SELECTE 주기 -->
@@ -39,5 +34,5 @@
 		<input type="hidden" name="p_no" value="${party.p_no}" />
 		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 	</form>
-</body>
-</html>
+	
+	<%@ include file="../includes/footer.jsp" %>

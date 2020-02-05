@@ -121,7 +121,6 @@ list-style:none; margin:0; padding:0;
     border-radius: 3px;
     cursor: pointer;   
 }
-
 </style>
 <!--
 <form action="/board/list" method="get">
