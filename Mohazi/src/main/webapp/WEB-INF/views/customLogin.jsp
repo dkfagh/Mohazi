@@ -167,7 +167,8 @@
 	        <span><img src="resources/img/user.png" width="30"></span>
 	      </div>
 	      <div id="userId2">
-	        <input type="text" placeholder="아이디" name="id">
+	      	<!-- name 주의! id 대신 username -->
+	        <input type="text" placeholder="아이디" name="username">
 	      </div>
 	    </div>
 		<!--userId 영역 끝---------------->
@@ -176,7 +177,8 @@
 	    <p />
 	    <div id="userPw">
 	        <div id="userPw1"> <span><img src="resources/img/userPw.png" width="30"></span> </div>
-	        <div id="userPw2"> <input type="password" placeholder="비밀번호" name="pw"> </div>
+	        <!-- name 주의! pw 대신 password -->
+	        <div id="userPw2"> <input type="password" placeholder="비밀번호" name="password"> </div>
 	        <div id="userPw3" onclick="chg_icon()">
 	            <span class="material-icons" id="icon3"> visibility </span>
 	        </div>
