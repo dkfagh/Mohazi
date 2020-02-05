@@ -23,7 +23,7 @@
 		<!-- WHERE REGEXP_LIKE(ADDRESS, REGEXP_REPLACE('^ 서울 | ^ 경기 ', ' ', '')) -->
  		<choose>
 			<when test="regionArr != null">
-				AND REGEXP_LIKE(REGION,
+				AND REGEXP_LIKE(ADDRESS,
 				<foreach collection="regionArr" item="region" index="index" separator="|" open="REGEXP_REPLACE('" close="' , '\s+', ''))">
 					^${region}
 				</foreach>
