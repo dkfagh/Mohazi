@@ -31,27 +31,24 @@ overflow: hidden;
 .main-choice-text01{
     display: inline;
 }
+
 #menu-container{
     /* width: 100%;  
     height: auto; */
-    height: 100%;
     margin-top: 50px; 
-    /* margin-left: 30px;   */
+    margin-left: 30px;  
     text-align: center;  
-    box-sizing: border-box;   
+    height: 240px;  
 }
 #menu-container ul, ol, li {
 list-style:none; margin:0; padding:0; 
 } 
-.main-menu{
-    text-align: center;
-}
 .main-menu > li { position:relative;  float: left; display: inline; padding: 1px; 
-                 width: 19%;  height: 50px; text-align: center;  box-sizing:border-box;}
-.submenu { display:none; position:absolute; top:50px; left:0; width: 100%;}
-.main-menu > li:hover ul.submenu { display:block; }
-.submenu > li { display:inline-block; float: left;  width: 100%; padding: 1px; height: 50px; text-align: center; }
-.menu button, .submenu button{ 
+                 width: 24%;  height: 50px; text-align: center;  box-sizing:border-box;}
+.submenu {display: none;  position:absolute; top:50px; left:0; width: 100%; opacity: 0; transition: all, 2s;}
+.main-menu > li:hover ul.submenu {display: block; opacity: 1; }
+.submenu > li { display:inline-block; float: left;  width: 100%; padding: 1px; height: 50px; text-align: center; box-sizing:border-box;}
+.menu button, .submenu input[type="button"]{ 
     width: 100%; 
     height: 100%;
     text-align: left;
@@ -60,10 +57,12 @@ list-style:none; margin:0; padding:0;
     background-color:  #7bd4ac;
     color: white;
 }
-.menu button:hover, .submenu button:hover{
+.menu button:hover, .submenu input[type="button"]:hover{
      color: rgb(161, 159, 159);
 }
 #go{
+    width: 100%; 
+    height: 100%;
     background-color: rgb(22, 145, 118);
     text-align: center;
     color: white;
@@ -71,14 +70,42 @@ list-style:none; margin:0; padding:0;
     font-family: 'Sunflower', sans-serif;
 }
 #go:hover{ background-color: rgb(60, 189, 157);}
-#where{ display:none; position:absolute; top:50px; left:-150%; width: 400%;}
-.main-menu > li:hover #where{display: block;}
-#where-box{  
-    display: inline;      
+#where{ display:none; position:absolute; top:50px; left:-85%; width: 400%; transition: 5s;}
+#category{ display:none; position:absolute; top:50px; left:-185%; width: 400%; transition: 5s;}
+.main-menu > li:hover #where, .main-menu > li:hover #category{display: block;}
+#where-box, #category-box, #when-box{  
+    width: 100%;  
+    box-sizing: border-box; 
 }
-#where-box button{
-    width:23%;
-    margin:1px;
+#where-box .checkbox-inputLabel, #category-box .checkbox-inputLabel{
+    float: left;
+    width: 23%; 
+    height: 50px;
+    text-align: center;   
+    font-size: 14px;  
+    font-family: 'Sunflower', sans-serif;
+    background-color:  #7bd4ac;
+    color: white;   
+    margin-bottom: 1px;
+    margin-right: 1px;
+    border-radius: 5px;      
+}
+#where-box .checkbox-inputLabel:hover, #category-box .checkbox-inputLabel:hover{
+    color: rgb(161, 159, 159);
+    cursor: pointer;
+}
+.checkbox-inputLabel input{
+    margin-top: 9%;
+    margin-right: 12%;
+   float: right;
+   cursor: pointer;
+        
+}
+.checkbox-inputLabel label{
+    margin-top: 8%;
+    margin-left: 12%;
+   float: left;
+   cursor: pointer;
 }
 .class-date input{
     width: 100%; 
@@ -86,7 +113,7 @@ list-style:none; margin:0; padding:0;
     text-align: center;
     border-radius: 3px;
     cursor: pointer;   
-}
+} 
 
 .col-sm-3{   
     height: 350px;
@@ -137,11 +164,12 @@ color: #96969d;
 .list-header{
     border-top: solid 1px#7bd4ac ;
 }
-
-.text-center{
-    border-top:  1px solid #7bd4ac ;
-    border-bottom: 1px solid #7bd4ac ;
-}
+#top-btn {    
+    position: fixed;
+    right: 15%;
+    bottom: 70px;
+    display: none;
+    }
 </style>
 
 <%-- <h1>MEETING LIST !</h1>
@@ -151,7 +179,7 @@ color: #96969d;
 	</c:forEach>
 </ul> --%>
 
-	<div class="container" id="contents">
+<div class="container" id="contents">
 		<div class="row" >
             <div class="col-sm-12">
                 <div class="main-choice">
@@ -163,65 +191,148 @@ color: #96969d;
                         <span class="maint-choice-text02">선택</span>
                         <h1 class="main-choice-text01">지</h1>
                     </div>
+                    <!-- 메뉴 초이스 부분 form태그--------------------------------------------------------------------->
                     <div id="menu-container" >
-                        <ul class="main-menu">
-                            <li class="menu" id="menu-type"><button class="btn  btn-large">타입</button>
-                                <ul class="submenu">
-                                    <li><button class="btn  btn-large">클래스</button></li>
-                                    <li><button class="btn btn-large">소모임</button></li>                            
-                                </ul>
-                            </li>
-                            <li class="menu"  id="menu-when"><button class="btn   btn-large">언제</button>
-                                <ul class="submenu" id="when">                                    
-                                    <li>
-                                        <div id="when-box" > 
-                                            <div class="class-date" >
-                                                <input class="result" type="text" id="date" placeholder="날짜 선택">
-                                            </div>                                           
-                                        </div> 
-                                    </li>  
-                                </ul> 
-                            </li>                                             
-                            
-                            <li class="menu"  id="menu-where"><button class="btn   btn-large">어디서</button>
-                                <ul class="submenu" id="where">                                    
-                                    <li>
-                                        <div id="where-box" >   
-                                            <button class="btn   btn-large" style="margin-top: 50px;">서울</button>
-                                            <button class="btn   btn-large" style="margin-top: 50px;">경기</button>
-                                            <button class="btn   btn-large" style="margin-top: 50px;">인천</button>
-                                            <button class="btn   btn-large" style="margin-top: 50px;">강원</button>
-                                            <button class="btn   btn-large">충북</button>
-                                            <button class="btn   btn-large">충남</button>
-                                            <button class="btn   btn-large">대전</button>
-                                            <button class="btn   btn-large">경북</button>
-                                            <button class="btn   btn-large">경남</button>
-                                            <button class="btn   btn-large">대구</button>
-                                            <button class="btn   btn-large">울산</button>
-                                            <button class="btn   btn-large">부산</button>
-                                            <button class="btn   btn-large">광주</button>
-                                            <button class="btn   btn-large">전북</button>
-                                            <button class="btn   btn-large">전남</button>
-                                            <button class="btn   btn-large">제주</button>                                           
-                                        </div> 
-                                    </li>                                   
-                                </ul>   
-                            </li>
-                            <li class="menu"  id="menu-category"><button class="btn btn-large">카테고리</button>
-                                <ul class="submenu">
-                                    <li><button class="btn   btn-large">카테고리1</button></li>
-                                    <li><button class="btn   btn-large">카테고리2</button></li> 
-                                    <li><button class="btn   btn-large">카테고리3</button></li>
-                                    <li><button class="btn   btn-large">카테고리4</button></li> 
-                                    <li><button class="btn   btn-large">카테고리5</button></li>
-                                    <li><button class="btn   btn-large">카테고리6</button></li> 
-                                    <li><button class="btn   btn-large">카테고리7</button></li>
-                                    <li><button class="btn   btn-large">카테고리8</button></li>                            
-                                </ul>
-                            </li>
-                            <li class="menu"  id="menu-go"><button class="btn btn-large" id="go">Go!</button></li>      
-                        </ul>
-                    </div>                 
+                        <form>
+                            <ul class="main-menu">  
+                                <li class="menu"  id="menu-when"><button class="btn   btn-large">언제</button>
+                                    <ul class="submenu" id="when">                                    
+                                        <li>
+                                            <div id="when-box" > 
+                                                <div class="class-date">
+                                                    <input class="result" type="text" name="date" id="date" placeholder="날짜 선택">
+                                                </div>                                           
+                                            </div> 
+                                        </li>  
+                                    </ul> 
+                                </li>                                                           
+                                
+                                <li class="menu"><button class="btn  btn-large">어디서</button>
+                                    <ul class="submenu" id="where">                                    
+                                        <li>
+                                            <div id="where-box" >   
+                                                <div class="checkbox-inputLabel" >
+                                                    <label for="check-test-box"> <span></span>서울</label>
+                                                    <input type="checkbox" name="region" value="서울">                                                
+                                                </div>
+                                                <div class="checkbox-inputLabel">                                                 
+                                                    <label for="check-test-box"> <span></span>경기</label>
+                                                    <input type="checkbox" name="region" value="경기">
+                                                </div>
+                                                <div class="checkbox-inputLabel">                                               
+                                                    <label for="check-test-box"> <span></span>인천</label>
+                                                    <input type="checkbox" name="region" value="인천">
+                                                </div>
+                                                <div class="checkbox-inputLabel">
+                                                    <label for="check-test-box"> <span></span>강원</label>
+                                                    <input type="checkbox" name="region" value="강원">
+                                                </div>
+                                                <div class="checkbox-inputLabel">                                               
+                                                    <label for="check-test-box"> <span></span>충북</label>
+                                                    <input type="checkbox" name="region" value="충북">
+                                                </div>
+                                                <div class="checkbox-inputLabel">                                               
+                                                    <label for="check-test-box"> <span></span>충남</label>
+                                                    <input type="checkbox" name="region" value="충남">
+                                                </div>
+                                                <div class="checkbox-inputLabel">                                               
+                                                    <label for="check-test-box"> <span></span>대전</label>
+                                                    <input type="checkbox" name="region" value="대전">
+                                                </div>
+                                                <div class="checkbox-inputLabel">                                               
+                                                    <label for="check-test-box"> <span></span>경북</label>
+                                                    <input type="checkbox" name="region" value="경북">
+                                                </div>
+                                                <div class="checkbox-inputLabel">                                               
+                                                    <label for="check-test-box"> <span></span>경남</label>
+                                                    <input type="checkbox" name="region" value="경남">
+                                                </div>
+                                                <div class="checkbox-inputLabel">                                               
+                                                    <label for="check-test-box"> <span></span>대구</label>
+                                                    <input type="checkbox" name="region" value="경남">
+                                                </div>
+                                                <div class="checkbox-inputLabel">                                               
+                                                    <label for="check-test-box"> <span></span>울산</label>
+                                                    <input type="checkbox" name="region" value="울산">
+                                                </div>
+                                                <div class="checkbox-inputLabel">                                               
+                                                    <label for="check-test-box"> <span></span>부산</label>
+                                                    <input type="checkbox" name="region" value="부산">
+                                                </div>
+                                                <div class="checkbox-inputLabel">                                               
+                                                    <label for="check-test-box"> <span></span>광주</label>
+                                                    <input type="checkbox" name="region" value="광주">
+                                                </div>
+                                                <div class="checkbox-inputLabel">                                               
+                                                    <label for="check-test-box"> <span></span>전북</label>
+                                                    <input type="checkbox" name="region" value="전북">
+                                                </div>
+                                                <div class="checkbox-inputLabel">                                                
+                                                    <label for="check-test-box"> <span></span>전남</label>
+                                                    <input type="checkbox" name="region" value="전남">
+                                                </div>
+                                                <div class="checkbox-inputLabel">                                               
+                                                    <label for="check-test-box"> <span></span>제주</label>
+                                                    <input type="checkbox" name="region" value="제주"> 
+                                                </div>                             
+                                            </div> 
+                                        </li>                                   
+                                    </ul>   
+                                </li>
+                                <li class="menu"><button class="btn  btn-large">카테고리</button>
+                                    <ul class="submenu" id="category">
+                                        <li>
+                                            <div id="category-box" >   
+                                                <div class="checkbox-inputLabel" >
+                                                    <label for="check-test-box"> <span></span>카테고리1</label>
+                                                    <input type="checkbox" name="category" value="카테고리1">                                                
+                                                </div>
+                                                <div class="checkbox-inputLabel">                                                 
+                                                    <label for="check-test-box"> <span></span>카테고리2</label>
+                                                    <input type="checkbox" name="category" value="카테고리2">
+                                                </div>
+                                                <div class="checkbox-inputLabel">                                               
+                                                    <label for="check-test-box"> <span></span>카테고리3</label>
+                                                    <input type="checkbox" name="category" value="카테고리3">
+                                                </div>
+                                                <div class="checkbox-inputLabel">
+                                                    <label for="check-test-box"> <span></span>카테고리4</label>
+                                                    <input type="checkbox" name="category" value="카테고리4">
+                                                </div>
+                                                <div class="checkbox-inputLabel">                                               
+                                                    <label for="check-test-box"> <span></span>카테고리5</label>
+                                                    <input type="checkbox" name="category" value="카테고리5">
+                                                </div>
+                                                <div class="checkbox-inputLabel">                                               
+                                                    <label for="check-test-box"> <span></span>카테고리6</label>
+                                                    <input type="checkbox" name="category" value="카테고리6">
+                                                </div>
+                                                <div class="checkbox-inputLabel">                                               
+                                                    <label for="check-test-box"> <span></span>카테고리7</label>
+                                                    <input type="checkbox" name="category" value="카테고리7">
+                                                </div>
+                                                <div class="checkbox-inputLabel">                                               
+                                                    <label for="check-test-box"> <span></span>카테고리8</label>
+                                                    <input type="checkbox" name="category" value="카테고리8">
+                                                </div>
+                                                <div class="checkbox-inputLabel">                                               
+                                                    <label for="check-test-box"> <span></span>카테고리9</label>
+                                                    <input type="checkbox" name="category" value="카테고리9">
+                                                </div>
+                                                <div class="checkbox-inputLabel">                                               
+                                                    <label for="check-test-box"> <span></span>카테고리10</label>
+                                                    <input type="checkbox" name="category" value="카테고리10">
+                                                </div>                                                                    
+                                            </div> 
+                                        </li>                              
+                                    </ul>
+                                </li>
+                                <li class="menu"><input type="submit" class="btn btn-large" id="go" value="Go! List"></li>      
+                            </ul>
+                        </form>
+                    </div> 
+                        <!-- 메뉴 초이스 부분 form태그--->            
+                 
                 </div> 				
 			</div>			
 		
@@ -263,5 +374,13 @@ color: #96969d;
 			</c:forEach>
 			
         </div> 
+        
+         <!-- to top button ------------------------------------------>
+     <div id="top-btn">
+        <button class="btn btn-outline-secondary">
+            <a href="#" class="top"><i class="fas fa-arrow-up"></i></a>
+        </button>
+    </div>
+     <!-- to top button --->
 
 <%@ include file="../includes/footer.jsp" %>
