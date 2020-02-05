@@ -259,8 +259,12 @@ $(document).ready(function(){
 	// datePicker
 	$("#date").datepicker({
 		dateFormat: "yy/mm/dd", // 포맷형식
-		shortYearCutoff: -20, // 연도표시인줄 알았더니 뭔지 모르겟음////////
-		dayNamesShort:[ "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat" ], // 요일 숏네임 작동안되는것같음
+		
+		monthNames: ["1 월","2 월","3 월","4 월","5 월","6 월","7 월","8 월","9 월","10 월","11 월","12 월"], // 개월 텍스트 설정
+	    monthNamesShort: ["1 월","2 월","3 월","4 월","5 월","6 월","7 월","8 월","9 월","10 월","11 월","12 월"], // 개월 텍스트 설정
+	    dayNames: ["일요일","월요일","화요일","수요일","목요일","금요일","토요일"], // 요일 텍스트 설정
+	    dayNamesShort: ["일","월","화","수","목","금","토"], // 요일 텍스트 축약 설정&nbsp;   
+		dayNamesMin: ["일","월","화","수","목","금","토"], // 요일 최소 축약 텍스트 설정
 		changeYear: true, // 연도 변경 가능설정
 		changeMonth: true, // 월 변경 가능설정
 		
@@ -270,6 +274,8 @@ $(document).ready(function(){
 		
 		
 	});
+	$("#date").datepicker("setDate", "1990/01/01");
+	
 	
 	
 	var formObj = $("form[role='form']");
