@@ -4,7 +4,39 @@
 <%@ include file="../includes/header.jsp" %>
 <%@ include file="../includes/navigation.jsp" %>
 
- <style>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+  <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css'>
+  <link rel="stylesheet" href="./style.css">
+
+  <!-- textEditor ----------------------------------------------------------------------->
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" 
+  integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" 
+  crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+
+  <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.15/dist/summernote-bs4.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.15/dist/summernote-bs4.min.js"></script>
+
+  <!-- tagEditor ----------------------------------------------------------------------------->
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery-tagsinput/1.3.6/jquery.tagsinput.min.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-tagsinput/1.3.6/jquery.tagsinput.min.js"></script>
+
+  <!-- 폰트어썸 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+  
+  
+<style>
     input::placeholder {
       font-size: 12px;
     }
@@ -13,9 +45,9 @@
       border: 0;
     }
 
-    tr {
-      width: 800px;
-    }
+     tr {
+      width:100% !important;
+    } 
 
     th {
       color: black;
@@ -23,6 +55,11 @@
       width: 200px;
     }
 
+   .cat {
+       width: 50% !important; 
+       display:inline-block;
+   
+    } 
     .title,
     .address,
     .price {
@@ -43,14 +80,14 @@
       width: 100px;
       text-align: center;
       padding: 10px;
-      background-color: rgb(11, 12, 12);
-      color: #fff;
+      background-color:rgb(0, 0, 0);
+      color: white;
       text-decoration: none;
       border-radius: 5px;
+      border: 0.5px solid black;
     }
 
-
-
+  
     .imgsWrap {
 
       border: 2px solid #A8A8A8;
@@ -59,21 +96,20 @@
       padding-top: 10px;
       padding-bottom: 10px;
       height: 200px;
-
     }
 
     .imgsWrap img {
       max-width: 170px;
       margin-left: 10px;
       margin-right: 10px;
-      max-height: 170px;
-      width: 50%;
-
+      max-height: 200px;
+      height: 180px;
+      width: 170px;
     }
 
     .regBtn {
-      background-color: rgb(11, 12, 12);
-      color: #fff;
+      background-color:rgb(0, 0, 0);
+      color: white;
       border-radius: 5px;
       width: 50px;
       height: 30px;
@@ -86,10 +122,15 @@
       margin: 0 auto;
     }
 
+    #inputTag{
+      width: 800px !important;
+      margin: 0px 0px;
+      height: 50px;
+    }
   </style>
 
 
-  <!-- Container시작 ----------------------------------------------------------------->
+<!-- Container시작 ----------------------------------------------------------------->
   <div class="container" id="contents">
 
     <!-- registerForm시작 ----------------------------------------------------------------->
@@ -98,43 +139,43 @@
       <h2>Register</h2>
       <br>
       <!-- Table시작 ----------------------------------------------------------------->
-      <table class="table" style="width: 1000px;">
+      <table class="table">
 
         <tbody>
-        <!-- 제목입력 -------------------------------------------------------------------------->
-      
+          <!-- 제목입력 -------------------------------------------------------------------------->
+
           <tr>
             <th>제목</th>
-            <td class="title"><input type="text" placeholder=" 제목을 입력하세요." name="title"/></td>
+            <td class="title"><input type="text" placeholder=" 제목을 입력하세요." name="title" /></td>
           </tr>
 
           <!-- 카테고리입력 -------------------------------------------------------------------------->
-          <tr>
-            <th>카테고리</th>
-            <td>
+          <tr style="width: 800px !important;">
+            <th style="width: 200px !important;">카테고리</th>
+            <td class="cat">
               <select name="cat_main">
                 <option SELECTED>선택하세요.</option>
-                 <option>클래스</option> 
-                 <option>모임</option> 
-                 <option>클래스</option> 
-                 <option>클래스</option> 
-                 <option>클래스</option> 
-                 <option>클래스</option> 
+                <option>클래스</option>
+                <option>모임</option>
+                <option>클래스</option>
+                <option>클래스</option>
+                <option>클래스</option>
+                <option>클래스</option>
+           </select>
+         </td>
+          <td  class="cat">
+              <select name="cat_sub">
+                <option SELECTED>선택하세요.</option>
+                <option>운동</option>
+                <option>모임</option>
+                <option>클래스</option>
+                <option>클래스</option>
+                <option>클래스</option>
+                <option>클래스</option>
               </select>
-        </td>
+          </td>
 
-        <td>
-          <select name="cat_sub">
-            <option SELECTED>선택하세요.</option>
-             <option>운동</option> 
-             <option>모임</option> 
-             <option>클래스</option> 
-             <option>클래스</option> 
-             <option>클래스</option> 
-             <option>클래스</option> 
-          </select>
-            
-            </td>
+
           </tr>
 
 
@@ -150,7 +191,8 @@
           <tr>
             <th>위치</th>
             <td class="address"> <input type="text" id="inputAddress" placeholder="주소를 입력하세요." style="width: 300px;" name="address">
-              <input type="button" onclick="sample5_execDaumPostcode()" value="주소 검색"><br>
+              <input type="button" onclick="sample5_execDaumPostcode()" value="검색" class="mapBtn"
+              style="font-size: 12px; background-color: black; color: white; border-radius: 3px;"><br>
               <div id="map" style="width:300px;height:300px;margin-top:10px;display:none"></div>
             </td>
           </tr>
@@ -160,9 +202,9 @@
           <tr>
             <th>태그달기</th>
             <td>
-              <div style="width: 500px; margin: 0px auto;">
+              <div>
                 <h2 style="font-family:cursive;"></h2>
-                <input name="tags" id="inputTag" style="width:500px !important" name="tag"/>
+                <input id="inputTag" style="width:800px !important; height: 50px; margin: 0px 0px;" name="tag" />
               </div>
             </td>
           </tr>
@@ -174,7 +216,7 @@
               <div>
                 <div class="inputWrap">
                   <a href="javascript:" onclick="fileUploadAction();" class="photoBtn">사진등록</a>
-                  <input type="file" id="inputImgs" multiple name="photo"/>
+                  <input type="file" id="inputImgs" multiple name="photo" />
                 </div>
                 <br>
                 <a href="javascript:" class="photoBtn" onclick="submitAction();">업로드</a>
@@ -187,31 +229,35 @@
             </td>
           </tr>
 
-           <!-- 가격입력 -------------------------------------------------------------------------->
-      
-           <tr>
+
+          <!-- 가격입력 -------------------------------------------------------------------------->
+
+          <tr>
             <th>가격</th>
-            <td class="price"><input type="text" placeholder="가격을 입력하세요." name="price"/>원</td>
+            <td class="price"><input type="text" placeholder="가격을 입력하세요." name="price" />원</td>
           </tr>
 
-          <!-- 등록버튼입력 -------------------------------------------------------------------------->
-          <td>
-            <div>
-              <button type="submit" class="regBtn">등록</button>
-            </div>
-          </td>
 
-          <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+
+
+
+          <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 
         </tbody>
       </table>
       <!-- Table끝 ----------------------------------------------------------------->
 
+      <!-- 등록버튼입력 -------------------------------------------------------------------------->
+      <button type="submit" class="regBtn">등록</button>
+
     </form>
     <!-- registerForm끝 ----------------------------------------------------------------->
 
-  </div>
+
   <!-- Container끝 ----------------------------------------------------------------->
+
+
+
 
 <%@ include file="../includes/footer.jsp" %>
 
@@ -380,7 +426,11 @@
 <!-- tagEditor ------------------------------------------------------------------------------->
 
 <script type="text/javascript">
-  $('#inputTag').tagsInput();
+  $('#inputTag').tagsInput({
+    width: 820,
+    height: 50
+  });
 </script>
 
 <!-- tagEditor ------------------------------------------------------------------------------->
+
