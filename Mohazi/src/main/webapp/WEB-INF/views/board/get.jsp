@@ -145,7 +145,7 @@ padding: 0;
 	cursor: pointer;
 }
 /* Style the tab content */
-.tabcontent {
+.tabContent {
 	display: none;	
 	padding: 6px 12px;
 	
@@ -164,7 +164,7 @@ ul.tab li.active a {
 	font-size: 17px;
 	transition:0.3s;
 }
-.tabcontent.active {
+.tabContent.active {
 	display: block;
 	min-height: 700px;
 }
@@ -269,10 +269,13 @@ ul.tab li.active a {
 	background-color: rgb(60, 189, 157);
 	color: white;
 }
-.text-center{
-    border-top:  1px solid #7bd4ac ;
-    border-bottom: 1px solid #7bd4ac ;
+#top-btn {    
+    position: fixed;
+    right: 15%;
+    bottom: 70px;
+    display: none;
 }
+
 
 </style>
 
@@ -294,9 +297,7 @@ ul.tab li.active a {
 						마카롱 ∙ 다쿠아즈					
 						<span class="badge badge-default">3,000원 추가할인</span>						
 					</div>
-					<div class="title-subject">
-						<c:out value="${party.title}" />
-					</div>
+					<div class="title-subject">[꾸덕,쫀득 저세상텐션 마카롱 원데이클래스-뚝섬역,어썸블리스]</div>
 				</div>
 			</div>
 			
@@ -316,11 +317,12 @@ ul.tab li.active a {
 					</div>
 					<div class="detail-info01">
 						<ul class="info-text">
-							<li class="info-location">
+							<%-- <li class="info-location">
 								<i class="fas fa-map-marker-alt"></i>
 								<!-- PartyVO에 위치정보관련 칼럼 추가 후 region을 address로 수정할 것 -->
-								<span><c:out value="${party.region}" /></span>
+								<%-- <span><c:out value="${party.region}" /></span> --%>
 							</li>
+
 							<li class="info-guest" id="scheduleExplainArea">
 								<i class="fas fa-user-friends"></i>
 								<!-- PARTY JOIN TABLE에서 참여인원 가져올 것 -->
@@ -342,7 +344,7 @@ ul.tab li.active a {
         </div>       
         <div class="row">
 			<div class="col-sm-8">
-				<div class="tablist">
+				<div class="tabList">
 					<ul class="tab">
 						<li class="active" data-tab="tab1"><a rel="tab1">상세정보</a></li>
 						<li data-tab="tab2"><a rel="tab2">후기</a></li>
@@ -350,25 +352,23 @@ ul.tab li.active a {
 						<li data-tab="tab4"><a rel="tab4">변경 및 취소</a></li>
 					</ul>
 			
-					<div id="tab1" class="tabcontent active">
+					<div id="tab1" class="tabContent active">
 						<h4>상세정보</h4>
-						<p id="introduction">
-							<c:out value="${party.content}" />
-						</p>
+						<p id="introduction">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
 						<div id="map" style="width:100%;height:400px;"></div>					
 					</div>
 			
-					<div id="tab2" class="tabcontent">
+					<div id="tab2" class="tabContent">
 						<h4>후기</h4>
 						<p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</p>
 					</div>
 			
-					<div id="tab3" class="tabcontent">
+					<div id="tab3" class="tabContent">
 						<h4>Q&amp;A</h4>
 						<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
 					</div>
 			
-					<div id="tab4" class="tabcontent">
+					<div id="tab4" class="tabContent">
 						<h4>변경 및 취소</h4>
 						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
 					</div>
@@ -408,17 +408,23 @@ ul.tab li.active a {
 					<div class="class-confirm03">
 						<button type="button" class="btn">신청하기</button>
 					</div>
-				</div>
-				
+				</div>				
 			</div>
+		</div>
+	</div>
+	<!-- to top button ------------------------------------------>
+	<div id="top-btn">
+		<button class="btn btn-outline-secondary">
+			<a href="#" class="top"><i class="fas fa-arrow-up"></i></a>
+		</button>
+	</div>
+	<!-- to top button --->
 
-<%-- 
+	<%-- 
 	<h1>GET PAGE</h1>
 	<h3>TITLE : <c:out value="${party.title}" /></h3>
 	<h3>CONTENT : <c:out value="${party.content}" /></h3>
-	 --%>
-	
-	
+	 --%>	
 	<form id="operForm" action="/board/modify" method="get">
 		<input type="hidden" name="p_no" value="${party.p_no}" />
 		
@@ -438,12 +444,12 @@ ul.tab li.active a {
   			$('.bxslider').bxSlider();
 		});
 
-		//tablist
+		//tabList
 		$(function() {
 			$('ul.tab li').click(function() {
 				var activeTab = $(this).attr('data-tab');
 				$('ul.tab li').removeClass('active');
-				$('.tabcontent').removeClass('active');
+				$('.tabContent').removeClass('active');
 				$(this).addClass('active');
 				$('#' + activeTab).addClass('active');
 			})
@@ -474,7 +480,29 @@ ul.tab li.active a {
 				format: 'HH:mm'
 			});
 		});
+		 //nav 상단고정
+		 $(function() {
+                $(window).scroll(function() {
+                    if ($(this).scrollTop() >= 120) {
+                        $('.navbar').addClass('fixed-top');
 
+                    } else {
+                        $('.navbar').removeClass('fixed-top');
+                    }
+                });
+        });
+		  //to top 버튼
+		  $( window ).scroll( function() {
+                if ( $( this ).scrollTop() > 200 ) {
+                    $( '#top-btn' ).fadeIn();
+                } else {
+                    $( '#top-btn' ).fadeOut();
+                }
+                } );
+                $( '#top-btn' ).click( function() {
+                $( 'html, body' ).animate( { scrollTop : 0 }, 400 );
+                return false;
+                } );		
 	}); 
     //]]>
  </script>
