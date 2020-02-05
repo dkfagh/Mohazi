@@ -7,11 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>list</title>
+	<!-- jQuery -->
+	<script src="https://code.jquery.com/jquery-1.11.3.js"></script>
 	<!-- jQuery UI -->
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 	<!-- bxslider -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css"> 
-	<script src="https://code.jquery.com/jquery-1.11.3.js"></script> 
 	<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script> 
 	<!-- 부트스트랩 -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
@@ -29,21 +30,15 @@
 	<!-- FAQ accordion -->
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	<link rel="stylesheet" href="/resources/demos/style.css">
-	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script>
-    $( function() {
-	  $( "#accordion" ).accordion({
-	    collapsible: true
-	  });
-	} );
-	</script>
+
 
 <style>
+
 #header {
 background-color: #fcfcfd;
 border-bottom: 1px solid #dde1e6;
 }
+
 
 #sub-header {
 position: relative;
@@ -52,37 +47,45 @@ height: 120px;
 margin: 0 auto;
 border-bottom:#7bd4ac  solid 1px;
 }
+
 #logo{
     padding-top: 35px;
     float: left;
     padding-left:5%;
 }
+
 #login{
     padding-top: 45px;
     float: right;
     padding-right:5%;
 }
+
 #login button{
     background-color: #7bd4ac ;
     color: white;
 }
+
 .logo {
     display: inline;    
     border: solid 1px black;
 }
+
 .form-inline{
     padding-top: 45px;
     padding-right: 12%;
     float: right;
 }
+
 #search{
-width:200px !important;
-float: right;
+	width:200px !important;
+	float: right;
 }
+
 .input-group button{
     background-color: #7bd4ac ;
     color: white;
 }
+
 </style>
 
 

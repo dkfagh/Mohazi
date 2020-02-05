@@ -137,11 +137,11 @@
         }
     </style>
 
- <!-- 컨텐츠 영역 시작 ------------------------------------------------------->
+ 
   <div class="container" id="contents">
-        <div align="center"> <img src="logo.png" width="200" /> </div>
+        <div align="center"> <img src="logo.png" width="200"> </div>
 
-        <form id = "operForm" role="form" action="/signup" method="post">
+        <form action="/signup" method="post">
 
 	        <!--userId 영역시작------------------------------------------------------------>
 	        <div id="userId">
@@ -151,27 +151,30 @@
 	            <div id="userId2" style="font-size: 5px;">
 	                <input type="text" placeholder="아이디" name="id">
 	            </div>
-	        </div><!--userId 영역 끝------>
+	        </div>
+			<!--userId 영역 끝----------------->
 	
 	        <!--userPw 영역시작------------------------------------------------------------>
 	        <p />
 	        <div id="userPw">
 	            <div id="userPw1"> <span><img src="resources/img/userPw.png" width="30"></span> </div>
-	            <div id="userPw2"> <input id ="pw" type="password" placeholder="비밀번호" name="pw"> </div>
+	            <div id="userPw2"> <input type="password" placeholder="비밀번호" name="pw"> </div>
 	            <div id="userPw3" onclick="chg_icon()">
 	                <span class="material-icons" id="icon3"> visibility </span>
 	            </div>
-	        </div><!--userPw 영역 끝---->
+	        </div>
+	        
+			<!--userPw 영역 끝---------------->
 			
 	        <!--userPwCheck 영역시작------------------------------------------------------------>
 	        <p />
 	        <div id="userPwCheck">
 	            <div id="userPw1"> <span><img src="resources/img/userPwCheck.png" width="30"></span> </div>
-	            <div id="userPw2"> <input id ="pwEqual" type="password" placeholder="비밀번호 확인" > </div>
+	            <div id="userPw2"> <input type="password" placeholder="비밀번호 확인" name="checkpw"> </div>
 	            <div id="userPw3" onclick="chg_icon()">
 	                <span class="material-icons" id="icon3"> visibility </span>
 	            </div>
-	        </div><!--userPwCheck 영역 끝-->
+	        </div>
 	        
 	
 	        <!--userEmail 영역시작------------------------------------------------------------>
@@ -183,7 +186,7 @@
 	            <div id="userEmail2">
 	                <input id ="email" type="text" placeholder="이메일" name="email">
 	            </div>
-	        </div><!--userEmail 영역 끝-->
+	        </div>
 	        
 	
 	        <!--userName 영역시작------------------------------------------------------------>
@@ -195,10 +198,10 @@
 	            <div id="userName2">
 	                <input type="text" placeholder="이름" name="name">
 	            </div>
-	        </div><!--userName 영역 끝 -->
+	        </div>
 	        
 	
-	        <!--userNickName 영역시작--------------------->
+	        <!--userNickName 영역시작------------------------------------------------------------>
 	        <p />
 	        <div id="userNickName">
 	            <div id="userNickName1">
@@ -207,10 +210,10 @@
 	            <div id="userNickName2">
 	                <input type="text" placeholder="닉네임" name="nickname">
 	            </div>
-	        </div> <!--userNickName 영역끝-->
+	        </div>
 	        
 	
-	        <!--userPhone 영역시작------------------------->
+	        <!--userPhone 영역시작------------------------------------------------------------>
 	        <p />
 	        <div id="userPhone">
 	            <div id="userPhone1">
@@ -219,22 +222,27 @@
 	            <div id="userPhone2">
 	                <input id="phone" type="text" placeholder="휴대폰 번호" name="phone">
 	            </div>
-	        </div><!--userPhone 영역 끝-->
+	        </div>
 	        
-	        <!--DatePicker 영역시작------------------------->
+	
+	
+	        <!--userPhone 영역시작------------------------------------------------------------>
+	
+	
 			<p />
 	        <div id="birthDate">
 	            <div id="birthDate1">
 	                <span><img src="resources/img/user.png" width="30" ></span>
 	            </div>
 	            <div id="birthDate2">
+
 	                <input id="date" type="text" name="birth" style="font-size:11px">
+
 	            </div>
-	        </div><!--DatePicker 영역 끝--->
-			
+	        </div>
 	
-		 	<!-- enable 활동상태 -->
-		<!-- 	<input type="hidden" name="enabled" value="true" /> -->
+	
+	
 	      
 	      
 	        <!--회원가입버튼 영역시작------------------------------------------------------------>
@@ -244,7 +252,7 @@
 	        <p>
 	            <button type="submit" class="signUpBtn">회원가입</button>
 	        </p>
-	        
+	
 	    	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
       	</form>
 

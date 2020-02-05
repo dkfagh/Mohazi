@@ -306,3 +306,30 @@ list-style:none; margin:0; padding:0;
 
 
 <%@ include file="./includes/footer.jsp" %>
+
+
+<!-- 
+<script>
+
+	$(document).ready(function(){
+		console.log("HELLO");
+		
+		$(".submenu button").on("click", function(e){
+			e.preventDefault();
+			console.log("!! SUB MENU BUTTON CLICK !!!");
+			
+			var clickedValue = $(this).text();
+			console.log("클릭 : " + clickedValue);
+			
+			var inputMenu = $(this).closest(".menu").children("input");
+	
+			console.log("부모 버튼 : " + inputMenu.val());
+			
+			inputMenu.text(clickedValue);
+			
+		});
+	
+	});
+
+</script>
+ -->

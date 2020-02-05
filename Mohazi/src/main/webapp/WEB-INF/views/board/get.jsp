@@ -317,11 +317,26 @@ ul.tab li.active a {
 					</div>
 					<div class="detail-info01">
 						<ul class="info-text">
-							<li class="info-location"><i class="fas fa-map-marker-alt"></i><span>성동구 성수동1가</span></li>
-							<!-- <li class="info-time" id="totalTime"><i class="far fa-clock"></i><span></span></li>              	 -->
-							<li class="info-guest" id="scheduleExplainArea"><i class="fas fa-user-friends"></i><span></span></li>
-							<li class="info-hash" id="hashTagList"><i class="fab fa-slack-hash"></i><span>취미 서울마카롱 </span></li>	
-							<li class="info-sort" id="sort"><i class="fas fa-sort-amount-down"></i><span>모임-요리</span></li>	                        
+							<%-- <li class="info-location">
+								<i class="fas fa-map-marker-alt"></i>
+								<!-- PartyVO에 위치정보관련 칼럼 추가 후 region을 address로 수정할 것 -->
+								<%-- <span><c:out value="${party.region}" /></span> --%>
+							</li>
+
+							<li class="info-guest" id="scheduleExplainArea">
+								<i class="fas fa-user-friends"></i>
+								<!-- PARTY JOIN TABLE에서 참여인원 가져올 것 -->
+								<span></span>
+							</li>
+							<li class="info-hash" id="hashTagList">
+								<i class="fab fa-slack-hash"></i>
+								<!-- PARTY TABLE에서 태그 가져오기 -->
+								<span>취미 서울마카롱 </span>
+							</li>	
+							<li class="info-sort" id="sort">
+								<i class="fas fa-sort-amount-down"></i>
+								<span><c:out value="${party.cat_sub}" /></span>
+							</li>	                        
 						</ul>
 					</div>
 				</div>
