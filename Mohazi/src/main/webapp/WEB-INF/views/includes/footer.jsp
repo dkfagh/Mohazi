@@ -1,10 +1,11 @@
 <style>
 #top-btn {    
     position: fixed;
-    right: 15%;
+    right: 1%;
     bottom: 70px;
     display: none;
 }
+
 </style>
         <!-- to top button ------------------------------------------>
         <div id="top-btn">
