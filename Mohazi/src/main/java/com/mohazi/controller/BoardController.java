@@ -28,7 +28,8 @@ public class BoardController {
 
 		log.info("!!! CATEGORY !!!" + categoryArr);
 		log.info("!!! REGION !!!" + regionArr);
-
+		log.info("저기요... 돌았나요...? 정신차리세요... 쫌!!!");
+		
 		PartyVO party = new PartyVO();
 		party.setType(type);
 		party.setCategoryArr(categoryArr);
