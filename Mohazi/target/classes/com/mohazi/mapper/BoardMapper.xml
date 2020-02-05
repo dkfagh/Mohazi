@@ -19,18 +19,17 @@
             </when>
         </choose>
 
-		<!-- REGION 칼럼 사라지고 ADDRESS 추가될 예정. 정규식사용 -->
-		<!-- WHERE REGEXP_LIKE(ADRRESS, '^서울|^경기') -->
-		<!-- 수정 필요.(whitespace 제거) -->
-<!-- 		<choose>
+		<!-- 아래와 같이 공백이 나오기 때문에 공백 제거 위해 REGEXP_REPLACE 사용 -->
+		<!-- WHERE REGEXP_LIKE(ADDRESS, REGEXP_REPLACE('^ 서울 | ^ 경기 ', ' ', '')) -->
+ 		<choose>
 			<when test="regionArr != null">
 				AND REGEXP_LIKE(REGION,
-				<foreach collection="regionArr" item="region" index="index" separator="|" open="'" close="')">
+				<foreach collection="regionArr" item="region" index="index" separator="|" open="REGEXP_REPLACE('" close="' , '\s+', ''))">
 					^${region}
 				</foreach>
 			</when>
 		</choose>
- -->
+
 	</select>
 	
 	<!-- CRUD -->
