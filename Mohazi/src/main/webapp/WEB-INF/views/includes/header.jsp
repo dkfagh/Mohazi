@@ -34,17 +34,19 @@
     
 
 <style>
-#sub-header {
-	background-color: #fcfcfd;
-	border-bottom: 1px solid #dde1e6;
-}
 
 #header {
-	position: relative;
-	width: 100%;
-	height: 120px;
-	margin: 0 auto;
-	border-bottom:#7bd4ac  solid 1px;
+background-color: #fcfcfd;
+border-bottom: 1px solid #dde1e6;
+}
+
+
+#sub-header {
+position: relative;
+width: 100%;
+height: 120px;
+margin: 0 auto;
+border-bottom:#7bd4ac  solid 1px;
 }
 
 #logo{
@@ -59,7 +61,7 @@
     padding-right:5%;
 }
 
-#login a{
+#login button{
     background-color: #7bd4ac ;
     color: white;
 }
@@ -91,18 +93,17 @@
 </head>
 
 <body>
-     <!-- 헤더--------------------------------- ---->
-	<div id="sub-header">
-		<div id="header">
+   <!-- 헤더--------------------------------- ---->
+   <div id="header">
+        <div id="sub-header">
             <div id="logo">
                 <h1 class="logo">
-                    <a href="/">로고</a>
+                    <a href="/main">로고</a>
                 </h1>
             </div>
             <div id="login">
-            	<a href="/customLogin" class="btn btn-sm">로그인</a>
-                <!-- <button type="button" class="btn btn-sm">로그인</button> -->
-             </div>
+                <button type="button" class="btn  btn-sm">로그인</button>
+            </div>
             <!-- search form--------------------------------- ---->
             <form class="form-inline" action="search.jsp" >
                 <div class="input-group">
@@ -112,9 +113,8 @@
                     </div>
                 </div>
             </form>
-            <!-- search form--->
-             
-		</div>
+            <!-- search form--->            
+        </div>
     </div>
-     <!-- 헤더--->
+    <!-- 헤더--->
 
