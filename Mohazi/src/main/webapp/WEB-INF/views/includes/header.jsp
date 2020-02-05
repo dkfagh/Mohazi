@@ -60,7 +60,7 @@ border-bottom:#7bd4ac  solid 1px;
     padding-right:5%;
 }
 
-#login button{
+#login a{
     background-color: #7bd4ac ;
     color: white;
 }
