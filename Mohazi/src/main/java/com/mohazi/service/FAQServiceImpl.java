@@ -21,9 +21,9 @@ public class FAQServiceImpl implements FAQService {
 	private FAQMapper mapper;
 
 	@Override
-	public List<FAQVO> getList() {
+	public List<FAQVO> getList(FAQVO FAQ) {
 		log.info("!!! LIST !!!");
-		return mapper.getList();
+		return mapper.getList(FAQ);
 	}
 	
 }
