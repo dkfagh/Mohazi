@@ -399,6 +399,7 @@ color: #96969d;
 					self.location="/board/register";
 				});
 				
+				history.replaceState({},null,null);
 			});
 
 </script>

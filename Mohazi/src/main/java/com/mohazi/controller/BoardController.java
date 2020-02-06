@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.mohazi.domain.Criteria;
 import com.mohazi.domain.PartyVO;
 import com.mohazi.service.BoardService;
 
@@ -23,7 +24,7 @@ public class BoardController {
 	private BoardService service;
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public void list(@RequestParam(value="type", required=false) char type, @RequestParam(value="category", required=false) List<String> categoryArr, @RequestParam(value="region", required=false) List<String> regionArr, Model model) {
+	public void list(@RequestParam(value="type", required=false) char type, @RequestParam(value="category", required=false) List<String> categoryArr, @RequestParam(value="region", required=false) List<String> regionArr, Model model, Criteria cri) {
 		log.info("!!!  LIST !!!");
 
 		log.info("!!! CATEGORY !!!" + categoryArr);
@@ -34,7 +35,7 @@ public class BoardController {
 		party.setCategoryArr(categoryArr);
 		party.setRegionArr(regionArr);
 
-		model.addAttribute("list", service.getList(party));
+		model.addAttribute("list", service.getList(cri));
 	}
 
 	// 등록 화면
