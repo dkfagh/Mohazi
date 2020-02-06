@@ -140,7 +140,7 @@ input::-moz-placeholder { color: white; }
    <div id="header">
         <div id="sub-header">
             <div id="logo">
-                <a href="/index"><img src="resources/img/logoImg.png" id="logoImg" name="logoImg" width="200px"></a>
+                <a href="/index"><img src="/resources/img/logoImg.png" id="logoImg" name="logoImg" width="200px"></a>
             </div>
             
             
@@ -178,7 +178,7 @@ input::-moz-placeholder { color: white; }
             <form class="form-inline" action="search.jsp" >
                 <div class="input-group">
                     <input id="search" type="text" class="form-control" size="20"  placeholder="검색어를 입력하세요">
-                      <a href="#"><img src="resources/img/searchIcon.png" id="searchIcon" name="searchIcon"></a>
+                      <a href="#"><img src="/resources/img/searchIcon.png" id="searchIcon" name="searchIcon"></a>
                     
                 </div>
             </form>
