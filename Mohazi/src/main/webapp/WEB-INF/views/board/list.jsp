@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <%@ include file="../includes/header.jsp" %>
 <%@ include file="../includes/navigation.jsp" %>
@@ -51,7 +52,7 @@ list-style:none; margin:0; padding:0;
 .menu button, .submenu input[type="button"]{ 
     width: 100%; 
     height: 100%;
-    text-align: left;
+    text-align: center;
     font-size: 14px;  
     font-family: 'Sunflower', sans-serif;
     background-color:  #7bd4ac;
@@ -143,7 +144,7 @@ border-top: 0 none;
 padding: 25px 30px 40px;
 height: 50%;
 }
-.list-title-course {
+.list-category-sub {
 font-size: 16px;
 margin-bottom: 2px;
 color: #6a82ec;
@@ -158,12 +159,28 @@ color: #96969d;
 .list-header h2{
     margin: 5px;
     font-family: 'Sunflower', sans-serif;
-    font-size: 25px
+    font-size: 25px;
+    padding-top:15px;
+    padding-bottom:15px;
 
 }
 .list-header{
     border-top: solid 1px#7bd4ac ;
 }
+<<<<<<< HEAD
+#top-btn {    
+    position: fixed;
+    right: 15%;
+    bottom: 70px;
+    display: none;
+    }
+    
+#btnWrite{
+	background-color:#7bd4ac;
+	color:white;
+}
+=======
+>>>>>>> branch 'master' of https://github.com/dkfagh/Mohazi.git
 </style>
 
 <%-- <h1>MEETING LIST !</h1>
@@ -343,25 +360,28 @@ color: #96969d;
             			클래스
             		</c:when>
             	</c:choose>
+			<button type="button" class="btn float-right" id="btnWrite">글쓰기</button>
 			</h2>
         </div>
 
         <div class="row">
 	        <c:forEach var="party" items="${list}">
 	            <div class="col-sm-3">
-	                <div id="list-title-img">					
-						<li><img src="images/itzy.jpg" /></li>					
-					</div>
+	                <a href='/board/get?p_no=<c:out value="${party.p_no}"/>'>
+	                	<div id="list-title-img">						
+						</div>
+					</a>
 					<div class="list-title-text">
-	<!-- 					<div class="list-title-course">
-							[원데이]
-						</div> -->
+						<div class="list-category-sub">
+							[<c:out value="${party.cat_main}"/>]
+						</div>
 						<div class="list-title-type">
-							 
-							<!-- <span class="badge badge-default">3,000원 추가할인</span>	 -->					
+							#<c:out value="${party.cat_sub}" />,
+							#<c:out value="${party.tag}" />	
+							<span class="badge badge-default"><c:out value="${party.price}" />원</span>
 						</div>
 						<div class="list-title-subject">
-							<c:out value="${party.title}" />
+							<a href='/board/get?p_no=<c:out value="${party.p_no}"/>'><c:out value="${party.title}" /></a>
 						</div>
 					</div>
 	            </div>
@@ -370,3 +390,15 @@ color: #96969d;
         </div>      
 
 <%@ include file="../includes/footer.jsp" %>
+
+<script>
+	$(document).ready(
+			function(){
+				var result='<c:out value="${result}"/>';
+				$("#btnWrite").on("click",function(){
+					self.location="/board/register";
+				});
+				
+			});
+
+</script>
