@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.mohazi.domain.Criteria;
 import com.mohazi.domain.PartyVO;
 import com.mohazi.mapper.BoardMapper;
 
@@ -34,11 +35,11 @@ public class BoardServiceImpl implements BoardService{
 	}
 	*/
 	
-	@Override
-	public List<PartyVO> getList(PartyVO party) {
-		log.info("!!! LIST !!!");
-		return mapper.getList(party);
-	}
+//	@Override
+//	public List<PartyVO> getList(PartyVO party) {
+//		log.info("!!! LIST !!!");
+//		return mapper.getList(party);
+//	}
 
 	
 	@Override
@@ -62,6 +63,14 @@ public class BoardServiceImpl implements BoardService{
 	public boolean remove(Long p_no) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+	
+	@Override
+	public List<PartyVO> getList(Criteria cri) {
+		
+		log.info("get List with criteria: " + cri);
+		
+		return mapper.getListWithPaging(cri);
 	}
 
 
