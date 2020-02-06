@@ -141,7 +141,7 @@
   <div class="container" id="contents">
         <div align="center"> <img src="logo.png" width="200"> </div>
 
-        <form action="/signup" method="post">
+        <form role="form" action="/signup" method="post">
 
 	        <!--userId 영역시작------------------------------------------------------------>
 	        <div id="userId">
@@ -158,7 +158,7 @@
 	        <p />
 	        <div id="userPw">
 	            <div id="userPw1"> <span><img src="resources/img/userPw.png" width="30"></span> </div>
-	            <div id="userPw2"> <input type="password" placeholder="비밀번호" name="pw"> </div>
+	            <div id="userPw2"> <input id ="pw" type="password" placeholder="비밀번호" name="pw"> </div>
 	            <div id="userPw3" onclick="chg_icon()">
 	                <span class="material-icons" id="icon3"> visibility </span>
 	            </div>
@@ -170,7 +170,7 @@
 	        <p />
 	        <div id="userPwCheck">
 	            <div id="userPw1"> <span><img src="resources/img/userPwCheck.png" width="30"></span> </div>
-	            <div id="userPw2"> <input type="password" placeholder="비밀번호 확인" name="checkpw"> </div>
+	            <div id="userPw2"> <input id="pwEqual" type="password" placeholder="비밀번호 확인"> </div>
 	            <div id="userPw3" onclick="chg_icon()">
 	                <span class="material-icons" id="icon3"> visibility </span>
 	            </div>
@@ -258,7 +258,7 @@
 
     </div>
  <!-- 컨텐츠 영역 끝 ------------------------------------------------------->
-<%@ include file="./includes/footer.jsp" %>
+
 
 <!-- 스크립트 영역 -------------------------------------->
 <script>
@@ -288,14 +288,15 @@ $(document).ready(function(){
 	
 	var formObj = $("form[role='form']");
 	console.log("hello signup");
-	   $("button[type='submit']").on("click",function(e){
+	  
+	$("button[type='submit']").on("click",function(e){
 		  e.preventDefault();
 
 		  
 		  var pw=$("#pw").val();
 		  var pwEqual=$("#pwEqual").val();
 		  var phone=$("#phone").val();
-		  var date =$("#date").val();
+		  
 		  var email=$("#email").val();
 		  // phone 정규식 : 
 		  var regNumber = /^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/;
@@ -312,7 +313,7 @@ $(document).ready(function(){
 		        return;
 		    }
 		  
-		    if(!regNumber.test(phone)) // phone 정규식이 맞지 않을 때
+		  else if(!regNumber.test(phone)) // phone 정규식이 맞지 않을 때
 		    {
 		        alert("잘못된 휴대폰 번호입니다. 숫자, - 를 포함한 숫자만 입력하세요.");
 		        console.log("phone1: "+phone);
@@ -321,34 +322,26 @@ $(document).ready(function(){
 		        $("#phone").val("");
 		        return;
 		    }
-		    
-		    
-
-		  
-		  ////////// date의 값이 -로는 인식이 되지 않아 /로 replace
-		 /*   date = date.replace("-","/"); 
-		  console.log("date 1 : "+date);
-		  date = date.replace("-","/");
-		  console.log("date 2 : "+date);  // 한번해서는 한개의 값밖에 바뀌지 않아 2번작업
-		  
-		  console.log("submit clicked");  */
 		  
 		  
 		  // 비밀번호 비교 /////////////////////////////
-		  if(pw != pwEqual){
-			  alert("비밀번호가 같지 않습니다.");
-			  return;
-		  }
-		  if(pw == ""){
+		  else if(pw == ""){
 			  alert("비밀번호를 입력해주세요.");
 			  return;
 		  }
+	      
+	      else if(pw != pwEqual){
+			  alert("비밀번호가 같지 않습니다.");
+			  return;
+		  }
+		  
 		  ///비밀번호 비교 끝 //////////////////////////////
 		  
-		  
-		  formObj.submit();
-		  
+		  else{
+		  	formObj.submit();
+		  }
 	   });
 });
 </script>
 <!-- 스크립트 영역 끝 -------------------------------------->
+<%@ include file="./includes/footer.jsp" %>
