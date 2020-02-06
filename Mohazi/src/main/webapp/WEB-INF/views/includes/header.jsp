@@ -58,12 +58,38 @@ border-bottom:#7bd4ac  solid 1px;
     padding-top: 45px;
     float: right;
     padding-right:5%;
+display:block;
 }
 
+#logBox{
+display:none;	
+}
 #login a{
     background-color: #7bd4ac ;
     color: white;
 }
+
+#logoutBox{
+    padding-top: 45px;
+    float: right;
+    padding-right:5%;
+	 
+}
+#logoutBox button{
+    background-color: #7bd4ac ;
+    color: white;
+}
+#myPage{
+	padding-top: 45px;
+    float: right;
+    margin-right:0;
+    
+}
+#myPage a{
+    background-color: #7bd4ac ;
+    color: white;
+}
+
 
 .logo {
     display: inline;    
@@ -100,9 +126,38 @@ border-bottom:#7bd4ac  solid 1px;
                     <a href="/index">로고</a>
                 </h1>
             </div>
+            
+            
             <div id="login">
                 <a href="/customLogin" class="btn btn-sm">로그인</a>
             </div>
+            <!-- 로그인 로그아웃 처리를 위해 묶어놓음 -->
+            <div id="logBox">
+	            <form action="customLogout" method="post">
+	           		<div id="logoutBox">
+	                	<button id="logout" class="btn btn-sm">로그아웃</button>
+	                	<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }" />
+	            	</div>
+	            </form>
+	            <div id="myPage">
+	                <a href="/mypage/myMeeting" class="btn btn-sm">내정보</a>
+            	</div>
+            </div>
+            
+            <!-- 시큐리티 테스트 중 -->
+            <!-- <sec:authorize access="isAuthenticated()">
+            		<div id="logoutBox">
+						<button id="logout" class="btn btn-sm">로그아웃</button>
+					</div>
+					<div id="myPage">
+                		<a href="/mypage/myMeeting" class="btn btn-sm">내정보</a>
+            		</div>
+            </sec:authorize>
+            <sec:authorize access="isAnonymous()">
+                  	<a href="/customLogin" class="btn btn-sm">로그인</a>
+            </sec:authorize> -->
+            <!-- 시큐리티 테스트 중 -------------------------------------->
+            
             <!-- search form--------------------------------- ---->
             <form class="form-inline" action="search.jsp" >
                 <div class="input-group">
@@ -117,3 +172,21 @@ border-bottom:#7bd4ac  solid 1px;
     </div>
     <!-- 헤더--->
 
+<!-- 스크립트 영역 -->
+<script>
+	$(document).ready(function(){
+		
+		// 로그인 버튼 클릭시
+		$("#login").click(function(){
+			$("#login").css("display","none");
+			$("#logBox").css("display","block");
+		});
+		
+		// 로그아웃 버튼 클릭시
+		$("#logout").click(function(){
+			$("#login").css("display","block");
+			$("#logBox").css("display","none");
+		});
+		
+	});
+</script>

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ include file="./includes/header.jsp" %>
 <%@ include file="./includes/navigation.jsp" %>
 
@@ -161,7 +161,7 @@
 	        <span><img src="resources/img/user.png" width="30"></span>
 	      </div>
 	      <div id="userId2">
-	        <input type="text" placeholder="아이디" name="id">
+	        <input type="text" placeholder="아이디" name="username">
 	      </div>
 	    </div>
 		<!--userId 영역 끝---------------->
@@ -170,9 +170,11 @@
 	    <p />
 	    <div id="userPw">
 	        <div id="userPw1"> <span><img src="resources/img/userPw.png" width="30"></span> </div>
-	        <div id="userPw2"> <input type="password" placeholder="비밀번호" name="pw"> </div>
+	        <div id="userPw2"> <input type="password" placeholder="비밀번호" name="password"> </div>
 	        <div id="userPw3" onclick="chg_icon()">
 	            <span class="material-icons" id="icon3"> visibility </span>
+	            <c:out value="${error}" />
+	            <c:out value="${logout}" />
 	        </div>
 	    </div>
     
