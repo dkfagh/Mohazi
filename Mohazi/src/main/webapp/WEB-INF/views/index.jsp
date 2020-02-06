@@ -5,21 +5,20 @@
 
 <style>
 #contents {
-position: relative;
-margin: 0 auto;
+	position: relative;
+	margin: 0 auto;
 }
 .col-sm-8{  
-
-box-sizing: border-box !important;
-margin-top: 100px;
-padding:20px !important;
-overflow: hidden;
+	box-sizing: border-box !important;
+	margin-top: 100px;
+	padding:20px !important;
+	overflow: hidden;
 }
 .col-sm-4{
-padding:20px !important;
-margin-top: 100px;
-box-sizing: border-box !important;
-overflow: hidden;
+	padding:20px !important;
+	margin-top: 100px;
+	box-sizing: border-box !important;
+	overflow: hidden;
 }
 #main-choice-title{
     margin-top: 20px;
@@ -29,16 +28,16 @@ overflow: hidden;
     display: inline;
 }
 .main-image{
-width: 100%;
-height: 600px;
-overflow: hidden;
-text-align: center;
-margin: auto;
-border-radius: 5px;
+	width: 100%;
+	height: 600px;
+	overflow: hidden;
+	text-align: center;
+	margin: auto;
+	border-radius: 5px;
 }
 .main-image img{
-width: auto;
-height: 100%;
+	width: auto;
+	height: 100%;
 }
 #menu-container{
     /* width: 100%;  
@@ -48,13 +47,20 @@ height: 100%;
     text-align: center;    
 }
 #menu-container ul, ol, li {
-list-style:none; margin:0; padding:0; 
+	list-style:none; margin:0; padding:0; 
 } 
-.main-menu > li { position:relative;  float: left; display: inline; padding: 1px; 
-                 width: 24%;  height: 50px; text-align: center;  box-sizing:border-box;}
-.sub-menu { display:none; position:absolute; top:50px; left:0; width: 100%;}
+.main-menu > li {
+	position:relative;  float: left; display: inline; padding: 1px; 
+	width: 24%;  height: 50px; text-align: center;  box-sizing:border-box;
+}
+.sub-menu {
+	display:none; position:absolute; top:50px; left:0; width: 100%;
+}
 .main-menu > li:hover ul.sub-menu { display:block; }
-.sub-menu > li { display:inline-block; float: left;  width: 100%; padding: 1px; height: 50px; text-align: center; box-sizing:border-box;}
+.sub-menu > li {
+	display:block; padding: 1px; float: left;  
+	width: 100%; height: 50px; text-align: center; box-sizing:border-box;
+}
 .menu button, .sub-menu input[type="button"]{ 
     width: 100%; 
     height: 100%;
@@ -84,7 +90,7 @@ list-style:none; margin:0; padding:0;
     width: 100%;  
     box-sizing: border-box; 
 }
-#where-box .checkbox-inputLabel, #category-box .checkbox-inputLabel{
+.checkbox-inputLabel{
     float: left;
     width: 23%; 
     height: 50px;
@@ -97,30 +103,23 @@ list-style:none; margin:0; padding:0;
     margin-right: 1px;
     border-radius: 5px;      
 }
-#where-box .checkbox-inputLabel:hover, #category-box .checkbox-inputLabel:hover{
+.checkbox-inputLabel:hover{
     color: rgb(161, 159, 159);
     cursor: pointer;
 }
 .checkbox-inputLabel input{
     margin-top: 12%;
     margin-right: 12%;
-   float: right;
-   cursor: pointer;
-        
+	float: right;
+	cursor: pointer;    
 }
 .checkbox-inputLabel label{
     margin-top: 9%;
     margin-left: 12%;
-   float: left;
-   cursor: pointer;
+	float: left;
+	cursor: pointer;
 }
-.class-date input{
-    width: 100%; 
-    height: 50px;
-    text-align: center;
-    border-radius: 3px;
-    cursor: pointer;   
-}
+
 </style>
 <!--
 <form action="/board/list" method="get">
@@ -158,136 +157,118 @@ list-style:none; margin:0; padding:0;
                     </div>
  <!-- 메뉴 초이스 부분 form태그--------------------------------------------------------------------->
                     <div id="menu-container" >
-                    <form>
+                    <form action="/board/list" method="get">
                         <ul class="main-menu">
-                            <li class="menu"><button class="btn  btn-large">타입</button>
+                        
+                            <li class="menu"><button type="button" class="btn  btn-large">타입</button>
                                 <ul class="sub-menu">
-                                    <li><input type=button class="btn  btn-large" value="클래스"></li>
-                                    <li><input type=button class="btn  btn-large" value="소모임"></li>                            
+                                	<li>
+                                		<div class="checkbox-inputLabel" style="width: 100%;">
+                                			<label for="meeting" style="border: 1px;">모임</label>
+                                			<input id="meeting" type="radio" name="type" value="M" checked>
+                                		</div>
+	                                </li>
+	                                <li>
+	                                	<div class="checkbox-inputLabel" style="width: 100%;">
+	                                		<label for="class">클래스</label>
+                                			<input id="class" type="radio" name="type" value="C">
+                                		</div>
+	                                </li>    
                                 </ul>
                             </li>                                               
                             
-                            <li class="menu"><button class="btn  btn-large">어디서</button>
+                            <li class="menu"><button type="button" class="btn  btn-large">어디서</button>
                                 <ul class="sub-menu" id="where">                                    
                                     <li>
                                         <div id="where-box" >   
                                             <div class="checkbox-inputLabel" >
-                                                <label for="check-test-box"> <span></span>서울</label>
-                                                <input type="checkbox" name="region" value="서울">                                                
-                                            </div>
-                                            <div class="checkbox-inputLabel">                                                 
-                                                <label for="check-test-box"> <span></span>경기</label>
-                                                <input type="checkbox" name="region" value="경기">
-                                            </div>
-                                            <div class="checkbox-inputLabel">                                               
-                                                <label for="check-test-box"> <span></span>인천</label>
-                                                <input type="checkbox" name="region" value="인천">
+                                                <label for="seoul"> 서울</label>
+                                                <input id="seoul" type="checkbox" name="region" value="서울">                                                
                                             </div>
                                             <div class="checkbox-inputLabel">
-                                                <label for="check-test-box"> <span></span>강원</label>
-                                                <input type="checkbox" name="region" value="강원">
+												<label for="gyeonggi"> 경기</label>
+                                                <input id="gyeonggi" type="checkbox" name="region" value="경기">
                                             </div>
                                             <div class="checkbox-inputLabel">                                               
-                                                <label for="check-test-box"> <span></span>충북</label>
-                                                <input type="checkbox" name="region" value="충북">
+                                                <label for="incheon"> 인천</label>
+                                                <input id="incheon" type="checkbox" name="region" value="인천">
+                                            </div>
+                                            <div class="checkbox-inputLabel">
+                                                <label for="gangwon"> 강원</label>
+                                                <input id="gangwon" type="checkbox" name="region" value="강원">
                                             </div>
                                             <div class="checkbox-inputLabel">                                               
-                                                <label for="check-test-box"> <span></span>충남</label>
-                                                <input type="checkbox" name="region" value="충남">
+                                                <label for="chungcheong"> 충청</label>
+                                                <input id="chungcheong" type="checkbox" name="region" value="충청">
+                                            </div>
+                                            <div class="checkbox-inputLabel">
+                                                <label for="daejeon"> 대전</label>
+                                                <input id="daejeon" type="checkbox" name="region" value="대전">
+                                            </div>
+                                            <div class="checkbox-inputLabel">
+                                                <label for="gyeongsang"> 경상</label>
+                                                <input id="gyeongsang" type="checkbox" name="region" value="경상">
+                                            </div>
+                                            <div class="checkbox-inputLabel">
+                                                <label for="daegu"> 대구</label>
+                                                <input id="daegu" type="checkbox" name="region" value="대구">
+                                            </div>
+                                            <div class="checkbox-inputLabel">
+                                                <label for="ulsan"> 울산</label>
+                                                <input id="ulsan" type="checkbox" name="region" value="울산">
                                             </div>
                                             <div class="checkbox-inputLabel">                                               
-                                                <label for="check-test-box"> <span></span>대전</label>
-                                                <input type="checkbox" name="region" value="대전">
+                                                <label for="busan"> 부산</label>
+                                                <input id="busan" type="checkbox" name="region" value="부산">
                                             </div>
                                             <div class="checkbox-inputLabel">                                               
-                                                <label for="check-test-box"> <span></span>경북</label>
-                                                <input type="checkbox" name="region" value="경북">
+                                                <label for="gwangju"> 광주</label>
+                                                <input id="gwangju" type="checkbox" name="region" value="광주">
                                             </div>
                                             <div class="checkbox-inputLabel">                                               
-                                                <label for="check-test-box"> <span></span>경남</label>
-                                                <input type="checkbox" name="region" value="경남">
+                                                <label for="jeolla"> 전라</label>
+                                                <input id="jeolla" type="checkbox" name="region" value="전라">
                                             </div>
                                             <div class="checkbox-inputLabel">                                               
-                                                <label for="check-test-box"> <span></span>대구</label>
-                                                <input type="checkbox" name="region" value="경남">
-                                            </div>
-                                            <div class="checkbox-inputLabel">                                               
-                                                <label for="check-test-box"> <span></span>울산</label>
-                                                <input type="checkbox" name="region" value="울산">
-                                            </div>
-                                            <div class="checkbox-inputLabel">                                               
-                                                <label for="check-test-box"> <span></span>부산</label>
-                                                <input type="checkbox" name="region" value="부산">
-                                            </div>
-                                            <div class="checkbox-inputLabel">                                               
-                                                <label for="check-test-box"> <span></span>광주</label>
-                                                <input type="checkbox" name="region" value="광주">
-                                            </div>
-                                            <div class="checkbox-inputLabel">                                               
-                                                <label for="check-test-box"> <span></span>전북</label>
-                                                <input type="checkbox" name="region" value="전북">
-                                            </div>
-                                            <div class="checkbox-inputLabel">                                                
-                                                <label for="check-test-box"> <span></span>전남</label>
-                                                <input type="checkbox" name="region" value="전남">
-                                            </div>
-                                            <div class="checkbox-inputLabel">                                               
-                                                <label for="check-test-box"> <span></span>제주</label>
-                                                <input type="checkbox" name="region" value="제주"> 
+                                                <label for="jeju"> 제주</label>
+                                                <input id="jeju" type="checkbox" name="region" value="제주"> 
                                             </div>                             
                                         </div> 
                                     </li>                                   
                                 </ul>   
                             </li>
-                            <li class="menu"><button class="btn  btn-large">카테고리</button>
+                            
+                            <li class="menu"><button type="button" class="btn  btn-large">카테고리</button>
                                 <ul class="sub-menu" id="category">
                                     <li>
                                         <div id="category-box" >   
                                             <div class="checkbox-inputLabel" >
-                                                <label for="check-test-box"> <span></span>카테고리1</label>
-                                                <input type="checkbox" name="category" value="카테고리1">                                                
+                                                <label for="culture"> 문화</label>
+                                                <input id="culture" type="checkbox" name="category" value="문화">                                                
                                             </div>
                                             <div class="checkbox-inputLabel">                                                 
-                                                <label for="check-test-box"> <span></span>카테고리2</label>
-                                                <input type="checkbox" name="category" value="카테고리2">
+                                                <label for="IT"> IT</label>
+                                                <input id="IT" type="checkbox" name="category" value="IT">
                                             </div>
                                             <div class="checkbox-inputLabel">                                               
-                                                <label for="check-test-box"> <span></span>카테고리3</label>
-                                                <input type="checkbox" name="category" value="카테고리3">
+                                                <label for="sports"> 스포츠</label>
+                                                <input id="sports" type="checkbox" name="category" value="스포츠">
                                             </div>
                                             <div class="checkbox-inputLabel">
-                                                <label for="check-test-box"> <span></span>카테고리4</label>
-                                                <input type="checkbox" name="category" value="카테고리4">
+                                                <label for="creation"> 창작</label>
+                                                <input id="creation" type="checkbox" name="category" value="창작">
                                             </div>
                                             <div class="checkbox-inputLabel">                                               
-                                                <label for="check-test-box"> <span></span>카테고리5</label>
-                                                <input type="checkbox" name="category" value="카테고리5">
-                                            </div>
-                                            <div class="checkbox-inputLabel">                                               
-                                                <label for="check-test-box"> <span></span>카테고리6</label>
-                                                <input type="checkbox" name="category" value="카테고리6">
-                                            </div>
-                                            <div class="checkbox-inputLabel">                                               
-                                                <label for="check-test-box"> <span></span>카테고리7</label>
-                                                <input type="checkbox" name="category" value="카테고리7">
-                                            </div>
-                                            <div class="checkbox-inputLabel">                                               
-                                                <label for="check-test-box"> <span></span>카테고리8</label>
-                                                <input type="checkbox" name="category" value="카테고리8">
-                                            </div>
-                                            <div class="checkbox-inputLabel">                                               
-                                                <label for="check-test-box"> <span></span>카테고리9</label>
-                                                <input type="checkbox" name="category" value="카테고리9">
-                                            </div>
-                                            <div class="checkbox-inputLabel">                                               
-                                                <label for="check-test-box"> <span></span>카테고리10</label>
-                                                <input type="checkbox" name="category" value="카테고리10">
-                                            </div>                                                                    
+                                                <label for="experience"> 체험</label>
+                                                <input id="experience" type="checkbox" name="category" value="체험">
+                                            </div>                                                                
                                         </div> 
                                     </li>                              
                                 </ul>
                             </li>
+                            
                             <li class="menu"><input type="submit" class="btn btn-large" id="goList" value="Go! List"></li>      
+                        
                         </ul>
                     </form>
                     </div> 
@@ -306,14 +287,66 @@ list-style:none; margin:0; padding:0;
 
 <%@ include file="./includes/footer.jsp" %>
 
-
-<!-- 
 <script>
 
 	$(document).ready(function(){
 		console.log("HELLO");
 		
-		$(".submenu button").on("click", function(e){
+		// 타입 선택 이벤트
+		$("input:radio[name=type]").on("click", function(e){
+			console.log("radiobutton is clicked!");
+			
+			var type = $(this).prop("labels");
+			$(this).closest(".menu").children("button").text($(type).text());
+		});
+		
+		// 지역 선택 이벤트
+		$("input:checkbox[name=region]").on("click", function(e){
+			console.log("region checkbox is clicked!");
+			console.log($(this).val());
+			
+			console.log("=============선택된지역들")
+			var region = "";
+			$("input:checkbox[name=region]:checked").each(function(){
+				//var test = $(this).val();
+				region += $(this).val() + " ";
+				console.log(region);
+			});
+			console.log("===============");
+			
+			console.log(region.length);
+			if(region.length > 9){
+				region = region.substring(0, 9) + "...";
+			} else if(region.length < 1){
+				region = "어디서";
+			}
+			$(this).closest(".menu").children("button").text(region);
+			
+		});
+		
+		// 카테고리 선택 이벤트
+		$("input:checkbox[name=category]").on("click", function(e){
+			console.log("category checkbox is clicked!");
+			console.log($(this).val());
+			
+			console.log("=============선택된카테고리들");
+			var category = "";
+			$("input:checkbox[name=category]:checked").each(function(){
+				category += $(this).val() + " ";
+				console.log(category);
+			});
+			console.log("=============");
+			
+			console.log(category.length);
+			if(category.length > 9){
+				category = category.substring(0, 9) + "...";
+			} else if(category.lenght < 1){
+				category = "카테고리";
+			}
+			$(this).closest(".menu").children("button").text(category);
+		});
+		
+		/* $(".submenu button").on("click", function(e){
 			e.preventDefault();
 			console.log("!! SUB MENU BUTTON CLICK !!!");
 			
@@ -326,9 +359,8 @@ list-style:none; margin:0; padding:0;
 			
 			inputMenu.text(clickedValue);
 			
-		});
+		}); */
 	
 	});
 
 </script>
- -->
