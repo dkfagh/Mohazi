@@ -270,6 +270,17 @@ ul.tab li.active a {
 	color: white;
 }
 
+#addScheduleBtn, #modifyBtn{
+
+	width:49%;	
+	background-color: #7bd4ac;	
+	color: white;
+}
+
+#addScheduleBtn:hover, #modifyBtn:hover{
+	background-color: rgb(60, 189, 157);
+	color: white;}
+
 </style>
 
 	<div class="container" id="contents">
@@ -284,13 +295,13 @@ ul.tab li.active a {
 				</div>
 				<div class="title-text">
 					<div class="title-course">
-						[원데이]
+						[<c:out value="${party.p_no}" />]
 					</div>
 					<div class="title-type">
-						마카롱 ∙ 다쿠아즈					
+						<c:out value="${party.cat_sub}" />				
 						<span class="badge badge-default">3,000원 추가할인</span>						
 					</div>
-					<div class="title-subject">[꾸덕,쫀득 저세상텐션 마카롱 원데이클래스-뚝섬역,어썸블리스]</div>
+					<div class="title-subject">[<c:out value="${party.title}"/>]</div>
 				</div>
 			</div>
 			
@@ -301,7 +312,7 @@ ul.tab li.active a {
 							<div class="img"></div>
 						</div>
 						<div class="party-txt">
-							<div id="party-txt01">어썸블리스</div>
+							<div id="party-txt01"><c:out value="${party.id}" /></div>
 							<div id="party-txt02">매일매일 달콤한 파티가 열리는곳 어썸블리스로 여러분을 초대합니다. </div>
 							<div id="party-txt03">
 								<a href="#">모임장 프로필</a>
@@ -310,25 +321,25 @@ ul.tab li.active a {
 					</div>
 					<div class="detail-info01">
 						<ul class="info-text">
-							<%-- <li class="info-location">
+							 <li class="info-location">
 								<i class="fas fa-map-marker-alt"></i>
 								<!-- PartyVO에 위치정보관련 칼럼 추가 후 region을 address로 수정할 것 -->
-								<%-- <span><c:out value="${party.region}" /></span> --%>
+								<span><c:out value="${party.address}" /></span> 
 							</li>
 
 							<li class="info-guest" id="scheduleExplainArea">
 								<i class="fas fa-user-friends"></i>
 								<!-- PARTY JOIN TABLE에서 참여인원 가져올 것 -->
-								<span></span>
+								<span><c:out value="${party_join.p_no}" /></span>
 							</li>
 							<li class="info-hash" id="hashTagList">
 								<i class="fab fa-slack-hash"></i>
 								<!-- PARTY TABLE에서 태그 가져오기 -->
-								<span>취미 서울마카롱 </span>
+								<span><c:out value="${party.tag}" /></span>
 							</li>	
 							<li class="info-sort" id="sort">
 								<i class="fas fa-sort-amount-down"></i>
-								<span><c:out value="${party.cat_sub}" /></span>
+								<span><c:out value="${party.type}" />-<c:out value="${party.cat_main}" />-<c:out value="${party.cat_sub}" /></span>
 							</li>	                        
 						</ul>
 					</div>
@@ -347,7 +358,7 @@ ul.tab li.active a {
 			
 					<div id="tab1" class="tabContent active">
 						<h4>상세정보</h4>
-						<p id="introduction">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+						<p id="introduction"><c:out value="${party.content}" /></p>
 						<div id="map" style="width:100%;height:400px;"></div>					
 					</div>
 			
@@ -378,7 +389,7 @@ ul.tab li.active a {
 								
 							</span>
 						</div>
-						<div class="text02">예약일자, 신청 인원수 선택 후 신청하기 버튼을 눌러주세요.</div>
+						<div class="text02">모임일자, 시간 선택 후 신청하기 버튼을 눌러주세요.</div>
 					</div>									
 					
 					<div class="class-confirm02">
@@ -401,22 +412,19 @@ ul.tab li.active a {
 					<div class="class-confirm03">
 						<button type="button" class="btn">신청하기</button>
 					</div>
+					<div id="addSchedule">
+						<form id="operForm" action="/board/modify" method="get">
+							<input type="hidden" name="p_no" value="${party.p_no}" />							
+							<!-- 책에서 data-oper 사용하여 수정/삭제 나눈 것처럼 -->
+							<button id="addScheduleBtn" class="btn btn-large" data-oper="addSchedule">SCHEDULE 등록</button>
+							<button id="modifyBtn" class="btn btn-large" type="submit">수정</button>
+						</form>
+					</div>
 				</div>				
 			</div>
-		</div>
+		</div>		
 	</div>
-	<%-- 
-	<h1>GET PAGE</h1>
-	<h3>TITLE : <c:out value="${party.title}" /></h3>
-	<h3>CONTENT : <c:out value="${party.content}" /></h3>
-	 --%>	
-	<form id="operForm" action="/board/modify" method="get">
-		<input type="hidden" name="p_no" value="${party.p_no}" />
-		
-		<!-- 책에서 data-oper 사용하여 수정/삭제 나눈 것처럼 -->
-		<button data-oper="addSchedule">SCHEDULE 등록</button>
-		<button type="submit">수정</button>
-	</form>
+	
 
 <%@ include file="../includes/footer.jsp" %>
 

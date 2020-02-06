@@ -13,6 +13,7 @@ public interface BoardService {
 	public void register(PartyVO party);
 	public PartyVO get(Long p_no);
 	public boolean modify(PartyVO party);
-	public boolean remove(Long p_no);
+	public boolean remove(Long p_no);	
+	
 	
 }

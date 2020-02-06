@@ -57,7 +57,9 @@ public class BoardController {
 	@RequestMapping(value = "/get", method = RequestMethod.GET)
 	public void get(@RequestParam("p_no") Long p_no, Model model) {
 		log.info("!!! GET !!!");
-
+		
+		log.info("!!!!!!!!!!!!!" + p_no);
+		log.info("--------------------------"+service.get(p_no));	
 		model.addAttribute("party", service.get(p_no));
 	}
 
