@@ -7,9 +7,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mohazi.domain.AuthVO;
+import com.mohazi.domain.FAQVO;
 import com.mohazi.domain.UsersVO;
 import com.mohazi.service.FAQService;
 import com.mohazi.service.UsersService;
@@ -86,10 +88,15 @@ public class CommonController {
 	
 	// FAQ 화면
 	@RequestMapping(value = "/FAQ", method = RequestMethod.GET)
-	public void FAQ(Model model) {
+	public void FAQ(@RequestParam(value="keyword", required=false) String keyword, Model model) {
 		log.info("!!! FAQ !!!");
 		
-		model.addAttribute("FAQ", FAQService.getList());
+		log.info("!!! KEYWORD !!!" + keyword);
+		
+		FAQVO FAQ = new FAQVO();
+		FAQ.setKeyword(keyword);
+		
+		model.addAttribute("FAQ", FAQService.getList(FAQ));
 	}
 	
 }

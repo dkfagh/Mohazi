@@ -6,7 +6,13 @@
 
 <!-- FAQ 목록 -->
 <select id="getList" resultType="com.mohazi.domain.FAQVO">
-	select title, content from FAQ
+	SELECT TITLE, CONTENT, CATEGORY
+	FROM FAQ
+	<choose>
+        <when test="keyword != null">
+            WHERE TITLE LIKE '%'||#{keyword}||'%' OR CONTENT LIKE '%'||#{keyword}||'%'
+        </when>
+    </choose>
 </select>
 
 </mapper>

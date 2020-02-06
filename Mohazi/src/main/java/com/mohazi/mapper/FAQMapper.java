@@ -6,5 +6,5 @@ import com.mohazi.domain.FAQVO;
 
 public interface FAQMapper {
 
-	public List<FAQVO> getList();
+	public List<FAQVO> getList(FAQVO FAQ);
 }
