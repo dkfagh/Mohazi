@@ -36,20 +36,19 @@
 
 #header {
 background-color: #fcfcfd;
-border-bottom: 1px solid #dde1e6;
 }
 
 
 #sub-header {
 position: relative;
 width: 100%;
-height: 120px;
+height: 130px;
 margin: 0 auto;
-border-bottom:#7bd4ac  solid 1px;
+border-bottom:#7bd4ac solid 2px;
 }
 
 #logo{
-    padding-top: 35px;
+    padding-top: 25px;
     float: left;
     padding-left:5%;
 }
@@ -102,16 +101,35 @@ display:none;
     float: right;
 }
 
+
+
+
 #search{
-	width:200px !important;
-	float: right;
+   width:330px !important;
+   float: right;
+   border-radius:10px;
+   border-color:#e9faf2;
+   background-color:#e9faf2;
 }
 
-.input-group button{
-    background-color: #7bd4ac ;
-    color: white;
+#searchIcon{
+   padding-top:3px;
+   padding-left:4px;
+   margin-top: 2px;
+   margin-left:2px;
+   width:32px;
 }
 
+/* placeholder color change
+
+ input::-ms-input-placeholder { color: white; }
+// Internet Explorer 10 이상에 적용
+
+input::-webkit-input-placeholder { color: white; }
+//  Webkit, Blink, Edge에 적용
+
+input::-moz-placeholder { color: white; }
+// Mozilla Firefox에 적용 */
 </style>
 
 
@@ -122,9 +140,7 @@ display:none;
    <div id="header">
         <div id="sub-header">
             <div id="logo">
-                <h1 class="logo">
-                    <a href="/index">로고</a>
-                </h1>
+                <a href="/index"><img src="resources/img/logoImg.png" id="logoImg" name="logoImg" width="200px"></a>
             </div>
             
             
@@ -135,12 +151,12 @@ display:none;
             <div id="logBox">
 	            <form action="customLogout" method="post">
 	           		<div id="logoutBox">
-	                	<button id="logout" class="btn btn-sm">로그아웃</button>
+	                	<button id="logout" class="btn">로그아웃</button>
 	                	<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }" />
 	            	</div>
 	            </form>
 	            <div id="myPage">
-	                <a href="/mypage/myMeeting" class="btn btn-sm">내정보</a>
+	                <a href="/mypage/myMeeting" class="btn">내정보</a>
             	</div>
             </div>
             
@@ -162,9 +178,8 @@ display:none;
             <form class="form-inline" action="search.jsp" >
                 <div class="input-group">
                     <input id="search" type="text" class="form-control" size="20"  placeholder="검색어를 입력하세요">
-                    <div class="input-group-btn">
-                    <button class="btn  btn-sm" style="margin-top: 2px; margin-left: 2px;">검색</button>
-                    </div>
+                      <a href="#"><img src="resources/img/searchIcon.png" id="searchIcon" name="searchIcon"></a>
+                    
                 </div>
             </form>
             <!-- search form--->            
