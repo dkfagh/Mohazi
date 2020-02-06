@@ -6,7 +6,7 @@
     height: 50px;   
     margin-top: 2px;
     background-color: white;   
-    border-bottom: solid 1px  #7bd4ac ;
+    border-bottom: solid 2px  #7bd4ac ;
     opacity: 0.9;
 }
 .navbar-nav{
