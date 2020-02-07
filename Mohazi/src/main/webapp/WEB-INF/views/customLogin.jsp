@@ -11,8 +11,8 @@
       height: 40px;
     }
 
-    #userId1,
-    #userId2 {
+    .userId1,
+    .userId2 {
       height: 40px;
       float: left;
       border: 1px solid #bbbbbb;
@@ -21,13 +21,13 @@
       align-items: center;
     }
 
-    #userId1 {
+    .userId1 {
       width: 40px;
       border-right: none;
       background: rgb(248, 252, 250);
     }
 
-    #userId2 {
+    .userId2 {
       width: 260px;
     }
 
@@ -37,9 +37,9 @@
       height: 40px;
     }
 
-    #userPw1,
-    #userPw2,
-    #userPw3 {
+    .userPw1,
+    .userPw2,
+    .userPw3 {
       height: 40px;
       float: left;
       border: 1px solid #bbbbbb;
@@ -48,18 +48,18 @@
       align-items: center;
     }
 
-    #userPw1 {
+    .userPw1 {
       width: 40px;
       border-right: none;
       background: rgb(248, 252, 250);
     }
 
-    #userPw2 {
+    .userPw2 {
       width: 220px;
       border-right: none;
     }
 
-    #userPw3 {
+    .userPw3 {
       width: 40px;
       border-left: none;
       cursor: pointer;
@@ -97,10 +97,10 @@
       display: flex;
       align-items: center;
     }
+	#logMsg{
+		width: 310px;		
+	}
 
-    #autoCheck {
-      float: left;
-    }
 
     .loginBtn {
       width: 310px;
@@ -151,16 +151,13 @@
 
 
     <form method="post" action="/login">
-    
- 	<!--<p>태그 css로 추후에 수정하겠습니다.------------------------------------------------------------>
- 
     	<!--userId 영역시작------------------------------------------------------------>
     
 	    <div id="userId">
-	      <div id="userId1">
+	      <div class="userId1">
 	        <span><img src="resources/img/user.png" width="30"></span>
 	      </div>
-	      <div id="userId2">
+	      <div class="userId2">
 	        <input type="text" placeholder="아이디" name="username">
 	      </div>
 	    </div>
@@ -169,9 +166,9 @@
       	<!--userPw 영역시작------------------------------------------------------------>
 	    <p />
 	    <div id="userPw">
-	        <div id="userPw1"> <span><img src="resources/img/userPw.png" width="30"></span> </div>
-	        <div id="userPw2"> <input type="password" placeholder="비밀번호" name="password"> </div>
-	        <div id="userPw3" onclick="chg_icon()">
+	        <div class="userPw1"> <span><img src="resources/img/userPw.png" width="30"></span> </div>
+	        <div class="userPw2"> <input type="password" placeholder="비밀번호" name="password"> </div>
+	        <div class="userPw3" onclick="chg_icon()">
 	            <span class="material-icons" id="icon3"> visibility </span>
 	            
 	        </div>
@@ -184,7 +181,7 @@
         <div>
           <div id="autoCheck"> <input type="checkbox" name="remember-me">자동로그인</div>
         </div><br>
-		<div>
+		<div id="logMsg">
 			<c:out value="${error}" />
             <c:out value="${logout}" />
 		</div>
@@ -219,6 +216,16 @@
 			$("button[type='submit']").click(function(){
 				e.preventDefault();
 				$("form").submit();
+			});
+			
+			// 비밀번호 보이기, 안보이기, 클릭시 전환
+			$(".userPw3").on("click",function(){
+				$(".userPw2 input").toggleClass("active");
+				 if($(".userPw2 input").hasClass("active")){
+		            $(".userPw2 input").attr("type","text");
+		        }else{
+		            $(".userPw2 input").attr("type","password");
+		        }
 			});
 		});
 	</script>

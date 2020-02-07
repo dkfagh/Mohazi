@@ -146,25 +146,8 @@ input::-moz-placeholder { color: white; }
             <div id="logo">
                 <a href="/index"><img src="/resources/img/logoImg.png" id="logoImg" name="logoImg" width="200px"></a>
             </div>
-            
-            
-            <%-- <div id="login">
-                <a href="/customLogin" class="btn btn-sm">로그인</a>
-            </div>
-            <!-- 로그인 로그아웃 처리를 위해 묶어놓음 -->
-            <div id="logBox">
-	            <form action="customLogout" method="post">
-	           		<div id="logoutBox">
-	                	<button id="logout" class="btn">로그아웃</button>
-	                	<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }" />
-	            	</div>
-	            </form>
-	            <div id="myPage">
-	                <a href="/mypage/myMeeting" class="btn">내정보</a>
-            	</div>
-            </div> --%>
-            
-            <!-- 시큐리티 테스트 중 -->
+ 
+            <!-- 시큐리티 영역 -->
             <sec:authorize access="isAuthenticated()">
             	<div id="logBox">
             		<form id="logoutForm" action="/customLogout" method="post">
@@ -184,7 +167,7 @@ input::-moz-placeholder { color: white; }
                   	<a href="/customLogin" class="btn btn-sm">로그인</a>
                	</div>
             </sec:authorize>
-            <!-- 시큐리티 테스트 중 -------------------------------------->
+            <!-- 시큐리티 영역 끝 -------------------------------------->
             
             <!-- search form--------------------------------- ---->
             <form class="form-inline" action="search.jsp" >
