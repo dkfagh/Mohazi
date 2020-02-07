@@ -178,7 +178,10 @@ list-style:none; margin:0; padding:0;
 }
 
 .pagination{
-   margin:auto;
+	display:block;
+	margin:0 auto;
+	width:70%;
+	text-align:center;
    padding-top:25px;
    padding-bottom:35px;
    clear:both;
@@ -206,6 +209,7 @@ list-style:none; margin:0; padding:0;
    text-decoration:none;
    color:black;
 }
+
 </style>
 
 <div class="container" id="contents">
@@ -405,31 +409,33 @@ list-style:none; margin:0; padding:0;
                </div>
          </c:forEach>
       
-        </div>      
-		<div class="row">
-			<div class="col-sm-12">
-				 <!-- Paging --------------------------------- -->
-	         
-		         <form id="actionForm" action="/board/list" method="get">
-		            <input type="hidden" name="type" value="${param.type}">
-		                 <input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
-		                 <input type="hidden" name="amount" value="${pageMaker.cri.amount}"> 
-		             </form>
-		                
-		         <div class="pagination">
-		           <c:if test="${pageMaker.prev}">
-		              <a href="${pageMaker.startPage-1}" class="paginate_button">&laquo;</a>
-		           </c:if>
-		           <c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
-		                 <a href="${num}" class="paginate_button ${pageMaker.cri.pageNum == num ? 'active' : ''}">${num}</a>
-		           </c:forEach>
-		           <c:if test="${pageMaker.next}">
-		              <a href="${pageMaker.endPage+1}" class="paginate_button" >&raquo;</a>
-		           </c:if>
-		         </div>
-		         <!-- 페이징 끝  -->
-			</div>
+         <!-- Paging --------------------------------- -->
+         
+         <form id="actionForm" action="/board/list" method="get">
+            <input type="hidden" name="type" value="${param.type}">
+                 <input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
+                 <input type="hidden" name="amount" value="${pageMaker.cri.amount}"> 
+         </form>
+   
+	      
+
 		</div>
+		
+		  <div class="pagination">
+	           <c:if test="${pageMaker.prev}">
+	              <a href="${pageMaker.startPage-1}" class="paginate_button">&laquo;</a>
+	           </c:if>
+	           <c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
+	                 <a href="${num}" class="paginate_button ${pageMaker.cri.pageNum == num ? 'active' : ''}">${num}</a>
+	           </c:forEach>
+	           <c:if test="${pageMaker.next}">
+	              <a href="${pageMaker.endPage+1}" class="paginate_button" >&raquo;</a>
+	           </c:if>
+	         </div>	         
+	     <!-- 페이징 끝  -->
+	         
+	         
+	         
 <%@ include file="../includes/footer.jsp" %>
 
 <script>
