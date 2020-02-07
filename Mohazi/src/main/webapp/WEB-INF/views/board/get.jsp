@@ -198,6 +198,7 @@ ul.tab li.active a {
 }
 .class-confirm02 .btn-swip {
   border-bottom: 1px solid #e4e9ef;
+  cursor: pointer;
 }
 .class-confirm02 .btn-swip a {
   position: relative;
@@ -245,11 +246,17 @@ ul.tab li.active a {
   padding: 10px 0 30px;
   display: none;
 }
-.class-date input, .class-time input{
+.class-date input{
 	border-radius: 5px;
 	width: 100%;
 	text-align: center;
 	cursor: pointer;
+}
+.dateTimeGroup p{	
+	
+	font-size: 15px;
+	margin-left: 10px;
+	margin-bottom: 10px
 }
 .class-confirm02 .class-time {
   padding: 0;
@@ -270,16 +277,18 @@ ul.tab li.active a {
 	color: white;
 }
 
-#addScheduleBtn, #modifyBtn{
 
-	width:49%;	
+#addScheduleBtn{
+
+	width:100%;	
 	background-color: #7bd4ac;	
 	color: white;
 }
 
-#addScheduleBtn:hover, #modifyBtn:hover{
+#addScheduleBtn:hover{
 	background-color: rgb(60, 189, 157);
-	color: white;}
+	color: white;
+}
 
 </style>
 
@@ -379,7 +388,7 @@ ul.tab li.active a {
 				</div>	
 			</div>
 
-			<div class="col-sm-4">
+				<div class="col-sm-4">
 				<div class="sub-confirm">
 					<div class="class-confirm01">
 						<div class="text01">
@@ -389,41 +398,81 @@ ul.tab li.active a {
 								
 							</span>
 						</div>
-						<div class="text02">모임일자, 시간 선택 후 신청하기 버튼을 눌러주세요.</div>
+						<div class="text02">일정 참가 인원수 확인 후 신청하기 버튼을 눌러주세요.</div>
 					</div>									
 					
 					<div class="class-confirm02">
 						<div class="btn-swip swip-date closed schedule-date-trigger" id="btn-date">
-							<a>날짜선택</a>
+							<a>일정 확인</a>
 						</div>
 						<div class="class-date">
-							<input class="result" type="text" id="date" placeholder="날짜를 선택해주세요">
+							<div class="dateTimeGroup">
+								<%-- <p><c:out value="${schedule.s_date}" />날짜</p> --%>
+								 <c:forEach var="schedule" items="${list}">
+									<input class="result" type="button" id="date" value="날짜 :${schedule.s_date} 시간:${schedule.s_time} 참가인원현황:">
+									<input class="result" type="button" id="date" value="날짜 :${schedule.s_date} 시간:${schedule.s_time} 참가인원현황:">
+									<input class="result" type="button" id="date" value="날짜 :${schedule.s_date} 시간:${schedule.s_time} 참가인원현황:">
+								</c:forEach>
+							</div>							
 						</div>
+						<%-- <div class="class-date">
+							<div  class="dateTimeGroup">
+								<p><c:out value="${schedule.s_date}" />날짜</p>
+								<input class="result" type="button" id="date" value="${schedule.s_time}">
+								<input class="result" type="button" id="date" value="${schedule.s_time}">
+								<input class="result" type="button" id="date" value="${schedule.s_time}">
+							</div>							
+						</div> --%>
 					</div>
-					<div class="class-confirm02">
-						<div class="btn-swip swip-time schedule-time-trigger" id="btn-time">
-							<a>시간선택</a>
-						</div>
-						<div class="class-time">
-							<!-- <ul class="time-list" id="scheduleList"></ul> -->
-							<input class="result" type="text" id="time" placeholder="시간을 선택해주세요">
-						</div>
-					</div>						
+					
 					<div class="class-confirm03">
 						<button type="button" class="btn">신청하기</button>
 					</div>
 					<div id="addSchedule">
-						<form id="operForm" action="/board/modify" method="get">
-							<input type="hidden" name="p_no" value="${party.p_no}" />							
-							<!-- 책에서 data-oper 사용하여 수정/삭제 나눈 것처럼 -->
-							<button id="addScheduleBtn" class="btn btn-large" data-oper="addSchedule">SCHEDULE 등록</button>
-							<button id="modifyBtn" class="btn btn-large" type="submit">수정</button>
-						</form>
+						<button id="addScheduleBtn" class="btn btn-large" data-oper="addSchedule">SCHEDULE 등록</button>						
 					</div>
 				</div>				
 			</div>
 		</div>		
 	</div>
+	
+	 <!-- 스케쥴등록 Modal ------------------------------------------>
+	 <div class="modal" id="myModal">
+		<div class="modal-dialog">
+		  <div class="modal-content">
+			<form id="operForm" action="/Schedules/new" method="post">
+			<!-- Modal Header -->
+			<div class="modal-header">
+			  <h4 class="modal-title">스케쥴 등록</h4>
+			  <button type="button" class="close" data-dismiss="modal">&times;</button>
+			</div>
+	  
+			<!-- Modal body -->
+			<div class="modal-body">
+							
+				 <div class="form-group">
+					 <label>날짜</label>
+					 <input class="result" type="text" id="modaldate" placeholder="날짜를 선택해주세요" name="">
+				 </div>
+				 <div class="form-group">
+					 <label>시간</label>
+					 <input class="result" type="text" id="modaltime" placeholder="시간을 선택해주세요">
+				</div>	
+						
+			</div>
+	  
+			<!-- Modal footer -->
+			<div class="modal-footer">	      	
+				 <button id="modalAddSchedulBtn" type="submit" class="btn btn-primary">등록완료</button>				 
+				<button id="modalCloseBtn" type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+			</div>
+			</form>
+		  </div>
+		</div>
+	  </div>
+		  
+		  
+		  <!-- Modal ----->  	
 	
 
 <%@ include file="../includes/footer.jsp" %>
@@ -460,19 +509,19 @@ ul.tab li.active a {
 			});
 		});
 
-		//datpicker
-		$(function () {
-			$('#date').bootstrapMaterialDatePicker({
-				time: false
-			});
-		});
-		//timepicker
-		$(function () {
-			$('#time').bootstrapMaterialDatePicker({
-				date: false,
-				format: 'HH:mm'
-			});
-		});
+		// //datpicker
+		// $(function () {
+		// 	$('#date').bootstrapMaterialDatePicker({
+		// 		time: false
+		// 	});
+		// });
+		// // //timepicker
+		// $(function () {
+		// 	$('#time').bootstrapMaterialDatePicker({
+		// 		date: false,
+		// 		format: 'HH:mm'
+		// 	});
+		// });
 		 //nav 상단고정
 		 $(function() {
                 $(window).scroll(function() {
@@ -484,7 +533,53 @@ ul.tab li.active a {
                     }
                 });
         });
-		 
+		  //to top 버튼
+		  $( window ).scroll( function() {
+                if ( $( this ).scrollTop() > 200 ) {
+                    $( '#top-btn' ).fadeIn();
+                } else {
+                    $( '#top-btn' ).fadeOut();
+                }
+                } );
+                $( '#top-btn' ).click( function() {
+                $( 'html, body' ).animate( { scrollTop : 0 }, 400 );
+                return false;
+                } );	
+
+
+			//스케줄등록버튼 눌렀을때 모달 띄우기
+			var p_noValue='<c:out value="${party.p_no}"/>';
+
+
+			$('#addScheduleBtn').on("click", function(e){
+				$(".modal").modal("show");
+			});	
+			//modaldatpicker
+		$(function () {
+			$('#modaldate').bootstrapMaterialDatePicker({
+				time: false
+			});
+		});
+		//modaltimepicker
+		$(function () {
+			$('#modaltime').bootstrapMaterialDatePicker({
+				date: false,
+				format: 'HH:mm'
+			});
+		});	
+
+
+		$(function(){
+			$('#modalAddSchedulBtn').click(function(){
+				alert("등록되었습니다");
+
+				showList(1);
+			});
+
+		})
+		
+		
+
 	}); 
     //]]>
  </script>
