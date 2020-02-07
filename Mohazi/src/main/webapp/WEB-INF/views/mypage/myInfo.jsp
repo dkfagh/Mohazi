@@ -127,8 +127,12 @@
             <div id="pages" class="col-sm-9">
                 <div class="pw-equal">
                     <h2>정보를 확인하려면 비밀번호를 입력해주세요</h2>
-                    <input type="text" name="pw" placeholder="비밀번호를 입력하세요"><br>
-                    <button type="submit">확인</button>
+                    <form id="myModify" action="/myInfo" method="get">
+                    <%-- 	<input type="hidden" name="id" value="${principal.username}">
+                    	<input id="pw" type="hidden" name="pw" value="${principal.password}"> --%>
+                    	<input id="pw2" type="password" name="pw2" placeholder="비밀번호를 입력하세요"><br>
+                    	<button type="submit">확인</button>
+                    </form>
                 </div>
             </div>
             <!-- 페이지 바디 끝 -->
@@ -141,5 +145,24 @@
         </div>
          <!-- to top button --->
     </div>
-
+<!-- 스크립트 영역 -->
+<script>
+	$(document).ready(function(){
+		var myModify = $("#myModify"); // form값
+		var pw = $("#pw").val(); // 기존 비밀번호의 값을 가져옴
+		
+		
+		$("button[type='submit']").on("click",function(e){
+		      e.preventDefault();
+		      var pw2 = $("#pw2").val(); // 입력한 비밀번호의 값을 가져옴
+		      if(pw != pw2){
+		    	  return;
+		      }
+		      else{
+		    	  myModify.attr("action", "/mypage/myInfo").submit();   //   acition변경
+		      }
+	   });
+	});
+</script>
+<!-- 스크립트 영역 끝 -->
 <%@ include file="../includes/footer.jsp" %>

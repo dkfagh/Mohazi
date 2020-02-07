@@ -151,8 +151,12 @@ input::-moz-placeholder { color: white; }
             <sec:authorize access="isAuthenticated()">
             	<div id="logBox">
             		<form id="logoutForm" action="/customLogout" method="post">
-            			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+            			<input id="logInId" type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+            			
             		</form>
+            			<!-- 로그인 시 id 값 갖고 있기 -->
+            			<input type="hidden" name="id" value="<sec:authentication property ='principal.username' />" readonly />
+            			<!-- 로그인 시 id 값 갖고 있기 -->
 	            		<div id="logoutBox">
 							<button id="logout" class="btn btn-sm">로그아웃</button>
 						</div>

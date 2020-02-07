@@ -31,4 +31,11 @@ public class UsersServiceImpl implements UsersService{
 		mapper.insertAuth(auth);
 	}
 
+	@Override
+	public UsersVO read(String id) {
+		log.info("회원정보....."+id);
+		return mapper.read(id);
+		
+	}
+
 }
