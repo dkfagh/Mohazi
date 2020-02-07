@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -39,15 +40,21 @@ public class CommonController {
 		
 		if(error != null)
 		{
-			model.addAttribute("error", "LOGIN ERROR! CHECK YOUR ACCOUNT!");
+			model.addAttribute("error", "아이디 또는 비밀번호가 맞지 않습니다!");
 		}
 		if(logout != null)
 		{
-			model.addAttribute("logout", "LOGOUT SUCCESS!");
+			model.addAttribute("logout", "로그아웃 완료!");
 		}
 	}
 	
-	// 로그아웃 처리
+	// 로그아웃처리 겟
+	@GetMapping("/customLogout")
+	public void logoutGET() {
+		log.info("custom logout");
+	}
+	
+	// 로그아웃 처리 포스트
 	@PostMapping("/customLogout")
 	public void logoutPOST() {}
 	

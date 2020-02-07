@@ -1,11 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+
 <html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+    <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 	<title>list</title>
 	<!-- jQuery -->
 	<script src="https://code.jquery.com/jquery-1.11.3.js"></script>
@@ -57,11 +61,11 @@ border-bottom:#7bd4ac solid 2px;
     padding-top: 45px;
     float: right;
     padding-right:5%;
-display:block;
+
 }
 
 #logBox{
-display:none;	
+	
 }
 #login a{
     background-color: #7bd4ac ;
@@ -144,7 +148,7 @@ input::-moz-placeholder { color: white; }
             </div>
             
             
-            <div id="login">
+            <%-- <div id="login">
                 <a href="/customLogin" class="btn btn-sm">로그인</a>
             </div>
             <!-- 로그인 로그아웃 처리를 위해 묶어놓음 -->
@@ -158,20 +162,28 @@ input::-moz-placeholder { color: white; }
 	            <div id="myPage">
 	                <a href="/mypage/myMeeting" class="btn">내정보</a>
             	</div>
-            </div>
+            </div> --%>
             
             <!-- 시큐리티 테스트 중 -->
-            <!-- <sec:authorize access="isAuthenticated()">
-            		<div id="logoutBox">
-						<button id="logout" class="btn btn-sm">로그아웃</button>
-					</div>
+            <sec:authorize access="isAuthenticated()">
+            	<div id="logBox">
+            		<form id="logoutForm" action="/customLogout" method="post">
+            			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+            		</form>
+	            		<div id="logoutBox">
+							<button id="logout" class="btn btn-sm">로그아웃</button>
+						</div>
+					
 					<div id="myPage">
                 		<a href="/mypage/myMeeting" class="btn btn-sm">내정보</a>
             		</div>
+           		</div>
             </sec:authorize>
             <sec:authorize access="isAnonymous()">
+            	<div id="login">
                   	<a href="/customLogin" class="btn btn-sm">로그인</a>
-            </sec:authorize> -->
+               	</div>
+            </sec:authorize>
             <!-- 시큐리티 테스트 중 -------------------------------------->
             
             <!-- search form--------------------------------- ---->
@@ -190,18 +202,16 @@ input::-moz-placeholder { color: white; }
 <!-- 스크립트 영역 -->
 <script>
 	$(document).ready(function(){
-		
-		// 로그인 버튼 클릭시
-		$("#login").click(function(){
-			$("#login").css("display","none");
-			$("#logBox").css("display","block");
-		});
-		
+
 		// 로그아웃 버튼 클릭시
 		$("#logout").click(function(){
-			$("#login").css("display","block");
-			$("#logBox").css("display","none");
+			if(confirm("로그아웃하시겠습니까?")){
+				$("#logoutForm").submit();
+			}
+				
+				
 		});
 		
 	});
 </script>
+<!-- 스크립트 영역 -->

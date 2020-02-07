@@ -147,7 +147,7 @@
 
  <div class="container" id="contents">
  	<!-- 화면영역 시작 -->
-    <div align="center"> <img src="logo.png" width="200"> </div>
+    <div align="center"> <img src="resources/img/logoImg.png" width="200"> </div>
 
 
     <form method="post" action="/login">
@@ -173,8 +173,7 @@
 	        <div id="userPw2"> <input type="password" placeholder="비밀번호" name="password"> </div>
 	        <div id="userPw3" onclick="chg_icon()">
 	            <span class="material-icons" id="icon3"> visibility </span>
-	            <c:out value="${error}" />
-	            <c:out value="${logout}" />
+	            
 	        </div>
 	    </div>
     
@@ -183,9 +182,12 @@
      	<!--자동로그인,로그인,회원가입버튼 영역시작------------------------------------------------------------>
       	<p />
         <div>
-          <div id="autoCheck"> <input type="checkbox" name="rememberme">자동로그인</div>
-        </div>
-
+          <div id="autoCheck"> <input type="checkbox" name="remember-me">자동로그인</div>
+        </div><br>
+		<div>
+			<c:out value="${error}" />
+            <c:out value="${logout}" />
+		</div>
         <p />
         <button type="submit" class="loginBtn" >로그인</button>
         
@@ -211,6 +213,29 @@
       
 
   </div><!-- 화면영역 끝 -->
-
-  
+<!-- 스크립트 영역 -->
+	<script>
+		$(document).ready(function(){
+			$("button[type='submit']").click(function(){
+				e.preventDefault();
+				$("form").submit();
+			});
+		});
+	</script>
+<c:if test="${param.logout != null }">
+	<script>
+		$(document).ready(function(){
+			if(history.state){
+				return;
+			}
+			//$("#logout").click(function(){
+				alert("로그아웃하였습니다.");
+				
+				history.replaceState({},null,null);	
+			//});
+			
+		});
+	</script>
+</c:if>
+<!-- 스크립트 영역 끝-->
 <%@ include file="./includes/footer.jsp" %>

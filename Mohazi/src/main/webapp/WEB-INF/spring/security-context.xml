@@ -6,20 +6,19 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 	
 	<!-- 권한 및 로그인 처리를 위해 -->
-	<!-- <bean id="customAccessDenied" class="com.mohazi.security.CustomAccessDeniedHandler"></bean>
-	<bean id="customLoginSuccess" class="com.mohazi.security.CustomLoginSuccessHandler"></bean> -->
+	<!-- <bean id="customAccessDenied" class="com.mohazi.security.CustomAccessDeniedHandler"></bean>-->
+	<bean id="customLoginSuccess" class="com.mohazi.security.CustomLoginSuccessHandler"></bean> 
 
 	<bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
 	<bean id="customUserDetailsService" class="com.mohazi.security.CustomUserDetailsService" />
 
 	<security:http>
-	<security:form-login />
-		<!-- <security:intercept-url pattern="/index" access="hasRole('ROLE_MEMBER')" />
-		<security:form-login login-page="/customLogin" 
-		authentication-success-handler-ref="/index" /> -->
+	
+		<!-- security:intercept-url pattern="/index" access="hasRole('ROLE_MEMBER')" />-->
+		<security:form-login login-page="/customLogin" authentication-success-handler-ref="customLoginSuccess" /> 
 		<!-- 권한에 따라 intercept-url --> 
-		<!-- <security:remember-me data-source-ref="dataSource" token-validity-seconds="604800"/>
-		<security:logout logout-url="/customLogout" invalidate-session="true" delete-cookies="remember-me,JSESSION_ID" /> -->
+		<security:remember-me data-source-ref="dataSource" token-validity-seconds="604800" />
+		<security:logout logout-url="/customLogout" invalidate-session="true" delete-cookies="remember-me,JSESSION_ID" />
 	</security:http>
 	
 	<security:authentication-manager>
