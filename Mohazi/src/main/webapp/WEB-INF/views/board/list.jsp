@@ -118,43 +118,40 @@ list-style:none; margin:0; padding:0;
 
 .col-sm-3{   
     height: 350px;
-    z-index: -10;
     padding-bottom: 10px;
 }
 
 #list-title-img{
-position: relative;
-border-radius: 10px 10px 0 0;
-overflow: hidden;
-height: 50%;
-background-color: #ebebeb;
-
-
+   position: relative;
+   border-radius: 10px 10px 0 0;
+   overflow: hidden;
+   height: 50%;
+   background-color: #ebebeb;
 }
 #list-title-img img{
     width: 100%;
     height: auto;
 }
-	
+   
 .list-title-text {
-position: relative;
-border-radius: 0 0 10px 10px;
-border: 1px solid #d5dadf;
-border-top: 0 none;
-padding: 25px 30px 40px;
-height: 50%;
+   position: relative;
+   border-radius: 0 0 10px 10px;
+   border: 1px solid #d5dadf;
+   border-top: 0 none;
+   padding: 25px 30px 40px;
+   height: 50%;
 }
 .list-category-sub {
-font-size: 16px;
-margin-bottom: 2px;
-color: #6a82ec;
-float: left;
-padding-right: 5px;
+   font-size: 16px;
+   margin-bottom: 2px;
+   color: #6a82ec;
+   float: left;
+   padding-right: 5px;
 }
 .list-title-type {
-font-size: 16px;
-margin-bottom: 2px;
-color: #96969d;
+   font-size: 16px;
+   margin-bottom: 2px;
+   color: #96969d;
 }
 .list-header h2{
     margin: 5px;
@@ -167,31 +164,52 @@ color: #96969d;
 .list-header{
     border-top: solid 1px#7bd4ac ;
 }
-<<<<<<< HEAD
+
 #top-btn {    
     position: fixed;
     right: 15%;
     bottom: 70px;
     display: none;
-    }
+}
     
 #btnWrite{
-	background-color:#7bd4ac;
-	color:white;
+   background-color:#7bd4ac;
+   color:white;
 }
-=======
->>>>>>> branch 'master' of https://github.com/dkfagh/Mohazi.git
+
+.pagination{
+   margin:auto;
+   padding-top:25px;
+   padding-bottom:35px;
+   clear:both;
+}
+
+.pagination a{
+   border-radius: 5px;
+   transition: background-color .3s;
+   text-decoration:none;
+   color:black !important;
+   padding: 6px 12px !important;
+   
+}
+
+.pagination a.active {
+    background-color: #7bd4ac ;
+   color: white !important;
+}
+
+.pagination a:hover:not(.active) {
+   background-color: #e9faf2;
+}
+
+.list-title-subject a{
+   text-decoration:none;
+   color:black;
+}
 </style>
 
-<%-- <h1>MEETING LIST !</h1>
-<ul>
-	<c:forEach var="party" items="${list}">
-		<li><c:out value="${party.title}" /></li>
-	</c:forEach>
-</ul> --%>
-
 <div class="container" id="contents">
-		<div class="row" >
+      <div class="row" >
             <div class="col-sm-12">
                 <div class="main-choice">
                     <div id="main-choice-title">
@@ -344,62 +362,100 @@ color: #96969d;
                     </div> 
                         <!-- 메뉴 초이스 부분 form태그--->            
                  
-                </div> 				
-			</div>			
-		
+                </div>             
+         </div>         
+      
         </div> 
         
         <div class="list-header">
             <h2>
-            	<c:set var="type" value="${param.type}" />
-            	<c:choose>
-            		<c:when test="${type eq 'M'}">
-            			모임
-            		</c:when>
-            		<c:when test="${type eq 'C'}">
-            			클래스
-            		</c:when>
-            	</c:choose>
-			<button type="button" class="btn float-right" id="btnWrite">글쓰기</button>
-			</h2>
+               <c:set var="type" value="${param.type}" />
+               <c:choose>
+                  <c:when test="${type eq 'M'}">
+                     모임
+                  </c:when>
+                  <c:when test="${type eq 'C'}">
+                     클래스
+                  </c:when>
+               </c:choose>
+         <button type="button" class="btn float-right" id="btnWrite">글쓰기</button>
+         </h2>
         </div>
 
         <div class="row">
-	        <c:forEach var="party" items="${list}">
-	            <div class="col-sm-3">
-	                <a href='/board/get?p_no=<c:out value="${party.p_no}"/>'>
-	                	<div id="list-title-img">						
-						</div>
-					</a>
-					<div class="list-title-text">
-						<div class="list-category-sub">
-							[<c:out value="${party.cat_main}"/>]
-						</div>
-						<div class="list-title-type">
-							#<c:out value="${party.cat_sub}" />,
-							#<c:out value="${party.tag}" />	
-							<span class="badge badge-default"><c:out value="${party.price}" />원</span>
-						</div>
-						<div class="list-title-subject">
-							<a href='/board/get?p_no=<c:out value="${party.p_no}"/>'><c:out value="${party.title}" /></a>
-						</div>
-					</div>
-	            </div>
-			</c:forEach>
-			
+           <c:forEach var="party" items="${list}">
+               <div class="col-sm-3">
+                   <a href='/board/get?p_no=<c:out value="${party.p_no}"/>'>
+                      <div id="list-title-img">                  
+                  </div>
+               </a>
+               <div class="list-title-text">
+                  <div class="list-category-sub">
+                     [<c:out value="${party.cat_main}"/>]
+                  </div>
+                  <div class="list-title-type">
+                     #<c:out value="${party.cat_sub}" />,
+                     #<c:out value="${party.tag}" />   
+                     <span class="badge badge-default"><c:out value="${party.price}" />원</span>
+                  </div>
+                  <div class="list-title-subject">
+                     <a href='/board/get?p_no=<c:out value="${party.p_no}"/>'><c:out value="${party.title}" /></a>
+                  </div>
+               </div>
+               </div>
+         </c:forEach>
+      
         </div>      
-
+		<div class="row">
+			<div class="col-sm-12">
+				 <!-- Paging --------------------------------- -->
+	         
+		         <form id="actionForm" action="/board/list" method="get">
+		            <input type="hidden" name="type" value="${param.type}">
+		                 <input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
+		                 <input type="hidden" name="amount" value="${pageMaker.cri.amount}"> 
+		             </form>
+		                
+		         <div class="pagination">
+		           <c:if test="${pageMaker.prev}">
+		              <a href="${pageMaker.startPage-1}" class="paginate_button">&laquo;</a>
+		           </c:if>
+		           <c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
+		                 <a href="${num}" class="paginate_button ${pageMaker.cri.pageNum == num ? 'active' : ''}">${num}</a>
+		           </c:forEach>
+		           <c:if test="${pageMaker.next}">
+		              <a href="${pageMaker.endPage+1}" class="paginate_button" >&raquo;</a>
+		           </c:if>
+		         </div>
+		         <!-- 페이징 끝  -->
+			</div>
+		</div>
 <%@ include file="../includes/footer.jsp" %>
 
 <script>
-	$(document).ready(
-			function(){
-				var result='<c:out value="${result}"/>';
-				$("#btnWrite").on("click",function(){
-					self.location="/board/register";
-				});
-				
-				history.replaceState({},null,null);
-			});
+   $(document).ready(
+         function(){
+            var result='<c:out value="${result}"/>';
+            $("#btnWrite").on("click",function(){
+               self.location="/board/register";
+            });
+            
+            history.replaceState({},null,null);
+         
+            var actionForm=$("#actionForm");
+            
+            $(".pagination").on("click","a",function(e){
+               
+               e.preventDefault();
+               
+               console.log("click");
+               
+               actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+               actionForm.submit();
+               
+               log.error();
+               
+            });
+         });
 
 </script>

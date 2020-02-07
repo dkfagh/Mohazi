@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mohazi.domain.Criteria;
+import com.mohazi.domain.PageDTO;
 import com.mohazi.domain.PartyVO;
 import com.mohazi.service.BoardService;
 
@@ -21,81 +22,82 @@ import lombok.extern.log4j.Log4j;
 @RequestMapping("/board/*")
 @AllArgsConstructor
 public class BoardController {
-	private BoardService service;
+   private BoardService service;
 
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public void list(@RequestParam(value="type", required=false) char type, @RequestParam(value="category", required=false) List<String> categoryArr, @RequestParam(value="region", required=false) List<String> regionArr, Model model, Criteria cri) {
-		log.info("!!!  LIST !!!");
+   @RequestMapping(value = "/list", method = RequestMethod.GET)
+   public void list(@RequestParam(value="type", required=false) char type, @RequestParam(value="category", required=false) List<String> categoryArr, @RequestParam(value="region", required=false) List<String> regionArr, Model model, Criteria cri) {
+      //log.info("!!!  LIST !!!");
+      //log.info("!!! CATEGORY !!!" + categoryArr);
+      //log.info("!!! REGION !!!" + regionArr);
+      
+      PartyVO party = new PartyVO();
+      party.setType(type);
+      party.setCategoryArr(categoryArr);
+      party.setRegionArr(regionArr);
 
-		log.info("!!! CATEGORY !!!" + categoryArr);
-		log.info("!!! REGION !!!" + regionArr);
-		
-		PartyVO party = new PartyVO();
-		party.setType(type);
-		party.setCategoryArr(categoryArr);
-		party.setRegionArr(regionArr);
+      model.addAttribute("list", service.getList(cri));
+      
+      int total=service.getTotal(cri);
+      log.info("total : "+total);
+      model.addAttribute("pageMaker",new PageDTO(cri,total));
+   }
 
-		model.addAttribute("list", service.getList(cri));
-	}
+   // 등록 화면
+   @RequestMapping(value = "/register", method = RequestMethod.GET) 
+   public void register(Model model) {}
+   
+   // 등록 처리
+   @RequestMapping(value = "/register", method = RequestMethod.POST) 
+   public String register(PartyVO party, RedirectAttributes rttr) {
+      log.info("!!!! REGISTER : " + party);
 
-	// 등록 화면
-	@RequestMapping(value = "/register", method = RequestMethod.GET) 
-	public void register(Model model) {}
-	
-	// 등록 처리
-	@RequestMapping(value = "/register", method = RequestMethod.POST) 
-	public String register(PartyVO party, RedirectAttributes rttr) {
-		log.info("!!!! REGISTER : " + party);
+      service.register(party); 
 
-		service.register(party); 
+      //rttr.addFlashAttribute("result", party.getP_no());
+      String url = "redirect:/board/list?type=" + party.getType();
+      return url;
+   }
 
-		//rttr.addFlashAttribute("result", party.getP_no());
-		String url = "redirect:/board/list?type=" + party.getType();
-		return url;
-	}
+   // 상세보기 화면
+   @RequestMapping(value = "/get", method = RequestMethod.GET)
+   public void get(@RequestParam("p_no") Long p_no, Model model) {
+      log.info("!!! GET !!!");
 
-	// 상세보기 화면
-	@RequestMapping(value = "/get", method = RequestMethod.GET)
-	public void get(@RequestParam("p_no") Long p_no, Model model) {
-		log.info("!!! GET !!!");
-		
-		log.info("!!!!!!!!!!!!!" + p_no);
-		log.info("--------------------------"+service.get(p_no));	
-		model.addAttribute("party", service.get(p_no));
-	}
+      model.addAttribute("party", service.get(p_no));
+   }
 
-	// 수정 화면
-	@RequestMapping(value = "/modify", method = RequestMethod.GET)
-	public void modify(@RequestParam("p_no") Long p_no, Model model) {
-		log.info("!!! MODIFY PAGE !!!");
+   // 수정 화면
+   @RequestMapping(value = "/modify", method = RequestMethod.GET)
+   public void modify(@RequestParam("p_no") Long p_no, Model model) {
+      log.info("!!! MODIFY PAGE !!!");
 
-		model.addAttribute("party", service.get(p_no));
-	}
+      model.addAttribute("party", service.get(p_no));
+   }
 
-	// 수정 처리
-	@RequestMapping(value = "/modify", method = RequestMethod.POST)
-	public String modify(PartyVO party, RedirectAttributes rttr) {
-		log.info("!!! MODIFY !!!");
+   // 수정 처리
+   @RequestMapping(value = "/modify", method = RequestMethod.POST)
+   public String modify(PartyVO party, RedirectAttributes rttr) {
+      log.info("!!! MODIFY !!!");
 
-		if(service.modify(party) == true) {
-			rttr.addFlashAttribute("result", "modify");
-		}
+      if(service.modify(party) == true) {
+         rttr.addFlashAttribute("result", "modify");
+      }
 
-		String url = "redirect:/board/list?type=" + party.getType();
-		return url;
-	}
+      String url = "redirect:/board/list?type=" + party.getType();
+      return url;
+   }
 
-	// 삭제 처리
-	@RequestMapping(value = "/remove", method = RequestMethod.POST)
-	public String remove(@RequestParam("p_no") Long p_no, RedirectAttributes rttr) {
-		log.info("!!! REMOVE !!!");
+   // 삭제 처리
+   @RequestMapping(value = "/remove", method = RequestMethod.POST)
+   public String remove(@RequestParam("p_no") Long p_no, RedirectAttributes rttr) {
+      log.info("!!! REMOVE !!!");
 
-		if(service.remove(p_no) == true) {
-			rttr.addFlashAttribute("result", "remove");
-		}
+      if(service.remove(p_no) == true) {
+         rttr.addFlashAttribute("result", "remove");
+      }
 
-		String url = "redirect:/board/list?type=" + service.get(p_no).getType();
-		return url;
-	}
+      String url = "redirect:/board/list?type=" + service.get(p_no).getType();
+      return url;
+   }
 
 }

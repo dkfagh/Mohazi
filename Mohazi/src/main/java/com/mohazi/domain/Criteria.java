@@ -8,16 +8,17 @@ import lombok.ToString;
 @Setter
 @ToString
 public class Criteria {
-	
-	private int pageNum;
-	private int amount;
-	
-	public Criteria() {
-		this(1,20);
-	}
-	
-	public Criteria(int pageNum, int amount) {
-		this.pageNum=pageNum;
-		this.amount=amount;
-	}
+   
+   private int pageNum;
+   private int amount;
+   private char type;
+   
+   public Criteria() {
+      this(1,16);
+   }
+   
+   public Criteria(int pageNum, int amount) {
+      this.pageNum=pageNum;
+      this.amount=amount;
+   }
 }
