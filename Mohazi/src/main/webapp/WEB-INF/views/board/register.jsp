@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 
 <%@ include file="../includes/header.jsp" %>
 <%@ include file="../includes/navigation.jsp" %>
@@ -10,7 +14,6 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 
   <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css'>
-  <link rel="stylesheet" href="./style.css">
 
   <!-- textEditor ----------------------------------------------------------------------->
   <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
@@ -71,9 +74,9 @@
       margin: 0px !important;
     }
 
-    input[type=file] {
+/*     input[type=file] {
       display: none;
-    }
+    } 
 
     .photoBtn {
       display: inline-block;
@@ -105,7 +108,7 @@
       max-height: 200px;
       height: 180px;
       width: 170px;
-    }
+    } */
 
     .regBtn {
       background-color:rgb(0, 0, 0);
@@ -128,138 +131,181 @@
       height: 50px;
     }
   </style>
+  
+  
+<style>
+.uploadResult {
+	width: 100%;
+	background: wheat;
+}
+
+.uploadResult ul {
+	display: flex;
+	flex-flow: row;
+	justify-content: center;
+	align-items: center;
+}
+
+.uploadResult li {
+	list-style: none;
+	padding: 10px;
+}
+
+.uploadResult ul li img {
+	width: 100px;
+}
+
+.bigPictureWrapper {
+  position: absolute;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  top:0%;
+  width:600px;
+  height:600px;
+  background-color: gray; 
+  z-index: 100;
+}
+
+.bigPicture {
+  position: relative;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+.bigPicture img{
+	width:600px;
+}
+
+</style>
 
 
 <!-- Container시작 ----------------------------------------------------------------->
-  <div class="container" id="contents">
+<div class="container" id="contents">
 
-    <!-- registerForm시작 ----------------------------------------------------------------->
-    <form id="registerForm" action="/board/register" method="post">
-
-      <h2>Register</h2>
-      <br>
-      <!-- Table시작 ----------------------------------------------------------------->
-      <table class="table">
-
-        <tbody>
-          <!-- 제목입력 -------------------------------------------------------------------------->
-
-          <tr>
-            <th>제목</th>
-            <td class="title"><input type="text" placeholder=" 제목을 입력하세요." name="title" /></td>
-          </tr>
-
-          <!-- 카테고리입력 -------------------------------------------------------------------------->
-          <tr style="width: 800px !important;">
-            <th style="width: 200px !important;">카테고리</th>
-            <td class="cat">
-              <select name="cat_main">
-                <option SELECTED>선택하세요.</option>
-                <option>클래스</option>
-                <option>모임</option>
-                <option>클래스</option>
-                <option>클래스</option>
-                <option>클래스</option>
-                <option>클래스</option>
-           </select>
-         </td>
-          <td  class="cat">
-              <select name="cat_sub">
-                <option SELECTED>선택하세요.</option>
-                <option>운동</option>
-                <option>모임</option>
-                <option>클래스</option>
-                <option>클래스</option>
-                <option>클래스</option>
-                <option>클래스</option>
-              </select>
-          </td>
-
-
-          </tr>
-
-
-          <!-- 소개입력 -------------------------------------------------------------------------->
-          <tr>
-            <th>소개입력</th>
-            <td>
-              <div id="summernote" name="content"></div>
-            </td>
-          </tr>
-
-          <!-- 위치입력 -------------------------------------------------------------------------->
-          <tr>
-            <th>위치</th>
-            <td class="address"> <input type="text" id="inputAddress" placeholder="주소를 입력하세요." style="width: 300px;" name="address">
-              <input type="button" onclick="sample5_execDaumPostcode()" value="검색" class="mapBtn"
-              style="font-size: 12px; background-color: black; color: white; border-radius: 3px;"><br>
-              <div id="map" style="width:300px;height:300px;margin-top:10px;display:none"></div>
-            </td>
-          </tr>
-
-
-          <!-- 태그달기입력 -------------------------------------------------------------------------->
-          <tr>
-            <th>태그달기</th>
-            <td>
-              <div>
-                <h2 style="font-family:cursive;"></h2>
-                <input id="inputTag" style="width:800px !important; height: 50px; margin: 0px 0px;" name="tag" />
-              </div>
-            </td>
-          </tr>
-
-          <!-- 사진등록입력 -------------------------------------------------------------------------->
-          <tr>
-            <th>사진등록</th>
-            <td>
-              <div>
-                <div class="inputWrap">
-                  <a href="javascript:" onclick="fileUploadAction();" class="photoBtn">사진등록</a>
-                  <input type="file" id="inputImgs" multiple name="photo" />
-                </div>
-                <br>
-                <a href="javascript:" class="photoBtn" onclick="submitAction();">업로드</a>
-              </div>
-              <div>
-                <div class="imgsWrap">
-                  <img id="img" class="mx-auto d-block" />
-                </div>
-              </div>
-            </td>
-          </tr>
-
-
-          <!-- 가격입력 -------------------------------------------------------------------------->
-
-          <tr>
-            <th>가격</th>
-            <td class="price"><input type="text" placeholder="가격을 입력하세요." name="price" />원</td>
-          </tr>
+	<!-- registerForm시작 ----------------------------------------------------------------->
+	<form id="registerForm" action="/board/register" method="post"
+		role="form">
+		<input type="hidden" name="${_csrf.parameterName}"
+			value="${_csrf.token}" />
 
 
 
+		<h2>Register</h2>
+		<br>
+		<!-- Table시작 ----------------------------------------------------------------->
+		<table class="table">
+
+			<tbody>
+				<!-- 제목입력 -------------------------------------------------------------------------->
+
+				<tr>
+					<th>제목</th>
+					<td class="title"><input type="text" placeholder=" 제목을 입력하세요."
+						name="title" /></td>
+				</tr>
+
+				<!-- 카테고리입력 -------------------------------------------------------------------------->
+				<tr style="width: 800px !important;">
+					<th style="width: 200px !important;">카테고리</th>
+					<td class="cat"><select name="cat_main">
+							<option SELECTED>선택하세요.</option>
+							<option>클래스</option>
+							<option>모임</option>
+							<option>클래스</option>
+							<option>클래스</option>
+							<option>클래스</option>
+							<option>클래스</option>
+					</select></td>
+					<td class="cat"><select name="cat_sub">
+							<option SELECTED>선택하세요.</option>
+							<option>운동</option>
+							<option>모임</option>
+							<option>클래스</option>
+							<option>클래스</option>
+							<option>클래스</option>
+							<option>클래스</option>
+					</select></td>
 
 
-          <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-
-        </tbody>
-      </table>
-      <!-- Table끝 ----------------------------------------------------------------->
-
-      <!-- 등록버튼입력 -------------------------------------------------------------------------->
-      <button type="submit" class="regBtn">등록</button>
-
-    </form>
-    <!-- registerForm끝 ----------------------------------------------------------------->
-
-	</div>
-  <!-- Container끝 ----------------------------------------------------------------->
+				</tr>
 
 
+				<!-- 소개입력 -------------------------------------------------------------------------->
+				<tr>
+					<th>소개입력</th>
+					<td>
+						<input type="textarea" rows="5" name="content">
+						<!-- <div id="summernote" name="content"></div> -->
+					</td>
+				</tr>
+
+				<!-- 위치입력 -------------------------------------------------------------------------->
+				<tr>
+					<th>위치</th>
+					<td class="address"><input type="text" id="inputAddress"
+						placeholder="주소를 입력하세요." style="width: 300px;" name="address">
+						<input type="button" onclick="sample5_execDaumPostcode()"
+						value="검색" class="mapBtn"
+						style="font-size: 12px; background-color: black; color: white; border-radius: 3px;"><br>
+						<div id="map"
+							style="width: 300px; height: 300px; margin-top: 10px; display: none"></div>
+					</td>
+				</tr>
 
 
-<%@ include file="../includes/footer.jsp" %>
+				<!-- 태그달기입력 -------------------------------------------------------------------------->
+				<tr>
+					<th>태그달기</th>
+					<td>
+						<div>
+							<h2 style="font-family: cursive;"></h2>
+							<input id="inputTag"
+								style="width: 800px !important; height: 50px; margin: 0px 0px;"
+								name="tag" />
+						</div>
+					</td>
+				</tr>
+
+				<!-- 사진등록입력 -------------------------------------------------------------------------->
+				<tr>
+					<th>사진등록</th>
+					<td>
+						<div class="form-group uploadDiv">
+							<input type="file" name='uploadFile' multiple>
+						</div>
+						<div class='uploadResult'>
+							<ul>
+							</ul>
+						</div>
+					</td>
+				</tr>
+
+				<!-- 가격입력 -------------------------------------------------------------------------->
+
+				<tr>
+					<th>가격</th>
+					<td class="price"><input type="text" placeholder="가격을 입력하세요."
+						name="price" />원</td>
+				</tr>
+				
+				<input type="hidden" name="id" value="ddd">
+			</tbody>
+			<!-- Table끝 ----------------------------------------------------------------->
+		</table>
+		
+		<!-- 등록버튼입력 -------------------------------------------------------------------------->
+		<button type="submit" class="regBtn">등록</button>
+
+	</form>
+	<!-- registerForm끝 ----------------------------------------------------------------->
+
+
+	<!-- Container끝 ----------------------------------------------------------------->
+</div>
+
+
+
 
 
 <!-- 카카오맵API ------------------------------------------------------------------------------------------------>
@@ -267,52 +313,53 @@
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e5d55372dfb08cff48fa326451e35832&libraries=services"></script>
 <script>
-  $(document).ready(function () {
-    var mapContainer = document.getElementById('map'), // 지도를 표시할 div
-      mapOption = {
-        center: new daum.maps.LatLng(37.537187, 127.005476), // 지도의 중심좌표
-        level: 5 // 지도의 확대 레벨
-      };
+	$(document).ready(function() {
+		var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+		mapOption = {
+			center : new daum.maps.LatLng(37.537187, 127.005476), // 지도의 중심좌표
+			level : 5
+		// 지도의 확대 레벨
+		};
 
-    //지도를 미리 생성
-    var map = new daum.maps.Map(mapContainer, mapOption);
-    //주소-좌표 변환 객체를 생성
-    var geocoder = new daum.maps.services.Geocoder();
-    //마커를 미리 생성
-    var marker = new daum.maps.Marker({
-      position: new daum.maps.LatLng(37.537187, 127.005476),
-      map: map
-    });
-  });
+		//지도를 미리 생성
+		var map = new daum.maps.Map(mapContainer, mapOption);
+		//주소-좌표 변환 객체를 생성
+		var geocoder = new daum.maps.services.Geocoder();
+		//마커를 미리 생성
+		var marker = new daum.maps.Marker({
+			position : new daum.maps.LatLng(37.537187, 127.005476),
+			map : map
+		});
+	});
 
-  function sample5_execDaumPostcode() {
-    new daum.Postcode({
-      oncomplete: function (data) {
-        var addr = data.address; // 최종 주소 변수
+	function sample5_execDaumPostcode() {
+		new daum.Postcode({
+			oncomplete : function(data) {
+				var addr = data.address; // 최종 주소 변수
 
-        // 주소 정보를 해당 필드에 넣는다.
-        document.getElementById("inputAddress").value = addr;
-        // 주소로 상세 정보를 검색
-        geocoder.addressSearch(data.address, function (results, status) {
-          // 정상적으로 검색이 완료됐으면
-          if (status === daum.maps.services.Status.OK) {
+				// 주소 정보를 해당 필드에 넣는다.
+				document.getElementById("inputAddress").value = addr;
+				// 주소로 상세 정보를 검색
+				geocoder.addressSearch(data.address, function(results, status) {
+					// 정상적으로 검색이 완료됐으면
+					if (status === daum.maps.services.Status.OK) {
 
-            var result = results[0]; //첫번째 결과의 값을 활용
+						var result = results[0]; //첫번째 결과의 값을 활용
 
-            // 해당 주소에 대한 좌표를 받아서
-            var coords = new daum.maps.LatLng(result.y, result.x);
-            // 지도를 보여준다.
-            mapContainer.style.display = "block";
-            map.relayout();
-            // 지도 중심을 변경한다.
-            map.setCenter(coords);
-            // 마커를 결과값으로 받은 위치로 옮긴다.
-            marker.setPosition(coords)
-          }
-        });
-      }
-    }).open();
-  }
+						// 해당 주소에 대한 좌표를 받아서
+						var coords = new daum.maps.LatLng(result.y, result.x);
+						// 지도를 보여준다.
+						mapContainer.style.display = "block";
+						map.relayout();
+						// 지도 중심을 변경한다.
+						map.setCenter(coords);
+						// 마커를 결과값으로 받은 위치로 옮긴다.
+						marker.setPosition(coords)
+					}
+				});
+			}
+		}).open();
+	}
 </script>
 <!-- 카카오맵API ------------------------------------------------------------------------------------------------>
 
@@ -328,101 +375,6 @@
 </script>
 <!--textEditor------------------------------------------------------------------->
 
-
-<!--첨부파일업로드 ------------------------------------------------------------------->
-<script type="text/javascript" src="./js/jquery-3.1.0.min.js" charset="utf-8"></script>
-<script type="text/javascript">
-
-  // 이미지 정보들을 담을 배열
-  var sel_files = [];
-
-
-  $(document).ready(function () {
-    $("#inputImgs").on("change", handleImgFileSelect);
-  });
-
-  function fileUploadAction() {
-    console.log("fileUploadAction");
-    $("#inputImgs").trigger('click');
-  }
-
-  function handleImgFileSelect(e) {
-
-    // 이미지 정보들을 초기화
-    sel_files = [];
-    $(".imgsWrap").empty();
-
-    var files = e.target.files;
-    var filesArr = Array.prototype.slice.call(files);
-
-    var index = 0;
-    filesArr.forEach(function (f) {
-      if (!f.type.match("image.*")) {
-        alert("확장자는 이미지 확장자만 가능합니다.");
-        return;
-      }
-
-      sel_files.push(f);
-
-      var reader = new FileReader();
-      reader.onload = function (e) {
-        var html = "<a href=\"javascript:void(0);\" onclick=\"deleteImageAction(" + index + ")\" id=\"img_id_" + index + "\"><img src=\"" + e.target.result + "\" data-file='" + f.name + "' class='selProductFile' title='Click to remove'></a>";
-        $(".imgsWrap").append(html);
-        index++;
-
-      }
-      reader.readAsDataURL(f);
-
-    });
-  }
-
-
-
-  function deleteImageAction(index) {
-    console.log("index : " + index);
-    console.log("sel length : " + sel_files.length);
-
-    sel_files.splice(index, 1);
-
-    var img_id = "#img_id_" + index;
-    $(img_id).remove();
-  }
-
-  function fileUploadAction() {
-    console.log("fileUploadAction");
-    $("#inputImgs").trigger('click');
-  }
-
-  function submitAction() {
-    console.log("업로드 파일 갯수 : " + sel_files.length);
-    var data = new FormData();
-
-    for (var i = 0, len = sel_files.length; i < len; i++) {
-      var name = "image_" + i;
-      data.append(name, sel_files[i]);
-    }
-    data.append("image_count", sel_files.length);
-
-    if (sel_files.length < 1) {
-      alert("한개이상의 파일을 선택해주세요.");
-      return;
-    }
-
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", "./study01_af.php");
-    xhr.onload = function (e) {
-      if (this.status == 200) {
-        console.log("Result : " + e.currentTarget.responseText);
-      }
-    }
-
-    xhr.send(data);
-  }
-</script>
-
-<!--첨부파일업로드 ------------------------------------------------------------------->
-
-
 <!-- tagEditor ------------------------------------------------------------------------------->
 
 <script type="text/javascript">
@@ -433,4 +385,177 @@
 </script>
 
 <!-- tagEditor ------------------------------------------------------------------------------->
+
+
+
+<!--첨부파일업로드 ------------------------------------------------------------------->
+
+<script>
+$(document).ready(function(e){
+
+	
+  var formObj = $("form[role='form']");
+  
+  $("button[type='submit']").on("click", function(e){
+    
+    e.preventDefault();
+    
+	var str = "";
+    
+    $(".uploadResult ul li").each(function(i, obj){
+      
+      var jobj = $(obj);
+      
+      console.dir(jobj);
+      console.log("-------------------------");
+      console.log(jobj.data("filename"));
+      
+      
+      str += "<input type='hidden' name='attachList["+i+"].fileName' value='"+jobj.data("filename")+"'>";
+      str += "<input type='hidden' name='attachList["+i+"].uuid' value='"+jobj.data("uuid")+"'>";
+      str += "<input type='hidden' name='attachList["+i+"].uploadPath' value='"+jobj.data("path")+"'>";
+      str += "<input type='hidden' name='attachList["+i+"].fileType' value='"+ jobj.data("type")+"'>";
+      
+    });
+    
+    console.log(str);
+    
+    formObj.append(str).submit();
+    
+  });
+
+  var regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$");
+  var maxSize = 5242880; //5MB
+  
+  function checkExtension(fileName, fileSize){
+    
+    if(fileSize >= maxSize){
+      alert("파일 사이즈 초과");
+      return false;
+    }
+    
+    if(regex.test(fileName)){
+      alert("해당 종류의 파일은 업로드할 수 없습니다.");
+      return false;
+    }
+    return true;
+  }
+  
+  $("input[type='file']").change(function(e){
+
+    var formData = new FormData();
+    
+    var inputFile = $("input[name='uploadFile']");
+    
+    var files = inputFile[0].files;
+    
+    for(var i = 0; i < files.length; i++){
+
+      if(!checkExtension(files[i].name, files[i].size) ){
+        return false;
+      }
+      formData.append("uploadFile", files[i]);
+      
+    }
+  //ajaxSend시 토큰값 전달---------------------------------------------------------------	
+	var csrfHeaderName = "${_csrf.headerName}";
+	var csrfTokenValue = "${_csrf.token}";
+	$(document).ajaxSend(function(e, xhr, options) {
+		xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+	});
+	//ajaxSend시 토큰값 전달---------------------------------------------------------------	
+
+    
+    $.ajax({
+      url: '/uploadAjaxAction',
+      processData: false, 
+      contentType: false,data: 
+      formData,type: 'POST',
+      dataType:'json',
+        success: function(result){
+          console.log(result); 
+		 	showUploadResult(result); //업로드 결과 처리 함수 
+
+      }
+    }); //$.ajax
+    
+  });  
+  
+  
+  function showUploadResult(uploadResultArr){
+	    
+	    if(!uploadResultArr || uploadResultArr.length == 0){ return; }
+	    
+	    var uploadUL = $(".uploadResult ul");
+	    
+	    var str ="";
+	    
+	    $(uploadResultArr).each(function(i, obj){
+	    
+	    //image type
+			if(obj.image){
+				var fileCallPath =  encodeURIComponent( obj.uploadPath+ "/s_"+obj.uuid +"_"+obj.fileName);
+				str += "<li data-path='"+obj.uploadPath+"'";
+				str +=" data-uuid='"+obj.uuid+"' data-filename='"+obj.fileName+"' data-type='"+obj.image+"'"
+				str +" ><div>";
+				str += "<span> "+ obj.fileName+"</span>";
+				str += "<button type='button' data-file=\'"+fileCallPath+"\' "
+				str += "data-type='image' class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>";
+				str += "<img src='/display?fileName="+fileCallPath+"'>";
+				str += "</div>";
+				str +"</li>";
+			}else{
+				var fileCallPath =  encodeURIComponent( obj.uploadPath+"/"+ obj.uuid +"_"+obj.fileName);			      
+			    var fileLink = fileCallPath.replace(new RegExp(/\\/g),"/");
+			      
+				str += "<li "
+				str += "data-path='"+obj.uploadPath+"' data-uuid='"+obj.uuid+"' data-filename='"+obj.fileName+"' data-type='"+obj.image+"' ><div>";
+				str += "<span> "+ obj.fileName+"</span>";
+				str += "<button type='button' data-file=\'"+fileCallPath+"\' data-type='file' " 
+				str += "class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>";
+				str += "<img src='/resources/img/attach.png'></a>";
+				str += "</div>";
+				str +"</li>";
+			}
+	    });
+	    uploadUL.append(str);
+  }
+  
+  $(".uploadResult").on("click", "button", function(e){
+	    
+	    console.log("delete file");
+	      
+	    var targetFile = $(this).data("file");
+	    var type = $(this).data("type");
+	    
+	    var targetLi = $(this).closest("li");
+	    
+	    $.ajax({
+	      url: '/deleteFile',
+	      data: {fileName: targetFile, type:type},
+	      dataType:'text',
+	      type: 'POST',
+	        success: function(result){
+	           alert(result);
+	           
+	           targetLi.remove();
+	         }
+	    }); //$.ajax
+	   });
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+});
+  </script>
+<!--첨부파일업로드 ------------------------------------------------------------------->
+
+
 
