@@ -110,12 +110,33 @@
                     
                     <div id="category">
                         <ul>
+<<<<<<< HEAD
                         	<li><a href="#">전체</a></li>
                         	<li><a href="#">참여자</a></li>
                         	<li><a href="#">개설자</a></li>
                         	<li><a href="#">이용 안내</a></li>
                         	<li><a href="#">회원 정보</a></li>
                         	<li><a href="#">결제/환불</a></li>
+=======
+                        	<li>
+                        		<a id="total" href="#">전체</a>
+                        	</li>
+                        	<li>
+                        		<a id="info" href="#">이용 안내</a>
+                        	</li>
+                        	<li>
+                        		<a id="attendee" href="#">참여자</a>
+                        	</li>
+                        	<li>
+                        		<a id="host" href="#">개설자</a>
+                        	</li>
+                        	<li>
+                        		<a id="user" href="#">회원 정보</a>
+                        	</li>
+                        	<li>
+                        		<a id="payment" href="#">결제/환불</a>
+                        	</li>
+>>>>>>> branch 'master' of https://github.com/dkfagh/Mohazi
                         </ul>
                     </div>              
                 </div>
@@ -124,7 +145,7 @@
                 <div class="FAQ-b">
                     <ul id="accordion">
 	                    <c:forEach items="${FAQ}" var="list">
-		                    <li>	                    	
+		                    <li class="${list.category}" style="display:block">	                    	
 	                    		<button class="accordions">${list.title}</button>
 	                    		<div class="panel">
 	                    			<p>${list.content}</p>
@@ -134,7 +155,8 @@
                     </ul>
                 </div>
                 <!-- FAQ 페이지 끝 -->
-          </div><!-- 내정보 네비, 페이지 분할 -->          
+          </div>
+          <!-- 내정보 네비, 페이지 분할 -->          
     </div>
     <!-- 바디 부분 끝 ----------------------------------------------------------------->
     
@@ -143,11 +165,90 @@
     $(".accordions").click(function(){
         $(this).next().slideToggle();
         $(".accordions").not(this).next().slideUp();
+<<<<<<< HEAD
     });
+=======
+    });    
+>>>>>>> branch 'master' of https://github.com/dkfagh/Mohazi
     
     $("#category a").on("click",function(e){
+<<<<<<< HEAD
         e.preventDefault();    // 추가이벤트를 막아서 #의 최상위이동막음!!!
+=======
+        e.preventDefault();  // 전송을 막아 페이지가 상단으로 이동하는것을 방지
+        
+>>>>>>> branch 'master' of https://github.com/dkfagh/Mohazi
 	});
+<<<<<<< HEAD
+=======
+    
+    
+    // FAQ search start
+    var searchForm = $("#searchForm");
+    
+    $("#searchForm button").on("click", function(e){
+    	
+    	if(!searchForm.find("input[name='keyword']").val()){
+    		alert("검색어를 입력하세요.");
+    		return false;
+    	}
+    	
+    	e.preventDefalut();
+    	
+    	searchForm.submit();
+    });
+    
+    
+    // FAQ category 선택
+    // 전체
+    $("#total").on("click",function(){
+    	$(".info").css("display","block");
+    	$(".attendee").css("display","block");
+    	$(".host").css("display","block");
+    	$(".user").css("display","block");
+    	$(".payment").css("display","block");
+    });
+    // 이용 안내
+    $("#info").on("click",function(){
+    	$(".info").css("display","block");
+    	$(".attendee").css("display","none");
+    	$(".host").css("display","none");
+    	$(".user").css("display","none");
+    	$(".payment").css("display","none");
+    });
+    // 참여자
+    $("#attendee").on("click",function(){
+    	$(".info").css("display","none");
+    	$(".attendee").css("display","block");
+    	$(".host").css("display","none");
+    	$(".user").css("display","none");
+    	$(".payment").css("display","none");
+    });
+    // 개설자
+    $("#host").on("click",function(){
+    	$(".info").css("display","none");
+    	$(".attendee").css("display","none");
+    	$(".host").css("display","block");
+    	$(".user").css("display","none");
+    	$(".payment").css("display","none");
+    });
+    // 회원 정보
+    $("#user").on("click",function(){
+    	$(".info").css("display","none");
+    	$(".attendee").css("display","none");
+    	$(".host").css("display","none");
+    	$(".user").css("display","block");
+    	$(".payment").css("display","none");
+    });
+    // 결제/환불
+    $("#payment").on("click",function(){
+    	$(".info").css("display","none");
+    	$(".attendee").css("display","none");
+    	$(".host").css("display","none");
+    	$(".user").css("display","none");
+    	$(".payment").css("display","block");
+    });
+>>>>>>> branch 'master' of https://github.com/dkfagh/Mohazi
 	</script>
 
 <%@ include file="./includes/footer.jsp" %>

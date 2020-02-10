@@ -1,15 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper
-	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mohazi.mapper.BoardMapper">
 
-	<!-- 소모임 목록 -->
-  	<select id="getList" resultType="com.mohazi.domain.PartyVO" parameterType="com.mohazi.domain.PartyVO">
-		SELECT * FROM PARTY
-		WHERE TYPE=#{type}
-		
-		<!-- 카테고리, 지역은 중복선택 될 수 있으므로 배열에서 읽어와 WHERE 절에서 IN 으로 검색 하도록! -->
+
+   <!-- List 페이징 처리  -->
+   <select id="getListWithPaging" resultType="com.mohazi.domain.PartyVO">
+      <![CDATA[
+         SELECT
+             P_NO, CAT_MAIN, CAT_SUB, TAG, PRICE, TITLE
+         FROM
+             (
+             SELECT /*+INDEX_DESC(PARTY P_NO) */
+                ROWNUM RN, P_NO, CAT_MAIN, CAT_SUB, TAG, PRICE, TITLE
+             FROM
+                PARTY
+             WHERE
+      ]]>
+        
+         <![CDATA[
+                 rownum<=#{pageNum} * #{amount} and
+                  TYPE=#{type}
+             )
+         where rn > (#{pageNum}-1) * #{amount}
+        ]]>
+   </select>
+   
+   <select id="getTotalCount" resultType="int">
+      Select Count(*) From Party Where p_no > 0 and TYPE=#{type}
+   </select>
+
+   <!-- 소모임 목록 -->
+     <select id="getList" resultType="com.mohazi.domain.PartyVO" parameterType="com.mohazi.domain.PartyVO">
+      SELECT * FROM PARTY
+      WHERE TYPE=#{type}
+      
+      <!-- 카테고리, 지역은 중복선택 될 수 있으므로 배열에서 읽어와 WHERE 절에서 IN 으로 검색 하도록! -->
+
         <choose>
             <when test="categoryArr != null">
                 AND CAT_MAIN IN 
@@ -19,48 +47,48 @@
             </when>
         </choose>
 
-		<!-- 아래와 같이 공백이 나오기 때문에 공백 제거 위해 REGEXP_REPLACE 사용 -->
-		<!-- WHERE REGEXP_LIKE(ADDRESS, REGEXP_REPLACE('^ 서울 | ^ 경기 ', ' ', '')) -->
- 		<choose>
-			<when test="regionArr != null">
-				AND REGEXP_LIKE(ADDRESS,
-				<foreach collection="regionArr" item="region" index="index" separator="|" open="REGEXP_REPLACE('" close="' , '\s+', ''))">
-					^${region}
-				</foreach>
-			</when>
-		</choose>
+      <!-- 아래와 같이 공백이 나오기 때문에 공백 제거 위해 REGEXP_REPLACE 사용 -->
+      <!-- WHERE REGEXP_LIKE(ADDRESS, REGEXP_REPLACE('^ 서울 | ^ 경기 ', ' ', '')) -->
+       <choose>
+         <when test="regionArr != null">
+            AND REGEXP_LIKE(ADDRESS,
+            <foreach collection="regionArr" item="region" index="index" separator="|" open="REGEXP_REPLACE('" close="' , '\s+', ''))">
+               ^${region}
+            </foreach>
+         </when>
+      </choose>
 
-	</select>
-	
-	<!-- CRUD -->
-	<!-- INSERT. nullable column 은 jdbcType 지정해줌 -->
-	<insert id="insert">
-		INSERT INTO PARTY (P_NO, TITLE, ID, CAT_MAIN, CAT_SUB, CONTENT, REGION, TAG, PHOTO, PRICE)
-		VALUES(SEQ_PARTY.NEXTVAL, #{title}, #{id}, #{cat_main}, #{cat_sub}, #{content}, #{region}, 
-			   #{tag, jdbcType=VARCHAR}, #{photo, jdbcType=VARCHAR}, #{price, jdbcType=NUMERIC})
-	</insert>
-	
-	<!-- READ -->
-	<select id="read" resultType="com.mohazi.domain.PartyVO">
-		SELECT * FROM PARTY 
-		WHERE P_NO = #{p_no}
-	</select>
-	<!-- UPDATE -->
-	<update id="update">
-		UPDATE PARTY SET
-		TITLE = #{title},
-		CAT_MAIN = #{cat_main},
-		CAT_SUB = #{cat_sub},
-		CONTENT = #{content},
-		TAG = #{tag, jdbcType=VARCHAR},
-		PHOTO = #{photo, jdbcType=VARCHAR},
-		PRICE = #{price, jdbcType=NUMERIC}
-		WHERE P_NO = #{p_no}
-	</update>
-	<!-- DEETE -->
-	<delete id="delete">
-		DELETE FROM PARTY
-		WHERE P_NO = #{p_no}
-	</delete>
-	
+   </select>
+   
+   <!-- CRUD -->
+   <!-- INSERT. nullable column 은 jdbcType 지정해줌 -->
+   <insert id="insert">
+      INSERT INTO PARTY (P_NO, TITLE, ID, CAT_MAIN, CAT_SUB, CONTENT, REGION, TAG, PHOTO, PRICE)
+      VALUES(SEQ_PARTY.NEXTVAL, #{title}, #{id}, #{cat_main}, #{cat_sub}, #{content}, #{region}, 
+            #{tag, jdbcType=VARCHAR}, #{photo, jdbcType=VARCHAR}, #{price, jdbcType=NUMERIC})
+   </insert>
+   
+   <!-- READ -->
+   <select id="read" resultType="com.mohazi.domain.PartyVO">
+      SELECT * FROM PARTY 
+      WHERE P_NO = #{p_no}
+   </select>
+   <!-- UPDATE -->
+   <update id="update">
+      UPDATE PARTY SET
+      TITLE = #{title},
+      CAT_MAIN = #{cat_main},
+      CAT_SUB = #{cat_sub},
+      CONTENT = #{content},
+      TAG = #{tag, jdbcType=VARCHAR},
+      PHOTO = #{photo, jdbcType=VARCHAR},
+      PRICE = #{price, jdbcType=NUMERIC}
+      WHERE P_NO = #{p_no}
+   </update>
+   <!-- DEETE -->
+   <delete id="delete">
+      DELETE FROM PARTY
+      WHERE P_NO = #{p_no}
+   </delete>
+   
 </mapper>

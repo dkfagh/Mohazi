@@ -142,6 +142,7 @@ input::-moz-placeholder { color: white; }
             <div id="logo">
                 <a href="/index"><img src="resources/img/logoImg.png" id="logoImg" name="logoImg" width="200px"></a>
             </div>
+<<<<<<< HEAD
             
             
             <div id="login">
@@ -165,14 +166,37 @@ input::-moz-placeholder { color: white; }
             		<div id="logoutBox">
 						<button id="logout" class="btn btn-sm">로그아웃</button>
 					</div>
+=======
+ 
+            <!-- 시큐리티 영역 -->
+            <sec:authorize access="isAuthenticated()">
+            	<div id="logBox">
+            		<form id="logoutForm" action="/customLogout" method="post">
+            			<input id="logInId" type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+            			
+            		</form>
+            			<!-- 로그인 시 id 값 갖고 있기 -->
+            			<input type="hidden" name="id" value="<sec:authentication property ='principal.username' />" readonly />
+            			<!-- 로그인 시 id 값 갖고 있기 -->
+	            		<div id="logoutBox">
+							<button id="logout" class="btn btn-sm">로그아웃</button>
+						</div>
+					
+>>>>>>> branch 'master' of https://github.com/dkfagh/Mohazi
 					<div id="myPage">
                 		<a href="/mypage/myMeeting" class="btn btn-sm">내정보</a>
             		</div>
             </sec:authorize>
             <sec:authorize access="isAnonymous()">
                   	<a href="/customLogin" class="btn btn-sm">로그인</a>
+<<<<<<< HEAD
             </sec:authorize> -->
             <!-- 시큐리티 테스트 중 -------------------------------------->
+=======
+               	</div>
+            </sec:authorize>
+            <!-- 시큐리티 영역 끝 -------------------------------------->
+>>>>>>> branch 'master' of https://github.com/dkfagh/Mohazi
             
             <!-- search form--------------------------------- ---->
             <form class="form-inline" action="search.jsp" >

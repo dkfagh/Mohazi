@@ -48,7 +48,7 @@
 
  <div class="container" id="contents">
  	<!-- 화면영역 시작 -->
-    <div align="center"> <img src="logo.png" width="200"> </div>
+    <div align="center"> <img src="resources/img/logoImg.png" width="200"> </div>
 	<h1>회원가입완료!</h1>
 	<a id="loginBtn" type="button" href="/customLogin">로그인하고 시작하기</a>
 </div><!-- 화면영역 끝 -->
