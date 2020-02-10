@@ -112,27 +112,22 @@
                     <div id="category">
                         <ul>
                         	<li>
-                        		<a href="#">전체</a>
+                        		<a id="total" href="#">전체</a>
                         	</li>
                         	<li>
-                        		<a href="#">참여자</a>
-                        		<input type="hidden" name="attendee">
+                        		<a id="info" href="#">이용 안내</a>
                         	</li>
                         	<li>
-                        		<a href="#">개설자</a>
-                        		<input type="hidden" name="host">
+                        		<a id="attendee" href="#">참여자</a>
                         	</li>
                         	<li>
-                        		<a href="#">이용 안내</a>
-                        		<input type="hidden" name="info">
+                        		<a id="host" href="#">개설자</a>
                         	</li>
                         	<li>
-                        		<a href="#">회원 정보</a>
-                        		<input type="hidden" name="user">
+                        		<a id="user" href="#">회원 정보</a>
                         	</li>
                         	<li>
-                        		<a href="#">결제/환불</a>
-                        		<input type="hidden" name="payment">
+                        		<a id="payment" href="#">결제/환불</a>
                         	</li>
                         </ul>
                     </div>              
@@ -142,7 +137,7 @@
                 <div class="FAQ-b">
                     <ul id="accordion">
 	                    <c:forEach items="${FAQ}" var="list">
-		                    <li>	                    	
+		                    <li class="${list.category}" style="display:block">	                    	
 	                    		<button class="accordions">${list.title}</button>
 	                    		<div class="panel">
 	                    			<p>${list.content}</p>
@@ -152,7 +147,8 @@
                     </ul>
                 </div>
                 <!-- FAQ 페이지 끝 -->
-          </div><!-- 내정보 네비, 페이지 분할 -->          
+          </div>
+          <!-- 내정보 네비, 페이지 분할 -->          
     </div>
     <!-- 바디 부분 끝 ----------------------------------------------------------------->
     
@@ -164,17 +160,15 @@
     $(".accordions").click(function(){
         $(this).next().slideToggle();
         $(".accordions").not(this).next().slideUp();
-    });
-    // FAQ accordion end
+    });    
     
     
     // FAQ category select
     $("#category a").on("click",function(e){
         e.preventDefault();  // 전송을 막아 페이지가 상단으로 이동하는것을 방지
         
-        
-        
 	});
+    
     
     // FAQ search start
     var searchForm = $("#searchForm");
@@ -189,6 +183,57 @@
     	e.preventDefalut();
     	
     	searchForm.submit();
-    })
+    });
+    
+    
+    // FAQ category 선택
+    // 전체
+    $("#total").on("click",function(){
+    	$(".info").css("display","block");
+    	$(".attendee").css("display","block");
+    	$(".host").css("display","block");
+    	$(".user").css("display","block");
+    	$(".payment").css("display","block");
+    });
+    // 이용 안내
+    $("#info").on("click",function(){
+    	$(".info").css("display","block");
+    	$(".attendee").css("display","none");
+    	$(".host").css("display","none");
+    	$(".user").css("display","none");
+    	$(".payment").css("display","none");
+    });
+    // 참여자
+    $("#attendee").on("click",function(){
+    	$(".info").css("display","none");
+    	$(".attendee").css("display","block");
+    	$(".host").css("display","none");
+    	$(".user").css("display","none");
+    	$(".payment").css("display","none");
+    });
+    // 개설자
+    $("#host").on("click",function(){
+    	$(".info").css("display","none");
+    	$(".attendee").css("display","none");
+    	$(".host").css("display","block");
+    	$(".user").css("display","none");
+    	$(".payment").css("display","none");
+    });
+    // 회원 정보
+    $("#user").on("click",function(){
+    	$(".info").css("display","none");
+    	$(".attendee").css("display","none");
+    	$(".host").css("display","none");
+    	$(".user").css("display","block");
+    	$(".payment").css("display","none");
+    });
+    // 결제/환불
+    $("#payment").on("click",function(){
+    	$(".info").css("display","none");
+    	$(".attendee").css("display","none");
+    	$(".host").css("display","none");
+    	$(".user").css("display","none");
+    	$(".payment").css("display","block");
+    });
 	</script>
 

@@ -8,11 +8,11 @@
 <select id="getList" resultType="com.mohazi.domain.FAQVO">
 	SELECT TITLE, CONTENT, CATEGORY
 	FROM FAQ
-	<choose>
-        <when test="keyword != null">
-            WHERE TITLE LIKE '%'||#{keyword}||'%' OR CONTENT LIKE '%'||#{keyword}||'%'
-        </when>
-    </choose>
+    <where>
+    	<if test="keyword != null">
+    		TITLE LIKE '%'||#{keyword}||'%' OR CONTENT LIKE '%'||#{keyword}||'%'
+    	</if>
+    </where>
 </select>
 
 </mapper>
