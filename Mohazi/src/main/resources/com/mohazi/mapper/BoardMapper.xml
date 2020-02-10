@@ -5,35 +5,14 @@
 <mapper namespace="com.mohazi.mapper.BoardMapper">
 
 
-<!-- List 페이징 처리 , 검색 -->
+   <!-- List 페이징 처리  -->
    <select id="getListWithPaging" resultType="com.mohazi.domain.PartyVO">
-      <![CDATA[
-         SELECT  
-             P_NO, CAT_MAIN, CAT_SUB, TAG, PRICE, TITLE
-         FROM
-             (
-             SELECT /*+ INDEX_DESC(PARTY IDX_PARTY) */
-                ROWNUM RN, P_NO, CAT_MAIN, CAT_SUB, TAG, PRICE, TITLE
-             FROM
-                PARTY
-             WHERE
-      ]]>        
-         <![CDATA[
-                 rownum<=#{pageNum} * #{amount} and
-                  TYPE=#{type}
-             )
-         where rn > (#{pageNum}-1) * #{amount}
-        ]]>
-   </select>
-   
-   <!-- 검색  -->
-   <select id="getSearch" resultType="com.mohazi.domain.PartyVO">
       <![CDATA[
          SELECT
              P_NO, CAT_MAIN, CAT_SUB, TAG, PRICE, TITLE
          FROM
              (
-             SELECT /*+INDEX_DESC(PARTY P_NO) */
+             SELECT  /*+ INDEX_DESC(PARTY IDX_PARTY) */ 
                 ROWNUM RN, P_NO, CAT_MAIN, CAT_SUB, TAG, PRICE, TITLE
              FROM
                 PARTY
@@ -42,12 +21,41 @@
         
          <![CDATA[
                  rownum<=#{pageNum} * #{amount} and
-             	 TITLE like '%'||#{keyword}||'%' or
-             	 CONTENT like '%'||#{keyword}||'%' or 
-     			 ADDRESS	like '%'||#{keyword}||'%'
+                  TYPE=#{type}
              )
          where rn > (#{pageNum}-1) * #{amount}
         ]]>
+   </select>
+   
+   
+    <!-- 검색  -->
+   <select id="getSearch" resultType="com.mohazi.domain.PartyVO">
+      <![CDATA[
+         SELECT
+             P_NO, CAT_MAIN, CAT_SUB, TAG, PRICE, TITLE
+         FROM
+             (
+             SELECT /*+ INDEX_DESC(PARTY IDX_PARTY) */ 
+                ROWNUM RN, P_NO, CAT_MAIN, CAT_SUB, TAG, PRICE, TITLE
+             FROM
+                PARTY
+             WHERE
+      ]]>
+        
+         <![CDATA[
+                 rownum<=#{pageNum} * #{amount} and
+                 TITLE like '%'||#{keyword}||'%' or
+                 CONTENT like '%'||#{keyword}||'%' or 
+               ADDRESS   like '%'||#{keyword}||'%'
+             )
+         where rn > (#{pageNum}-1) * #{amount}
+        ]]>
+   </select>
+   
+   <select id="searchAmount" resultType="int">
+	SELECT Count(*) FROM PARTY WHERE TITLE like '%'||#{keyword}||'%' or
+               						CONTENT like '%'||#{keyword}||'%' or 
+               						ADDRESS like '%'||#{keyword}||'%'
    </select>
    
    <select id="getTotalCount" resultType="int">
@@ -60,6 +68,7 @@
       WHERE TYPE=#{type}
       
       <!-- 카테고리, 지역은 중복선택 될 수 있으므로 배열에서 읽어와 WHERE 절에서 IN 으로 검색 하도록! -->
+
         <choose>
             <when test="categoryArr != null">
                 AND CAT_MAIN IN 
