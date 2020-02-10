@@ -11,6 +11,8 @@ public interface BoardService {
    //public List<PartyVO> getList(char type, List<String> categoryArr, List<String> regionArr);
    //public List<PartyVO> getList(PartyVO party);
    public List<PartyVO> getList(Criteria cri);
+  
+   
    public int getTotal(Criteria cri);
    
    public void register(PartyVO party);

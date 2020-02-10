@@ -162,7 +162,7 @@ list-style:none; margin:0; padding:0;
 
 }
 .list-header{
-    border-top: solid 1px#7bd4ac ;
+    border-top: solid 1px #7bd4ac ;
 }
 
 #top-btn {    

@@ -23,7 +23,8 @@ import lombok.extern.log4j.Log4j;
 @AllArgsConstructor
 public class BoardController {
    private BoardService service;
-
+   
+   //List with Paging
    @RequestMapping(value = "/list", method = RequestMethod.GET)
    public void list(@RequestParam(value="type", required=false) char type, @RequestParam(value="category", required=false) List<String> categoryArr, @RequestParam(value="region", required=false) List<String> regionArr, Model model, Criteria cri) {
       //log.info("!!!  LIST !!!");
@@ -41,7 +42,19 @@ public class BoardController {
       log.info("total : "+total);
       model.addAttribute("pageMaker",new PageDTO(cri,total));
    }
-
+   
+   // 검색 결과 페이지
+   @RequestMapping(value = "/searchResult", method = RequestMethod.GET)
+   public void searchResult(Model model, Criteria cri) {
+     
+      model.addAttribute("searchResult", service.getList(cri));
+      
+      int total=service.getTotal(cri);
+      log.info("total : "+total);
+      model.addAttribute("pageMaker",new PageDTO(cri,total));
+   }
+   
+   
    // 등록 화면
    @RequestMapping(value = "/register", method = RequestMethod.GET) 
    public void register(Model model) {}
