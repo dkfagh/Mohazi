@@ -28,4 +28,8 @@ public class PartyVO {
 	
 	private List<String> categoryArr;
 	private List<String> regionArr;
+	
+	//첨부파일목록
+	private List<BoardAttachVO> attachList;
+	
 }
