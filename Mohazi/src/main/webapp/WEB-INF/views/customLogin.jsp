@@ -147,7 +147,7 @@
 
  <div class="container" id="contents">
  	<!-- 화면영역 시작 -->
-    <div align="center"> <img src="logo.png" width="200"> </div>
+    <div align="center"> <img src="resources/img/logoImg.png" width="200"> </div>
 
 
     <form method="post" action="/login">
@@ -170,8 +170,7 @@
 	        <div class="userPw2"> <input type="password" placeholder="비밀번호" name="password"> </div>
 	        <div class="userPw3" onclick="chg_icon()">
 	            <span class="material-icons" id="icon3"> visibility </span>
-	            <c:out value="${error}" />
-	            <c:out value="${logout}" />
+	            
 	        </div>
 	    </div>
     
@@ -180,18 +179,12 @@
      	<!--자동로그인,로그인,회원가입버튼 영역시작------------------------------------------------------------>
       	<p />
         <div>
-<<<<<<< HEAD
-          <div id="autoCheck"> <input type="checkbox" name="rememberme">자동로그인</div>
-        </div>
-
-=======
           <div id="autoCheck"> <input type="checkbox" name="remember-me">자동로그인</div>
         </div><br>
 		<div id="logMsg">
 			<c:out value="${error}" />
             <c:out value="${logout}" />
 		</div>
->>>>>>> branch 'master' of https://github.com/dkfagh/Mohazi
         <p />
         <button type="submit" class="loginBtn" >로그인</button>
         
@@ -217,10 +210,6 @@
       
 
   </div><!-- 화면영역 끝 -->
-<<<<<<< HEAD
-
-  
-=======
 <!-- 스크립트 영역 -->
 	<script>
 		$(document).ready(function(){
@@ -256,5 +245,4 @@
 	</script>
 </c:if>
 <!-- 스크립트 영역 끝-->
->>>>>>> branch 'master' of https://github.com/dkfagh/Mohazi
 <%@ include file="./includes/footer.jsp" %>

@@ -103,21 +103,14 @@
                     <!-- form tag-->
 
                     <div class="FAQsearch">
-                        
-                        <input class="textsearch" type="text" placeholder="검색">
-                        <button type="submit"><i class="fa fa-search"></i></button>
+                        <form id="searchForm" action="/FAQ" method="get">
+	                        <input type="text" name="keyword" placeholder="검색어를 입력하세요." />
+	                        <button><i class="fa fa-search"></i></button>
+                        </form>
                     </div>
                     
                     <div id="category">
                         <ul>
-<<<<<<< HEAD
-                        	<li><a href="#">전체</a></li>
-                        	<li><a href="#">참여자</a></li>
-                        	<li><a href="#">개설자</a></li>
-                        	<li><a href="#">이용 안내</a></li>
-                        	<li><a href="#">회원 정보</a></li>
-                        	<li><a href="#">결제/환불</a></li>
-=======
                         	<li>
                         		<a id="total" href="#">전체</a>
                         	</li>
@@ -136,7 +129,6 @@
                         	<li>
                         		<a id="payment" href="#">결제/환불</a>
                         	</li>
->>>>>>> branch 'master' of https://github.com/dkfagh/Mohazi
                         </ul>
                     </div>              
                 </div>
@@ -160,27 +152,22 @@
     </div>
     <!-- 바디 부분 끝 ----------------------------------------------------------------->
     
+<%@ include file="./includes/footer.jsp" %>
+    
    	<script>
+   	// FAQ accordion start
     $(".panel").hide();
     $(".accordions").click(function(){
         $(this).next().slideToggle();
         $(".accordions").not(this).next().slideUp();
-<<<<<<< HEAD
-    });
-=======
     });    
->>>>>>> branch 'master' of https://github.com/dkfagh/Mohazi
     
+    
+    // FAQ category select
     $("#category a").on("click",function(e){
-<<<<<<< HEAD
-        e.preventDefault();    // 추가이벤트를 막아서 #의 최상위이동막음!!!
-=======
         e.preventDefault();  // 전송을 막아 페이지가 상단으로 이동하는것을 방지
         
->>>>>>> branch 'master' of https://github.com/dkfagh/Mohazi
 	});
-<<<<<<< HEAD
-=======
     
     
     // FAQ search start
@@ -248,7 +235,5 @@
     	$(".user").css("display","none");
     	$(".payment").css("display","block");
     });
->>>>>>> branch 'master' of https://github.com/dkfagh/Mohazi
 	</script>
 
-<%@ include file="./includes/footer.jsp" %>
