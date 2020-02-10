@@ -6,6 +6,7 @@ import com.mohazi.domain.Criteria;
 import com.mohazi.domain.PartyVO;
 
 public interface BoardMapper {
+
    
    //public List<PartyVO> getList(char type);
    //public List<PartyVO> getList(char type, List<String> categoryArr, List<String> regionArr);
@@ -18,5 +19,8 @@ public interface BoardMapper {
    public PartyVO read(Long p_no);
    public int update(PartyVO party);
    public int delete(Long p_no);
+   
+   public List<PartyVO> getSearch(Criteria cri);
 
 }
+

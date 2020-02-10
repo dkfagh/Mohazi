@@ -17,6 +17,7 @@ import lombok.extern.log4j.Log4j;
 @Service
 @AllArgsConstructor
 public class BoardServiceImpl implements BoardService{
+
    @Setter(onMethod_ = @Autowired)
    private BoardMapper mapper;
    /*
@@ -78,6 +79,11 @@ public class BoardServiceImpl implements BoardService{
       log.info("get total count");
       return mapper.getTotalCount(cri);
    }
+   
+	@Override
+	public List<PartyVO> getSearch(Criteria cri) {
+		return mapper.getSearch(cri);
+	}
 
    
    

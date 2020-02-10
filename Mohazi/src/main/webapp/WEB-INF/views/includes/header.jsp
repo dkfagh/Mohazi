@@ -108,7 +108,7 @@ border-bottom:#7bd4ac solid 2px;
 
 
 
-#search{
+#keyword{
    width:330px !important;
    float: right;
    border-radius:10px;
@@ -174,11 +174,14 @@ input::-moz-placeholder { color: white; }
             <!-- 시큐리티 영역 끝 -------------------------------------->
             
             <!-- search form--------------------------------- ---->
-            <form class="form-inline" action="search.jsp" >
+            <form  id="searchForm" class="form-inline" action="/board/searchResult" method="get">
                 <div class="input-group">
-                    <input id="search" type="text" class="form-control" size="20"  placeholder="검색어를 입력하세요">
-                      <a href="#"><img src="/resources/img/searchIcon.png" id="searchIcon" name="searchIcon"></a>
-                    
+                    <input type="text" name="keyword" value='<c:out value=" ${pageMaker.cri.keyword} " />' id="keyword" class="form-control" size="20"  placeholder="검색어를 입력하세요">
+                    <input type="hidden" name="pageNum" value='<c:out value=" ${pageMaker.cri.pageNum} " />'>
+                    <input type="hidden" name="amount" value='<c:out value=" ${pageMaker.cri.amount} " />'>
+                    <button class="btn">
+                      <img src="/resources/img/searchIcon.png" id="searchIcon" name="searchIcon">
+                	</button>	
                 </div>
             </form>
             <!-- search form--->            
@@ -197,6 +200,20 @@ input::-moz-placeholder { color: white; }
 			}
 				
 				
+		});
+		
+		var searchForm=$("#searchForm");
+		
+		$("#searchForm button").on("click",function(e){
+			
+			if(!searchForm.find("input[name='keyword']").val()){
+				alert("키워드를 입력하세요.");
+				return false;
+			}
+			
+			searchForm.find("input[name='pageNum']").val("1");
+			e.preventDefault();
+			searchForm.submit();
 		});
 		
 	});

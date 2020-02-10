@@ -41,7 +41,7 @@
                 PARTY
              WHERE
       ]]>
-        
+         
          <![CDATA[
                  rownum<=#{pageNum} * #{amount} and
                  TITLE like '%'||#{keyword}||'%' or
