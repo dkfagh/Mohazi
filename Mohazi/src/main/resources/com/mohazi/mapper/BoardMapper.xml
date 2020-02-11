@@ -37,9 +37,11 @@
 			</when>
 		</choose>
 		<choose>
-			<when test="startDate != null">
-				SELECT DISTINCT P_NO FROM SCHEDULE 
-				WHERE S_DATE BETWEEN TO_DATE(#{startDate}) AND TO_DATE(#{endDate}||'23:59:59','YYYY-MM-DD HH24:MI:SS')
+			<when test="startDate != null and startDate != ''">
+				AND P_NO IN (
+					SELECT DISTINCT P_NO FROM SCHEDULE 
+					WHERE S_DATE BETWEEN TO_DATE(#{startDate}) AND TO_DATE(#{endDate}||'23:59:59','YYYY-MM-DD HH24:MI:SS')
+				)
 			</when>
 		</choose>
       <![CDATA[
