@@ -136,7 +136,10 @@
 <style>
 .uploadResult {
 	width: 100%;
-	background: wheat;
+	background: white;
+	border-radius: 5px;
+	border: 1px solid black;
+	height: 250px;
 }
 
 .uploadResult ul {
@@ -289,7 +292,10 @@
 						name="price" />원</td>
 				</tr>
 				
+				<!-- id입력 -------------------------------------------------------------------------->
 				<input type="hidden" name="id" value="ddd">
+				
+				
 			</tbody>
 			<!-- Table끝 ----------------------------------------------------------------->
 		</table>
