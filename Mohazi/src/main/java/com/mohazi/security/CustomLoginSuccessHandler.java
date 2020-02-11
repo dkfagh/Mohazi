@@ -17,7 +17,7 @@ import lombok.extern.log4j.Log4j;
 public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler{@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 			Authentication auth) throws IOException, ServletException {
-
+	
 		log.warn("로그인 성공!!");
 
 		List<String> roleNames = new ArrayList<>();
