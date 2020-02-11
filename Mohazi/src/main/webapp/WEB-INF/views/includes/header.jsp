@@ -158,11 +158,11 @@ input::-moz-placeholder { color: white; }
             			<input type="hidden" name="id" value="<sec:authentication property ='principal.username' />" readonly />
             			<!-- 로그인 시 id 값 갖고 있기 -->
 	            		<div id="logoutBox">
-							<button id="logout" class="btn btn-sm">로그아웃</button>
+							<button id="logout" class="btn">로그아웃</button>
 						</div>
 					
 					<div id="myPage">
-                		<a href="/mypage/myMeeting" class="btn btn-sm">내정보</a>
+                		<a href="/mypage/myMeeting" class="btn">내정보</a>
             		</div>
            		</div>
             </sec:authorize>
@@ -176,9 +176,9 @@ input::-moz-placeholder { color: white; }
             <!-- search form--------------------------------- ---->
             <form  id="searchForm" class="form-inline" action="/board/searchResult" method="get">
                 <div class="input-group">
-                    <input type="text" name="keyword" value='<c:out value=" ${pageMaker.cri.keyword} " />' id="keyword" class="form-control" size="20"  placeholder="검색어를 입력하세요">
-                    <input type="hidden" name="pageNum" value='<c:out value=" ${pageMaker.cri.pageNum} " />'>
-                    <input type="hidden" name="amount" value='<c:out value=" ${pageMaker.cri.amount} " />'>
+                    <input type="text" name="keyword" value='<c:out value="${pageMaker.cri.keyword}" />' id="keyword" class="form-control" size="20"  placeholder="검색어를 입력하세요">
+                    <input type="hidden" name="pageNum" value='<c:out value="${pageMaker.cri.pageNum}" />'>
+                    <input type="hidden" name="amount" value='<c:out value="${pageMaker.cri.amount}" />'>
                     <button class="btn">
                       <img src="/resources/img/searchIcon.png" id="searchIcon" name="searchIcon">
                 	</button>	
@@ -198,8 +198,6 @@ input::-moz-placeholder { color: white; }
 			if(confirm("로그아웃하시겠습니까?")){
 				$("#logoutForm").submit();
 			}
-				
-				
 		});
 		
 		var searchForm=$("#searchForm");

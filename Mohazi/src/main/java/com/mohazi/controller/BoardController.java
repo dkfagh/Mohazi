@@ -46,19 +46,21 @@ public class BoardController {
    }
 
    // 검색 결과 페이지
-   @RequestMapping(value = "/searchResult", method = RequestMethod.GET)
-   public void searchResult(Model model, Criteria cri) {
 
-	      model.addAttribute("list", service.getList(cri));
-	      
-	      int total=service.getTotal(cri);
-
-	      model.addAttribute("list",service.getSearch(cri));
-	      
-	      log.info("total : "+total);
-	      model.addAttribute("pageMaker",new PageDTO(cri,total));
-   }
-   
+   // 검색 결과 페이지
+	
+	 @RequestMapping(value = "/searchResult", method = RequestMethod.GET) public
+	 void searchResult(Model model, Criteria cri) {
+	  
+	 int total=service.searchTotal(cri);
+	 
+	 model.addAttribute("search",service.getSearch(cri));
+	 
+	 log.info("total : "+total);
+	 model.addAttribute("pageMaker",new PageDTO(cri,total)); 
+	 
+	 }
+	
    // 등록 화면
    @RequestMapping(value = "/register", method = RequestMethod.GET) 
    public void register(Model model) {}

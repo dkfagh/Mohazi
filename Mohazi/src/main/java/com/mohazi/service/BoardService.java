@@ -22,4 +22,5 @@ public interface BoardService {
 
 
    public List<PartyVO> getSearch(Criteria cri);
+   public int searchTotal (Criteria cri);
 }

@@ -21,6 +21,6 @@ public interface BoardMapper {
    public int delete(Long p_no);
    
    public List<PartyVO> getSearch(Criteria cri);
-
+   public int searchAmount(Criteria cri);
 }
 

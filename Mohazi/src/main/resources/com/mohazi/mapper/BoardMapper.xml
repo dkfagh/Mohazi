@@ -41,13 +41,13 @@
                 PARTY
              WHERE
       ]]>
-         
          <![CDATA[
                  rownum<=#{pageNum} * #{amount} and
-                 TITLE like '%'||#{keyword}||'%' or
-                 CONTENT like '%'||#{keyword}||'%' or 
-               ADDRESS   like '%'||#{keyword}||'%'
+              	TITLE like '%'||#{keyword}||'%' or
+               	CONTENT like '%'||#{keyword}||'%' or 
+               	ADDRESS like '%'||#{keyword}||'%'
              )
+             
          where rn > (#{pageNum}-1) * #{amount}
         ]]>
    </select>
@@ -57,6 +57,7 @@
                						CONTENT like '%'||#{keyword}||'%' or 
                						ADDRESS like '%'||#{keyword}||'%'
    </select>
+   
    
    <select id="getTotalCount" resultType="int">
       Select Count(*) From Party Where p_no > 0 and TYPE=#{type}

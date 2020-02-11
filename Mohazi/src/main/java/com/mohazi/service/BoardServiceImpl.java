@@ -84,7 +84,13 @@ public class BoardServiceImpl implements BoardService{
 	public List<PartyVO> getSearch(Criteria cri) {
 		return mapper.getSearch(cri);
 	}
+	@Override
+	public int searchTotal(Criteria cri) {
+	
+		return mapper.searchAmount(cri);
+	}
 
+  
    
    
 }
