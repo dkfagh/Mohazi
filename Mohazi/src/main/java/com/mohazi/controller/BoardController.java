@@ -39,10 +39,11 @@ public class BoardController {
       //log.info("!!! CATEGORY !!!" + categoryArr);
       //log.info("!!! REGION !!!" + regionArr);
       
-      PartyVO party = new PartyVO();
-      party.setType(type);
-      party.setCategoryArr(categoryArr);
-      party.setRegionArr(regionArr);
+	  cri.setCategoryArr(categoryArr);
+	  cri.setRegionArr(regionArr);
+	  cri.setStartDate(startDate);
+	  cri.setEndDate(endDate);
+	  cri.setType(type);
 
       model.addAttribute("list", service.getList(cri));
       
