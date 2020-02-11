@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mohazi.mapper.ReviewMapper">
+
+	<insert id="insert">
+		INSERT INTO REVIEW (R_NO, ID, P_NO, CONTENT) VALUES(SEQ_REVIEW.NEXTVAL, #{id}, #{p_no}, #{content})
+	</insert>
+	
+	<select id="read" resultType="com.mohazi.domain.ReviewVO">
+		SELECT * FROM REVIEW WHERE R_NO = #{r_no}
+	</select>
+	
+	<delete id="delete">
+		DELETE FROM REVIEW WHERE R_NO = #{r_no}
+	</delete>
+	
+	<update id="update">
+		UPDATE REVIEW SET CONTENT = #{content} WHERE R_NO = #{r_no}
+	</update>
+	
+	<select id="getList" resultType="com.mohazi.domain.ReviewVO">
+		SELECT U.NICKNAME, PR.REGDATE, PR.CONTENT
+		FROM (
+				SELECT R.ID ID, R.REGDATE REGDATE, R.CONTENT CONTENT, R.P_NO P_NO
+				FROM PARTY P, REVIEW R
+				WHERE P.P_NO = R.P_NO ) PR, USERS U
+		WHERE PR.ID = U.ID
+		AND PR.P_NO = #{p_no}
+	</select>
+</mapper>
