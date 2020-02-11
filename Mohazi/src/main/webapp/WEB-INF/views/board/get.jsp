@@ -244,8 +244,7 @@ ul.tab li.active a {
 .class-confirm02 .class-date {
   border-bottom: 1px solid #e4e9ef;
   padding: 10px 0 30px;
-  display: none;
-}
+ }
 .class-date input{
 	border-radius: 5px;
 	width: 100%;
@@ -297,9 +296,9 @@ ul.tab li.active a {
         	<div class="col-sm-8">
 				<div id="title-img">
 					<ul class="bxslider">
-						<li><img src="images/itzy.jpg" /></li>
-						<li><img src="images/sunmi.jpg" /></li>
-						<li><img src="images/image.png" /></li>
+					 	<c:forEach var="party" items="${list}">
+							<li><img src="images/itzy.jpg" /></li>
+						</c:forEach>							
 					</ul>
 				</div>
 				<div class="title-text">
@@ -406,14 +405,14 @@ ul.tab li.active a {
 							<a>일정 확인</a>
 						</div>
 						<div class="class-date">
-							<div class="dateTimeGroup">
+							<ul class="dateTimeGroup">
 								<%-- <p><c:out value="${schedule.s_date}" />날짜</p> --%>
-								 <c:forEach var="schedule" items="${list}">
+								<%-- <li class="left clearfix" data-s_no='1'>
 									<input class="result" type="button" id="date" value="날짜 :${schedule.s_date} 시간:${schedule.s_time} 참가인원현황:">
 									<input class="result" type="button" id="date" value="날짜 :${schedule.s_date} 시간:${schedule.s_time} 참가인원현황:">
 									<input class="result" type="button" id="date" value="날짜 :${schedule.s_date} 시간:${schedule.s_time} 참가인원현황:">
-								</c:forEach>
-							</div>							
+								</li> --%>
+							</ul>							
 						</div>
 						<%-- <div class="class-date">
 							<div  class="dateTimeGroup">
@@ -476,11 +475,33 @@ ul.tab li.active a {
 	
 
 <%@ include file="../includes/footer.jsp" %>
-
+<script type="text/javascript" src="/resources/js/schedule.js"></script>
 <script type="text/javascript"> 
 // <![CDATA[ 
 		
-    $(document).ready(function(){ 
+    $(document).ready(function(){  	
+    	//이미지 데이터 가져오는 부분
+    	var p_no='<c:out value="${party.p_no}"/>';
+    	$.getJSON("/party/getAttachList", {p_no:p_no},function(arr){
+    		
+    		console.log(arr);
+    		
+    		var str = "";
+    		
+    		$(arr).each(function(i,attach){
+    			var fileCallPath = encodeURIComponent( attach.uploadPath+ "/s_"+ attach.uuid +"_"+ attach.fileName);
+    			str += "<li data-path='"+attach.uploadPath+"' data-uuid='"+attach.uuid+"' data-filename='"+attach.fileName+"' data-type='"+attach.fileType+"' ><div>";
+    			str +="<img src='/display?fileName="+fileCallPath+"'>";
+    			str +="</div>";
+    			str +"</li>";
+    			}
+    		});
+    		$(".bxslider").html(str);
+    		
+    		});//end getjson
+    	})();//end function
+    	
+    	
 		//bxslider
 		$(function(){
   			$('.bxslider').bxSlider();
@@ -496,18 +517,18 @@ ul.tab li.active a {
 				$('#' + activeTab).addClass('active');
 			})
 		}); 
-		//datepicker 토글
-		$(function(){
-			$('#btn-date').click(function(){
-				$('.class-date').toggle("slow");
-			});
-		});
+		// datepicker 토글
+		// $(function(){
+		//	$('#btn-date').click(function(){
+		//		$('.class-date').toggle("slow");
+		//	});
+		// });
 		//timepicker 토글
-		$(function(){
-			$('#btn-time').click(function(){
-				$('.class-time').toggle("slow");
-			});
-		});
+		// $(function(){
+		//	$('#btn-time').click(function(){
+		//	$('.class-time').toggle("slow");
+		//	});
+	    //   });
 
 		// //datpicker
 		// $(function () {
@@ -573,10 +594,39 @@ ul.tab li.active a {
 			$('#modalAddSchedulBtn').click(function(){
 				alert("등록되었습니다");
 
-				showList(1);
+				showList();
 			});
 
 		})
+		
+		
+		// 스케쥴 목록 출력 
+		
+		var p_noValue = '<c:out value="${party.p_no}"/>';
+		var scheduleUL = $(".dateTimeGroup")
+		
+		showList();
+		
+			function showList(){
+				scheduleService.getList({p_no:p_noValue}, function(list){
+					var str=""
+					if(list == null || list.length ==0){
+						scheduleUL.html("");
+						
+						return;
+					}
+					for (var i = 0, len = list.length || 0; i < len; i++){
+						str+="<li class='left clearfix' data-s_no='"+list[i].s_no+"'>";
+						str+=" <input class='result' type='button' id='date' value='날짜 :"+list[i].s_date+"시간:"+list[i].s_time+"참가인원현황:"+list[i].max_people+"'>";
+						str+="</li>";
+					}
+					scheduleUL.html(str);
+				});//end function
+			}//end showList
+			
+			
+		
+		
 		
 		
 
