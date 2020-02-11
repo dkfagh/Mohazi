@@ -468,9 +468,9 @@
 		// datepicker. end.
 		
 	   
-		//var result='<c:out value="${result}"/>';
+		var type="${param.type}";
 		$("#btnWrite").on("click",function(){
-			self.location="/board/register";
+			self.location="/board/register?type="+type;
 		});
             
 		history.replaceState({},null,null);
