@@ -7,12 +7,12 @@ import lombok.ToString;
 @ToString
 public class PageDTO {
    
-   private int startPage;
-   private int endPage;
-   private boolean prev, next;
+   private int startPage;	// 시작 페이지
+   private int endPage;		// 끝페이지
+   private boolean prev, next;	// 이전, 다음페이지 유무 . flag
    
-   private int total;
-   private Criteria cri;
+   private int total;		// 전체레코드수
+   private Criteria cri;	// Criteria 객체
    
    public PageDTO(Criteria cri, int total) {
       
@@ -23,13 +23,15 @@ public class PageDTO {
       
       this.startPage=this.endPage - 9;
       
+      // 실제 끝페이지
       int realEnd = (int) (Math.ceil((total * 1.0) / cri.getAmount()));
-      
+      // 실제 끝페이지가 끝페이지보다 작으면 끝페이지를 실제 끝페이지 값으로 변경
       if(realEnd<this.endPage) {
          this.endPage=realEnd;
       }
-      
+      // 시작페이지가 1페이지보다 크면 prev가 true
       this.prev=this.startPage > 1;
+      // 끝페이지가 실제끝페이지보다 작으면 next가 true
       this.next=this.endPage < realEnd;
    }
 }

@@ -11,20 +11,21 @@ import lombok.ToString;
 @ToString
 public class Criteria {
    
-   private int pageNum;
-   private int amount;
+   private int pageNum; // 페이지 수
+   private int amount; // 보여줄 글 개수
    private char type; //클래스, 모임
  
    // private String searchType; //검색  조건
-   private String keyword;
+   private String keyword;  // 검색조건
    
-   private String id;
+   private String id;  // myPage용
 
    private List<String> categoryArr;
    private List<String> regionArr;
    private String startDate;
    private String endDate;
 
+   // List용
    public Criteria() {
       this(1,16);
    }
@@ -39,4 +40,16 @@ public class Criteria {
 	 * 
 	 * return searchType == null? new String[] {}: searchType.split(""); }
 	 */
+  
+//  public String getListLink() {
+//		  
+//		  UriComponentsBuilder builder =UriComponentsBuilder.fromPath("")
+//				  .queryParam("pageNum", this.pageNum)
+//				  .queryParam("amount", this.getAmount())
+//				  .queryParam("type", this.getType());
+//				  
+//		  
+//		  return builder.toUriString();
+//	  }
+//	
 }

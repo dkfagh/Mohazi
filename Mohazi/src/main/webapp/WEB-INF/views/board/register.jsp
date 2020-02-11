@@ -182,6 +182,43 @@
 
 </style>
 
+<style>
+.filebox label {
+  display: inline-block;
+  padding: .5em .75em;
+  color: #fff;
+  font-size: inherit;
+  line-height: normal;
+  vertical-align: middle;
+  background-color: #5cb85c;
+  cursor: pointer;
+  border: 1px solid #4cae4c;
+  border-radius: .25em;
+  -webkit-transition: background-color 0.2s;
+  transition: background-color 0.2s;
+}
+
+.filebox label:hover {
+  background-color: #6ed36e;
+}
+
+.filebox label:active {
+  background-color: #367c36;
+}
+
+.filebox input[type="file"] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+</style>
+
 
 <!-- Container시작 ----------------------------------------------------------------->
 <div class="container" id="contents">
@@ -189,8 +226,7 @@
 	<!-- registerForm시작 ----------------------------------------------------------------->
 	<form id="registerForm" action="/board/register" method="post"
 		role="form">
-		<input type="hidden" name="${_csrf.parameterName}"
-			value="${_csrf.token}" />
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 
 
 
@@ -274,8 +310,10 @@
 				<tr>
 					<th>사진등록</th>
 					<td>
-						<div class="form-group uploadDiv">
-							<input type="file" name='uploadFile' multiple>
+						<div class="form-group uploadDiv filebox">
+							 <label for="ex_file">사진등록</label>
+	 						 <input type="file" id="ex_file" name="uploadFile" multiple>
+							<!-- <input type="file" name='uploadFile' multiple> -->
 						</div>
 						<div class='uploadResult'>
 							<ul>
@@ -548,15 +586,7 @@ $(document).ready(function(e){
 	         }
 	    }); //$.ajax
 	   });
-  
-  
-  
-  
-  
-  
-  
-  
-  
+
   
   
 });

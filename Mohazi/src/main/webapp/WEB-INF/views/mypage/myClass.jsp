@@ -6,13 +6,14 @@
 <%@ include file="../includes/navigation.jsp" %>
 
     <style>
-        /* reset */
+ /* reset */
         *{
             margin:0;
             padding: 0;
         }
 
-         .container{
+        /* content 부분 시작 */
+        .container{
             
             position: relative;
             max-width: 100%;
@@ -24,7 +25,7 @@
             margin-top: 20px;
             display: inline-block;
             
-            border: 1px olive solid;
+            
             
             height:100%;
             
@@ -35,16 +36,18 @@
             width:80%;
             margin-left:10%;
             box-sizing: border-box;
-            border: 1px orange solid;
+            
             height: 100%;
             display:inline-block;
             padding:0;
         }
+        /* content 부분 끝 */
 
+        /* mypage 네비 시작 */
         #myNav{
             
             float: left;
-            border: black solid 1px;
+            border: black solid 2px;
             
             max-width: 161.64px;
             height:400px;
@@ -66,7 +69,8 @@
             padding:10px;
             margin:0;
         }
-        
+        /* mypage 네비 끝 */
+
         #pages{
             position:relative;
             float: right;
@@ -76,9 +80,40 @@
             height: 500px;
             padding:30px;
             
-            border:solid blue 1px;
+            border:solid black 2px;
         }
-
+		/* paging 부분 */
+		.pagination{
+			
+			
+			width:70%;
+			
+		   padding-top:5px;
+		   
+		   
+		}
+		
+		.pagination a{
+		   border-radius: 5px;
+		   transition: background-color .3s;
+		   text-decoration:none;
+		   color:black;
+		   
+		   
+		}
+		
+		.pagination a.active {
+		    background: #7bd4ac ;
+		   color: white;
+		}
+		
+		.pagination a:hover:not(.active) {
+		   background: #e9faf2;
+		}
+		/* paging 부분 끝 */
+		#myList{
+			border:solid green 1px;
+		}
     </style>
 
  <div class="container">
@@ -105,30 +140,43 @@
             <!-- 페이지 바디 시작 -->
             <div id="pages" class="col-sm-9">
                 <!-- 만든 Class 시작 -->
-                <div id="myClassList" class="col-sm-12" style="border:solid green 1px">
-                    <table class="table-responsive col-sm-12">
-                        <h3>나의 클래스</h3>
+                <div id="myList" class="col-sm-12">
+                    <h3>나의 클래스</h3>
+                    <table class="table-responsive">
+                        
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 
                             <!-- 테이블 내용 ----------------------------------------->
                     
                             <c:forEach items="${list}" var="party">
                                 <tr>
-                                    
-                                    <td>타이틀
-                                        <c:if test = "${party.type}">
-                                            <a class="move" href='<c:out value="${party.p_no}"/>'>
-                                                <c:out value="${party.title}" /> 
-                                                <!-- 내가 개설한 정보표시-->
-                                                <c:if test = "${party.id }">
-                                                
-                                                <i class="fab fa-angellist"></i>
-                                                </c:if>
-                                                <!-- 내가 개설한 정보표시 끝-->
-                                            </a>
-                                        </c:if>
-                                    </td>
-                                    
+                                	<c:choose>
+	                                    <c:when test="${ pageMaker.total <= 0}">
+	                                    	<td>
+	                                    		<h2>내 클래스 리스트가 없습니다.</h2>
+                                    		</td>
+	                                    </c:when>
+	                                    <c:when test="${pageMaker.total >0 }">
+		                                    <td>
+		                                        
+		                                            <a class="move" href='<c:out value="${party.p_no}"/>'>
+		                                                <c:out value="${party.title}" /> 
+		                                            </a>
+		                                        
+		                                    </td>
+		                                    <td>
+		                                    	<!-- 내가 개설한 정보표시-->
+		                                        <c:if test = "${principal.username == party.id }">
+		                                        <%-- <b>[<c:out value="${party.replyCnt}" />]</b> --%> 
+		                                        <i class="fab fa-angellist"></i>
+		                                        </c:if>
+		                                        <!-- 내가 개설한 정보표시 끝-->
+		                                    </td>
+		                                    <td>
+		                                  		<c:out value="${party.id}"/>  	
+		                                    </td>
+	                                    </c:when>
+                                    </c:choose>
                                 </tr>
                         
                             </c:forEach>
@@ -141,7 +189,7 @@
                             <input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
                             <input type="hidden" name="amount" value="${pageMaker.cri.amount}">
                             <input type="hidden" name="type" value="${pageMaker.cri.type}">
-                            <input type="hidden" name="keyword" value="${pageMaker.cri.keyword}">
+                            
                         </form>         
                         <div class ="float-right">
                             <ul class="pagination">
@@ -152,7 +200,7 @@
                                 </c:if>
                                 <c:forEach var="num" begin="${pageMaker.startPage}"
                                     end="${pageMaker.endPage}">
-                                    <li class="page-item ${pageMaker.cri.Num == num ? 'active':''}">
+                                    <li class="page-item ${pageMaker.cri.pageNum == num ? 'active':''}">
                                         <a class="page-link" href="${num}">${num}</a>
                                     </li>
                                     
@@ -171,5 +219,31 @@
             </div><!-- 페이지 바디 끝 -->    
         </div><!-- 내정보 네비, 페이지 분할 -->
 
+<!--  Script 영역 -->
+<script>
+$(document).ready(function(){
 
+	/////////// Paging 처리
+	var actionForm=$("#actionForm"); // paing actionForm
+	
+	// paging 번호 클릭시 해당 번호로 이동
+	$(".page-item a").on("click",function(e){
+		e.preventDefault(); // 페이지 이동을 막는다
+		
+		console.log("click");
+		actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+		actionForm.submit(); // 전송. list페이지로 이동.
+	});
+	
+	
+	// 해당 게시글 클릭시 해당 상세보기 페이지로 이동
+	$(".move").on("click",function(e){
+		e.preventDefault();
+		actionForm.append("<input type='hidden' name='p_no' value='"+$(this).attr("href")+"'>");
+		actionForm.attr("action","/board/get");
+		actionForm.submit();
+	});
+});
+</script>
+<!--  Script 영역 끝 -->
 <%@ include file="../includes/footer.jsp" %>
