@@ -480,8 +480,12 @@ ul.tab li.active a {
 // <![CDATA[ 
 		
     $(document).ready(function(){  	
+    	
     	//이미지 데이터 가져오는 부분
-    	var p_no='<c:out value="${party.p_no}"/>';
+    	(function(){
+    		
+    	var p_no='<c:out value="${party.p_no}"/>';    	
+    	
     	$.getJSON("/party/getAttachList", {p_no:p_no},function(arr){
     		
     		console.log(arr);
@@ -494,8 +498,9 @@ ul.tab li.active a {
     			str +="<img src='/display?fileName="+fileCallPath+"'>";
     			str +="</div>";
     			str +"</li>";
-    			}
+    			
     		});
+    		
     		$(".bxslider").html(str);
     		
     		});//end getjson
@@ -571,10 +576,10 @@ ul.tab li.active a {
 			//스케줄등록버튼 눌렀을때 모달 띄우기
 			var p_noValue='<c:out value="${party.p_no}"/>';
 
-
 			$('#addScheduleBtn').on("click", function(e){
 				$(".modal").modal("show");
 			});	
+			
 			//modaldatpicker
 		$(function () {
 			$('#modaldate').bootstrapMaterialDatePicker({

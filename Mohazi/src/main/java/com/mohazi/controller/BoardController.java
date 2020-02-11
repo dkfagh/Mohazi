@@ -2,17 +2,21 @@ package com.mohazi.controller;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-
+import com.mohazi.domain.BoardAttachVO;
 import com.mohazi.domain.Criteria;
 import com.mohazi.domain.PageDTO;
-
 import com.mohazi.domain.PartyVO;
 import com.mohazi.service.BoardService;
 
@@ -131,5 +135,12 @@ public class BoardController {
       String url = "redirect:/board/list?type=" + service.get(p_no).getType();
       return url;
    }
-
+   
+   //첨부이미지 리스트출력
+  @GetMapping(value="/getAttachList", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+  	@ResponseBody
+  	public ResponseEntity<List<BoardAttachVO>> getAttachList(Long p_no){
+	  log.info("getAttachList" + p_no);
+	  return new ResponseEntity<>(service.getAttachList(p_no), HttpStatus.OK);
+  }
 }

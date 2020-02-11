@@ -24,4 +24,6 @@ public interface BoardService {
 
    public List<PartyVO> getSearch(Criteria cri);
    public int searchTotal (Criteria cri);
+   
+   public List<BoardAttachVO> getAttachList(Long p_no);
 }

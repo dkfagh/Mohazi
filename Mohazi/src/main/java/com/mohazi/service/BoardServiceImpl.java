@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.mohazi.domain.BoardAttachVO;
 import com.mohazi.domain.Criteria;
 import com.mohazi.domain.PartyVO;
 import com.mohazi.mapper.BoardAttachMapper;
@@ -102,6 +103,12 @@ public class BoardServiceImpl implements BoardService{
 	public int searchTotal(Criteria cri) {
 	
 		return mapper.searchAmount(cri);
+	}
+	
+	@Override
+	public List<BoardAttachVO> getAttachList(Long p_no) {
+		log.info("get Attach list by p_no" + p_no);
+		return attachMapper.findByPno(p_no);
 	}
 
   
