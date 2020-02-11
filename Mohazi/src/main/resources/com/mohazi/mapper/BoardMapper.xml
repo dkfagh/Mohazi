@@ -154,8 +154,8 @@
 			select seq_party.nextval from dual
 		</selectKey>
 
-		INSERT INTO PARTY (P_NO, TITLE, ID, CAT_MAIN, CAT_SUB, CONTENT, ADDRESS, TAG,PRICE)
-		 VALUES (#{p_no}, #{title}, #{id}, #{cat_main}, #{cat_sub}, #{content}, #{address}, 
+		INSERT INTO PARTY (P_NO, TYPE, TITLE, ID, CAT_MAIN, CAT_SUB, CONTENT, ADDRESS, TAG,PRICE)
+		 VALUES (#{p_no}, #{type}, #{title}, #{id}, #{cat_main}, #{cat_sub}, #{content}, #{address}, 
             #{tag, jdbcType=VARCHAR}, #{price, jdbcType=NUMERIC})
 </insert>
    
