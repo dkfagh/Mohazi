@@ -225,8 +225,10 @@
                     <!-- 메뉴 초이스 부분 form태그--------------------------------------------------------------------->
                     <div id="menu-container" >
                     <form action="/board/list" method="get">
+                    	<input type="hidden" name="type" value="${param.type}" />
                             <ul class="main-menu">  
-                                <li class="menu"  id="menu-when"><button class="btn   btn-large">언제</button>
+                                <li class="menu"  id="menu-when">
+                                	<button type="button" class="btn btn-large">언제</button>
                                     <ul class="submenu" id="when">                                    
                                         <li>
                                             <div id="when-box" > 

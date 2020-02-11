@@ -28,7 +28,9 @@ public class BoardController {
 
 
    @RequestMapping(value = "/list", method = RequestMethod.GET)
-   public void list(@RequestParam(value="type", required=false) char type, @RequestParam(value="category", required=false) List<String> categoryArr, @RequestParam(value="region", required=false) List<String> regionArr, Model model, Criteria cri) {
+   public void list(@RequestParam(value="type", required=false) char type, @RequestParam(value="category", required=false) List<String> categoryArr, @RequestParam(value="region", required=false) List<String> regionArr,
+		   @RequestParam(value="startDate", required=false) String startDate,@RequestParam(value="endDate", required=false) String endDate,
+		   Model model, Criteria cri) {
       //log.info("!!!  LIST !!!");
       //log.info("!!! CATEGORY !!!" + categoryArr);
       //log.info("!!! REGION !!!" + regionArr);

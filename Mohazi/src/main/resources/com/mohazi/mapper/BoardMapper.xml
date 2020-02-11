@@ -17,14 +17,35 @@
              FROM
                 PARTY
              WHERE
-      ]]>
-        
-         <![CDATA[
                  rownum<=#{pageNum} * #{amount} and
                   TYPE=#{type}
+      ]]>
+		<choose>
+            <when test="categoryArr != null">
+                AND CAT_MAIN IN 
+                <foreach collection="categoryArr" item="category" index="index" separator="," open="(" close=")">
+                    #{category}
+                </foreach>
+            </when>
+        </choose>
+        <choose>
+			<when test="regionArr != null">
+				AND REGEXP_LIKE(ADDRESS,
+				<foreach collection="regionArr" item="region" index="index" separator="|" open="REGEXP_REPLACE('" close="' , '\s+', ''))">
+					^${region}
+				</foreach>
+			</when>
+		</choose>
+		<choose>
+			<when test="startDate != null">
+				SELECT DISTINCT P_NO FROM SCHEDULE 
+				WHERE S_DATE BETWEEN TO_DATE(#{startDate}) AND TO_DATE(#{endDate}||'23:59:59','YYYY-MM-DD HH24:MI:SS')
+			</when>
+		</choose>
+      <![CDATA[
              )
          where rn > (#{pageNum}-1) * #{amount}
-        ]]>
+      ]]>
    </select>
    
    
@@ -45,7 +66,8 @@
                  rownum<=#{pageNum} * #{amount} and
               	TITLE like '%'||#{keyword}||'%' or
                	CONTENT like '%'||#{keyword}||'%' or 
-               	ADDRESS like '%'||#{keyword}||'%'
+               	ADDRESS like '%'||#{keyword}||'%' or
+               	TAG like '%'||#{keyword}||'%'
              )
              
          where rn > (#{pageNum}-1) * #{amount}
@@ -55,7 +77,8 @@
    <select id="searchAmount" resultType="int">
 	SELECT Count(*) FROM PARTY WHERE TITLE like '%'||#{keyword}||'%' or
                						CONTENT like '%'||#{keyword}||'%' or 
-               						ADDRESS like '%'||#{keyword}||'%'
+               						ADDRESS like '%'||#{keyword}||'%' or
+               						TAG like '%'||#{keyword}||'%'
    </select>
    
    

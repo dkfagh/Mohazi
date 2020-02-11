@@ -1,5 +1,7 @@
 package com.mohazi.domain;
 
+import java.util.List;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -17,7 +19,12 @@ public class Criteria {
    private String keyword;
    
    private String id;
-   
+
+   private List<String> categoryArr;
+   private List<String> regionArr;
+   private String startDate;
+   private String endDate;
+
    public Criteria() {
       this(1,16);
    }
