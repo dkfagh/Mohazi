@@ -114,6 +114,11 @@
 		#myList{
 			border:solid green 1px;
 		}
+		#myList h4{
+			text-align:center;
+			color:gray;
+			
+		}
     </style>
             <div class="container">
             
@@ -148,40 +153,42 @@
                             <!-- 테이블 내용 ----------------------------------------->
                     		
                            	<c:choose>
-                                <c:when test="${ list == null}">
-	                          		<tr>
-	                                 		<td>
-	                                 			<h2>내 모임 리스트가 없습니다.</h2>
-	                                		</td>
-	                             		</tr>
+                                <c:when test="${ pageMaker.total <= 0}">
+                                 	<tr><td></td></tr><tr><td></td></tr>
+                                 	<tr>
+                                  		<td>
+                                  			<h4>내 모임 리스트가 없습니다.</h4>
+                                 		</td>
+                               		</tr>
                                 </c:when>
-                                <c:when test="${list != null }">
-									<c:forEach items="${list}" var="party">
-	                                   <tr>
-		                                    <td>
-		                                        
-		                                            <a class="move" href='<c:out value="${party.p_no}"/>'>
-		                                                <c:out value="${party.title}" /> 
-		                                            </a>
-		                                        
-		                                    </td>
-		                                    <td>
-		                                    	<!-- 내가 개설한 정보표시-->
-		                                        <c:if test = "${principal.username eq party.id }">
-		                                        <%-- <b>[<c:out value="${party.replyCnt}" />]</b> --%> 
-		                                        <i class="fab fa-angellist"></i>
-		                                        </c:if>
-		                                        <!-- 내가 개설한 정보표시 끝-->
-		                                    </td>
-		                                    <td>
-		                                  		<c:out value="${party.id}"/>  	
-		                                    </td>
-	                                   </tr>
-                                 	</c:forEach>
+                                <c:when test="${pageMaker.total >0 }">
+                                	<c:forEach items="${list}" var="party">
+                             			<tr>
+                                   			<td>
+                                           		<a class="move" href='<c:out value="${party.p_no}"/>'>
+                                               		<c:out value="${party.title}" /> 
+                                           		</a>
+                                   			</td>
+                                   			<td>
+                                   			<!-- 내가 개설한 정보표시-->
+                                       			<c:if test = "${principal.username eq party.id }">
+		                                       		<%-- <b>[<c:out value="${party.replyCnt}" />]</b> --%> 
+		                                       		<i class="fab fa-angellist"></i>
+		                                       	</c:if>
+                                       		<!-- 내가 개설한 정보표시 끝-->
+                                   			</td>
+                                   			<td>
+                                 				<c:out value="${party.id}"/>  	
+                                   			</td>
+                                   			<td>
+                                   				
+                                   			</td>
+                                       </tr>
+                         			</c:forEach>
                                 </c:when>
-                            </c:choose>
+                           </c:choose>
 	                            
-                            <!-- 테이블 내용 끝 ---------------------------------------->
+                           <!-- 테이블 내용 끝 ---------------------------------------->
                     
                         </table>
                     

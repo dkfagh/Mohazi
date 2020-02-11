@@ -12,7 +12,7 @@
              P_NO, TITLE , id
          FROM
              (
-             SELECT /*+INDEX_DESC(PARTY P_NO) */
+             SELECT /*+INDEX_DESC(PARTY IDX_PARTY) */
                 ROWNUM RN, P_NO, TITLE , id
              FROM
                 PARTY
