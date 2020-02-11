@@ -22,5 +22,7 @@ public interface BoardMapper {
    
    public List<PartyVO> getSearch(Criteria cri);
    public int searchAmount(Criteria cri);
+   
+   public void insertSelectKey(PartyVO party);
 }
 

@@ -70,8 +70,17 @@ public class BoardController {
    // 등록 처리
    @RequestMapping(value = "/register", method = RequestMethod.POST) 
    public String register(PartyVO party, RedirectAttributes rttr) {
+	   
+	  log.info("=========================="); 
       log.info("!!!! REGISTER : " + party);
 
+  	if (party.getAttachList() != null) {
+
+		party.getAttachList().forEach(attach -> log.info(attach));
+
+	}
+  	log.info("==========================");
+  	
       service.register(party); 
 
       //rttr.addFlashAttribute("result", party.getP_no());

@@ -118,9 +118,9 @@
    <!-- CRUD -->
    <!-- INSERT. nullable column 은 jdbcType 지정해줌 -->
    <insert id="insert">
-      INSERT INTO PARTY (P_NO, TITLE, ID, CAT_MAIN, CAT_SUB, CONTENT, REGION, TAG, PHOTO, PRICE)
+      INSERT INTO PARTY (P_NO, TITLE, ID, CAT_MAIN, CAT_SUB, CONTENT, REGION, TAG, PRICE)
       VALUES(SEQ_PARTY.NEXTVAL, #{title}, #{id}, #{cat_main}, #{cat_sub}, #{content}, #{region}, 
-            #{tag, jdbcType=VARCHAR}, #{photo, jdbcType=VARCHAR}, #{price, jdbcType=NUMERIC})
+            #{tag, jdbcType=VARCHAR}, #{price, jdbcType=NUMERIC})
    </insert>
    
    <!-- READ -->
@@ -136,7 +136,6 @@
       CAT_SUB = #{cat_sub},
       CONTENT = #{content},
       TAG = #{tag, jdbcType=VARCHAR},
-      PHOTO = #{photo, jdbcType=VARCHAR},
       PRICE = #{price, jdbcType=NUMERIC}
       WHERE P_NO = #{p_no}
    </update>
@@ -145,5 +144,19 @@
       DELETE FROM PARTY
       WHERE P_NO = #{p_no}
    </delete>
+   
+   <insert id="insertSelectKey">
+
+		<selectKey keyProperty="p_no" order="BEFORE"
+			resultType="long">
+			select seq_party.nextval from dual
+		</selectKey>
+
+		INSERT INTO PARTY (P_NO, TITLE, ID, CAT_MAIN, CAT_SUB, CONTENT, ADDRESS, TAG,PRICE)
+		 VALUES (#{p_no}, #{title}, #{id}, #{cat_main}, #{cat_sub}, #{content}, #{address}, 
+            #{tag, jdbcType=VARCHAR}, #{price, jdbcType=NUMERIC})
+</insert>
+   
+   
    
 </mapper>

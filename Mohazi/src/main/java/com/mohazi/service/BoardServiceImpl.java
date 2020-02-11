@@ -4,9 +4,11 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.mohazi.domain.Criteria;
 import com.mohazi.domain.PartyVO;
+import com.mohazi.mapper.BoardAttachMapper;
 import com.mohazi.mapper.BoardMapper;
 
 import lombok.AllArgsConstructor;
@@ -20,6 +22,10 @@ public class BoardServiceImpl implements BoardService{
 
    @Setter(onMethod_ = @Autowired)
    private BoardMapper mapper;
+   
+   @Setter(onMethod_ = @Autowired)
+	private BoardAttachMapper attachMapper;
+   
    /*
    @Override
    public List<PartyVO> getList(char type) {
@@ -42,11 +48,19 @@ public class BoardServiceImpl implements BoardService{
 //      return mapper.getList(party);
 //   }
 
-   
+   @Transactional
    @Override
    public void register(PartyVO party) {
-      log.info("!!! REGISTER !!!");
-      mapper.insert(party);
+      log.info("!!! REGISTER !!!"+party);
+      mapper.insertSelectKey(party);
+      if (party.getAttachList() == null || party.getAttachList().size() <= 0) {
+			return;
+		}
+      party.getAttachList().forEach(attach -> {
+
+			attach.setP_no(party.getP_no());
+			attachMapper.insert(attach);
+		});
    }
    @Override
    public PartyVO get(Long p_no) {

@@ -2,6 +2,7 @@ package com.mohazi.service;
 
 import java.util.List;
 
+import com.mohazi.domain.BoardAttachVO;
 import com.mohazi.domain.Criteria;
 import com.mohazi.domain.PartyVO;
 
