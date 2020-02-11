@@ -20,6 +20,22 @@
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" 
   integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" 
   crossorigin="anonymous"></script>
+  
+  
+  <!--게시판설정을위한 스크립트  -->
+   <script src="/resources/js/summernote-ko-KR.js"></script>
+  <link href="summernote.css" rel="stylesheet">
+  <script src="summernote.min.js"></script>
+  
+  <!-- include libraries(jQuery, bootstrap) -->
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
+  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
+  
+ 
+  
+  <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.15/dist/summernote-bs4.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.15/dist/summernote-bs4.min.js"></script>
+  
 
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -27,8 +43,7 @@
     integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
     crossorigin="anonymous"></script>
 
-  <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.15/dist/summernote-bs4.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.15/dist/summernote-bs4.min.js"></script>
+
 
   <!-- tagEditor ----------------------------------------------------------------------------->
 
@@ -155,7 +170,8 @@
 }
 
 .uploadResult ul li img {
-	width: 100px;
+	width: 200px;
+	height: 180px;
 }
 
 .bigPictureWrapper {
@@ -274,8 +290,14 @@
 				<tr>
 					<th>소개입력</th>
 					<td>
-						<input type="textarea" rows="5" name="content">
-						<!-- <div id="summernote" name="content"></div> -->
+					<!-- <div id="summernote">
+							<label for="editor"></label>
+						 <input id="editor" name="content">
+					</div> -->
+										
+						<!-- <input type="textarea" rows="5" name="content">-->
+						<!--  <div id="summernote" name="content"></div>  -->
+						<textarea id="summernote" name="content"></textarea>
 					</td>
 				</tr>
 
@@ -333,7 +355,9 @@
 				<!-- id입력 -------------------------------------------------------------------------->
 				<input type="hidden" name="id" value="ddd">
 				
+				<!-- type입력 -------------------------------------------------------------------------->
 				<input type="hidden" name="type" value="${param.type}">
+				
 			</tbody>
 			<!-- Table끝 ----------------------------------------------------------------->
 		</table>
@@ -411,11 +435,20 @@
 
 <!--textEditor------------------------------------------------------------------->
 <script>
-  $('#summernote').summernote({
+ /*  $('#summernote').summernote({
     placeholder: '내용을 입력하세요',
     tabsize: 2,
     height: 100
-  });
+  }); */
+  
+  $(document).ready(function() {
+	  $('#summernote').summernote({
+	        minHeight: 200,
+	        maxHeight: null,
+	        focus: true, 
+	        lang : 'ko-KR'
+	  });
+	});
 </script>
 <!--textEditor------------------------------------------------------------------->
 
