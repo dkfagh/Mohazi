@@ -41,7 +41,7 @@ public class ScheduleController {
 				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
-	@GetMapping(value="/{p_no}",
+	@GetMapping(value="/list/{p_no}",
 			produces= { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE})
 	public ResponseEntity<List<ScheduleVO>> getList(@PathVariable("p_no") Long p_no){
 		
@@ -49,7 +49,7 @@ public class ScheduleController {
 		return new ResponseEntity<>(service.getList(p_no), HttpStatus.OK);
 	}
 	
-	@GetMapping(value="/{s_no}",
+	@GetMapping(value="/get/{s_no}",
 			produces= { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE})
 	public ResponseEntity<ScheduleVO> get(@PathVariable("s_no") Long s_no){
 		

@@ -363,7 +363,7 @@ ul.tab li.active a {
 			
 					<div id="tab1" class="tabContent active">
 						<h4>상세정보</h4>
-						<p id="introduction"><c:out value="${party.content}" /></p>
+						<p id="introduction">${party.content}"</p>
 						<div id="map" style="width:100%;height:400px;"></div>					
 					</div>
 			
