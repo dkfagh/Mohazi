@@ -29,8 +29,8 @@ var scheduleService= (function(){
 	function getList(param, callback, error){
 		
 		var p_no = param.p_no;
-		
-		$.getJSON("/schedules/"+p_no+"/"+".json",
+		console.log(p_no);
+		$.getJSON("/schedules/"+p_no+".json",
 				function(data){
 			if(callback){
 				callback(data);

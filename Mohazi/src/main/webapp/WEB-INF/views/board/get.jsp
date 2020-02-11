@@ -295,10 +295,7 @@ ul.tab li.active a {
 		<div class="row">
         	<div class="col-sm-8">
 				<div id="title-img">
-					<ul class="bxslider">
-					 	<c:forEach var="party" items="${list}">
-							<li><img src="images/itzy.jpg" /></li>
-						</c:forEach>							
+					<ul class="bxslider">											
 					</ul>
 				</div>
 				<div class="title-text">
@@ -486,19 +483,19 @@ ul.tab li.active a {
     		
     	var p_no='<c:out value="${party.p_no}"/>';    	
     	
-    	$.getJSON("/party/getAttachList", {p_no:p_no},function(arr){
+    	$.getJSON("/board/getAttachList", {p_no:p_no},function(arr){
     		
     		console.log(arr);
+    	
     		
     		var str = "";
     		
     		$(arr).each(function(i,attach){
-    			var fileCallPath = encodeURIComponent( attach.uploadPath+ "/s_"+ attach.uuid +"_"+ attach.fileName);
+    			var fileCallPath = encodeURIComponent( attach.uploadPath + attach.uuid +"_"+ attach.fileName);
     			str += "<li data-path='"+attach.uploadPath+"' data-uuid='"+attach.uuid+"' data-filename='"+attach.fileName+"' data-type='"+attach.fileType+"' ><div>";
-    			str +="<img src='/display?fileName="+fileCallPath+"'>";
+    			str +="<img src='/display?filename="+fileCallPath+"'>";
     			str +="</div>";
-    			str +"</li>";
-    			
+    			str +"</li>";    			
     		});
     		
     		$(".bxslider").html(str);
@@ -627,13 +624,7 @@ ul.tab li.active a {
 					}
 					scheduleUL.html(str);
 				});//end function
-			}//end showList
-			
-			
-		
-		
-		
-		
+			}//end showList		
 
 	}); 
     //]]>
