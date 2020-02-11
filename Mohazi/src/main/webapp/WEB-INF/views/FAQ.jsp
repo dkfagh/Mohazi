@@ -103,7 +103,7 @@
                     <!-- form tag-->
 
                     <div class="FAQsearch">
-                        <form id="searchForm" action="/FAQ" method="get">
+                        <form id="FAQsearchForm" action="/FAQ" method="get">
 	                        <input type="text" name="keyword" placeholder="검색어를 입력하세요." />
 	                        <button><i class="fa fa-search"></i></button>
                         </form>
@@ -171,18 +171,18 @@
     
     
     // FAQ search start
-    var searchForm = $("#searchForm");
+    var FAQsearchForm = $("#FAQsearchForm");
     
-    $("#searchForm button").on("click", function(e){
+    $("#FAQsearchForm button").on("click", function(e){
     	
-    	if(!searchForm.find("input[name='keyword']").val()){
+    	if(!FAQsearchForm.find("input[name='keyword']").val()){
     		alert("검색어를 입력하세요.");
     		return false;
     	}
     	
     	e.preventDefalut();
     	
-    	searchForm.submit();
+    	FAQsearchForm.submit();
     });
     
     
