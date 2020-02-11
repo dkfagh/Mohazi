@@ -491,9 +491,9 @@ ul.tab li.active a {
     		var str = "";
     		
     		$(arr).each(function(i,attach){
-    			var fileCallPath = encodeURIComponent( attach.uploadPath + attach.uuid +"_"+ attach.fileName);
+    			var fileCallPath = encodeURIComponent( attach.uploadPath +"/"+ attach.uuid +"_"+ attach.fileName);
     			str += "<li data-path='"+attach.uploadPath+"' data-uuid='"+attach.uuid+"' data-filename='"+attach.fileName+"' data-type='"+attach.fileType+"' ><div>";
-    			str +="<img src='/display?filename="+fileCallPath+"'>";
+    			str +="<img src='/display?fileName="+fileCallPath+"'>";
     			str +="</div>";
     			str +"</li>";    			
     		});
