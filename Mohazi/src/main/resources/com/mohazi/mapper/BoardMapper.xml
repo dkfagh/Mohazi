@@ -120,8 +120,8 @@
    <!-- CRUD -->
    <!-- INSERT. nullable column 은 jdbcType 지정해줌 -->
    <insert id="insert">
-      INSERT INTO PARTY (P_NO, TITLE, ID, CAT_MAIN, CAT_SUB, CONTENT, REGION, TAG, PRICE)
-      VALUES(SEQ_PARTY.NEXTVAL, #{title}, #{id}, #{cat_main}, #{cat_sub}, #{content}, #{region}, 
+      INSERT INTO PARTY (P_NO, TITLE, ID, CAT_MAIN, CAT_SUB, CONTENT, ADDRESS, TAG, PRICE)
+      VALUES(SEQ_PARTY.NEXTVAL, #{title}, #{id}, #{cat_main}, #{cat_sub}, #{content}, #{address}, 
             #{tag, jdbcType=VARCHAR}, #{price, jdbcType=NUMERIC})
    </insert>
    
