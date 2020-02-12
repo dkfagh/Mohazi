@@ -30,7 +30,7 @@ var scheduleService= (function(){
 		
 		var p_no = param.p_no;
 		console.log(p_no);
-		$.getJSON("/schedules/"+p_no+".json",
+		$.getJSON("/schedules/list/"+p_no+".json",
 				function(data){
 			if(callback){
 				callback(data);
