@@ -371,7 +371,7 @@ font-size: 14px;
 			
 					<div id="tab1" class="tabContent active">
 						<h4>상세정보</h4>
-						<p id="introduction">${party.content}"</p>
+						<p id="introduction">${party.content}</p>
 						<div id="map" style="width:100%;height:400px;"></div>					
 					</div>
 			
@@ -408,33 +408,21 @@ font-size: 14px;
 						<div class="text02">일정 참가 인원수 확인 후 신청하기 버튼을 눌러주세요.</div>
 					</div>									
 					
+					<form>
 					<div class="class-confirm02">
 						<div class="btn-swip swip-date closed schedule-date-trigger" id="btn-date">
 							<a>일정 확인</a>
 						</div>
 						<div class="class-date">
-							<ul class="dateTimeGroup">
-								<%-- <p><c:out value="${schedule.s_date}" />날짜</p> --%>
-								<%-- <li class="left clearfix" data-s_no='1'>
-									<input class="result" type="button" id="date" value="날짜 :${schedule.s_date} 시간:${schedule.s_time} 참가인원현황:">
-									<input class="result" type="button" id="date" value="날짜 :${schedule.s_date} 시간:${schedule.s_time} 참가인원현황:">
-									<input class="result" type="button" id="date" value="날짜 :${schedule.s_date} 시간:${schedule.s_time} 참가인원현황:">
-								</li> --%>
+							<ul class="dateTimeGroup">								
 							</ul>							
-						</div>
-						<%-- <div class="class-date">
-							<div  class="dateTimeGroup">
-								<p><c:out value="${schedule.s_date}" />날짜</p>
-								<input class="result" type="button" id="date" value="${schedule.s_time}">
-								<input class="result" type="button" id="date" value="${schedule.s_time}">
-								<input class="result" type="button" id="date" value="${schedule.s_time}">
-							</div>							
-						</div> --%>
+						</div>					
 					</div>
 					
 					<div class="class-confirm03">
-						<button type="button" class="btn">신청하기</button>
+						<button type="submit" class="btn">참여하기</button>
 					</div>
+					
 					<div id="addSchedule">
 						<button id="addScheduleBtn" class="btn btn-large" data-oper="addSchedule">SCHEDULE 등록</button>						
 					</div>
@@ -633,6 +621,7 @@ font-size: 14px;
 					}
 					for (var i = 0, len = list.length || 0; i < len; i++){
 						str+="<li class='left clearfix' data-s_no='"+list[i].s_no+"'>";
+						str+=" <input class='result' type='hidden' value='"+list[i].s_no+"'>"; 
 						str+=" <input class='result' type='button' id='date' value='날짜 : "+((list[i].s_date).toString()).substring(0,10)+" 시간 :"+((list[i].s_time).toString()).substring(10,16)+" 인원현황: /"+list[i].max_people+"'>";
 						str+="</li>";
 					}
