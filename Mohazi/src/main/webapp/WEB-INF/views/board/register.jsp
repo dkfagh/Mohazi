@@ -76,9 +76,9 @@
        display:inline-block;
    
     } 
-    .title,
-    .address,
-    .price {
+    #title,
+    #address,
+    #price {
       width: 600px;
     }
 
@@ -220,7 +220,7 @@
 
             <tr>
                <th>제목</th>
-               <td class="title"><input type="text" placeholder=" 제목을 입력하세요."
+               <td id="title"><input type="text" placeholder=" 제목을 입력하세요."
                   name="title" /></td>
             </tr>
 
@@ -263,7 +263,7 @@
             <!-- 위치입력 -------------------------------------------------------------------------->
             <tr>
                <th>위치</th>
-               <td class="address"><input type="text" id="inputAddress"
+               <td id="address"><input type="text" id="inputAddress"
                   placeholder="주소를 입력하세요." style="width: 300px;" name="address">
                   <input type="button" onclick="sample5_execDaumPostcode()"
                   value="검색" class="mapBtn"
@@ -304,21 +304,22 @@
             </tr>
 
             <!-- 가격입력 -------------------------------------------------------------------------->
+			<c:choose>
+				<c:when test="${param.type eq 'C'}">
+					<tr>
+						<th>가격</th>
+						<td id="price"><input type="text" placeholder="가격을 입력하세요." name="price" id="class" />원</td>
+					</tr>
+				</c:when>
+			</c:choose>
 
-            <tr>
-               <th>가격</th>
-               <td class="price"><input type="text" placeholder="가격을 입력하세요."
-                  name="price" />원</td>
-            </tr>
-            
-            <!-- id입력 -------------------------------------------------------------------------->
-           
+			<!-- id입력 -------------------------------------------------------------------------->
             <%-- <input type="hidden" name="id" value="${param.id}"> --%>
             <input type="hidden" name="id" id="id" value='<sec:authentication property="principal.username"/>'>
       
             
             <!-- type입력 -------------------------------------------------------------------------->
-            <input type="hidden" name="type" value="${param.type}">
+            <input type="hidden" name="type" id="type" value="${param.type}">
             
          </tbody>
          <!-- Table끝 ----------------------------------------------------------------->
@@ -326,7 +327,7 @@
       
       <!-- 등록버튼입력 -------------------------------------------------------------------------->
       <button type="submit" class="regBtn btn btn-outline-secondary">등록</button>
-  <br>
+<br>
 <br>
 <br>
 <br>
@@ -336,8 +337,6 @@
 
    <!-- Container끝 ----------------------------------------------------------------->
 </div>
-
-
 
 
 
