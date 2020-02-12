@@ -326,9 +326,7 @@
       
       <!-- 등록버튼입력 -------------------------------------------------------------------------->
       <button type="submit" class="regBtn btn btn-outline-secondary">등록</button>
-      &nbsp;&nbsp;&nbsp;
-      <button type="reset" class="modBtn btn btn-outline-secondary">수정</button>
-<br>
+  <br>
 <br>
 <br>
 <br>
