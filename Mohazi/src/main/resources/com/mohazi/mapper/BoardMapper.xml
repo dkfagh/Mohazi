@@ -55,7 +55,7 @@
    <select id="getSearch" resultType="com.mohazi.domain.PartyVO">
       <![CDATA[
          SELECT
-             P_NO, CAT_MAIN, CAT_SUB, TAG, PRICE, TITLE
+           P_NO, CAT_MAIN, CAT_SUB, TAG, PRICE, TITLE
          FROM
              (
              SELECT /*+ INDEX_DESC(PARTY IDX_PARTY) */ 
@@ -65,11 +65,12 @@
              WHERE
       ]]>
          <![CDATA[
-                 rownum<=#{pageNum} * #{amount} and
-              	TITLE like '%'||#{keyword}||'%' or
+                rownum<=#{pageNum} * #{amount} and
+              	(TITLE like '%'||#{keyword}||'%' or
                	CONTENT like '%'||#{keyword}||'%' or 
                	ADDRESS like '%'||#{keyword}||'%' or
-               	TAG like '%'||#{keyword}||'%'
+               	TAG like '%'||#{keyword}||'%' or
+               	CAT_SUB like '%'||#{keyword}||'%')
              )
              
          where rn > (#{pageNum}-1) * #{amount}
@@ -77,10 +78,11 @@
    </select>
    
    <select id="searchAmount" resultType="int">
-	SELECT Count(*) FROM PARTY WHERE TITLE like '%'||#{keyword}||'%' or
+	SELECT COUNT(*) FROM PARTY WHERE TITLE like '%'||#{keyword}||'%' or
                						CONTENT like '%'||#{keyword}||'%' or 
                						ADDRESS like '%'||#{keyword}||'%' or
-               						TAG like '%'||#{keyword}||'%'
+               						TAG like '%'||#{keyword}||'%' or
+               						CAT_SUB like '%'||#{keyword}||'%'
    </select>
    
    <!-- list 페이지로 갈 때의 조건을 만족한 행만 count(getListWithPaging에서 페이징처리 부분만 뺀 쿼리 사용) -->

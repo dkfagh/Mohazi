@@ -53,11 +53,9 @@ public class BoardController {
    }
 
    // 검색 결과 페이지
-
-   // 검색 결과 페이지
 	
-	 @RequestMapping(value = "/searchResult", method = RequestMethod.GET) public
-	 void searchResult(Model model, Criteria cri) {
+	 @RequestMapping(value = "/searchResult", method = RequestMethod.GET) 
+	 public void searchResult(Model model, Criteria cri) {
 	  
 	 int total=service.searchTotal(cri);
 	 
@@ -70,7 +68,11 @@ public class BoardController {
 	
    // 등록 화면
    @RequestMapping(value = "/register", method = RequestMethod.GET) 
-   public void register(Model model) {}
+   public void register(Model model, Criteria cri) {
+	   
+	   int total=service.getTotal(cri);
+	   model.addAttribute("pageMaker",new PageDTO(cri,total));
+   }
    
    // 등록 처리
    @RequestMapping(value = "/register", method = RequestMethod.POST) 
@@ -95,20 +97,26 @@ public class BoardController {
 
    // 상세보기 화면
    @RequestMapping(value = "/get", method = RequestMethod.GET)
-   public void get(@RequestParam("p_no") Long p_no, Model model) {
+   public void get(@RequestParam("p_no") Long p_no, Model model, Criteria cri) {
       log.info("!!! GET !!!");
 
 
       model.addAttribute("party", service.get(p_no));
+      
+      int total=service.getTotal(cri);
+	  model.addAttribute("pageMaker",new PageDTO(cri,total));
    }
 
 
    // 수정 화면
    @RequestMapping(value = "/modify", method = RequestMethod.GET)
-   public void modify(@RequestParam("p_no") Long p_no, Model model) {
+   public void modify(@RequestParam("p_no") Long p_no, Model model, Criteria cri) {
       log.info("!!! MODIFY PAGE !!!");
 
       model.addAttribute("party", service.get(p_no));
+      
+      int total=service.getTotal(cri);
+   	  model.addAttribute("pageMaker",new PageDTO(cri,total));
    }
 
    // 수정 처리
