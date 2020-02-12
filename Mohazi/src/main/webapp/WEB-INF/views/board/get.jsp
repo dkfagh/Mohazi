@@ -627,7 +627,7 @@ ul.tab li.active a {
 					scheduleUL.html(str);
 				});//end function
 
-			}//end showList		
+			}//end showScheduleList		
 			
 		
 			//모달의 add스케쥴버튼 눌렀을때	
@@ -657,9 +657,6 @@ ul.tab li.active a {
 					});
 				});
 
-			
-
-			}//end showScheduleList		
 			
 			
 		// review 출력
@@ -698,7 +695,6 @@ ul.tab li.active a {
 					
 				})
 			}
-
 
 	}); 
     //]]>
