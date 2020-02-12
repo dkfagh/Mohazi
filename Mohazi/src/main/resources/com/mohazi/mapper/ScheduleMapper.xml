@@ -6,7 +6,7 @@
 
 	<insert id="insert">
 		insert into schedule (s_no, p_no, s_date, s_time, min_people, max_people)
-		values (seq_schedule.nextval, #{p_no}, #{s_date}, #{s_time}, #{min_people}, #{max_people})
+		values (seq_schedule.nextval, #{p_no}, to_date(#{s_date}, 'YY-MM-DD'), to_date(#{s_time}, 'HH24:MI'), #{min_people, jdbcType=NUMERIC}, #{max_people, jdbcType=NUMERIC})
 	</insert>
 	
 	<select id="read" resultType="com.mohazi.domain.ScheduleVO">

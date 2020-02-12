@@ -261,6 +261,10 @@ ul.tab li.active a {
 	margin-left: 10px;
 	margin-bottom: 10px
 }
+.result{
+font-size: 14px;
+ 
+}
 .class-confirm02 .class-time {
   padding: 0;
   display: none;
@@ -486,6 +490,14 @@ ul.tab li.active a {
 		
     $(document).ready(function(){  	
     	
+    	 //ajaxSend시 토큰값 전달---------------------------------------------------------------	
+    	var csrfHeaderName = "${_csrf.headerName}";
+    	var csrfTokenValue = "${_csrf.token}";
+    	$(document).ajaxSend(function(e, xhr, options) {
+    		xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+    	});
+    	//ajaxSend시 토큰값 전달---------------------------------------------------------------	
+    	
     	//이미지 데이터 가져오는 부분
     	(function(){
     		
@@ -621,7 +633,7 @@ ul.tab li.active a {
 					}
 					for (var i = 0, len = list.length || 0; i < len; i++){
 						str+="<li class='left clearfix' data-s_no='"+list[i].s_no+"'>";
-						str+=" <input class='result' type='button' id='date' value='날짜 :"+list[i].s_date+"시간:" +list[i].s_time+"참가인원현황:"+list[i].max_people+"'>";
+						str+=" <input class='result' type='button' id='date' value='날짜 : "+((list[i].s_date).toString()).substring(0,10)+" 시간 :"+((list[i].s_time).toString()).substring(10,16)+" 인원현황: /"+list[i].max_people+"'>";
 						str+="</li>";
 					}
 					scheduleUL.html(str);
@@ -652,7 +664,7 @@ ul.tab li.active a {
 						modal.find("input").val("");
 						modal.modal("hide");
 					
-						showList();			
+						showScheduleList();			
 
 					});
 				});
