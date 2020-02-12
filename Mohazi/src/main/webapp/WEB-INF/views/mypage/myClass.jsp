@@ -172,18 +172,30 @@
                                            		</a>
                                    			</td>
                                    			<td>
+                                   			
                                    			<!-- 내가 개설한 정보표시-->
-                                       			<c:if test = "${principal.username == party.id }">
-		                                       		<%-- <b>[<c:out value="${party.replyCnt}" />]</b> --%> 
+                                   			<c:set var="username" value = "${principal.username}" />
+                                   			<c:set var="writer" value = "${party.id}" />
+                                   			
+                                       			<c:if test = "${username eq writer}"> 
 		                                       		<i class="fab fa-angellist"></i>
 		                                       	</c:if>
                                        		<!-- 내가 개설한 정보표시 끝-->
                                    			</td>
+                                   			<!-- 개설자 ID -->
+                                   			<%-- <td>
+                                 				<c:out value="${party.id}"/>
+                                   			</td> --%>
+                                   			<!-- 개설자 ID 끝 -->
                                    			<td>
-                                 				<c:out value="${party.id}"/>  	
-                                   			</td>
-                                   			<td>
-                                   				
+                                   				<c:choose>
+                                   					<c:when test="${ username ne writer}"> <!-- 참여한 글일때 -->
+                                   						<button class="btn btn-sm btn-primary" name="exit" type="button">나가기</button>
+                               						</c:when>
+                               						<c:when test="${ username eq writer}"> <!--  작성한 글일때 -->
+                                   						<button class="btn btn-sm btn-primary" name="exit" type="button">삭제</button>
+                               						</c:when>
+                                   				</c:choose>
                                    			</td>
                                        </tr>
                          			</c:forEach>

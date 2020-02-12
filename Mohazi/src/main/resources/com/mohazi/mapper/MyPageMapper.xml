@@ -8,21 +8,31 @@
    <!-- paging에 나오는 데이터 - p_no: 글번호, title : 제목, id :유저 아이디 -->
    <select id="getListWithPaging" resultType="com.mohazi.domain.PartyVO">
       <![CDATA[
-         SELECT
-             P_NO, TITLE , id
+         SELECT P_NO, TITLE , id
          FROM
+         (
+         	SELECT
+            	ROWNUM RN, P_NO, TITLE , id
+        	 FROM
              (
-             SELECT /*+INDEX_DESC(PARTY IDX_PARTY) */
-                ROWNUM RN, P_NO, TITLE , id
-             FROM
-                PARTY
-             WHERE id =#{id}
-      ]]>
+	             select p.p_no, p.title, p.id
+					from party_join pj, party p
+					where pj.p_no = p.p_no and
+					pj.id=#{id}
+	
+				union all
+	             
+	             SELECT /*+INDEX_DESC(PARTY IDX_PARTY) */
+	                 P_NO, TITLE , id
+	             FROM
+	                PARTY
+	             WHERE id =#{id} and TYPE=#{type}) 
+      ]]> 
         
          <![CDATA[ 
-         		and 
-                 rownum<=#{pageNum} * #{amount} and
-                  TYPE=#{type}
+         		where 
+                 rownum<=#{pageNum} * #{amount} 
+                  
              )
          where rn > (#{pageNum}-1) * #{amount} 
         ]]>
