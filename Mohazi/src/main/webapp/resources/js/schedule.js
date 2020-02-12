@@ -4,13 +4,13 @@
 console.log("Schedule Module........");
 var scheduleService= (function(){
 	
-	function add(s_date, callback, error){
+	function add(schedule, callback, error){
 		console.log("add schedule...........");
 		
 		$.ajax({
 			type : 'post', 
 			url : '/schedules/new',
-			data : JSON.stringify(s_date),
+			data : JSON.stringify(schedule),
 			contentType : "application/json; charset = utf-8",
 			success : function(result, status, xhr){
 				if (callback){

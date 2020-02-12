@@ -251,6 +251,10 @@ ul.tab li.active a {
 	text-align: center;
 	cursor: pointer;
 }
+.dateTimeGroup {
+  list-style:none;
+  padding-left:0px;
+}
 .dateTimeGroup p{	
 	
 	font-size: 15px;
@@ -436,7 +440,7 @@ ul.tab li.active a {
 	 <div class="modal" id="myModal">
 		<div class="modal-dialog">
 		  <div class="modal-content">
-			<form id="operForm" action="/Schedules/new" method="post">
+		
 			<!-- Modal Header -->
 			<div class="modal-header">
 			  <h4 class="modal-title">스케쥴 등록</h4>
@@ -448,11 +452,11 @@ ul.tab li.active a {
 							
 				 <div class="form-group">
 					 <label>날짜</label>
-					 <input class="result" type="text" id="modaldate" placeholder="날짜를 선택해주세요" name="">
+					 <input class="result" type="text" id="modaldate" placeholder="날짜를 선택해주세요" name="date">
 				 </div>
 				 <div class="form-group">
 					 <label>시간</label>
-					 <input class="result" type="text" id="modaltime" placeholder="시간을 선택해주세요">
+					 <input class="result" type="text" id="modaltime" placeholder="시간을 선택해주세요" name="time">
 				</div>	
 						
 			</div>
@@ -462,7 +466,7 @@ ul.tab li.active a {
 				 <button id="modalAddSchedulBtn" type="submit" class="btn btn-primary">등록완료</button>				 
 				<button id="modalCloseBtn" type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
 			</div>
-			</form>
+			
 		  </div>
 		</div>
 	  </div>
@@ -591,15 +595,7 @@ ul.tab li.active a {
 			});
 		});	
 
-
-		$(function(){
-			$('#modalAddSchedulBtn').click(function(){
-				alert("등록되었습니다");
-
-				showList();
-			});
-
-		})
+	
 		
 		
 		// 스케쥴 목록 출력 
@@ -619,12 +615,42 @@ ul.tab li.active a {
 					}
 					for (var i = 0, len = list.length || 0; i < len; i++){
 						str+="<li class='left clearfix' data-s_no='"+list[i].s_no+"'>";
-						str+=" <input class='result' type='button' id='date' value='날짜 :"+list[i].s_date+"시간:"+list[i].s_time+"참가인원현황:"+list[i].max_people+"'>";
+						str+=" <input class='result' type='button' id='date' value='날짜 :"+list[i].s_date+"시간:" +list[i].s_time+"참가인원현황:"+list[i].max_people+"'>";
 						str+="</li>";
 					}
 					scheduleUL.html(str);
 				});//end function
 			}//end showList		
+			
+		
+			//모달의 add스케쥴버튼 눌렀을때	
+			var modal = $(".modal");
+			var modalInputS_date = modal.find("input[name='date']");
+			var modalInputS_time = modal.find("input[name='time']");
+		
+			
+		
+				$('#modalAddSchedulBtn').on("click",function(e){
+					var schedule = {
+							s_date: modalInputS_date.val(),
+							s_time: modalInputS_time.val(),
+							p_no:p_noValue
+							
+					};
+
+					scheduleService.add(schedule, function(){
+						
+						alert("등록되었습니다");
+					
+						modal.find("input").val("");
+						modal.modal("hide");
+					
+						showList();			
+
+					});
+				});
+
+			
 
 	}); 
     //]]>
