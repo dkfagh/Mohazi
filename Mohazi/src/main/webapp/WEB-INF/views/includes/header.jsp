@@ -182,7 +182,7 @@ input::-moz-placeholder { color: white; }
                     <button class="btn">
                       <img src="/resources/img/searchIcon.png" id="searchIcon" name="searchIcon">
                 	</button>	
-                </div>s
+                </div>
             </form>
             <!-- search form--->            
         </div>
