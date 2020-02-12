@@ -117,10 +117,9 @@ border-bottom:#7bd4ac solid 2px;
 }
 
 #searchIcon{
-   padding-top:3px;
-   padding-left:4px;
-   margin-top: 2px;
-   margin-left:2px;
+   padding-left:3px;
+   margin-top:-5px;
+   margin-left:-5px;
    width:32px;
 }
 
@@ -168,7 +167,7 @@ input::-moz-placeholder { color: white; }
             </sec:authorize>
             <sec:authorize access="isAnonymous()">
             	<div id="login">
-                  	<a href="/customLogin" class="btn btn-sm">로그인</a>
+                  	<a href="/customLogin" class="btn">로그인</a>
                	</div>
             </sec:authorize>
             <!-- 시큐리티 영역 끝 -------------------------------------->
