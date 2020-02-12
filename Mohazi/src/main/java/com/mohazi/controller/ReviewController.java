@@ -5,11 +5,11 @@ import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.mohazi.domain.ReviewVO;
 import com.mohazi.service.ReviewService;
@@ -17,7 +17,7 @@ import com.mohazi.service.ReviewService;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
-@Controller
+@RestController
 @Log4j
 @RequestMapping("/review/")
 @AllArgsConstructor
@@ -41,7 +41,7 @@ public class ReviewController {
 	
 	
 	// Review 목록
-	@RequestMapping(value = "/pages/{p_no}", method = RequestMethod.GET, produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE})
+	@RequestMapping(value = "/party/{p_no}", method = RequestMethod.GET, produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE})
 	public ResponseEntity<List<ReviewVO>> getList(@PathVariable("p_no") Long p_no) {
 		
 		log.info("get Review List p_no : " + p_no);
@@ -61,7 +61,7 @@ public class ReviewController {
 	
 	
 	// Review 수정
-	@RequestMapping(value = "{r_no}", method = {RequestMethod.PUT, RequestMethod.PATCH},  consumes = "application/json")
+	@RequestMapping(value = "/{r_no}", method = {RequestMethod.PUT, RequestMethod.PATCH},  consumes = "application/json")
 	public ResponseEntity<String> modify(@RequestBody ReviewVO vo, @PathVariable("r_no") Long r_no) {
 		
 		vo.setR_no(r_no);

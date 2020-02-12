@@ -367,9 +367,12 @@ ul.tab li.active a {
 						<div id="map" style="width:100%;height:400px;"></div>					
 					</div>
 			
-					<div id="tab2" class="tabContent">
-						<h4>후기</h4>
-						<p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</p>
+					<div id="tab2" class="tabContent card">
+						<h4 class="card-title">후기</h4>
+						<div class="card-body">
+							<ul class="chat list-group">
+							</ul>
+						</div>
 					</div>
 			
 					<div id="tab3" class="tabContent">
@@ -473,6 +476,7 @@ ul.tab li.active a {
 
 <%@ include file="../includes/footer.jsp" %>
 <script type="text/javascript" src="/resources/js/schedule.js"></script>
+<script src="/resources/js/review.js"></script>
 <script type="text/javascript"> 
 // <![CDATA[ 
 		
@@ -481,7 +485,7 @@ ul.tab li.active a {
     	//이미지 데이터 가져오는 부분
     	(function(){
     		
-    	var p_no='<c:out value="${party.p_no}"/>';    	
+    	var p_no='<c:out value="${party.p_no}"/>';
     	
     	$.getJSON("/board/getAttachList", {p_no:p_no},function(arr){
     		
@@ -508,7 +512,7 @@ ul.tab li.active a {
 		$(function(){
   			$('.bxslider').bxSlider();
 		});
-
+    	
 		//tabList
 		$(function() {
 			$('ul.tab li').click(function() {
@@ -519,6 +523,7 @@ ul.tab li.active a {
 				$('#' + activeTab).addClass('active');
 			})
 		}); 
+		
 		// datepicker 토글
 		// $(function(){
 		//	$('#btn-date').click(function(){
@@ -606,10 +611,11 @@ ul.tab li.active a {
 		
 		var p_noValue = '<c:out value="${party.p_no}"/>';
 		var scheduleUL = $(".dateTimeGroup")
+
 		
-		showList();
+		showScheduleList();
 		
-			function showList(){
+			function showScheduleList(){
 				scheduleService.getList({p_no:p_noValue}, function(list){
 					var str=""
 					if(list == null || list.length ==0){
@@ -624,7 +630,45 @@ ul.tab li.active a {
 					}
 					scheduleUL.html(str);
 				});//end function
-			}//end showList		
+			}//end showScheduleList		
+			
+			
+		// review 출력
+		
+		var reviewUL = $(".chat");
+			
+		showReviewList();
+			
+			function showReviewList(){
+				
+				reviewService.getList({p_no:p_noValue}, function(list){
+					
+					console.log("list : " + list);
+					console.log(list);
+					
+					var str="";
+					if(list == null || list.length == 0){
+						
+						return;
+					}
+					
+					for(var i = 0, len = list.length || 0 ; i < len ; i++) {
+						console.log(list[i]);
+						str += "<li class='left clearfix list-group-item' style='cursor:pointer' data-r_no='" + list[i].r_no + "'>";
+						str += "	<div>";
+						str += "		<div class='header'>";
+						str += "			<strong class='text-primary'>" + list[i].nickname + "</strong>";
+						str += "			<small class='float-right text-muted'>" + reviewService.displayTime(list[i].regdate) + "</small>";
+						str += "		</div>";
+						str += "		<p>" + list[i].content + "</p>";
+						str += "	</div>";
+						str += "</li>"
+					}
+					
+					reviewUL.html(str);
+					
+				})
+			}
 
 	}); 
     //]]>
