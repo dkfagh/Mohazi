@@ -177,12 +177,12 @@ input::-moz-placeholder { color: white; }
             <form  id="searchForm" class="form-inline" action="/board/searchResult" method="get">
                 <div class="input-group">
                     <input type="text" name="keyword" value='<c:out value="${pageMaker.cri.keyword}" />' id="keyword" class="form-control" size="20"  placeholder="검색어를 입력하세요">
-                    <input type="hidden" name="pageNum" value='<c:out value="${pageMaker.cri.pageNum}" />'>
-                    <input type="hidden" name="amount" value='<c:out value="${pageMaker.cri.amount}" />'>
+                    <input type="hidden" name="pageNum" value='<c:out value="1" />'>
+                    <input type="hidden" name="amount" value='<c:out value="16" />'>
                     <button class="btn">
                       <img src="/resources/img/searchIcon.png" id="searchIcon" name="searchIcon">
                 	</button>	
-                </div>
+                </div>s
             </form>
             <!-- search form--->            
         </div>
