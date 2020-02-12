@@ -1,6 +1,6 @@
 console.log("Review Module......")
 
-var reviewService = {function() {
+var reviewService = (function() {
 	
 	function add(review, callback, error) {
 		
@@ -28,8 +28,9 @@ var reviewService = {function() {
 	function getList(param, callback, error) {
 		
 		var p_no = param.p_no;
+		console.log(p_no);
 		
-		$.getJSON("/review/pages/" + p_no + ".json",
+		$.getJSON("/review/party/" + p_no + ".json",
 				function(data) {
 					if (callback) {
 						callback(data);
@@ -124,4 +125,4 @@ var reviewService = {function() {
 		remove : remove,
 		displayTime : displayTime
 	};
-}}();
+})();
