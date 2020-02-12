@@ -21,7 +21,7 @@
                   TYPE=#{type}
       ]]>
 		<choose>
-            <when test="categoryArr != null">
+            <when test="categoryArr != null and categoryArr.size != 0">
                 AND CAT_MAIN IN 
                 <foreach collection="categoryArr" item="category" index="index" separator="," open="(" close=")">
                     #{category}
@@ -29,7 +29,7 @@
             </when>
         </choose>
         <choose>
-			<when test="regionArr != null">
+			<when test="regionArr != null and regionArr.size != 0">
 				AND REGEXP_LIKE(ADDRESS,
 				<foreach collection="regionArr" item="region" index="index" separator="|" open="REGEXP_REPLACE('" close="' , '\s+', ''))">
 					^${region}
@@ -83,9 +83,35 @@
                						TAG like '%'||#{keyword}||'%'
    </select>
    
-   
+   <!-- list 페이지로 갈 때의 조건을 만족한 행만 count(getListWithPaging에서 페이징처리 부분만 뺀 쿼리 사용) -->
    <select id="getTotalCount" resultType="int">
-      Select Count(*) From Party Where p_no > 0 and TYPE=#{type}
+      Select Count(*) 
+      From Party 
+      Where p_no > 0 and TYPE=#{type}
+      <choose>
+            <when test="categoryArr != null and categoryArr.size != 0">
+                AND CAT_MAIN IN 
+                <foreach collection="categoryArr" item="category" index="index" separator="," open="(" close=")">
+                    #{category}
+                </foreach>
+            </when>
+        </choose>
+        <choose>
+			<when test="regionArr != null and regionArr.size != 0">
+				AND REGEXP_LIKE(ADDRESS,
+				<foreach collection="regionArr" item="region" index="index" separator="|" open="REGEXP_REPLACE('" close="' , '\s+', ''))">
+					^${region}
+				</foreach>
+			</when>
+		</choose>
+		<choose>
+			<when test="startDate != null and startDate != ''">
+				AND P_NO IN (
+					SELECT DISTINCT P_NO FROM SCHEDULE 
+					WHERE S_DATE BETWEEN TO_DATE(#{startDate}) AND TO_DATE(#{endDate}||'23:59:59','YYYY-MM-DD HH24:MI:SS')
+				)
+			</when>
+		</choose>
    </select>
 
    <!-- 소모임 목록 -->

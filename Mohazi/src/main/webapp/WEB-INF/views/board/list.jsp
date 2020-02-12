@@ -391,6 +391,10 @@
          
          <form id="actionForm" action="/board/list" method="get">
             <input type="hidden" name="type" value="${param.type}" />
+            <input type="hidden" name="startDate" value="${param.startDate}" />
+            <input type="hidden" name="endDate" value="${param.endDate}" />
+            <input type="hidden" name="region" value="${param.region}" />
+            <input type="hidden" name="category" value="${param.category}" />
             <input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}" />
             <input type="hidden" name="amount" value="${pageMaker.cri.amount}" />
          </form>
