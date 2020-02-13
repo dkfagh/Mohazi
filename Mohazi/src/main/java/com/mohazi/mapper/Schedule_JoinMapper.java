@@ -11,9 +11,9 @@ public interface Schedule_JoinMapper {
 	
 	public int insert(Schedule_JoinVO vo);
 	
-	public Schedule_JoinVO read(Long s_no);
+	public Schedule_JoinVO read(Long sj_no);
 	
-	public int delete (Long s_no);
+	public int delete (Long sj_no);
 	
 	public int update (Schedule_JoinVO vo);
 	
