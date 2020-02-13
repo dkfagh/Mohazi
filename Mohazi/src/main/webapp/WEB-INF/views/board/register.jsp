@@ -199,6 +199,27 @@
 
 </style>
 
+<style>
+
+select {
+  width: 200px;
+  padding: .8em .5em;
+  font-family: inherit;
+  background: url(https://farm1.staticflickr.com/379/19928272501_4ef877c265_t.jpg) no-repeat 95% 50%;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: 1px solid #999;
+  border-radius: 0px;
+   font-size: 14px;
+}
+
+select::-ms-expand {
+  /* for IE 11 */
+  display: none;
+}
+</style>
+
 
 <!-- Container시작 ----------------------------------------------------------------->
 <div class="container" id="contents">
@@ -227,35 +248,25 @@
             <!-- 카테고리입력 -------------------------------------------------------------------------->
             <tr style="width: 800px !important;">
                <th style="width: 200px !important;">카테고리</th>
-               <td class="cat"><select name="cat_main">
+               <td class="cat">
+               	<select name="cat_main" id="cat_main">
                      <option SELECTED>선택하세요.</option>
-                     <option>클래스</option>
-                     <option>모임</option>
-                     <option>클래스</option>
-                     <option>클래스</option>
-                     <option>클래스</option>
-                     <option>클래스</option>
+                     <option value="문화">문화</option>
+                     <option value="IT">IT</option>
+                     <option value="스포츠">스포츠</option>
+                     <option value="창작">창작</option>
+                     <option value="체험">체험</option>
                </select></td>
-               <td class="cat"><select name="cat_sub">
+               <td class="cat">
+               <select name="cat_sub" id="cat_sub">
                      <option SELECTED>선택하세요.</option>
-                     <option>운동</option>
-                     <option>모임</option>
-                     <option>클래스</option>
-                     <option>클래스</option>
-                     <option>클래스</option>
-                     <option>클래스</option>
                </select></td>
-
-
             </tr>
-
 
             <!-- 소개입력 -------------------------------------------------------------------------->
             <tr>
                <th>소개입력</th>
                <td>
-                  <!-- <input type="textarea" rows="5" name="content">-->
-                  <!--  <div id="summernote" name="content"></div>  -->
                   <textarea id="summernote" name="content"></textarea>
                </td>
             </tr>
@@ -314,7 +325,6 @@
 			</c:choose>
 
 			<!-- id입력 -------------------------------------------------------------------------->
-            <%-- <input type="hidden" name="id" value="${param.id}"> --%>
             <input type="hidden" name="id" id="id" value='<sec:authentication property="principal.username"/>'>
       
             
@@ -584,5 +594,57 @@ $(document).ready(function(e){
 });
   </script>
 <!--첨부파일업로드 ------------------------------------------------------------------->
+
+
+<!-- 카테고리분류 JQUERY -------------------------------->
+<script>
+$(document).ready(function(){
+	var a=['영화/연극/뮤지컬','전시','음악','독서'];
+	var b=['게임','프로그래밍','블로그'];
+	var c=['구기','수상','익스트림','러닝','헬스'];
+	var d=['공예','연주','요리','사진','미술'];
+	var e=['여행','맛집'];
+	$('#cat_main').change(function(){
+		var sel = $(this).val();
+		if(sel == "문화"){
+			$('.op').remove();
+			$.each(a,function(i,item){
+				$('#cat_sub').append('<option class="op">'+item+'</option>');
+			});
+		}
+		else if(sel == "IT"){
+			$('.op').remove();
+			$.each(b,function(i,item){
+				$('#cat_sub').append('<option class="op">'+item+'</option>');
+		
+			});
+		}
+		else if(sel == "스포츠"){
+			$('.op').remove();
+			$.each(c,function(i,item){
+				$('#cat_sub').append('<option class="op">'+item+'</option>');
+		
+			});
+		}
+		
+		else if(sel == "창작"){
+			$('.op').remove();
+			$.each(d,function(i,item){
+				$('#cat_sub').append('<option class="op">'+item+'</option>');
+		
+			});
+		}
+		else if(sel == "체험"){
+			$('.op').remove();
+			$.each(e,function(i,item){
+				$('#cat_sub').append('<option class="op">'+item+'</option>');
+		
+			});
+		}		
+	});
+	
+});
+
+</script>
 
 
