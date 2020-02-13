@@ -64,10 +64,6 @@ padding:20px !important;
     padding-bottom:15px;
 
 }
-.list-header{
-    border-top: solid 1px #7bd4ac ;
-}
-
 .btnWrite{
    background-color:#7bd4ac;
    color:white;

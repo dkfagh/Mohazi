@@ -22,5 +22,9 @@
 		select * from attach where p_no = #{p_no}
 	</select>
 
-
+	<delete id="deleteAll">
+	
+			delete attach where p_no = #{p_no}
+	
+	</delete>
 </mapper>

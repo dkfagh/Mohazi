@@ -68,17 +68,37 @@ public class BoardServiceImpl implements BoardService{
       log.info("!!! GET !!!" + p_no);
       return mapper.read(p_no);
    }
+   @Transactional
    @Override
    public boolean modify(PartyVO party) {
       log.info("!!! MODIFY !!!" + party);
       
+      attachMapper.deleteAll(party.getP_no());
+      
       boolean modifyResult = (mapper.update(party) == 1);
+      log.info(modifyResult);
+      log.info( party.getAttachList());
+      if (modifyResult && party.getAttachList().size() > 0) {
+
+			party.getAttachList().forEach(attach -> {
+
+				attach.setP_no(party.getP_no());
+				attachMapper.insert(attach);
+			});
+		}
+      
       return modifyResult;
    }
+   @Transactional
    @Override
    public boolean remove(Long p_no) {
-      // TODO Auto-generated method stub
-      return false;
+	   
+	   log.info("remove...." + p_no);
+
+		attachMapper.deleteAll(p_no);
+
+		return mapper.delete(p_no) == 1;
+   
    }
    
    @Override
@@ -111,7 +131,7 @@ public class BoardServiceImpl implements BoardService{
 		return attachMapper.findByPno(p_no);
 	}
 
-  
+
    
    
 }

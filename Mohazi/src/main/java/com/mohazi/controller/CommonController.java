@@ -106,4 +106,8 @@ public class CommonController {
 		model.addAttribute("FAQ", FAQService.getList(FAQ));
 	}
 	
+	// 뭐하지 화면
+	@RequestMapping(value = "/mohazi", method = RequestMethod.GET)
+	public void mohazi() {}
+	
 }

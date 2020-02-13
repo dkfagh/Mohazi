@@ -119,6 +119,16 @@
 			color:gray;
 			
 		}
+		.table td{
+			margin-top:0;
+			margin-bottom:0;
+		}
+		.table button{
+			width:80px;
+			margin-top:0;
+			margin-botton:0;
+			border:solid red 0.5px;
+		}
     </style>
 
  <div class="container">
@@ -163,22 +173,23 @@
                                  		</td>
                                		</tr>
                                 </c:when>
-                                <c:when test="${pageMaker.total >0 }">
+                                <c:when test="${pageMaker.total > 0 }">
                                 	<c:forEach items="${list}" var="party">
                              			<tr>
-                                   			<td>
+                                   			<td >
                                            		<a class="move" href='<c:out value="${party.p_no}"/>'>
                                                		<c:out value="${party.title}" /> 
                                            		</a>
                                    			</td>
-                                   			<td>
+                                   			<td></td>
+                                   			<td >
                                    			
                                    			<!-- 내가 개설한 정보표시-->
-                                   			<c:set var="username" value = "${principal.username}" />
-                                   			<c:set var="writer" value = "${party.id}" />
                                    			
-                                       			<c:if test = "${username eq writer}"> 
-		                                       		<i class="fab fa-angellist"></i>
+                                   				<c:set var="writer" value = "${party.id}" />
+                                   			
+                                       			<c:if test = "${principal.username eq writer}"> 
+		                                       		<i class="fab fa-angellist" style="background:red"></i>
 		                                       	</c:if>
                                        		<!-- 내가 개설한 정보표시 끝-->
                                    			</td>
@@ -187,13 +198,13 @@
                                  				<c:out value="${party.id}"/>
                                    			</td> --%>
                                    			<!-- 개설자 ID 끝 -->
-                                   			<td>
+                                   			<td >
                                    				<c:choose>
                                    					<c:when test="${ username ne writer}"> <!-- 참여한 글일때 -->
-                                   						<button class="btn btn-sm btn-primary" name="exit" type="button">나가기</button>
+                                   						<button class="btn btn-sm" name="exit" type="button">나가기</button>
                                						</c:when>
                                						<c:when test="${ username eq writer}"> <!--  작성한 글일때 -->
-                                   						<button class="btn btn-sm btn-primary" name="exit" type="button">삭제</button>
+                                   						<button data-oper='remove' class="btn btn-sm" name="delete" type="button">삭제</button>
                                						</c:when>
                                    				</c:choose>
                                    			</td>

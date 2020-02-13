@@ -1,5 +1,8 @@
 package com.mohazi.controller;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
@@ -9,6 +12,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -109,7 +113,7 @@ public class BoardController {
 
    // 수정 화면
    @RequestMapping(value = "/modify", method = RequestMethod.GET)
-   public void modify(@RequestParam("p_no") Long p_no, Model model) {
+   public void modify(@RequestParam("p_no") Long p_no, @ModelAttribute("cri") Criteria cri, Model model) {
       log.info("!!! MODIFY PAGE !!!");
 
       model.addAttribute("party", service.get(p_no));
@@ -118,28 +122,39 @@ public class BoardController {
 
    // 수정 처리
    @RequestMapping(value = "/modify", method = RequestMethod.POST)
-   public String modify(PartyVO party, RedirectAttributes rttr) {
+   public String modify(PartyVO party, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
       log.info("!!! MODIFY !!!");
 
       if(service.modify(party) == true) {
          rttr.addFlashAttribute("result", "modify");
       }
-
+      
+        rttr.addAttribute("pageNum", cri.getPageNum());
+		rttr.addAttribute("amount", cri.getAmount());
+		rttr.addAttribute("type", cri.getType());
+		rttr.addAttribute("keyword", cri.getKeyword());
+		
       String url = "redirect:/board/list?type=" + party.getType();
       return url;
    }
 
    // 삭제 처리
    @RequestMapping(value = "/remove", method = RequestMethod.POST)
-   public String remove(@RequestParam("p_no") Long p_no, RedirectAttributes rttr) {
-      log.info("!!! REMOVE !!!");
-
+   public String remove(@RequestParam("p_no") Long p_no, Criteria cri, RedirectAttributes rttr) {
+      log.info("!!! REMOVE !!!"+p_no);
+  
+      List<BoardAttachVO> attachList = service.getAttachList(p_no);
+      
       if(service.remove(p_no) == true) {
+
+		// delete Attach Files
+		deleteFiles(attachList);
+    	  
          rttr.addFlashAttribute("result", "remove");
       }
 
       String url = "redirect:/board/list?type=" + service.get(p_no).getType();
-      return url;
+      return url + cri.getListLink();
    }
    
    //첨부이미지 리스트출력
@@ -149,4 +164,39 @@ public class BoardController {
 	  log.info("getAttachList" + p_no);
 	  return new ResponseEntity<>(service.getAttachList(p_no), HttpStatus.OK);
   }
+  
+  
+  private void deleteFiles(List<BoardAttachVO> attachList) {
+	    
+	    if(attachList == null || attachList.size() == 0) {
+	      return;
+	    }
+	    
+	    log.info("delete attach files...................");
+	    log.info(attachList);
+	    
+	    attachList.forEach(attach -> {
+	      try {        
+	        Path file  = Paths.get("C:\\upload\\"+attach.getUploadPath()+"\\" + attach.getUuid()+"_"+ attach.getFileName());
+	        
+	        Files.deleteIfExists(file);
+	        
+	        if(Files.probeContentType(file).startsWith("image")) {
+	        
+	          Path thumbNail = Paths.get("C:\\upload\\"+attach.getUploadPath()+"\\s_" + attach.getUuid()+"_"+ attach.getFileName());
+	          
+	          Files.delete(thumbNail);
+	        }
+	
+	      }catch(Exception e) {
+	        log.error("delete file error" + e.getMessage());
+	      }//end catch
+	    });//end foreachd
+	  }
+
+  
+  
+  
+  
+  
 }

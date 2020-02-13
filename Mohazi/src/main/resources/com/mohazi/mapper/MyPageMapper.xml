@@ -18,7 +18,7 @@
 	             select p.p_no, p.title, p.id
 					from party_join pj, party p
 					where pj.p_no = p.p_no and
-					pj.id=#{id}
+					pj.id=#{id} and TYPE=#{type}
 	
 				union all
 	             
@@ -31,15 +31,24 @@
         
          <![CDATA[ 
          		where 
-                 rownum<=#{pageNum} * #{amount} 
+                 rownum <=#{pageNum} * #{amount} 
                   
              )
          where rn > (#{pageNum}-1) * #{amount} 
         ]]>
    </select>
-   <!-- 아이디로 등록한 글을 타입별로 불러와 몇개의 글이 있는지 count 갯수로 환산 -->
+   <!-- 아이디로 등록한 글과 참여한 글로 타입별로 불러와 몇개의 글이 있는지 count 갯수로 환산하여 합함 -->
    <select id="getTotalCount" resultType="int">
-      Select Count(*) From Party Where p_no > 0 and TYPE=#{type} and id= #{id}
+   
+      select sum(count) from
+		( select count(*) count
+			from party_join pj, party p
+			where pj.p_no = p.p_no and
+			pj.id=#{id} and p.type=#{type}
+			
+			union all
+			
+			Select Count(*) count From Party Where p_no > 0 and TYPE=#{type} and id=#{id})
    </select>
 
    <!-- 소모임 목록 -->
