@@ -164,6 +164,8 @@ public class BoardController {
 	  log.info("getAttachList" + p_no);
 	  return new ResponseEntity<>(service.getAttachList(p_no), HttpStatus.OK);
   }
+  
+  
   private void deleteFiles(List<BoardAttachVO> attachList) {
 	    
 	    if(attachList == null || attachList.size() == 0) {

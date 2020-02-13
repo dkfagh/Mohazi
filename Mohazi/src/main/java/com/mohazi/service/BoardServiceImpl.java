@@ -68,6 +68,7 @@ public class BoardServiceImpl implements BoardService{
       log.info("!!! GET !!!" + p_no);
       return mapper.read(p_no);
    }
+   @Transactional
    @Override
    public boolean modify(PartyVO party) {
       log.info("!!! MODIFY !!!" + party);
@@ -75,7 +76,8 @@ public class BoardServiceImpl implements BoardService{
       attachMapper.deleteAll(party.getP_no());
       
       boolean modifyResult = (mapper.update(party) == 1);
-      
+      log.info(modifyResult);
+      log.info( party.getAttachList());
       if (modifyResult && party.getAttachList().size() > 0) {
 
 			party.getAttachList().forEach(attach -> {
@@ -87,6 +89,7 @@ public class BoardServiceImpl implements BoardService{
       
       return modifyResult;
    }
+   @Transactional
    @Override
    public boolean remove(Long p_no) {
 	   
