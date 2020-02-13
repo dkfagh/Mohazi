@@ -1,16 +1,20 @@
     <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap" rel="stylesheet">
 
 <style>
 .navbar{ 
     height: 50px;   
     margin-top: 2px;
     background-color: white;   
-    border-bottom: solid 2px  #7bd4ac ;
+	border-bottom:#EBEBEB solid 1px;
     opacity: 0.9;
+    font-family: 'Nanum Gothic', sans-serif;
+    font-size:16px;
+	font-weight:bold;
 }
 .navbar-nav{
-    padding-left:19%;
+    margin-left:19.5%;
 }
 .nav-item{
     margin-right: 15px;

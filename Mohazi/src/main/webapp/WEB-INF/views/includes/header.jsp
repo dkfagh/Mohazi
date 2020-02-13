@@ -34,39 +34,53 @@
 	<!-- FAQ accordion -->
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	<link rel="stylesheet" href="/resources/demos/style.css">
-
+	<!-- 구글폰트  -->
+	<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic+Coding&display=swap" rel="stylesheet">
 
 <style>
 
+*{
+	font-family: 'Nanum Gothic Coding', monospace ;
+}
+
 #header {
-background-color: #fcfcfd;
+	background-color: #fcfcfd;
 }
 
 
 #sub-header {
-position: relative;
-width: 100%;
-height: 130px;
-margin: 0 auto;
-border-bottom:#7bd4ac solid 2px;
+	width: 100%;
+	height: 130px;
+	margin: 0 auto;
+	border-bottom:#EBEBEB solid 1px;
 }
 
 #logo{
-    padding-top: 25px;
+    margin-top: 28px;
     float: left;
     padding-left:5%;
 }
 
-#login{
-    padding-top: 45px;
+#btnLogin{
+	margin-top:45px;
     float: right;
-    padding-right:5%;
-
-}
-
-#logBox{
+    margin-right:7%;
+	background-color:#e9faf2;
+	border-radius:15px;
+	font-weight:bold;
+	padding:8px;
+	width:75px;
+	}
+	
+#btnLogin a{
+	text-decoration:none;
+	color:#66a385;
+	font-size:14px;
 	
 }
+
+
+
 #login a{
     background-color: #7bd4ac ;
     color: white;
@@ -99,28 +113,37 @@ border-bottom:#7bd4ac solid 2px;
     border: solid 1px black;
 }
 
-.form-inline{
-    padding-top: 45px;
-    padding-right: 12%;
-    float: right;
+.input-group{
+	width:450px;
+	padding-top:40px;
+	margin:auto;
 }
 
-
-
-
 #keyword{
-   width:330px !important;
-   float: right;
-   border-radius:10px;
-   border-color:#e9faf2;
-   background-color:#e9faf2;
+    float: right;
+	border:0px;
+	border-radius:15px;
+	background-color:#e9faf2;
+	font-size:14px;
+	text-color:#3a5d4c;
+	padding-top:15px;
+	padding-bottom:15px;
+	height:40px;
+	position:relative;
 }
 
 #searchIcon{
    padding-left:3px;
-   margin-top:-5px;
-   margin-left:-5px;
+   margin-left:-1px;
    width:32px;
+}
+
+#btnSearch{
+	border:2px solid;
+	border-color:white;
+	background:white;
+	margin-left:-2px;
+	border-radius:1px;
 }
 
 /* placeholder color change
@@ -166,19 +189,19 @@ input::-moz-placeholder { color: white; }
            		</div>
             </sec:authorize>
             <sec:authorize access="isAnonymous()">
-            	<div id="login">
-                  	<a href="/customLogin" class="btn">로그인</a>
-               	</div>
+            	<button id="btnLogin" class="btn">
+                  	<a href="/customLogin">로그인</a>
+               	</button>
             </sec:authorize>
             <!-- 시큐리티 영역 끝 -------------------------------------->
             
             <!-- search form--------------------------------- ---->
-            <form  id="searchForm" class="form-inline" action="/board/searchResult" method="get">
+            <form  id="searchForm" action="/board/searchResult" method="get">
                 <div class="input-group">
                     <input type="text" name="keyword" value='<c:out value="${pageMaker.cri.keyword}" />' id="keyword" class="form-control" size="20"  placeholder="검색어를 입력하세요">
                     <input type="hidden" name="pageNum" value='<c:out value="1" />'>
                     <input type="hidden" name="amount" value='<c:out value="16" />'>
-                    <button class="btn">
+                    <button id="btnSearch">
                       <img src="/resources/img/searchIcon.png" id="searchIcon" name="searchIcon">
                 	</button>	
                 </div>
