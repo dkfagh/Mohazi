@@ -161,7 +161,7 @@
                                  		</td>
                                		</tr>
                                 </c:when>
-                                <c:when test="${pageMaker.total >0 }">
+                                <c:when test="${pageMaker.total > 0 }">
                                 	<c:forEach items="${list}" var="party">
                              			<tr>
                                    			<td>
@@ -171,14 +171,23 @@
                                    			</td>
                                    			<td>
                                    			<!-- 내가 개설한 정보표시-->
-                                       			<c:if test = "${principal.username eq party.id }">
+                                       			<c:set var="writer" value = "${party.id}" />
+                                       			
+                                       			<c:if test = "${principal.username eq writer }">
 		                                       		<%-- <b>[<c:out value="${party.replyCnt}" />]</b> --%> 
 		                                       		<i class="fab fa-angellist"></i>
 		                                       	</c:if>
                                        		<!-- 내가 개설한 정보표시 끝-->
                                    			</td>
                                    			<td>
-                                 				<c:out value="${party.id}"/>  	
+                                 				<c:choose>
+                                   					<c:when test="${ username ne writer}"> <!-- 참여한 글일때 -->
+                                   						<button class="btn btn-sm" name="exit" type="button">나가기</button>
+                               						</c:when>
+                               						<c:when test="${ username eq writer}"> <!--  작성한 글일때 -->
+                                   						<button data-oper='remove' class="btn btn-sm" name="delete" type="button">삭제</button>
+                               						</c:when>
+                                   				</c:choose> 	
                                    			</td>
                                    			<td>
                                    				

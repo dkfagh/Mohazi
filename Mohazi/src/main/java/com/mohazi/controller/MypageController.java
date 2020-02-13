@@ -1,16 +1,20 @@
 package com.mohazi.controller;
 
 import java.security.Principal;
+import java.util.List;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.mohazi.domain.BoardAttachVO;
 import com.mohazi.domain.Criteria;
 import com.mohazi.domain.PageDTO;
-import com.mohazi.domain.PartyVO;
 import com.mohazi.domain.UsersVO;
 import com.mohazi.service.MyPageService;
 import com.mohazi.service.UsersService;
@@ -61,6 +65,25 @@ public class MypageController {
 		log.info("total : "+total);
 		model.addAttribute("pageMaker", new PageDTO(cri, total));
 	}
+	
+//  REMOVE
+	@PreAuthorize("principal.username == #writer")
+   @RequestMapping(value="/remove", method= {RequestMethod.POST,RequestMethod.GET})
+   public String remove(@RequestParam("p_no") Long p_no, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr, String writer) {
+      log.info("myPage remove..." + p_no);
+   
+    //  List<BoardAttachVO> attachList = myPageService.getAttachList(p_no);
+      log.info("작성자 : " + writer);
+      if(myPageService.remove(p_no)) {
+    	  
+    	  // delete Attach Files
+    	//  deleteFiles(attachList);
+    	  
+         rttr.addFlashAttribute("result", "success");
+      }
+      
+      return "redirect:/mypage/list"+cri.getListLink();
+   }
 	
 	// 내정보 변경 화면
 	@RequestMapping(value = "/myInfo", method = RequestMethod.GET)
