@@ -58,7 +58,7 @@ var reviewService = (function() {
 	}
 	
 	
-	function update(review, callback, error) {
+	function modify(review, callback, error) {
 		
 		console.log("R_NO : " + review.r_no);
 		
@@ -121,7 +121,7 @@ var reviewService = (function() {
 		add : add,
 		getList : getList,
 		get : get,
-		update : update,
+		modify : modify,
 		remove : remove,
 		displayTime : displayTime
 	};

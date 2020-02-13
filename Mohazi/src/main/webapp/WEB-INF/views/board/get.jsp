@@ -378,19 +378,42 @@ font-size: 14px;
 					<div id="tab2" class="tabContent card">
 						<h4 class="card-title">후기</h4>
 						<div class="card-body">
-							<ul class="chat list-group">
+							<ul class="inputReview list-group">
+								<li class="list-group-item">
+									<div>
+										<form class="form" action="/review/new" method="post">
+											<textarea rows="3" cols="20" name="content"></textarea>
+											<button type="button" class="btn btn-lg" id="btnInputReview">등록</button>
+										</form>
+									</div>
+								</li>
+							</ul>
+							<ul class="reviewList list-group">
 							</ul>
 						</div>
 					</div>
 			
-					<div id="tab3" class="tabContent">
-						<h4>Q&amp;A</h4>
-						<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
+					<div id="tab3" class="tabContent card">
+						<h4 class="card-title">Q&amp;A</h4>
+						<div class="card-body">
+							<ul class="qna list-group">
+							</ul>
+						</div>
 					</div>
 			
-					<div id="tab4" class="tabContent">
-						<h4>변경 및 취소</h4>
-						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+					<div id="tab4" class="tabContent card">
+						<h4 class="card-title">변경 및 취소</h4>
+						<div class="card-body">
+							<ul class="tip_list" style="padding-left: 10px;">
+		                        <li><strong>모임/클래스의 신청/취소/변경/환불은 참여신청 기간 내에만 가능합니다.</strong></li>
+		                        <li><strong>결제한 클래스는 환불 시 결제 수단과 환불 시점에 따라 수수료가 부과될 수 있습니다.</strong></li>
+		                        <li>결제, 환불, 참여신청 수정/취소, 참여상태 확인, 참여내역 확인은 마이페이지에서 할 수 있습니다.</li>
+		                        <li>모임 또는 클래스의 설정, 모집정원 초과 여부에 따라 대기자로 선정될 수 있습니다. 자세한 사항은 <a href="#">FAQ</a>를 확인해주세요.</li>
+		                        <li>모하지 결제서비스를 이용하는 모임은 개설자의 사업자 여부에 따라 결제증빙 발행이 가능합니다. 자세한 사항은 <a href="#">FAQ</a>를 확인해 주세요.</li>
+		                        <li>개설자 선정방식 또는 개설자 통장입금 방식의 모임 참여/결제 확인은 개설자에게 문의 바랍니다.</li>
+		                        <li>모하지는 참여신청 및 참가비 결제 기능을 제공하는 회사로 모임/클래스 개설자(주최측)가 아닙니다. 모임/클래스 내용과 관련한 사항은 모임/클래스 개설자에게 문의 바랍니다.</li>
+		                    </ul>
+	                    </div>
 					</div>
 				</div>	
 			</div>
@@ -408,7 +431,6 @@ font-size: 14px;
 						<div class="text02">일정 참가 인원수 확인 후 신청하기 버튼을 눌러주세요.</div>
 					</div>									
 					
-					<form>
 					<div class="class-confirm02">
 						<div class="btn-swip swip-date closed schedule-date-trigger" id="btn-date">
 							<a>일정 확인</a>
@@ -478,6 +500,8 @@ font-size: 14px;
 		
     $(document).ready(function(){  	
     	
+    	var p_noValue='<c:out value="${party.p_no}"/>';
+    	
     	 //ajaxSend시 토큰값 전달---------------------------------------------------------------	
     	var csrfHeaderName = "${_csrf.headerName}";
     	var csrfTokenValue = "${_csrf.token}";
@@ -488,10 +512,8 @@ font-size: 14px;
     	
     	//이미지 데이터 가져오는 부분
     	(function(){
-    		
-    	var p_no='<c:out value="${party.p_no}"/>';
     	
-    	$.getJSON("/board/getAttachList", {p_no:p_no},function(arr){
+    	$.getJSON("/board/getAttachList", {p_no:p_noValue},function(arr){
     		
     		console.log(arr);
     	
@@ -579,12 +601,10 @@ font-size: 14px;
                 } );	
 
 
-			//스케줄등록버튼 눌렀을때 모달 띄우기
-			var p_noValue='<c:out value="${party.p_no}"/>';
-
-			$('#addScheduleBtn').on("click", function(e){
-				$(".modal").modal("show");
-			});	
+		//스케줄등록버튼 눌렀을때 모달 띄우기
+		$('#addScheduleBtn').on("click", function(e){
+			$(".modal").modal("show");
+		});	
 			
 			//modaldatpicker
 		$(function () {
@@ -605,7 +625,6 @@ font-size: 14px;
 		
 		// 스케쥴 목록 출력 
 		
-		var p_noValue = '<c:out value="${party.p_no}"/>';
 		var scheduleUL = $(".dateTimeGroup")
 
 		
@@ -660,9 +679,9 @@ font-size: 14px;
 
 			
 			
-		// review 출력
+		// review list START
 		
-		var reviewUL = $(".chat");
+		var reviewUL = $(".reviewList");
 			
 		showReviewList();
 			
@@ -681,13 +700,16 @@ font-size: 14px;
 					
 					for(var i = 0, len = list.length || 0 ; i < len ; i++) {
 						console.log(list[i]);
-						str += "<li class='left clearfix list-group-item' style='cursor:pointer' data-r_no='" + list[i].r_no + "'>";
+						str += "<li class='left clearfix list-group-item' data-r_no='" + list[i].r_no + "'>";
 						str += "	<div>";
 						str += "		<div class='header'>";
-						str += "			<strong class='text-primary'>" + list[i].nickname + "</strong>";
-						str += "			<small class='float-right text-muted'>" + reviewService.displayTime(list[i].regdate) + "</small>";
+						str += "			<strong>" + list[i].nickname + "</strong>";
+						str += "			<small class='text-muted'>" + reviewService.displayTime(list[i].regdate) + "</small>";
+						str += "			<a href='#' onclick='return false' class='float-right text-muted' style='text-decoration:none' id='remove' data-r_no='" + list[i].r_no + "'>삭제</a>";
+						str += "			<span class='float-right text-muted'>|</span>";
+						str += "			<a href='#' onclick='return false' class='float-right text-muted' style='text-decoration:none' id='modify' data-r_no='" + list[i].r_no + "'>수정</a>";
 						str += "		</div>";
-						str += "		<p>" + list[i].content + "</p>";
+						str += "		<input name='content' value='" + list[i].content + "' style='border:0px' readonly='readonly'>";
 						str += "	</div>";
 						str += "</li>"
 					}
@@ -696,7 +718,114 @@ font-size: 14px;
 					
 				})
 			}
-
+			// review list END
+			
+			
+			
+		// add review START
+		var userInfo = $("#logBox");
+		var inputReview = $(".form");
+		
+		var userInfoId = userInfo.find("input[name='id']");  // user ID
+		var inputReviewContent = inputReview.find("textarea[name='content']");  // review content
+		
+		
+		var btnInputReview = $("#btnInputReview");
+		
+		
+		btnInputReview.on("click", function(){
+			
+			console.log(userInfoId.val());
+			console.log(inputReviewContent.val());
+			
+			var review = {
+					id: userInfoId.val(),
+					p_no: p_noValue,
+					content: inputReviewContent.val()
+			};
+			console.log(review);
+			reviewService.add(review, function(result){
+				
+				alert(result);
+				
+				showReviewList();
+			});
+		});
+		// add review END
+				
+		
+		
+		// modify review START
+		$(".reviewList").on("click", "#modify", function(){
+			
+			var listItem = $("li");
+			var r_no = $(this).data("r_no");
+			
+			console.log(r_no);
+			
+			var modifyReview = reviewUL.find("li[data-r_no='" + r_no + "']");
+			var modifyReviewContent = modifyReview.find("input[name='content']");
+			
+			console.log(modifyReviewContent.val());
+			
+			var str = "";
+			
+			str += "<li class='list-group-item'>";
+			str += "	<div>";
+			str += "		<form class='form' action='/review/r_no' method='post'>";
+			str += "			<textarea rows='3' cols='20' name='contentModify'>" + modifyReviewContent.val() + "</textarea>";
+			str += "			<button type='button' class='btn btn-lg' id='btnModifyReview' data-r_no='" + r_no + "'>수정</button>";
+			str += "		</form>";
+			str += "	</div>";
+			str += "</li>";
+			
+			
+			modifyReview.html(str);
+						
+		});
+		
+		$(".reviewList").on("click", "#btnModifyReview", function(){
+			
+			var r_no = $(this).data("r_no");
+			console.log(r_no);
+			
+			var modifyReview = $(".reviewList");
+			var modifyReviewContent = modifyReview.find("textarea[name='contentModify']");
+			console.log(modifyReviewContent.val());
+			
+			var review = {
+					content: modifyReviewContent.val(),
+					r_no: r_no
+			};
+			console.log(review);
+					
+			reviewService.modify(review, function(result){
+				
+				alert(result);
+				
+				showReviewList();
+			});
+		});
+		// modify review END
+		
+		
+		
+		// remove review START
+		$(".reviewList").on("click", "#remove", function(){
+			
+			var r_no = $(this).data("r_no");
+			
+			console.log(r_no);
+			
+			reviewService.remove(r_no, function(result){
+				
+				alert(result);
+				
+				showReviewList();
+			});			
+		});
+		// remove review END
+		
 	}); 
     //]]>
  </script>
