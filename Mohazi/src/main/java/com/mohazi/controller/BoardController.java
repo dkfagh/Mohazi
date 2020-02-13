@@ -1,5 +1,8 @@
 package com.mohazi.controller;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
@@ -131,15 +134,21 @@ public class BoardController {
 
    // 삭제 처리
    @RequestMapping(value = "/remove", method = RequestMethod.POST)
-   public String remove(@RequestParam("p_no") Long p_no, RedirectAttributes rttr) {
-      log.info("!!! REMOVE !!!");
-
+   public String remove(@RequestParam("p_no") Long p_no, Criteria cri, RedirectAttributes rttr) {
+      log.info("!!! REMOVE !!!"+p_no);
+  
+      List<BoardAttachVO> attachList = service.getAttachList(p_no);
+      
       if(service.remove(p_no) == true) {
+
+		// delete Attach Files
+		deleteFiles(attachList);
+    	  
          rttr.addFlashAttribute("result", "remove");
       }
 
       String url = "redirect:/board/list?type=" + service.get(p_no).getType();
-      return url;
+      return url + cri.getListLink();
    }
    
    //첨부이미지 리스트출력
@@ -149,4 +158,37 @@ public class BoardController {
 	  log.info("getAttachList" + p_no);
 	  return new ResponseEntity<>(service.getAttachList(p_no), HttpStatus.OK);
   }
+  private void deleteFiles(List<BoardAttachVO> attachList) {
+	    
+	    if(attachList == null || attachList.size() == 0) {
+	      return;
+	    }
+	    
+	    log.info("delete attach files...................");
+	    log.info(attachList);
+	    
+	    attachList.forEach(attach -> {
+	      try {        
+	        Path file  = Paths.get("C:\\upload\\"+attach.getUploadPath()+"\\" + attach.getUuid()+"_"+ attach.getFileName());
+	        
+	        Files.deleteIfExists(file);
+	        
+	        if(Files.probeContentType(file).startsWith("image")) {
+	        
+	          Path thumbNail = Paths.get("C:\\upload\\"+attach.getUploadPath()+"\\s_" + attach.getUuid()+"_"+ attach.getFileName());
+	          
+	          Files.delete(thumbNail);
+	        }
+	
+	      }catch(Exception e) {
+	        log.error("delete file error" + e.getMessage());
+	      }//end catch
+	    });//end foreachd
+	  }
+
+  
+  
+  
+  
+  
 }

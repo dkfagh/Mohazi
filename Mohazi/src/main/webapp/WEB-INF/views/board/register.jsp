@@ -218,6 +218,29 @@ select::-ms-expand {
   /* for IE 11 */
   display: none;
 }
+
+.input-title{position: relative; width:200px}
+#inputBox {
+    width: 100%;
+
+}
+input[type=text]:-ms-clear{
+    display: none;
+}
+
+#searchclear {
+    position: absolute;
+    right: 3px;
+    top: 0;
+    bottom: 0;
+    width: 10px;
+    height: 14px;
+    margin: auto;
+    font-size: 13px;
+    cursor: pointer;
+    color: black;
+    background-color: #fff;
+}
 </style>
 
 
@@ -231,7 +254,7 @@ select::-ms-expand {
 
 
 
-      <h2>Register</h2>
+      <h2>등록</h2>
       <br>
       <!-- Table시작 ----------------------------------------------------------------->
       <table class="table">
@@ -241,8 +264,12 @@ select::-ms-expand {
 
             <tr>
                <th>제목</th>
-               <td id="title"><input type="text" placeholder=" 제목을 입력하세요."
-                  name="title" /></td>
+               <td id="title">
+               <div class="input-title">
+               <input type="text" placeholder=" 제목을 입력하세요." name="title" id="inputBox"/>
+               <span id="searchclear">X</span>
+               </div>
+               </td>
             </tr>
 
             <!-- 카테고리입력 -------------------------------------------------------------------------->
@@ -323,11 +350,14 @@ select::-ms-expand {
 					</tr>
 				</c:when>
 			</c:choose>
-
+			
 			<!-- id입력 -------------------------------------------------------------------------->
-            <input type="hidden" name="id" id="id" value='<sec:authentication property="principal.username"/>'>
-      
-            
+			<tr>
+			<th>ID</th>
+			<td> <input type="text" name="id" id="id" value='<sec:authentication property="principal.username"/>' readonly="readonly">
+			</td>
+			</tr>
+	            
             <!-- type입력 -------------------------------------------------------------------------->
             <input type="hidden" name="type" id="type" value="${param.type}">
             
@@ -645,6 +675,22 @@ $(document).ready(function(){
 	
 });
 
+</script>
+
+
+<!-- title deleteall ---------------------------------------------------------->
+<script>
+	var $ipt = $('#inputBox'), $clearIpt = $('#searchclear');
+
+	$ipt.keyup(function() {
+		$("#searchclear").toggle(Boolean($(this).val()));
+	});
+
+	$clearIpt.toggle(Boolean($ipt.val()));
+	$clearIpt.click(function() {
+		$("#inputBox").val('').focus();
+		$(this).hide();
+	});
 </script>
 
 
