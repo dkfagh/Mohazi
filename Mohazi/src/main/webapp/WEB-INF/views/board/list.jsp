@@ -119,9 +119,9 @@
    background-color: white;
 }
 .list-title-img img{
-    width: 100%;
-    height: auto;
-}
+	width:100%;
+	height: 100%;
+    }
 .list-title-text {
    position: relative;
    border-radius: 0 0 6px 6px;
@@ -386,7 +386,9 @@ function showThumbnail(p_no){
 						<img id='<c:out value="${party.p_no}" />' src="/resources/img/default_thumbnail.png" alt="thumbnail image" />
                       	<script>showThumbnail(${party.p_no});</script>
                    	   </a>
-                   	   <span class="list-title-address badge badge-secondary">${party.address}</span>
+                   	  <span class="list-title-address badge badge-secondary">
+                            <i class="fas fa-map-marker-alt"></i> ${party.address}
+                      </span>
                    </div>
 	               <div class="list-title-text">
 	                  <div class="list-category-main">
@@ -400,7 +402,7 @@ function showThumbnail(p_no){
 	                  </div>
 	                  <div class="list-title-sub">
 	                  	<c:if test="${not empty party.tag}">
-	                  		#<c:out value="${party.tag}" />
+	                  		<i class="fas fa-hashtag"></i> <c:out value="${party.tag}" />
 	                  	</c:if>
 	                  </div>
 	              	</div>

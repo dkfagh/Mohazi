@@ -79,25 +79,32 @@
     color: white;
 }
 
-#logoutBox{
-    padding-top: 45px;
+#btnLogout{
     float: right;
-    padding-right:5%;
-	 
+    background-color:#e9faf2;
+	border-radius:5px;
+	font-weight:bold;
+	padding:7px;
+	width:75px;
+	color:#66a385;
+	font-size:14px;
+	border:0px;
+	margin-top:43px;
+	margin-right:5%;
 }
-#logoutBox button{
-    background-color: #7bd4ac ;
-    color: white;
-}
-#myPage{
-	padding-top: 45px;
+
+#btnMypage{
     float: right;
-    margin-right:0;
-    
-}
-#myPage a{
-    background-color: #7bd4ac ;
-    color: white;
+    background-color:#e9faf2;
+	border-radius:5px;
+	font-weight:bold;
+	padding:7px;
+	width:75px;
+	color:#66a385;
+	font-size:14px;
+	border:0px;
+	margin-top:43px;
+	margin-right:10px;
 }
 
 
@@ -172,13 +179,12 @@ input::-moz-placeholder { color: white; }
             			<!-- 로그인 시 id 값 갖고 있기 -->
             			<input type="hidden" name="id" value="<sec:authentication var='principal' property ='principal' />" readonly />
             			<!-- 로그인 시 id 값 갖고 있기 -->
-	            		<div id="logoutBox">
-							<button id="logout" class="btn">로그아웃</button>
-						</div>
-					
-					<div id="myPage">
-                		<a href="/mypage/myMeeting" class="btn">내정보</a>
-            		</div>
+	            		
+						<button id="btnLogout">로그아웃</button>
+                		<a href="/mypage/myMeeting">
+                			<button id="btnMypage">내정보</button>
+                		</a>
+            		
            		</div>
             </sec:authorize>
             <sec:authorize access="isAnonymous()">
@@ -211,7 +217,7 @@ input::-moz-placeholder { color: white; }
 	$(document).ready(function(){
 
 		// 로그아웃 버튼 클릭시
-		$("#logout").click(function(){
+		$("#btnLogout").click(function(){
 			if(confirm("로그아웃하시겠습니까?")){
 				$("#logoutForm").submit();
 			}
