@@ -10,8 +10,6 @@ public interface QNAMapper {
 
 	public int insert(QNAVO vo);
 	
-	public QNAVO read(Long q_no);
-	
 	public int delete(Long q_no);
 		
 	public int updateAnswer(QNAVO vo);

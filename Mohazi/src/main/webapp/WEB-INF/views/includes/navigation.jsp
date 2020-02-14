@@ -5,7 +5,6 @@
 <style>
 .navbar{ 
     height: 50px;   
-    margin-top: 2px;
     background-color: white;   
 	border-bottom:#EBEBEB solid 1px;
     opacity: 0.9;
@@ -14,7 +13,7 @@
 	font-weight:bold;
 }
 .navbar-nav{
-    margin-left:19.5%;
+    margin-left:20%;
 }
 .nav-item{
     margin-right: 15px;

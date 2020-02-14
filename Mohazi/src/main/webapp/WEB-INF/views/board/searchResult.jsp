@@ -5,6 +5,9 @@
 
 <%@ include file="../includes/header.jsp" %>
 <%@ include file="../includes/navigation.jsp" %>
+<!-- 구글폰트  -->
+<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic+Coding&display=swap" rel="stylesheet">
+
 
 
 
@@ -16,20 +19,29 @@ margin: 0 auto;
 .col-sm-12{           
 box-sizing:content-box ;
 padding:20px !important;
-/* overflow: hidden; */
 }
 
 .col-sm-3{   
     height: 350px;
-    padding-bottom: 10px;
+    padding-bottom: 20px;
+}
+
+.list-header h2{
+	font-weight:bold;
+	font-family: 'Nanum Gothic Coding', monospace;    
+	padding-top:15px;
+    padding-bottom:15px;
+    font-size:25px;
+    margin: 5px;
 }
 
 .list-title-img{
    position: relative;
-   border-radius: 10px 10px 0 0;
+   border-radius: 6px 6px 0 0;
+   border: 1px solid #d5dadf;
    overflow: hidden;
-   height: 65%;
-   background-color: #ebebeb;
+   height: 70%;
+   background-color: white;
 }
 .list-title-img img{
     width: 100%;
@@ -38,35 +50,43 @@ padding:20px !important;
    
 .list-title-text {
    position: relative;
-   border-radius: 0 0 10px 10px;
+   border-radius: 0 0 6px 6px;
    border: 1px solid #d5dadf;
    border-top: 0 none;
-   padding: 25px 30px 40px;
-   height: 35%;
+   height: 30%;
+   font-weight:bold;
+   padding:12.5px;
 }
-.list-category-sub {
+
+.list-category-main {
    font-size: 16px;
    margin-bottom: 2px;
    color: #6a82ec;
    float: left;
    padding-right: 5px;
 }
-.list-title-type {
+.list-title-sub {
    font-size: 16px;
    margin-bottom: 2px;
    color: #96969d;
 }
-.list-header h2{
-    margin: 5px;
-    font-family: 'Sunflower', sans-serif;
-    font-size: 25px;
-    padding-top:15px;
-    padding-bottom:15px;
-
+.list-title-address{
+	position: absolute;
+	bottom: 10px;
+	right: 10px;
+	opacity: 0.8;
+	border-radius:2px;
 }
+
 .btnWrite{
-   background-color:#7bd4ac;
-   color:white;
+	background-color:#e9faf2;
+	border-radius:5px;
+	font-weight:bold;
+	padding:7px;
+	width:75px;
+	color:#66a385;
+	font-size:14px;
+	margin-top:-4px;
 }
 
 .pagination{
@@ -74,9 +94,8 @@ padding:20px !important;
 	margin:0 auto;
 	width:70%;
 	text-align:center;
-   padding-top:25px;
+   padding-top:10px;
    padding-bottom:35px;
-   clear:both;
 }
 
 .pagination a{
@@ -97,11 +116,11 @@ padding:20px !important;
    background-color: #e9faf2;
 }
 
-.list-title-subject a{
+.list-title a{
    text-decoration:none;
    color:black;
+   font-weight: bold;
 }
-
 </style>
 
 
@@ -142,20 +161,24 @@ function showThumbnail(p_no){
 						<img id='<c:out value="${party.p_no}" />' src="/resources/img/default_thumbnail.png" alt="thumbnail image" />
                       	<script>showThumbnail(${party.p_no});</script>
                    </a>
-                  </div>	
-               <div class="list-title-text">
-                  <div class="list-category-sub">
-                     [<c:out value="${party.cat_main}"/>]
-                  </div>
-                  <div class="list-title-type">
-                     #<c:out value="${party.cat_sub}" />,
-                     #<c:out value="${party.tag}" />   
-                     <span class="badge badge-default"><c:out value="${party.price}" />원</span>
-                  </div>
-                  <div class="list-title-subject">
-                     <a href='/board/get?p_no=<c:out value="${party.p_no}"/>'><c:out value="${party.title}" /></a>
-                  </div>
-               </div>
+                  <span class="list-title-address badge badge-secondary">${party.address}</span>
+                   </div>
+	               <div class="list-title-text">
+	                  <div class="list-category-main">
+	                     [<c:out value="${party.cat_main}"/>]
+	                  </div>
+	                  <div class="list-title-sub">
+	                     <c:out value="${party.cat_sub}" />
+	                  </div>
+	                  <div class="list-title">
+	                     <a href='/board/get?p_no=<c:out value="${party.p_no}"/>'><c:out value="${party.title}" /></a>
+	                  </div>
+	                  <div class="list-title-sub">
+	                  	<c:if test="${not empty party.tag}">
+	                  		#<c:out value="${party.tag}" />
+	                  	</c:if>
+	                  	</div>
+               		</div>
                </div>
          </c:forEach>
       
@@ -184,7 +207,7 @@ function showThumbnail(p_no){
 	         </div>	         
 	     <!-- 페이징 끝  -->
 	         
-	         
+	     </div>    
 	         
 <%@ include file="../includes/footer.jsp" %>
 

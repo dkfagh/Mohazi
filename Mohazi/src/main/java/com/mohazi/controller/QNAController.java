@@ -49,16 +49,6 @@ public class QNAController {
 	}
 	
 	
-	// QNA 상세보기
-	@RequestMapping(value = "/{q_no}", method = RequestMethod.GET, produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE})
-	public ResponseEntity<QNAVO> get(@PathVariable("q_no") Long q_no) {
-		
-		log.info("get : " + q_no);
-		
-		return new ResponseEntity<>(service.get(q_no), HttpStatus.OK);
-	}
-	
-	
 	// QNA answer 등록
 	@RequestMapping(value = "/{q_no}", method = {RequestMethod.PUT, RequestMethod.PATCH},  consumes = "application/json")
 	public ResponseEntity<String> modifyAnswer(@RequestBody QNAVO vo, @PathVariable("q_no") Long q_no) {
