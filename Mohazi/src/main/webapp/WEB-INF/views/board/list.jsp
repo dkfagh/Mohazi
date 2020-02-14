@@ -215,8 +215,29 @@
    text-decoration:none;
    color:black;
 }
-
 </style>
+
+<script>
+// function for thumbnail
+function showThumbnail(p_no){
+	var p_noValue = p_no;
+	console.log("p_no : " + p_no);
+	
+	$.getJSON("/board/getAttachList", {p_no:p_noValue},function(arr){
+		
+		console.log(arr);
+
+		var str = "";
+		
+		$(arr).each(function(i,attach){
+			var fileCallPath = encodeURIComponent( attach.uploadPath +"/"+ attach.uuid +"_"+ attach.fileName);
+			str +="/display?fileName="+fileCallPath; 			
+		});
+		console.log(str);
+		$("#"+p_noValue).attr("src", str);
+		});	//end getjson
+	};		//end function
+</script>
 
 <div class="container" id="contents">
       <div class="row" >
@@ -246,9 +267,9 @@
 	                            		어디서
 	                            		<i class="fas fa-chevron-down"></i>
 	                            	</button>
-	                                <ul class="sub-menu" id="where">                                    
+	                                <ul class="sub-menu" id="where">
 	                                    <li>
-	                                        <div id="where-box" >
+	                                        <div id="where-box">
 												<label for="seoul" class="checkbox-inputLabel">
 	                                              	  서울
 	                                                <input id="seoul" type="checkbox" name="region" value="서울">
@@ -257,7 +278,7 @@
 													경기
 	                                                <input id="gyeonggi" type="checkbox" name="region" value="경기">
 	                                            </label>
-	                                            <label for="incheon" class="checkbox-inputLabel">                                               
+	                                            <label for="incheon" class="checkbox-inputLabel">
 	                                               	인천
 	                                                <input id="incheon" type="checkbox" name="region" value="인천">
 	                                            </label>
@@ -265,7 +286,7 @@
 	                                               	강원
 	                                                <input id="gangwon" type="checkbox" name="region" value="강원">
 	                                            </label>
-	                                            <label for="chungcheong" class="checkbox-inputLabel">                                               
+	                                            <label for="chungcheong" class="checkbox-inputLabel">
 	                                               	충청
 	                                                <input id="chungcheong" type="checkbox" name="region" value="충청">
 	                                            </label>
@@ -299,11 +320,11 @@
 	                                            </label>
 	                                            <label for="jeju" class="checkbox-inputLabel">                                               
 	                                               	제주
-	                                                <input id="jeju" type="checkbox" name="region" value="제주"> 
-	                                            </label>                             
-	                                        </div> 
-	                                    </li>                                   
-	                                </ul>   
+	                                                <input id="jeju" type="checkbox" name="region" value="제주">
+	                                            </label>
+	                                        </div>
+	                                    </li>
+	                                </ul>
 	                            </li>
 	                            
 	                            <li class="menu">
@@ -313,16 +334,16 @@
 	                            	</button>
 	                                <ul class="sub-menu" id="category">
 	                                    <li>
-	                                        <div id="category-box" >   
+	                                        <div id="category-box" >
 	                                            <label for="culture" class="checkbox-inputLabel" >
 	                                               	문화
-	                                                <input id="culture" type="checkbox" name="category" value="문화">                                                
+	                                                <input id="culture" type="checkbox" name="category" value="문화">
 	                                            </label>
-	                                            <label for="IT" class="checkbox-inputLabel">                                                 
+	                                            <label for="IT" class="checkbox-inputLabel">
 	                                                IT
 	                                                <input id="IT" type="checkbox" name="category" value="IT">
 	                                            </label>
-	                                            <label for="sports" class="checkbox-inputLabel">                                               
+	                                            <label for="sports" class="checkbox-inputLabel">
 	                                               	스포츠
 	                                                <input id="sports" type="checkbox" name="category" value="스포츠">
 	                                            </label>
@@ -330,34 +351,33 @@
 	                                               	 창작
 	                                                <input id="creation" type="checkbox" name="category" value="창작">
 	                                            </label>
-	                                            <label for="experience" class="checkbox-inputLabel">                                               
+	                                            <label for="experience" class="checkbox-inputLabel">
 													 체험
 	                                                <input id="experience" type="checkbox" name="category" value="체험">
-	                                            </label>                                                                
-	                                        </div> 
-	                                    </li>                              
+	                                            </label>
+	                                        </div>
+	                                    </li>
 	                                </ul>
 	                            </li>
-                                <li class="menu"><input type="submit" class="btn btn-large" id="go" value="Go! List"></li>      
+                                <li class="menu"><input type="submit" class="btn btn-large" id="go" value="Go! List"></li>
                             </ul>
                         </form>
                     </div> 
-                        <!-- 메뉴 초이스 부분 form태그--->            
-                 
+                        <!-- 메뉴 초이스 부분 form태그--->
                 </div>             
          </div>         
       
-        </div> 
+        </div>
         
         <div class="list-header">
             <h2>
                <c:set var="type" value="${param.type}" />
                <c:choose>
                   <c:when test="${type eq 'M'}">
-                     모임
+					모임
                   </c:when>
                   <c:when test="${type eq 'C'}">
-                     클래스
+					클래스
                   </c:when>
                </c:choose>
          <button type="button" class="btn float-right" id="btnWrite">글쓰기</button>
@@ -367,17 +387,19 @@
         <div class="row">
            <c:forEach var="party" items="${list}">
                <div class="col-sm-3">
-                   <a href='/board/get?p_no=<c:out value="${party.p_no}"/>'>
-                      <div id="list-title-img">                  
-                  </div>
-               </a>
+                   <div id="list-title-img">
+                       <a href='/board/get?p_no=<c:out value="${party.p_no}"/>'>
+						<img id='<c:out value="${party.p_no}" />' alt="thumbnail image" />
+                      	<script>showThumbnail(${party.p_no});</script>
+                   	   </a>
+                   </div>
                <div class="list-title-text">
                   <div class="list-category-sub">
                      [<c:out value="${party.cat_main}"/>]
                   </div>
                   <div class="list-title-type">
                      #<c:out value="${party.cat_sub}" />,
-                     #<c:out value="${party.tag}" />   
+                     #<c:out value="${party.tag}" />
                      <span class="badge badge-default"><c:out value="${party.price}" />원</span>
                   </div>
                   <div class="list-title-subject">
@@ -398,8 +420,6 @@
             <input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}" />
             <input type="hidden" name="amount" value="${pageMaker.cri.amount}" />
          </form>
-   
-	      
 
 		</div>
 		
@@ -415,9 +435,7 @@
 	           </c:if>
 	         </div>	         
 	     <!-- 페이징 끝  -->
-	         
-	         
-	         
+
 <%@ include file="../includes/footer.jsp" %>
 
 <script>
@@ -495,8 +513,6 @@
 		});
 		
 
-		
-		
 	});
 
 </script>
