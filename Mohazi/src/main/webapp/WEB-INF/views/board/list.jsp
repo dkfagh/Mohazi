@@ -147,7 +147,8 @@
 	position: absolute;
 	bottom: 10px;
 	right: 10px;
-	opacity: 0.8;
+	color:white;
+	background-color:rgba( 0, 0, 0, 0.5 );
 	border-radius:2px;
 }
 .list-header h2{
@@ -431,6 +432,7 @@ function showThumbnail(p_no){
 	              <a href="${pageMaker.endPage+1}" class="paginate_button" >&raquo;</a>
 	           </c:if>
 	         </div>	         
+	 </div>
 	     <!-- 페이징 끝  -->
 
 <%@ include file="../includes/footer.jsp" %>

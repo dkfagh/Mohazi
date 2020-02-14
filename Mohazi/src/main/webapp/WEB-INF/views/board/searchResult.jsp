@@ -74,8 +74,9 @@ padding:20px !important;
 	position: absolute;
 	bottom: 10px;
 	right: 10px;
-	opacity: 0.8;
 	border-radius:2px;
+	color:white;
+	background-color:rgba( 0, 0, 0, 0.5 );
 }
 
 .btnWrite{
@@ -148,7 +149,7 @@ function showThumbnail(p_no){
 <div class="container contents">
         
         <div class="list-header">
-		<h2>"<c:out value="${pageMaker.cri.keyword}"/>"(으)로 검색한 결과입니다.
+		<h2>'<c:out value="${pageMaker.cri.keyword}"/>'(으)로 검색한 결과입니다.
          <button type="button" class="btn float-right btnWrite">글쓰기</button>
 		</h2>
         </div>
