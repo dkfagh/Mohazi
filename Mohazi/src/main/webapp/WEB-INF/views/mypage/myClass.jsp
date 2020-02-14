@@ -175,6 +175,8 @@
                                 </c:when>
                                 <c:when test="${pageMaker.total > 0 }">
                                 	<c:forEach items="${list}" var="party">
+                                		<c:set var="writer" value = "${party.id}" />
+                                		
                              			<tr>
                                    			<td >
                                            		<a class="move" href='<c:out value="${party.p_no}"/>'>
@@ -185,8 +187,6 @@
                                    			<td >
                                    			
                                    			<!-- 내가 개설한 정보표시-->
-                                   			
-                                   				<c:set var="writer" value = "${party.id}" />
                                    			
                                        			<c:if test = "${principal.username eq writer}"> 
 		                                       		<i class="fab fa-angellist" style="background:red"></i>
@@ -200,11 +200,11 @@
                                    			<!-- 개설자 ID 끝 -->
                                    			<td >
                                    				<c:choose>
-                                   					<c:when test="${ username ne writer}"> <!-- 참여한 글일때 -->
-                                   						<button class="btn btn-sm" name="exit" type="button">나가기</button>
+                                   					<c:when test="${ principal.username ne writer}"> <!-- 참여한 글일때 -->
+                                   						<button data-oper='exit' data-p_no="<c:out value='${party.p_no}'/>" class="btn btn-sm" type="button">나가기</button>
                                						</c:when>
-                               						<c:when test="${ username eq writer}"> <!--  작성한 글일때 -->
-                                   						<button data-oper='remove' class="btn btn-sm" name="delete" type="button">삭제</button>
+                               						<c:when test="${ principal.username eq writer}"> <!--  작성한 글일때 -->
+                                   						<button data-oper='delete' data-p_no="<c:out value='${party.p_no}'/>" class="btn btn-sm" type="button">삭제</button>
                                						</c:when>
                                    				</c:choose>
                                    			</td>
@@ -219,10 +219,12 @@
                     
                         <!-- Paging --------------------------------------------------->
                         <form id="actionForm" action="/mypage/myClass" method="get">
+                        
                             <input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
                             <input type="hidden" name="amount" value="${pageMaker.cri.amount}">
                             <input type="hidden" name="type" value="${pageMaker.cri.type}">
-                            
+                            <input type="hidden" name="writer" value="${writer}">
+                           
                         </form>         
                         <div class ="float-right">
                             <ul class="pagination">
@@ -277,18 +279,43 @@ $(document).ready(function(){
 		actionForm.submit();
 	});
 	
-	// 버튼 클릭시 해당 게시글 삭제 버튼
-	$("button[data-oper='remove']").on("click",function(e){
+	
+	// 나가기 버튼 클릭시 해당 게시글 삭제 버튼(동작 = party_join 테이블에서 삭제)
+	$("button[data-oper='exit']").on("click",function(e){
 		   e.preventDefault();
 		   
-				var que = confirm("삭제하시겠습니까?");
+		   
+				var que = confirm("참여한 글을 나가시겠습니까?");
 
 				if (que == true) {
-					operForm.attr("action", "/board/remove");   //   acition변경
+					
+					actionForm.append("<input type='hidden' name='p_no' value='"+$(this).data("p_no")+"'>");
+					actionForm.attr("action", "/mypage/exit");   //   acition변경
 				} else {
 					return false;
 				}	      
-				operForm.submit();
+				actionForm.submit();
+   }); 
+	
+	// 삭제 버튼 클릭시 해당 게시글 삭제 버튼(동작 = party_join 테이블에서 삭제 + party 테이블에서 삭제)
+	$("button[data-oper='delete']").on("click",function(e){
+		   e.preventDefault();
+		   
+		   
+				var que = confirm("개설한 글을 삭제하시겠습니까?");
+
+				if (que == true) {
+					//var conf = confirm("게시글에 참여인원이 있을 수 있습니다, 그냥 나가시겠습니까?");
+					console.log($(this).data("p_no"));
+					//if(conf = true){
+						actionForm.append("<input type='hidden' name='p_no' value='"+$(this).data("p_no")+"'>");
+					
+						actionForm.attr("action", "/mypage/delete");   //   acition변경
+					//}else{return false;}
+				} else {
+					return false;
+				}	      
+				actionForm.submit();
    }); 
 });
 </script>
