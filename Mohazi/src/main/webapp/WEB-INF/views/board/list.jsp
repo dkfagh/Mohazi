@@ -81,8 +81,6 @@
     width: 23%;
     height: 50px;
     text-align: center;
-/*     font-size: 14px;  
-    font-family: 'Sunflower', sans-serif; */
     background-color:  #7bd4ac;
     color: white;
     margin-bottom: 1px;
@@ -101,19 +99,6 @@
 	float: right;
 	padding-top: 4px;
 }
-/* .checkbox-inputLabel input{
-    margin-top: 9%;
-    margin-right: 12%;
-   float: right;
-   cursor: pointer;
-        
-}
-.checkbox-inputLabel label{
-    margin-top: 8%;
-    margin-left: 12%;
-   float: left;
-   cursor: pointer;
-} */
 .class-date input{
     width: 100%; 
     height: 50px;
@@ -121,43 +106,45 @@
     border-radius: 3px;
     cursor: pointer;   
 } 
-
 .col-sm-3{   
     height: 350px;
     padding-bottom: 10px;
 }
-
 .list-title-img{
    position: relative;
    border-radius: 10px 10px 0 0;
    overflow: hidden;
    height: 65%;
-   background-color: #ebebeb;
 }
 .list-title-img img{
     width: 100%;
     height: auto;
 }
-   
 .list-title-text {
    position: relative;
    border-radius: 0 0 10px 10px;
    border: 1px solid #d5dadf;
    border-top: 0 none;
-   padding: 25px 30px 40px;
+   padding: 20px 30px;
    height: 35%;
 }
-.list-category-sub {
+.list-category-main {
    font-size: 16px;
    margin-bottom: 2px;
    color: #6a82ec;
    float: left;
    padding-right: 5px;
 }
-.list-title-type {
+.list-title-sub {
    font-size: 16px;
    margin-bottom: 2px;
    color: #96969d;
+}
+.list-title-address{
+	position: absolute;
+	bottom: 10px;
+	right: 10px;
+	opacity: 0.9;
 }
 .list-header h2{
     margin: 5px;
@@ -170,27 +157,24 @@
 .list-header{
     border-top: solid 1px#7bd4ac ;
 }
-
 #top-btn {    
     position: fixed;
     right: 15%;
     bottom: 70px;
     display: none;
 }
-    
 #btnWrite{
    background-color:#7bd4ac;
    color:white;
 }
-
 .pagination{
 	display:block;
 	margin:0 auto;
 	width:70%;
 	text-align:center;
-   padding-top:25px;
-   padding-bottom:35px;
-   clear:both;
+	padding-top:25px;
+	padding-bottom:35px;
+	clear:both;
 }
 
 .pagination a{
@@ -199,21 +183,21 @@
    text-decoration:none;
    color:black !important;
    padding: 6px 12px !important;
-   
 }
 
 .pagination a.active {
     background-color: #7bd4ac ;
-   color: white !important;
+	color: white !important;
 }
 
 .pagination a:hover:not(.active) {
    background-color: #e9faf2;
 }
 
-.list-title-subject a{
+.list-title a{
    text-decoration:none;
    color:black;
+   font-weight: bold;
 }
 </style>
 
@@ -391,20 +375,24 @@ function showThumbnail(p_no){
 						<img id='<c:out value="${party.p_no}" />' src="/resources/img/default_thumbnail.png" alt="thumbnail image" />
                       	<script>showThumbnail(${party.p_no});</script>
                    	   </a>
+                   	   <span class="list-title-address badge badge-secondary">${party.address}</span>
                    </div>
-               <div class="list-title-text">
-                  <div class="list-category-sub">
-                     [<c:out value="${party.cat_main}"/>]
-                  </div>
-                  <div class="list-title-type">
-                     #<c:out value="${party.cat_sub}" />,
-                     #<c:out value="${party.tag}" />
-                     <span class="badge badge-default"><c:out value="${party.price}" />원</span>
-                  </div>
-                  <div class="list-title-subject">
-                     <a href='/board/get?p_no=<c:out value="${party.p_no}"/>'><c:out value="${party.title}" /></a>
-                  </div>
-               </div>
+	               <div class="list-title-text">
+	                  <div class="list-category-main">
+	                     [<c:out value="${party.cat_main}"/>]
+	                  </div>
+	                  <div class="list-title-sub">
+	                     <c:out value="${party.cat_sub}" />
+	                  </div>
+	                  <div class="list-title">
+	                     <a href='/board/get?p_no=<c:out value="${party.p_no}"/>'><c:out value="${party.title}" /></a>
+	                  </div>
+	                  <div class="list-title-sub">
+	                  	<c:if test="${not empty party.tag}">
+	                  		#<c:out value="${party.tag}" />
+	                  	</c:if>
+	                  </div>
+	              	</div>
                </div>
          </c:forEach>
       
