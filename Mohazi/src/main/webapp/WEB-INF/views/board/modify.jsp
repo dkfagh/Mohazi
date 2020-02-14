@@ -478,7 +478,7 @@ $(document).ready(function() {
       $(arr).each(function(i, attach){
           
           //image type
-          if(attach.fileType){
+        
             var fileCallPath =  encodeURIComponent( attach.uploadPath+ "/s_"+attach.uuid +"_"+attach.fileName);
             
             str += "<li data-path='"+attach.uploadPath+"' data-uuid='"+attach.uuid+"' "
@@ -489,17 +489,7 @@ $(document).ready(function() {
             str += "<img src='/display?fileName="+fileCallPath+"'>";
             str += "</div>";
             str +"</li>";
-          }else{
-              
-            str += "<li data-path='"+attach.uploadPath+"' data-uuid='"+attach.uuid+"' "
-            str += "data-filename='"+attach.fileName+"' data-type='"+attach.fileType+"' ><div>";
-            str += "<span> "+ attach.fileName+"</span><br/>";
-            str += "<button type='button' data-file=\'"+fileCallPath+"\' data-type='file' "
-            str += " class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>";
-            str += "<img src='/resources/img/attach.png'></a>";
-            str += "</div>";
-            str +"</li>";
-          }
+        
        });
 
       
@@ -555,13 +545,13 @@ $(document).ready(function() {
       
     }
     
-/*     //ajaxSend시 토큰값 전달---------------------------------------------------------------   
+  //ajaxSend시 토큰값 전달---------------------------------------------------------------   
     var csrfHeaderName = "${_csrf.headerName}";
     var csrfTokenValue = "${_csrf.token}";
     $(document).ajaxSend(function(e, xhr, options) {
        xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
     });
-    //ajaxSend시 토큰값 전달---------------------------------------------------------------   */ 
+    //ajaxSend시 토큰값 전달---------------------------------------------------------------  
 
     $.ajax({
       url: '/uploadAjaxAction',
@@ -588,7 +578,7 @@ $(document).ready(function() {
     
     $(uploadResultArr).each(function(i, obj){
 		
-		if(obj.image){
+		
 			var fileCallPath =  encodeURIComponent( obj.uploadPath+ "/s_"+obj.uuid +"_"+obj.fileName);
 			str += "<li data-path='"+obj.uploadPath+"'";
 			str +=" data-uuid='"+obj.uuid+"' data-filename='"+obj.fileName+"' data-type='"+obj.image+"'"
@@ -599,19 +589,7 @@ $(document).ready(function() {
 			str += "<img src='/display?fileName="+fileCallPath+"'>";
 			str += "</div>";
 			str +"</li>";
-		}else{
-			var fileCallPath =  encodeURIComponent( obj.uploadPath+"/"+ obj.uuid +"_"+obj.fileName);			      
-		    var fileLink = fileCallPath.replace(new RegExp(/\\/g),"/");
-		      
-			str += "<li "
-			str += "data-path='"+obj.uploadPath+"' data-uuid='"+obj.uuid+"' data-filename='"+obj.fileName+"' data-type='"+obj.image+"' ><div>";
-			str += "<span> "+ obj.fileName+"</span>";
-			str += "<button type='button' data-file=\'"+fileCallPath+"\' data-type='file' " 
-			str += "class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>";
-			str += "<img src='/resources/img/attach.png'></a>";
-			str += "</div>";
-			str +"</li>";
-		}
+
 
     });
     
