@@ -6,7 +6,7 @@
 <style>
 	.container{
 		position: relative;
-		margin-bottom: 500px;
+		height: 600px;
 	}
     .title{
         text-align: center;
@@ -20,10 +20,16 @@
     	width: 150px;
     	margin: auto;
     }
+	.questionTitle{
+		display: none;
+    	position: relative;
+    	top: -50px;
+    	text-align: center;
+    }
     .questionWrapper{
         position: absolute;
         top: 100; left: 0;
-        margin: 100px 0;
+        /* margin: 100px 0; */
         width: 100%;
         height: 100px;
         border-radius: 50px;
@@ -33,12 +39,7 @@
         opacity: 0;  
         transition: 1s;
     }
-    .questionTitle{
-    	position:absolute;
-    	top: -100px;
-    	text-align: center;
-    	/* top: -100px; left: 0px; */
-    }
+
     .on{
         opacity: 1;
         z-index: 10;
@@ -85,37 +86,54 @@
 	<h1 class="title">
 		<img src="/resources/img/mohazi_title.png" alt="mohazi title" style="width: 500px;" />
 	</h1>
+	<div class="questionTitle">
+		<img src="/resources/img/mohazi_choice.png" alt="당신에게 더 가까운 모습을 선택해주세요" style="width: 500px; top: -100px;" />
+	</div>
+
 	<div class="introWrapper">
 	    <div><img src="/resources/img/mohazi_find.png" alt="당신의 성향에 맞는 취미를 찾아드려요" style="width: 500px;"/></div>
 	    <button id="btnStart" type="button" class="btn btn-outline-success">시작하기</button>
 	</div>
-<!-- 	<div class="questionTitle">
-		<img src="/resources/img/mohazi_choice.png" alt="당신에게 더 가까운 모습을 선택해주세요" style="width: 500px; top: -100px;" />
-	</div> -->
+
+	<!-- Question Wrapper. Start ------------------------------------------------------>
 	<div class="questionWrapper">
 	    <img class="vs" src="/resources/img/versus.png" alt="versus" />
 	    <div class="item" data-value="1">
-			외향적?
+			몸을 많이 움직이는 활동적인 취미를 원한다.
 	    </div>
 	    <div class="item" data-value="2">
-			내향적?
+			동적인 활동보다는 차분한 취미를 원한다.
 	    </div>
 	</div>
 	<div class="questionWrapper">
 	    <img class="vs" src="/resources/img/versus.png" alt="versus" />
-	    <div class="item" data-value="1">두번째</div>
-	    <div class="item" data-value="2">질문</div>
+	    <div class="item" data-value="1">
+			여러 사람들과 교감하며 즐길 수 있는 취미를 찾는다.
+		</div>
+	    <div class="item" data-value="2">
+			혼자서도 충분히 즐길 수 있는 취미를 찾는다.
+		</div>
 	</div>
 	<div class="questionWrapper">
 	    <img class="vs" src="/resources/img/versus.png" alt="versus" />
-	    <div class="item" data-value="1">세번째</div>
-	    <div class="item" data-value="2">질문</div>
+	    <div class="item" data-value="1">
+			날씨에 구애받지 않고 실내에서 활동하고 싶다.
+		</div>
+	    <div class="item" data-value="2">
+			실내는 답답하다! 야외로 나가 활동하고 싶다.
+		</div>
 	</div>
 	<div class="questionWrapper">
 	    <img class="vs" src="/resources/img/versus.png" alt="versus" />
-	    <div class="item" data-value="1">네번째</div>
-	    <div class="item" data-value="2">질문</div>
+	    <div class="item" data-value="1">
+	    	네번째
+	    </div>
+	    <div class="item" data-value="2">
+	    	질문
+	    </div>
 	</div>
+	<!-- Question Wrapper. End -------------------------------------------------------->
+	<!-- Result Wrapper. Start -------------------------------------------------------->
 	<div class="resultWrapper">
 	    <h4>당신에게 잘 맞는 취미는</h4>
 	    <div class="result" id="1111" data-result="영화">
@@ -141,6 +159,7 @@
 	    	<a href="#" id="goList">취미 보러가기</a>
 	    </div>
 	</div>
+	<!-- Result Wrapper. End ---------------------------------------------------------->
 </div>	<!-- 나중에 지우기 -->
 
 <%@ include file="./includes/footer.jsp" %>
@@ -149,6 +168,7 @@
         // 시작하기 누르면 introWrapper 사라지고 questionWrapper 보이도록
         $("#btnStart").on("click", function(){
             $(this).closest("div").css("display", "none").next(".questionWrapper").addClass("on");
+            $(".questionTitle").css("display", "block");
         });
 
         var resultValue = "";       // 결과값을 저장할 변수
