@@ -113,6 +113,7 @@
 .list-title-img{
    position: relative;
    border-radius: 10px 10px 0 0;
+   border: 1px solid #d5dadf;
    overflow: hidden;
    height: 65%;
 }
