@@ -224,16 +224,14 @@ function showThumbnail(p_no){
 	console.log("p_no : " + p_no);
 	
 	$.getJSON("/board/getAttachList", {p_no:p_noValue},function(arr){
-		
-		console.log(arr);
-
 		var str = "";
 		
 		$(arr).each(function(i,attach){
 			var fileCallPath = encodeURIComponent( attach.uploadPath +"/"+ attach.uuid +"_"+ attach.fileName);
 			str +="/display?fileName="+fileCallPath; 			
 		});
-		console.log(str);
+
+		if(str == "") {return;}
 		$("#"+p_noValue).attr("src", str);
 		});	//end getjson
 	};		//end function
@@ -389,7 +387,7 @@ function showThumbnail(p_no){
                <div class="col-sm-3">
                    <div id="list-title-img">
                        <a href='/board/get?p_no=<c:out value="${party.p_no}"/>'>
-						<img id='<c:out value="${party.p_no}" />' alt="thumbnail image" />
+						<img id='<c:out value="${party.p_no}" />' src="/resources/img/default_thumbnail.png" alt="thumbnail image" />
                       	<script>showThumbnail(${party.p_no});</script>
                    	   </a>
                    </div>
