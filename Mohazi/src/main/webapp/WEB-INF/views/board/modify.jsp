@@ -252,12 +252,7 @@ input[type=text]:-ms-clear{
    <form id="modifyForm" action="/board/modify" method="post"
       role="form">
 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-
- 		<input type='hidden' name='pageNum' value='<c:out value="${cri.pageNum }"/>'>
-        <input type='hidden' name='amount' value='<c:out value="${cri.amount }"/>'>
-	    <input type='hidden' name='type' value='<c:out value="${cri.type }"/>'>
-		<input type='hidden' name='keyword' value='<c:out value="${cri.keyword }"/>'>
-
+		
       <h2>수정</h2>
       <br>
       <!-- Table시작 ----------------------------------------------------------------->
@@ -370,9 +365,9 @@ input[type=text]:-ms-clear{
       
             
             <!-- type입력 -------------------------------------------------------------------------->
-            <input type="hidden" name="type" id="type" value="${param.type}">
+            <input type="hidden" name="type" id="type" value="${party.type}">
+    
             
-         
             
          </tbody>
          <!-- Table끝 ----------------------------------------------------------------->
@@ -380,9 +375,9 @@ input[type=text]:-ms-clear{
       
       <!-- 등록버튼입력 -------------------------------------------------------------------------->
       
-      <button type="submit" data-oper="list" class="regBtn btn btn-outline-secondary" style="margin:3px;">목록</button>
-      <button type="submit" data-oper="remove" class="regBtn btn btn-outline-secondary" style="margin:3px;">삭제</button>
-      <button type="submit" data-oper="modify" class="regBtn btn btn-outline-secondary" style="margin:3px;">수정</button>
+      <button type="submit" data-oper='list' class="regBtn btn btn-outline-secondary" style="margin:3px;">목록</button>
+      <button type="submit" data-oper='remove' class="regBtn btn btn-outline-secondary" style="margin:3px;">삭제</button>
+      <button type="submit" data-oper='modify' class="regBtn btn btn-outline-secondary" style="margin:3px;">수정</button>
 <br>
 <br>
 <br>

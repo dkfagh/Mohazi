@@ -453,8 +453,24 @@ ul.tab li.active a {
 					</div>
 				</div>				
 			</div>
-		</div>		
-	</div>
+		</div>
+
+
+	<!-- type입력 -------------------------------------------------------------------------->
+	<input type="hidden" name="type" id="type" value="${party.type}">
+
+	<button type="submit" data-oper='modify'
+		class="regBtn btn btn-outline-secondary" style="margin: 3px;">수정</button>
+
+
+	<form id='operForm' action="/boad/modify" method="get">
+		<input type='hidden' id='p_no' name='p_no'
+			value='<c:out value="${party.p_no}"/>'>
+	</form>
+
+
+
+</div>
 	
 	 <!-- 스케쥴등록 Modal ------------------------------------------>
 	 <div class="modal" id="myModal">
@@ -962,3 +978,19 @@ ul.tab li.active a {
 	}); 
     //]]>
  </script>
+ 
+ 
+
+<script type="text/javascript">
+$(document).ready(function() {
+  
+  var operForm = $("#operForm"); 
+  
+  $("button[data-oper='modify']").on("click", function(e){
+    
+    operForm.attr("action","/board/modify").submit();
+    
+  });
+
+});
+</script>  

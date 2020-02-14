@@ -71,24 +71,27 @@ public class BoardServiceImpl implements BoardService{
    @Transactional
    @Override
    public boolean modify(PartyVO party) {
-      log.info("!!! MODIFY !!!" + party);
-      
-      attachMapper.deleteAll(party.getP_no());
-      
-      boolean modifyResult = (mapper.update(party) == 1);
-      log.info(modifyResult);
-      log.info( party.getAttachList());
-      if (modifyResult && party.getAttachList().size() > 0) {
+	      log.info("!!! MODIFY !!!" + party);
+	      
+	      attachMapper.deleteAll(party.getP_no());
+	      
+	      boolean modifyResult = (mapper.update(party) == 1);
+	      log.info(modifyResult);
+	      log.info( party.getAttachList());
+	      if (modifyResult) {
+	         // 첨부파일이 없을 경우
+	         if(party.getAttachList() == null) {}
+	         // 첨부파일이 있을 경우
+	         else if(party.getAttachList().size() > 0){
+	            party.getAttachList().forEach(attach -> {
 
-			party.getAttachList().forEach(attach -> {
-
-				attach.setP_no(party.getP_no());
-				attachMapper.insert(attach);
-			});
-		}
-      
-      return modifyResult;
-   }
+	              attach.setP_no(party.getP_no());
+	              attachMapper.insert(attach);
+	           });
+	         }
+	      }
+	      return modifyResult;
+	   }
    @Transactional
    @Override
    public boolean remove(Long p_no) {

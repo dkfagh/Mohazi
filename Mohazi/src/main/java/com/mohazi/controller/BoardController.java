@@ -102,7 +102,7 @@ public class BoardController {
 
    // 상세보기 화면
    @RequestMapping(value = "/get", method = RequestMethod.GET)
-   public void get(@RequestParam("p_no") Long p_no, Model model) {
+   public void get(@RequestParam("p_no") Long p_no, @ModelAttribute("cri") Criteria cri, Model model) {
       log.info("!!! GET !!!");
 
 
@@ -123,10 +123,10 @@ public class BoardController {
    // 수정 처리
    @RequestMapping(value = "/modify", method = RequestMethod.POST)
    public String modify(PartyVO party, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
-      log.info("!!! MODIFY !!!");
+      log.info("!!! MODIFY !!!"+party);
 
       if(service.modify(party) == true) {
-         rttr.addFlashAttribute("result", "modify");
+         rttr.addFlashAttribute("result", "success");
       }
       
         rttr.addAttribute("pageNum", cri.getPageNum());
@@ -140,21 +140,23 @@ public class BoardController {
 
    // 삭제 처리
    @RequestMapping(value = "/remove", method = RequestMethod.POST)
-   public String remove(@RequestParam("p_no") Long p_no, Criteria cri, RedirectAttributes rttr) {
+   public String remove(@RequestParam("p_no") Long p_no, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
       log.info("!!! REMOVE !!!"+p_no);
   
       List<BoardAttachVO> attachList = service.getAttachList(p_no);
-      
+      char type= service.get(p_no).getType();
       if(service.remove(p_no) == true) {
 
 		// delete Attach Files
 		deleteFiles(attachList);
     	  
-         rttr.addFlashAttribute("result", "remove");
+         rttr.addFlashAttribute("result", "success");
       }
+      	rttr.addAttribute("pageNum", cri.getPageNum());
+		rttr.addAttribute("amount", cri.getAmount());
 
-      String url = "redirect:/board/list?type=" + service.get(p_no).getType();
-      return url + cri.getListLink();
+      String url = "redirect:/board/list?type=" + type;
+      return url;
    }
    
    //첨부이미지 리스트출력
