@@ -28,7 +28,7 @@ padding:20px !important;
    position: relative;
    border-radius: 10px 10px 0 0;
    overflow: hidden;
-   height: 50%;
+   height: 65%;
    background-color: #ebebeb;
 }
 .list-title-img img{
@@ -42,7 +42,7 @@ padding:20px !important;
    border: 1px solid #d5dadf;
    border-top: 0 none;
    padding: 25px 30px 40px;
-   height: 50%;
+   height: 35%;
 }
 .list-category-sub {
    font-size: 16px;
@@ -104,6 +104,28 @@ padding:20px !important;
 
 </style>
 
+
+<script>
+// function for thumbnail
+function showThumbnail(p_no){
+	var p_noValue = p_no;
+	
+	$.getJSON("/board/getAttachList", {p_no:p_noValue},function(arr){
+		var str = "";
+		// if there is no attached image file
+		if(!arr.length){
+			return;
+		}
+		else{
+			attach = arr[0];
+			var fileCallPath = encodeURIComponent(attach.uploadPath +"/"+ attach.uuid +"_"+ attach.fileName);
+			str +="/display?fileName="+fileCallPath;
+			$("#"+p_noValue).attr("src", str);
+		}
+	});	//end getjson
+};		//end function
+</script>
+
 <div class="container contents">
         
         <div class="list-header">
@@ -115,10 +137,12 @@ padding:20px !important;
         <div class="row">
            <c:forEach var="party" items="${search}">
                <div class="col-sm-3">
+                  <div class="list-title-img">                  
                    <a href='/board/get?p_no=<c:out value="${party.p_no}"/>'>
-                      <div class="list-title-img">                  
-                  </div>
-               </a>
+						<img id='<c:out value="${party.p_no}" />' src="/resources/img/default_thumbnail.png" alt="thumbnail image" />
+                      	<script>showThumbnail(${party.p_no});</script>
+                   </a>
+                  </div>	
                <div class="list-title-text">
                   <div class="list-category-sub">
                      [<c:out value="${party.cat_main}"/>]

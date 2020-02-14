@@ -127,14 +127,14 @@
     padding-bottom: 10px;
 }
 
-#list-title-img{
+.list-title-img{
    position: relative;
    border-radius: 10px 10px 0 0;
    overflow: hidden;
-   height: 50%;
+   height: 65%;
    background-color: #ebebeb;
 }
-#list-title-img img{
+.list-title-img img{
     width: 100%;
     height: auto;
 }
@@ -145,7 +145,7 @@
    border: 1px solid #d5dadf;
    border-top: 0 none;
    padding: 25px 30px 40px;
-   height: 50%;
+   height: 35%;
 }
 .list-category-sub {
    font-size: 16px;
@@ -386,7 +386,7 @@ function showThumbnail(p_no){
         <div class="row">
            <c:forEach var="party" items="${list}">
                <div class="col-sm-3">
-                   <div id="list-title-img">
+                   <div class="list-title-img">
                        <a href='/board/get?p_no=<c:out value="${party.p_no}"/>'>
 						<img id='<c:out value="${party.p_no}" />' src="/resources/img/default_thumbnail.png" alt="thumbnail image" />
                       	<script>showThumbnail(${party.p_no});</script>
