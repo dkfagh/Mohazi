@@ -13,8 +13,8 @@ public interface QNAMapper {
 	public QNAVO read(Long q_no);
 	
 	public int delete(Long q_no);
-	
-	public int update(QNAVO vo);
+		
+	public int updateAnswer(QNAVO vo);
 	
 	public List<QNAVO> getList(@Param("p_no") Long p_no);
 }

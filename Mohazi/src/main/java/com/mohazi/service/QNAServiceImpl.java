@@ -43,11 +43,11 @@ public class QNAServiceImpl implements QNAService {
 	}
 
 	@Override
-	public int modify(QNAVO vo) {
+	public int modifyAnswer(QNAVO vo) {
 		
-		log.info("!!! modify !!!" + vo);
+		log.info("!!! modify Answer !!!" + vo);
 		
-		return mapper.update(vo);
+		return mapper.updateAnswer(vo);
 	}
 
 	@Override
@@ -57,5 +57,6 @@ public class QNAServiceImpl implements QNAService {
 		
 		return mapper.getList(p_no);
 	}
+
 
 }

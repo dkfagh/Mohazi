@@ -8,113 +8,112 @@
 
 <style>
 #contents {
-position: relative;
-margin: 0 auto;
+	position: relative;
+	margin: 0 auto;
 }
 .col-sm-8, .col-sm-4{           
-box-sizing: border-box !important;
-padding:20px !important;
-overflow: hidden;
+	box-sizing: border-box !important;
+	padding:20px !important;
+	overflow: hidden;
 }
 #title-img{
-position: relative;
-border-radius: 10px 10px 0 0;
-overflow: hidden;
-height: 450px;
-background-color: #ebebeb;
+	position: relative;
+	border-radius: 10px 10px 0 0;
+	overflow: hidden;
+	height: 450px;
+	background-color: #ebebeb;
 }
 	
 .title-text {
-position: relative;
-border-radius: 0 0 10px 10px;
-border: 1px solid #d5dadf;
-border-top: 0 none;
-padding: 25px 30px 40px;
+	position: relative;
+	border-radius: 0 0 10px 10px;
+	border: 1px solid #d5dadf;
+	border-top: 0 none;
+	padding: 25px 30px 40px;
 }
 .title-course {
-font-size: 16px;
-margin-bottom: 2px;
-color: #6a82ec;
-float: left;
-padding-right: 5px;
+	font-size: 16px;
+	margin-bottom: 2px;
+	color: #6a82ec;
+	float: left;
+	padding-right: 5px;
 }
 .title-type {
-font-size: 16px;
-margin-bottom: 2px;
-color: #96969d;
+	font-size: 16px;
+	margin-bottom: 2px;
+	color: #96969d;
 }
 .sub-profile {
-border: 1px solid #e4e9ef;
-height: 100%;
-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
-border-radius: 10px;
-padding: 0;
+	border: 1px solid #e4e9ef;
+	height: 100%;
+	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
+	border-radius: 10px;
+	padding: 0;
 }
 
 .detail-party-info {
-  position: relative;
-  padding: 20px;
+	position: relative;
+	padding: 20px;
 }
 .detail-party-info .party-img {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
-  background-color: #ebebeb;
+	position: absolute;
+	top: 20px;
+	left: 20px;
+	width: 70px;
+	height: 70px;
+	border-radius: 50%;
+	background-color: #ebebeb;
 }
 .detail-party-info .party-img .img {
-  width: 100%;
-  height: 100%;
-  background-position: center center;
-  background-size: cover;
-  overflow: hidden;
-  border-radius: 50%;
+	width: 100%;
+	height: 100%;
+	background-position: center center;
+	background-size: cover;
+	overflow: hidden;
+	border-radius: 50%;
 }
 .detail-party-info .party-txt {
-  padding-left: 90px;
+	padding-left: 90px;
 }
 #party-txt01 {
-  font-size: 20px;
-  font-weight: bold;
+	font-size: 20px;
+	font-weight: bold;
 }
 #party-txt02 {
-  margin-top: 6px;
-  font-size: 15px;
-  line-height: 22px;
-  word-break: keep-all;
-  height: 200px;
-  white-space: pre-line;
-  overflow-y: scroll;
+	margin-top: 6px;
+	font-size: 15px;
+	line-height: 22px;
+	word-break: keep-all;
+	height: 200px;
+	white-space: pre-line;
+	overflow-y: scroll;
 }
 
 #party-txt03 a {
-  display: inline-block;
-  color: #FF5862;
-  font-size: 15px;
-  line-height: 18px; 
-  height: 18px;
-  padding-right: 15px;
-  background-image: url(../image/icon/more_12_red.svg);
-  background-position: right center;
-  background-repeat: no-repeat;
-  background-size: 12px 12px;
+	display: inline-block;
+	color: #FF5862;
+	font-size: 15px;
+	line-height: 18px; 
+	height: 18px;
+	padding-right: 15px;
+	background-image: url(../image/icon/more_12_red.svg);
+	background-position: right center;
+	background-repeat: no-repeat;
+	background-size: 12px 12px;
 }
 .detail-info01 {
-  border-top: 1px solid #e4e9ef;
-  padding: 20px;
+	border-top: 1px solid #e4e9ef;
+	padding: 20px;
 }
 .detail-info01 ul{	
-   list-style:none;
-   padding-left:0px;
-  
+	list-style:none;
+	padding-left:0px;
 }
 .detail-info01 li {
-  float: none !important;
-  width: auto !important;  
-  font-size: 20px;
-  line-height: 50px;
+	float: none !important;
+	width: auto !important;  
+	font-size: 20px;
+	line-height: 50px;
 }
 .detail-info01 i{	
 	margin-right: 30px;
@@ -148,8 +147,6 @@ padding: 0;
 .tabContent {
 	display: none;	
 	padding: 6px 12px;
-	
-	
 }
 ul.tab li.active{
 	color: #222;
@@ -169,82 +166,82 @@ ul.tab li.active a {
 	min-height: 700px;
 }
 .class-confirm01 {
-  padding: 25px;
-  border-bottom: 1px solid #e4e9ef;
+	padding: 25px;
+	border-bottom: 1px solid #e4e9ef;
 }
 .class-confirm01 .text01 {
-  font-size: 18px;
-  font-weight: bold;
+	font-size: 18px;
+	font-weight: bold;
 }
 .class-confirm01 .text01 .badge {
-  margin-top: 3px;
-  vertical-align: top;
+	margin-top: 3px;
+	vertical-align: top;
 }
 .class-confirm01 .text02 {
-  font-size: 12px;
-  color: #9faab7;
+	font-size: 12px;
+	color: #9faab7;
 }
 .hashtag {
-  height: 22px;
-  margin: 2px 0 0 0;
-  padding: 4px 8px;
-  line-height: 14px;
-  font-size: 11px;
-  color: #838D99;
-  background-color: rgba(203, 210, 219, 0.2);
-  border-radius: 11px;
-  display: inline-block;
-  vertical-align: middle;
+	height: 22px;
+	margin: 2px 0 0 0;
+	padding: 4px 8px;
+	line-height: 14px;
+	font-size: 11px;
+	color: #838D99;
+	background-color: rgba(203, 210, 219, 0.2);
+	border-radius: 11px;
+	display: inline-block;
+	vertical-align: middle;
 }
 .class-confirm02 .btn-swip {
-  border-bottom: 1px solid #e4e9ef;
-  cursor: pointer;
+	border-bottom: 1px solid #e4e9ef;
+	cursor: pointer;
 }
 .class-confirm02 .btn-swip a {
-  position: relative;
-  display: block;
-  height: 56px;
-  line-height: 56px;
-  padding-left: 54px;
-  font-size: 16px;
+	position: relative;
+	display: block;
+	height: 56px;
+	line-height: 56px;
+	padding-left: 54px;
+	font-size: 16px;
 }
 .class-confirm02 .btn-swip a:hover {
-  background-color: #f7f7f7;
+	background-color: #f7f7f7;
 }
 .class-confirm02 .btn-swip a:before {
-  position: absolute;
-  top: 18px;
-  left: 24px;
-  display: block;
-  width: 20px;
-  height: 20px;
-  content: "";
+	position: absolute;
+	top: 18px;
+	left: 24px;
+	display: block;
+	width: 20px;
+	height: 20px;
+	content: "";
 }
 .class-confirm02 .btn-swip a:after {
-  position: absolute;
-  top: 18px;
-  right: 30px;
-  display: block;
-  width: 20px;
-  height: 20px;
-  content: "";
-  background-image: url(../image/icon_arrow_bottom.png);
+	position: absolute;
+	top: 18px;
+	right: 30px;
+	display: block;
+	width: 20px;
+	height: 20px;
+	content: "";
+	background-image: url(../image/icon_arrow_bottom.png);
 }
 .class-confirm02 .btn-swip.open a:after {
-  background-image: url(../image/icon_arrow_top.png);
+	background-image: url(../image/icon_arrow_top.png);
 }
 .class-confirm02 .swip-date a:before {
-  background-image: url(../image/icon/ic_calendar_gray.svg);
-  background-size: 20px 20px;
+	background-image: url(../image/icon/ic_calendar_gray.svg);
+	background-size: 20px 20px;
 }
 .class-confirm02 .swip-time a:before {
-  background-image: url(../image/icon/ic_time_gray.svg);
-  background-size: 20px 20px;
+	background-image: url(../image/icon/ic_time_gray.svg);
+	background-size: 20px 20px;
 }
 .class-confirm02 .class-date {
-  border-bottom: 1px solid #e4e9ef;
-  padding: 10px 0 30px;
- }
+	border-bottom: 1px solid #e4e9ef;
+	padding: 10px 0 30px;
+}
 .class-date input{
 	border-radius: 5px;
 	width: 100%;
@@ -252,22 +249,20 @@ ul.tab li.active a {
 	cursor: pointer;
 }
 .dateTimeGroup {
-  list-style:none;
-  padding-left:0px;
+	list-style:none;
+	padding-left:0px;
 }
 .dateTimeGroup p{	
-	
 	font-size: 15px;
 	margin-left: 10px;
 	margin-bottom: 10px
 }
 .result{
-font-size: 14px;
- 
+	font-size: 14px;
 }
 .class-confirm02 .class-time {
-  padding: 0;
-  display: none;
+	padding: 0;
+	display: none;
 }
 .class-confirm03 {
 	margin-top: 20px;
@@ -284,9 +279,7 @@ font-size: 14px;
 	color: white;
 }
 
-
 #addScheduleBtn{
-
 	width:100%;	
 	background-color: #7bd4ac;	
 	color: white;
@@ -396,7 +389,17 @@ font-size: 14px;
 					<div id="tab3" class="tabContent card">
 						<h4 class="card-title">Q&amp;A</h4>
 						<div class="card-body">
-							<ul class="qna list-group">
+							<ul class="insertQNA list-group">
+								<li class="list-group-item">
+									<div>
+										<form class="form" action="/QNA/new" method="post">
+											<textarea rows="3" cols="20" name="content"></textarea>
+											<button type="button" class="btn btn-lg" id="btnInputQNA">등록</button>
+										</form>
+									</div>
+								</li>
+							</ul>
+							<ul class="QNAList list-group">
 							</ul>
 						</div>
 					</div>
@@ -495,6 +498,7 @@ font-size: 14px;
 <%@ include file="../includes/footer.jsp" %>
 <script type="text/javascript" src="/resources/js/schedule.js"></script>
 <script src="/resources/js/review.js"></script>
+<script src="/resources/js/qna.js"></script>
 <script type="text/javascript"> 
 // <![CDATA[ 
 		
@@ -825,6 +829,135 @@ font-size: 14px;
 			});			
 		});
 		// remove review END
+		
+		
+		
+		
+		//QNA
+		
+		// QNA List START
+		var QNAUL = $(".QNAList");
+		
+		showQNAList();
+			
+			function showQNAList(){
+				
+				qnaService.getList({p_no:p_noValue}, function(list){
+					
+					console.log("list : " + list);
+					console.log(list);
+					
+					var str="";
+					if(list == null || list.length == 0){
+						
+						return;
+					}
+					
+					for(var i = 0, len = list.length || 0 ; i < len ; i++) {
+						console.log(list[i]);
+						str += "<li class='left clearfix list-group-item' data-q_no='" + list[i].q_no + "'>";
+						str += "	<div id='question'>";
+						str += "		<div class='header'>";
+						str += "			<strong>" + list[i].nickname + "</strong>";
+						str += "			<small class='text-muted'>" + qnaService.displayTime(list[i].q_regdate) + "</small>";
+						str += "			<a href='#' onclick='return false' class='float-right text-muted' style='text-decoration:none' id='remove' data-q_no='" + list[i].q_no + "'>삭제</a>";
+						str += "			<span class='float-right text-muted'>|</span>";
+						str += "			<a href='#' onclick='return false' class='float-right text-muted' style='text-decoration:none' id='modify' data-q_no='" + list[i].q_no + "'>답글</a>";
+						str += "		</div>";
+						str += "		<input name='question' value='" + list[i].question + "' style='border:0px' readonly='readonly'>";
+						str += "	</div>";
+						if (list[i].answer != null) {
+							str += "		<div id='answer'>";
+							str += "			<div class='header'>";
+							str += "				<i class='fas fa-share'></i>";
+							str += "				<strong>HOST</strong>";
+							str += "				<small class='text-muted'>" + qnaService.displayTime(list[i].a_regdate) + "</small>";
+	 						str += "			</div>";
+							str += "			<input name='answer' value='" + list[i].answer + "' style='border:0px;padding-left:20px;' readonly='readonly'>";
+							str += "		</div>";
+						}
+						str += "</li>"
+					}
+					
+					QNAUL.html(str);
+					
+				})
+			}
+		// QNA List END
+		
+		
+		// add QNA START
+		// add QNA END
+		
+		
+		// get QNA START
+		// get QNA END
+				
+		
+		// modify QNA Answer START
+		
+		$(".QNAList").on("click", "#modify", function(){
+			
+			var listItem = $(".QNAList li");
+			var q_no = $(this).data("q_no");
+			
+			console.log(q_no);
+			
+			var modifyQNA = QNAUL.find("li[data-q_no='" + q_no + "']");
+			
+			str = "";
+			
+			str += "	<div id='answer'>";
+			str += "		<form class='form' action='/QNA/q_no' method='post'>";
+			str += "			<textarea rows='3' cols='20' name='answer'></textarea>";
+			str += "			<button type='button' class='btn btn-lg' id='btnModifyAnswer' data-q_no='" + q_no + "'>등록</button>";
+			str += "		</form>";
+			str += "	</div>";
+			
+			modifyQNA.append(str);
+		});
+		
+		$(".QNAList").on("click", "#btnModifyAnswer", function(){
+			
+			var q_no = $(this).data("q_no");
+			console.log(q_no);
+			
+			var modifyQNA = $(".QNAList");
+			var modifyQNAAnswer = modifyQNA.find("textarea[name='answer']");
+			console.log(modifyQNAAnswer.val());
+			
+			var qna = {
+					answer: modifyQNAAnswer.val(),
+					q_no: q_no
+			};
+			console.log(qna);
+			
+			qnaService.modifyAnswer(qna, function(result){
+				
+				alert(result);
+				
+				showQNAList();
+			});
+		});
+		// modify QNA Answer END
+		
+		
+		// remove QNA START
+		$(".QNAList").on("click", "#remove", function(){
+			
+			var q_no = $(this).data("q_no");
+			
+			console.log(q_no);
+			
+			qnaService.remove(q_no, function(result){
+				
+				alert(result);
+				
+				showQNAList();
+			});
+		});
+		// remove QNA END
+		
 		
 	}); 
     //]]>

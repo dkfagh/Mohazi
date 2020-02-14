@@ -11,8 +11,8 @@ public interface QNAService {
 	public QNAVO get(Long q_no);
 	
 	public int remove(Long q_no);
-	
-	public int modify(QNAVO vo);
+		
+	public int modifyAnswer(QNAVO vo);
 	
 	public List<QNAVO> getList(Long p_no);
 }

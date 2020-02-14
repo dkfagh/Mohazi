@@ -15,8 +15,8 @@
 	<delete id="delete">
 		DELETE FROM QNA WHERE Q_NO = #{q_no}
 	</delete>
-	
-	<update id="update">
+		
+	<update id="updateAnswer">
 		UPDATE QNA SET ANSWER = #{answer}, A_REGDATE = SYSDATE WHERE Q_NO = #{q_no}
 	</update>
 	
