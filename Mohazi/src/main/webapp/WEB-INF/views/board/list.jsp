@@ -221,20 +221,21 @@
 // function for thumbnail
 function showThumbnail(p_no){
 	var p_noValue = p_no;
-	console.log("p_no : " + p_no);
 	
 	$.getJSON("/board/getAttachList", {p_no:p_noValue},function(arr){
 		var str = "";
-		
-		$(arr).each(function(i,attach){
-			var fileCallPath = encodeURIComponent( attach.uploadPath +"/"+ attach.uuid +"_"+ attach.fileName);
-			str +="/display?fileName="+fileCallPath; 			
-		});
-
-		if(str == "") {return;}
-		$("#"+p_noValue).attr("src", str);
-		});	//end getjson
-	};		//end function
+		// if there is no attached image file
+		if(!arr.length){
+			return;
+		}
+		else{
+			attach = arr[0];
+			var fileCallPath = encodeURIComponent(attach.uploadPath +"/"+ attach.uuid +"_"+ attach.fileName);
+			str +="/display?fileName="+fileCallPath;
+			$("#"+p_noValue).attr("src", str);
+		}
+	});	//end getjson
+};		//end function
 </script>
 
 <div class="container" id="contents">
