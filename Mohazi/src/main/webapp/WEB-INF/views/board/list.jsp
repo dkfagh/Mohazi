@@ -108,14 +108,15 @@
 } 
 .col-sm-3{   
     height: 350px;
-    padding-bottom: 10px;
+    padding-bottom: 20px;
 }
 .list-title-img{
    position: relative;
-   border-radius: 10px 10px 0 0;
+   border-radius: 6px 6px 0 0;
    border: 1px solid #d5dadf;
    overflow: hidden;
-   height: 65%;
+   height: 70%;
+   background-color: white;
 }
 .list-title-img img{
     width: 100%;
@@ -123,11 +124,12 @@
 }
 .list-title-text {
    position: relative;
-   border-radius: 0 0 10px 10px;
+   border-radius: 0 0 6px 6px;
    border: 1px solid #d5dadf;
    border-top: 0 none;
-   padding: 20px 30px;
-   height: 35%;
+   padding: 12.5px;
+   font-weight:bold;
+   height: 30%;
 }
 .list-category-main {
    font-size: 16px;
@@ -145,18 +147,20 @@
 	position: absolute;
 	bottom: 10px;
 	right: 10px;
-	opacity: 0.9;
+	opacity: 0.8;
+	border-radius:2px;
 }
 .list-header h2{
     margin: 5px;
-    font-family: 'Sunflower', sans-serif;
-    font-size: 25px;
+	font-weight:bold;
+	font-family: 'Nanum Gothic Coding', monospace;
     padding-top:15px;
     padding-bottom:15px;
+    font-size:25px;
 
 }
 .list-header{
-    border-top: solid 1px#7bd4ac ;
+    border-top: solid 1px #d5dadf ;
 }
 #top-btn {    
     position: fixed;
@@ -164,18 +168,23 @@
     bottom: 70px;
     display: none;
 }
-#btnWrite{
-   background-color:#7bd4ac;
-   color:white;
+.btnWrite{
+	background-color:#e9faf2;
+	border-radius:5px;
+	font-weight:bold;
+	padding:7px;
+	width:75px;
+	color:#66a385;
+	font-size:14px;
+	margin-top:-4px;
 }
 .pagination{
 	display:block;
 	margin:0 auto;
 	width:70%;
 	text-align:center;
-	padding-top:25px;
+	padding-top:10px;
 	padding-bottom:35px;
-	clear:both;
 }
 
 .pagination a{
@@ -364,7 +373,7 @@ function showThumbnail(p_no){
 					클래스
                   </c:when>
                </c:choose>
-         <button type="button" class="btn float-right" id="btnWrite">글쓰기</button>
+         <button type="button" class="btn float-right btnWrite">글쓰기</button>
          </h2>
         </div>
 
@@ -479,7 +488,7 @@ function showThumbnail(p_no){
 		
 	   
 		var type="${param.type}";
-		$("#btnWrite").on("click",function(){
+		$(".btnWrite").on("click",function(){
 			self.location="/board/register?type="+type;
 		});
             

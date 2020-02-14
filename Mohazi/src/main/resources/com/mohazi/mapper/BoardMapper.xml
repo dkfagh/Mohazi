@@ -55,11 +55,11 @@
    <select id="getSearch" resultType="com.mohazi.domain.PartyVO">
       <![CDATA[
          SELECT
-           P_NO, CAT_MAIN, CAT_SUB, TAG, PRICE, TITLE
+           P_NO, CAT_MAIN, CAT_SUB, TAG, PRICE, TITLE, ADDRESS
          FROM
              (
              SELECT /*+ INDEX_DESC(PARTY IDX_PARTY) */ 
-                ROWNUM RN, P_NO, CAT_MAIN, CAT_SUB, TAG, PRICE, TITLE
+                ROWNUM RN, P_NO, CAT_MAIN, CAT_SUB, TAG, PRICE, TITLE, SUBSTR(ADDRESS, 0, INSTR(ADDRESS, ' ', 1, 2)) AS ADDRESS
              FROM
                 PARTY
              WHERE

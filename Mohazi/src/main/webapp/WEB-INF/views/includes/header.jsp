@@ -40,7 +40,7 @@
 <style>
 
 *{
-	font-family: 'Nanum Gothic Coding', monospace ;
+	font-family: 'Nanum Gothic Coding', monospace;
 }
 
 #header {
@@ -62,24 +62,17 @@
 }
 
 #btnLogin{
-	margin-top:45px;
+	margin-top:43px;
     float: right;
     margin-right:7%;
 	background-color:#e9faf2;
-	border-radius:15px;
+	border-radius:5px;
 	font-weight:bold;
-	padding:8px;
+	padding:7px;
 	width:75px;
-	}
-	
-#btnLogin a{
-	text-decoration:none;
 	color:#66a385;
 	font-size:14px;
-	
-}
-
-
+	}
 
 #login a{
     background-color: #7bd4ac ;
@@ -189,9 +182,11 @@ input::-moz-placeholder { color: white; }
            		</div>
             </sec:authorize>
             <sec:authorize access="isAnonymous()">
+            	<a href="/customLogin">
             	<button id="btnLogin" class="btn">
-                  	<a href="/customLogin">로그인</a>
+                  	로그인
                	</button>
+               	</a>
             </sec:authorize>
             <!-- 시큐리티 영역 끝 -------------------------------------->
             
