@@ -50,16 +50,6 @@ public class ReviewController {
 	}
 	
 	
-	// Review 상세보기
-	@RequestMapping(value = "/{r_no}", method = RequestMethod.GET, produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE})
-	public ResponseEntity<ReviewVO> get(@PathVariable("r_no") Long r_no) {
-		
-		log.info("get : " + r_no);
-		
-		return new ResponseEntity<>(service.get(r_no), HttpStatus.OK);
-	}
-	
-	
 	// Review 수정
 	@RequestMapping(value = "/{r_no}", method = {RequestMethod.PUT, RequestMethod.PATCH},  consumes = "application/json")
 	public ResponseEntity<String> modify(@RequestBody ReviewVO vo, @PathVariable("r_no") Long r_no) {

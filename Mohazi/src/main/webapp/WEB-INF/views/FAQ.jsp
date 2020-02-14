@@ -4,110 +4,133 @@
 <%@ include file="./includes/header.jsp" %>
 <%@ include file="./includes/navigation.jsp" %>
 
-    <style>
-        /* reset */
-        *{
-            margin:0;
-            padding: 0;
-        }
+<style>
+    /* reset */
+    *{
+        margin:0;
+        padding: 0;
+    }
+    
+    .row{
+    	padding: 20px 15px;
+    }
+    
+    ul, li{
+    	list-style: none;
+    }
+    
+    li a:hover{
+    	text-decoration: none;
+    }
+    
+    
+    .FAQ-h{            
+        width: 100%;       
+        right: 10%;
+        height: 180px;
+        z-index: 5;
+        border-bottom:solid 1.5px #66a385;
+    }
+    
+    .Explanation{            
+        height: 80px;
+        width: 100%;            
+    }
         
-        ul, li{
-        	list-style: none;
-        }
-        
-        li a:hover{
-        	text-decoration: none;
-        }
-        
-        .FAQ-h{            
-            /* width: 80%; */            
-            right: 10%;
-            height: 240px;
-            z-index: 5;
-        }
-        
-        .FAQ-b{            
-            width: 100%;            
-            right: 10%;
-            top:240px;
-            z-index: 4;
-        }
-        
-        .Explanation{            
-            height: 80px;
-            width: 100%;            
-        }
-        
-        .Explanation h6{
-            text-align: center;
-        }
-        
-        .FAQsearch{
-            width: 100%;
-            height: 60px;
-        }
-        
-        .FAQsearch button{            
-            font-size: 25px;
-            border:none;            
-        }
-        
-        #category ul li{
-        	list-style:none;
-        }
-        
-        #category li{        	
-        	float:left;
-        	margin-left:20px;
-        }
-        
-        #category a{
-        	color:black;
-        }
-            
-        .FAQsearch input{
-            height: 35px;
-        }
-        
-        .accordions {
-	        background-color: #eee;
-	        color: #444;
-	        cursor: pointer;
-	        padding: 18px;
-	        width: 100%;
-	        border: none;
-	        text-align: left;
-	        outline: none;
-	        font-size: 15px;
-	        transition: 0.4s;
-        }
+    .FAQsearch{
+        width: 100%;
+        border-bottom:solid 1.5px #66a385;
+        margin-bottom: 20px;
+    }
+    
+    #inputKeyword{
+    	width:90%;
+        border:none;
+    }
+    
+    #inputKeyword:focus{
+    	outline: none; 
+    }
+    
+    .FAQsearch button:focus{
+    	outline: none; 
+    }
+    
+    #category{
+    	margin:5px;
+    	margin-bottom: 20px;
+    }
+    
+    #category ul li{
+    	list-style:none;
+    }
+    
+    #category li{        	
+    	float:left;
+    }
+    
+    .category{
+    	margin-left:30px;
+    }
+    
+    #category a{
+    	color:black;
+    }
+    
+    
+    
+    .FAQ-b{            
+        width: 100%;            
+        right: 10%;
+        z-index: 4;
+    }
+    
+    .accordions {
+	     background-color: white;
+	     color: black;
+	     cursor: pointer;
+	     padding: 18px;
+	     width: 100%;
+	     border: none;
+	     text-align: left;
+	     outline: none;
+	     font-size: 15px;
+	     transition: 0.4s;
+	     border-bottom:solid lightgray 0.5px;
+    }
+    
+    .accordions:focus{
+    	 outline: none; 
+    }
 
-        .panel {
-	        padding: 0 18px;      
-	        background-color: white;
-	        overflow: hidden;
-	        transition: max-height 0.2s ease-out;
-        }
-        
-    </style>
+    .panel {
+	     padding: 0 18px;      
+	     background-color: white;
+	     overflow: hidden;
+	     border: solid gray 0.5px;
+	     transition: max-height 0.2s ease-out;
+    }
+    
+</style>
     
     <div class="container">
-
-            <!-- FAQ 페이지 시작 -->
-        <div class="row"> <!-- 내정보 네비, 페이지 분할 -->
+        <!-- FAQ 페이지 시작 -->
+        <!-- 내정보 네비, 페이지 분할 -->
+        <div class="row"> 
                 <div class="FAQ-h">
                     <div class="Explanation">
                         <h2>FAQ</h2>
-                        <h6>FAQ에 없는 질문에 관한 문의는 admin@mohazi.com으로 메일 부탁드립니다.</h6>
+                        <p>FAQ에 없는 질문에 관한 문의는 admin@mohazi.com으로 메일 부탁드립니다.</p>
                     </div>
-                    <!-- form tag-->
-
+                    
+                    <!-------------------------- search form ------------------------------->
                     <div class="FAQsearch">
                         <form id="FAQsearchForm" action="/FAQ" method="get">
-	                        <input type="text" name="keyword" placeholder="검색어를 입력하세요." />
-	                        <button><i class="fa fa-search"></i></button>
+                        	<button class="btn btn-lg"><i class="fas fa-search"></i></button>
+	                        <input type="text" name="keyword" id="inputKeyword" placeholder="검색어를 입력하세요." />
                         </form>
                     </div>
+                    <!----- search form END ----->
                     
                     <div id="category">
                         <ul>
@@ -115,24 +138,23 @@
                         		<a id="total" href="#">전체</a>
                         	</li>
                         	<li>
-                        		<a id="info" href="#">이용 안내</a>
+                        		<a id="info" class="category" href="#">이용 안내</a>
                         	</li>
                         	<li>
-                        		<a id="attendee" href="#">참여자</a>
+                        		<a id="attendee" class="category" href="#">참여자</a>
                         	</li>
                         	<li>
-                        		<a id="host" href="#">개설자</a>
+                        		<a id="host" class="category" href="#">개설자</a>
                         	</li>
                         	<li>
-                        		<a id="user" href="#">회원 정보</a>
+                        		<a id="user" class="category" href="#">회원 정보</a>
                         	</li>
                         	<li>
-                        		<a id="payment" href="#">결제/환불</a>
+                        		<a id="payment" class="category" href="#">결제/환불</a>
                         	</li>
                         </ul>
                     </div>              
                 </div>
-                    <!-- form tag end-->
 
                 <div class="FAQ-b">
                     <ul id="accordion">
@@ -166,7 +188,6 @@
     // FAQ category select
     $("#category a").on("click",function(e){
         e.preventDefault();  // 전송을 막아 페이지가 상단으로 이동하는것을 방지
-        
 	});
     
     

@@ -41,23 +41,7 @@ var qnaService = (function() {
 					}
 				});
 	}
-	
-	
-	function get(q_no, callback, error) {
-		
-		$.get("/QNA/" + q_no + ".json", function(result) {
 			
-			if (callback) {
-				callback(result);
-			}
-		}).fail(function(xhr, status, err) {
-			if (error) {
-				error();
-			}
-		});
-	}
-	
-		
 	
 	function modifyAnswer(qna, callback, error) {
 		
@@ -121,7 +105,6 @@ var qnaService = (function() {
 	return {
 		add : add,
 		getList : getList,
-		get : get,
 		modifyAnswer : modifyAnswer,
 		remove : remove,
 		displayTime : displayTime

@@ -8,10 +8,6 @@
 		INSERT INTO QNA (Q_NO, ID, P_NO, QUESTION) VALUES(SEQ_QNA.NEXTVAL, #{id}, #{p_no}, #{question})
 	</insert>
 	
-	<select id="read" resultType="com.mohazi.domain.QNAVO">
-		SELECT * FROM QNA WHERE Q_NO = #{q_no}
-	</select>
-	
 	<delete id="delete">
 		DELETE FROM QNA WHERE Q_NO = #{q_no}
 	</delete>

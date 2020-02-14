@@ -28,14 +28,6 @@ public class ReviewServiceImpl implements ReviewService{
 	}
 
 	@Override
-	public ReviewVO get(Long r_no) {
-		
-		log.info("!!! get !!!" + r_no);
-		
-		return mapper.read(r_no);
-	}
-
-	@Override
 	public int remove(Long r_no) {
 		
 		log.info("!!! remove !!!" + r_no);

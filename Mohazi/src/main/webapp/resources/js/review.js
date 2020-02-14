@@ -43,21 +43,6 @@ var reviewService = (function() {
 	}
 	
 	
-	function get(r_no, callback, error) {
-		
-		$.get("/review/" + r_no + ".json", function(result) {
-			
-			if (callback) {
-				callback(result);
-			}
-		}).fail(function(xhr, status, err) {
-			if (error) {
-				error();
-			}
-		});
-	}
-	
-	
 	function modify(review, callback, error) {
 		
 		console.log("R_NO : " + review.r_no);
@@ -120,7 +105,6 @@ var reviewService = (function() {
 	return {
 		add : add,
 		getList : getList,
-		get : get,
 		modify : modify,
 		remove : remove,
 		displayTime : displayTime

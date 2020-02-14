@@ -7,11 +7,7 @@
 	<insert id="insert">
 		INSERT INTO REVIEW (R_NO, ID, P_NO, CONTENT) VALUES(SEQ_REVIEW.NEXTVAL, #{id}, #{p_no}, #{content})
 	</insert>
-	
-	<select id="read" resultType="com.mohazi.domain.ReviewVO">
-		SELECT * FROM REVIEW WHERE R_NO = #{r_no}
-	</select>
-	
+		
 	<delete id="delete">
 		DELETE FROM REVIEW WHERE R_NO = #{r_no}
 	</delete>

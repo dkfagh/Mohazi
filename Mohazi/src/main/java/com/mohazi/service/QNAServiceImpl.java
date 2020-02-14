@@ -27,14 +27,6 @@ public class QNAServiceImpl implements QNAService {
 	}
 
 	@Override
-	public QNAVO get(Long q_no) {
-		
-		log.info("!!! get !!!" + q_no);
-		
-		return mapper.read(q_no);
-	}
-
-	@Override
 	public int remove(Long q_no) {
 		
 		log.info("!!! remove !!!" + q_no);

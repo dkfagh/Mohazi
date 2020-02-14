@@ -8,6 +8,7 @@
 <select id="getList" resultType="com.mohazi.domain.FAQVO">
 	SELECT TITLE, CONTENT, CATEGORY
 	FROM FAQ
+	<!-- 검색했을 경우 -->
     <where>
     	<if test="keyword != null">
     		TITLE LIKE '%'||#{keyword}||'%' OR CONTENT LIKE '%'||#{keyword}||'%'

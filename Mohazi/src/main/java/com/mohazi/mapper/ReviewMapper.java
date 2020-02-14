@@ -9,9 +9,7 @@ import com.mohazi.domain.ReviewVO;
 public interface ReviewMapper {
 
 	public int insert(ReviewVO vo);
-	
-	public ReviewVO read(Long r_no);
-	
+		
 	public int delete(Long r_no);
 	
 	public int update(ReviewVO vo);
