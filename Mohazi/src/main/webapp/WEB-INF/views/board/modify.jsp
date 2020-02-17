@@ -249,6 +249,16 @@ input[type=text]:-ms-clear{
     color: black;
     background-color: #fff;
 }
+.mapBtn{
+    background-color:#e9faf2;
+	border-radius:5px;
+	font-weight:bold;
+	padding:0px 7px;
+	width:75px;
+	color:#66a385;
+	font-size:14px;
+	border:0px;
+}
 </style>
 
 <!-- Container시작 ----------------------------------------------------------------->
@@ -316,10 +326,8 @@ input[type=text]:-ms-clear{
                <td id="address"><input type="text" value="${party.address}" id="inputAddress"
                   placeholder="주소를 입력하세요." style="width: 300px;" name="address">
                   <input type="button" onclick="sample5_execDaumPostcode()"
-                  value="검색" class="mapBtn"
-                  style="font-size: 12px; background-color: black; color: white; border-radius: 3px;"><br>
-                  <div id="map"
-                     style="width: 300px; height: 300px; margin-top: 10px; display: none"></div>
+                  value="검색" class="mapBtn"><br>
+                  <div id="map" style="width:100%;height:350px;display:none"></div>
                </td>
             </tr>
 
@@ -381,10 +389,9 @@ input[type=text]:-ms-clear{
       
       <!-- 등록버튼입력 -------------------------------------------------------------------------->
       
-      <button type="submit" data-oper='list' class="listBtn btn btn-outline-secondary" style="margin:3px;">목록</button>
-      <button type="submit" data-oper='remove' class="remBtn btn btn-outline-secondary" style="margin:3px;" 
-      onclick="del(${party.p_no})">삭제</button>
-      <button type="submit" data-oper='modify' class="modBtn btn btn-outline-secondary" style="margin:3px;">수정</button>
+    
+      <button type="submit" id="remBtn" data-oper='remove' class="remBtn btn btn-outline-secondary" style="margin:3px;">삭제</button>
+      <button type="submit" id="modBtn" data-oper='modify' class="modBtn btn btn-outline-secondary" style="margin:3px;">수정</button>
 <br>
 <br>
 <br>
@@ -417,9 +424,12 @@ $(document).ready(function() {
 	    console.log(operation);
 	    
 	    if(operation === 'remove'){
-	      formObj.attr("action", "/board/remove");
-	      
-	    }else if(operation === 'list'){
+	    	if(confirm("정말 삭제 하시겠습니까?")){
+	             formObj.attr("action", "/board/remove");
+	          }
+	          else{return false;}
+	    }
+	    else if(operation === 'list'){
 	      //move to list
 	      formObj.attr("action", "/board/list").attr("method","get");
 	      
@@ -613,7 +623,8 @@ $(document).ready(function() {
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e5d55372dfb08cff48fa326451e35832&libraries=services"></script>
 <script>
-   $(document).ready(function() {
+/*    $(document).ready(function() {
+
       var mapContainer = document.getElementById('map'), // 지도를 표시할 div
       mapOption = {
          center : new daum.maps.LatLng(37.537187, 127.005476), // 지도의 중심좌표
@@ -630,36 +641,50 @@ $(document).ready(function() {
          position : new daum.maps.LatLng(37.537187, 127.005476),
          map : map
       });
-   });
+   }); */
 
    function sample5_execDaumPostcode() {
-      new daum.Postcode({
-         oncomplete : function(data) {
-            var addr = data.address; // 최종 주소 변수
+	      new daum.Postcode({
+	         oncomplete : function(data) {
+	            var addr = data.address; // 최종 주소 변수
 
-            // 주소 정보를 해당 필드에 넣는다.
-            document.getElementById("inputAddress").value = addr;
-            // 주소로 상세 정보를 검색
-            geocoder.addressSearch(data.address, function(results, status) {
-               // 정상적으로 검색이 완료됐으면
-               if (status === daum.maps.services.Status.OK) {
+	            // 주소 정보를 해당 필드에 넣는다.
+	            document.getElementById("inputAddress").value = addr;
+	            // 주소로 상세 정보를 검색
+	            var geocoder = new daum.maps.services.Geocoder();
+	            geocoder.addressSearch(data.address, function(results, status) {
+	               // 정상적으로 검색이 완료됐으면
+	               if (status === daum.maps.services.Status.OK) {
 
-                  var result = results[0]; //첫번째 결과의 값을 활용
+	                  var result = results[0]; //첫번째 결과의 값을 활용
 
-                  // 해당 주소에 대한 좌표를 받아서
-                  var coords = new daum.maps.LatLng(result.y, result.x);
-                  // 지도를 보여준다.
-                  mapContainer.style.display = "block";
-                  map.relayout();
-                  // 지도 중심을 변경한다.
-                  map.setCenter(coords);
-                  // 마커를 결과값으로 받은 위치로 옮긴다.
-                  marker.setPosition(coords)
-               }
-            });
-         }
-      }).open();
-   }
+	                  // 해당 주소에 대한 좌표를 받아서
+	                  var coords = new daum.maps.LatLng(result.y, result.x);
+	                  // 지도를 보여준다.
+	                  
+	                  var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+	                  mapOption = {
+	                     center : coords, // 지도의 중심좌표
+	                     level : 5
+	                  // 지도의 확대 레벨
+	                  };
+	                  var map = new daum.maps.Map(mapContainer, mapOption);
+	                  
+	                  mapContainer.style.display = "block";
+	                  map.relayout();
+	                  // 지도 중심을 변경한다.
+	                  map.setCenter(coords);
+	                  // 마커를 결과값으로 받은 위치로 옮긴다.
+	                  var marker = new daum.maps.Marker({
+	                  position : coords,
+	                  map : map
+	               });
+	                  marker.setPosition(coords)
+	               }
+	            });
+	         }
+	      }).open();
+	   }
 </script>
 <!-- 카카오맵API ------------------------------------------------------------------------------------------------>
 
@@ -808,12 +833,5 @@ $(document).ready(function(){
 
 </script>
 
-<script>
-	function del(p_no){
-		var chk = confirm("정말 삭제하시겠습니까?");
-		if (chk) {
-			location.href='delete?p_no='+p_no;
-		}
-	}	
-</script>
+
 

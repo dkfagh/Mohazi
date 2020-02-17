@@ -515,7 +515,8 @@ ul.tab li.active a {
 <script type="text/javascript" src="/resources/js/party_join.js"></script>
 <script src="/resources/js/review.js"></script>
 <script src="/resources/js/qna.js"></script>
-<script type="text/javascript" src="http://dapi.kakao.com/v2/maps/sdk.js?appkey=c41b984f9b2cf26e2b879b39a839b430"></script>
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=e5d55372dfb08cff48fa326451e35832&libraries=services"></script>
 <script type="text/javascript"> 
 // <![CDATA[ 
 		
