@@ -364,8 +364,8 @@ ul.tab li.active a {
 								<li class="list-group-item">
 									<div>
 										<form id="formReview" action="/review/new" method="post">
-											<textarea rows="3" cols="62" name="content"></textarea>
-											<button type="button" class="btn btn-lg" id="btnInputReview">등록</button>
+											<textarea rows="3" cols="62" id="inputReview" name="content"></textarea>
+											<button type="button" class="btn" style="width:80px;height:70px;" id="btnInputReview">등록</button>
 										</form>
 									</div>
 								</li>
@@ -382,8 +382,8 @@ ul.tab li.active a {
 								<li class="list-group-item">
 									<div>
 										<form id="formQNA" action="/QNA/new" method="post">
-											<textarea rows="3" cols="62" name="content"></textarea>
-											<button type="button" class="btn btn-lg" id="btnInputQNA">등록</button>
+											<textarea rows="3" cols="62" id="inputQuestion" name="content"></textarea>
+											<button type="button" class="btn" style="width:80px;height:70px;" id="btnInputQNA">등록</button>
 										</form>
 									</div>
 								</li>
@@ -510,14 +510,14 @@ ul.tab li.active a {
 	
 
 <%@ include file="../includes/footer.jsp" %>
-<script type="text/javascript" src="/resources/js/schedule.js"></script>
-<script type="text/javascript" src="/resources/js/schedule_join.js"></script>
-<script type="text/javascript" src="/resources/js/party_join.js"></script>
+<script src="/resources/js/schedule.js"></script>
+<script src="/resources/js/schedule_join.js"></script>
+<script src="/resources/js/party_join.js"></script>
 <script src="/resources/js/review.js"></script>
 <script src="/resources/js/qna.js"></script>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=e5d55372dfb08cff48fa326451e35832&libraries=services"></script>
-<script type="text/javascript"> 
+<script> 
 // <![CDATA[ 
 		
     $(document).ready(function(){  	
@@ -810,6 +810,8 @@ ul.tab li.active a {
 				
 				alert(result);
 				
+				$('#inputReview').val('');
+				
 				showReviewList();
 			});
 		});
@@ -835,7 +837,7 @@ ul.tab li.active a {
 			str += "	<div>";
 			str += "		<form class='form' action='/review/r_no' method='post'>";
 			str += "			<textarea rows='3' cols='58' name='contentModify'>" + modifyReviewContent.val() + "</textarea>";
-			str += "			<button type='button' class='btn btn-lg' id='btnModifyReview' data-r_no='" + r_no + "'>수정</button>";
+			str += "			<button type='button' class='btn' style='width:70px;height:60px;' id='btnModifyReview' data-r_no='" + r_no + "'>수정</button>";
 			str += "		</form>";
 			str += "	</div>";
 			str += "</li>";
@@ -927,7 +929,9 @@ ul.tab li.active a {
 							str += "			<a href='#' onclick='return false' class='float-right text-muted' style='text-decoration:none' id='modifyQuestion' data-q_no='" + list[i].q_no + "'>수정</a>";
 						}
 						str += "		</div>";
-						str += "		<input name='question' value='" + list[i].question + "' style='border:0px' readonly='readonly'>";
+						/* str += "		<input name='question' value='" + list[i].question + "' style='border:0px' readonly='readonly'>"; */
+						str += "		<input name='question' type='hidden' value='" + list[i].question + "'>";
+						str += "		<p name='content' style='margin-bottom=10px;'>" + list[i].question + "</p>";
 						str += "	</div>";
 						if (list[i].answer != null) {
 							str += "		<div id='answer'>";
@@ -941,7 +945,9 @@ ul.tab li.active a {
 								str += "				<a href='#' onclick='return false' class='float-right text-muted' style='text-decoration:none' id='modifyAnswer' data-q_no='" + list[i].q_no + "'>수정</a>";
 							}
 	 						str += "			</div>";
-							str += "			<input name='answer' value='" + list[i].answer + "' style='border:0px;padding-left:20px;' readonly='readonly'>";
+							/* str += "			<input name='answer' value='" + list[i].answer + "' style='border:0px;padding-left:20px;' readonly='readonly'>"; */
+							str += "			<input name='answer' type='hidden' value='" + list[i].question + "'>";
+							str += "			<p name='content' style='margin-bottom=10px;'>" + list[i].answer + "</p>";
 							str += "		</div>";
 						}
 						str += "</li>"
@@ -977,6 +983,8 @@ ul.tab li.active a {
 				
 				alert(result);
 				
+				$('#inputQuestion').val('');
+				
 				showQNAList();
 			});
 		});
@@ -1000,8 +1008,8 @@ ul.tab li.active a {
 			str += "<li class='list-group-item' data-q_no='" + q_no + "'>";
 			str += "	<div id='question'>";
 			str += "		<form class='form' action='/QNA/modifyQuestion/q_no' method='post'>";
-			str += "			<textarea rows='3' cols='20' name='contentModify'>" + modifyQNAQuestion.val() + "</textarea>";
-			str += "			<button type='button' class='btn btn-lg' id='btnModifyQuestion' data-q_no='" + q_no + "'>수정</button>";
+			str += "			<textarea rows='3' cols='58' name='contentModify'>" + modifyQNAQuestion.val() + "</textarea>";
+			str += "			<button type='button' class='btn' style='width:70px;height:60px;' id='btnModifyQuestion' data-q_no='" + q_no + "'>수정</button>";
 			str += "		</form>";
 			str += "	</div>";
 /* 			if (list[i].answer != null) {
@@ -1061,8 +1069,8 @@ ul.tab li.active a {
 			
 			str += "	<div id='answer'>";
 			str += "		<form class='form' action='/QNA/q_no' method='post'>";
-			str += "			<textarea rows='3' cols='20' name='answer'></textarea>";
-			str += "			<button type='button' class='btn btn-lg' id='btnRegisterAnswer' data-q_no='" + q_no + "'>등록</button>";
+			str += "			<textarea rows='3' cols='58' name='answer'></textarea>";
+			str += "			<button type='button' class='btn' style='width:70px;height:60px;' id='btnRegisterAnswer' data-q_no='" + q_no + "'>등록</button>";
 			str += "		</form>";
 			str += "	</div>";
 			
@@ -1111,8 +1119,8 @@ ul.tab li.active a {
 			str += "<li class='list-group-item' data-q_no='" + q_no + "'>";
 			str += "	<div id='question'>";
 			str += "		<form class='form' action='/QNA/modifyAnswer/q_no' method='post'>";
-			str += "			<textarea rows='3' cols='20' name='contentModify'>" + modifyQNAAnswer.val() + "</textarea>";
-			str += "			<button type='button' class='btn btn-lg' id='btnModifyAnswer' data-q_no='" + q_no + "'>수정</button>";
+			str += "			<textarea rows='3' cols='58' name='contentModify'>" + modifyQNAAnswer.val() + "</textarea>";
+			str += "			<button type='button' class='btn' style='width:70px;height:60px;' id='btnModifyAnswer' data-q_no='" + q_no + "'>수정</button>";
 			str += "		</form>";
 			str += "	</div>";
 /* 			if (list[i].answer != null) {
@@ -1232,7 +1240,7 @@ ul.tab li.active a {
  
  
 
-<script type="text/javascript">
+<script>
 $(document).ready(function() {
   
   var operForm = $("#operForm"); 
