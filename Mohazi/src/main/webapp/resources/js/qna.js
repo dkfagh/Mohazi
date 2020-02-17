@@ -43,13 +43,13 @@ var qnaService = (function() {
 	}
 			
 	
-	function modifyAnswer(qna, callback, error) {
+	function registerAnswer(qna, callback, error) {
 		
 		console.log("Q_NO : " + qna.q_no);
 		
 		$.ajax({
 			type: 'put',
-			url: '/QNA/' + qna.q_no,
+			url: '/QNA/new/' + qna.q_no,
 			data: JSON.stringify(qna),
 			contentType: 'application/json; charset=utf-8',
 			success: function(result, status, xhr) {
@@ -66,7 +66,7 @@ var qnaService = (function() {
 	}
 
 	
-	function remove(q_no, callback, error) {
+	function removeQuestion(q_no, callback, error) {
 		
 		$.ajax({
 			type: 'delete',
@@ -74,6 +74,73 @@ var qnaService = (function() {
 			success: function(deleteResult, status, xhr) {
 				if (callback) {
 					callback(deleteResult);
+				}
+			},
+			error: function(xhr, status, er) {
+				if (error) {
+					error(er);
+				}
+			}
+		});
+	}
+	
+	
+	function modifyQuestion(qna, callback, error) {
+		
+		console.log("Q_NO : " + qna.q_no);
+		
+		$.ajax({
+			type: 'put',
+			url: '/QNA/modifyQuestion/' + qna.q_no,
+			data: JSON.stringify(qna),
+			contentType: 'application/json; charset=utf-8',
+			success: function(result, status, xhr) {
+				if (callback) {
+					callback(result);
+				}
+			},
+			error: function(xhr, status, er) {
+				if (error) {
+					error(er);
+				}
+			}
+		});
+	}
+	
+	
+	function modifyAnswer(qna, callback, error) {
+		
+		console.log("Q_NO : " + qna.q_no);
+		
+		$.ajax({
+			type: 'put',
+			url: '/QNA/modifyAnswer/' + qna.q_no,
+			data: JSON.stringify(qna),
+			contentType: 'application/json; charset=utf-8',
+			success: function(result, status, xhr) {
+				if (callback) {
+					callback(result);
+				}
+			},
+			error: function(xhr, status, er) {
+				if (error) {
+					error(er);
+				}
+			}
+		});
+	}
+
+
+	function removeAnswer(qna, callback, error) {
+				
+		$.ajax({
+			type: 'put',
+			url: '/QNA/removeAnswer/' + qna.q_no,
+			data: JSON.stringify(qna),
+			contentType: 'application/json; charset=utf-8',
+			success: function(result, status, xhr) {
+				if (callback) {
+					callback(result);
 				}
 			},
 			error: function(xhr, status, er) {
@@ -105,8 +172,11 @@ var qnaService = (function() {
 	return {
 		add : add,
 		getList : getList,
+		registerAnswer : registerAnswer,
+		removeQuestion : removeQuestion,
+		modifyQuestion : modifyQuestion,
 		modifyAnswer : modifyAnswer,
-		remove : remove,
+		removeAnswer : removeAnswer,
 		displayTime : displayTime
 	};
 })();

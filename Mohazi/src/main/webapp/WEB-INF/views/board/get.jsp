@@ -374,7 +374,7 @@ ul.tab li.active a {
 							<ul class="inputReview list-group">
 								<li class="list-group-item">
 									<div>
-										<form class="form" action="/review/new" method="post">
+										<form id="formReview" action="/review/new" method="post">
 											<textarea rows="3" cols="20" name="content"></textarea>
 											<button type="button" class="btn btn-lg" id="btnInputReview">등록</button>
 										</form>
@@ -392,7 +392,7 @@ ul.tab li.active a {
 							<ul class="insertQNA list-group">
 								<li class="list-group-item">
 									<div>
-										<form class="form" action="/QNA/new" method="post">
+										<form id="formQNA" action="/QNA/new" method="post">
 											<textarea rows="3" cols="20" name="content"></textarea>
 											<button type="button" class="btn btn-lg" id="btnInputQNA">등록</button>
 										</form>
@@ -521,6 +521,8 @@ ul.tab li.active a {
     $(document).ready(function(){  	
     	
     	var p_noValue='<c:out value="${party.p_no}"/>';
+    	
+    	var hostId='<c:out value="${party.id}"/>';
     	
     	 //ajaxSend시 토큰값 전달---------------------------------------------------------------	
     	var csrfHeaderName = "${_csrf.headerName}";
@@ -723,11 +725,14 @@ ul.tab li.active a {
 						str += "<li class='left clearfix list-group-item' data-r_no='" + list[i].r_no + "'>";
 						str += "	<div>";
 						str += "		<div class='header'>";
+						str += "		<input type='hidden' value='" + list[i].id + "'>";
 						str += "			<strong>" + list[i].nickname + "</strong>";
 						str += "			<small class='text-muted'>" + reviewService.displayTime(list[i].regdate) + "</small>";
-						str += "			<a href='#' onclick='return false' class='float-right text-muted' style='text-decoration:none' id='remove' data-r_no='" + list[i].r_no + "'>삭제</a>";
-						str += "			<span class='float-right text-muted'>|</span>";
-						str += "			<a href='#' onclick='return false' class='float-right text-muted' style='text-decoration:none' id='modify' data-r_no='" + list[i].r_no + "'>수정</a>";
+						if(list[i].id == userInfoId.val()){
+							str += "			<a href='#' onclick='return false' class='float-right text-muted' style='text-decoration:none' id='removeReview' data-r_no='" + list[i].r_no + "'>삭제</a>";
+							str += "			<span class='float-right text-muted'>|</span>";
+							str += "			<a href='#' onclick='return false' class='float-right text-muted' style='text-decoration:none' id='modifyReview' data-r_no='" + list[i].r_no + "'>수정</a>";
+						}
 						str += "		</div>";
 						str += "		<input name='content' value='" + list[i].content + "' style='border:0px' readonly='readonly'>";
 						str += "	</div>";
@@ -744,7 +749,7 @@ ul.tab li.active a {
 			
 		// add review START
 		var userInfo = $("#logBox");
-		var inputReview = $(".form");
+		var inputReview = $("#formReview");
 		
 		var userInfoId = userInfo.find("input[name='id']");  // user ID
 		var inputReviewContent = inputReview.find("textarea[name='content']");  // review content
@@ -758,11 +763,12 @@ ul.tab li.active a {
 			console.log(userInfoId.val());
 			console.log(inputReviewContent.val());
 			
-			var review = {
-					id: userInfoId.val(),
-					p_no: p_noValue,
-					content: inputReviewContent.val()
-			};
+			var review = {};
+			
+			review.id = userInfoId.val();
+			review.p_no = p_noValue;
+			review.content = inputReviewContent.val();
+			
 			console.log(review);
 			reviewService.add(review, function(result){
 				
@@ -776,7 +782,7 @@ ul.tab li.active a {
 		
 		
 		// modify review START
-		$(".reviewList").on("click", "#modify", function(){
+		$(".reviewList").on("click", "#modifyReview", function(){
 			
 			var listItem = $("li");
 			var r_no = $(this).data("r_no");
@@ -831,7 +837,7 @@ ul.tab li.active a {
 		
 		
 		// remove review START
-		$(".reviewList").on("click", "#remove", function(){
+		$(".reviewList").on("click", "#removeReview", function(){
 			
 			var r_no = $(this).data("r_no");
 			
@@ -874,11 +880,17 @@ ul.tab li.active a {
 						str += "<li class='left clearfix list-group-item' data-q_no='" + list[i].q_no + "'>";
 						str += "	<div id='question'>";
 						str += "		<div class='header'>";
+						str += "		<input type='hidden' value='" + list[i].id + "'>";
 						str += "			<strong>" + list[i].nickname + "</strong>";
 						str += "			<small class='text-muted'>" + qnaService.displayTime(list[i].q_regdate) + "</small>";
-						str += "			<a href='#' onclick='return false' class='float-right text-muted' style='text-decoration:none' id='remove' data-q_no='" + list[i].q_no + "'>삭제</a>";
-						str += "			<span class='float-right text-muted'>|</span>";
-						str += "			<a href='#' onclick='return false' class='float-right text-muted' style='text-decoration:none' id='modify' data-q_no='" + list[i].q_no + "'>답글</a>";
+						if (hostId == userInfoId.val() && list[i].answer == null){
+							str += "			<a href='#' onclick='return false' class='float-right text-muted' style='text-decoration:none' id='registerAnswer' data-q_no='" + list[i].q_no + "'>답글</a>";
+						}
+						if (list[i].id == userInfoId.val()){
+							str += "			<a href='#' onclick='return false' class='float-right text-muted' style='text-decoration:none' id='removeQuestion' data-q_no='" + list[i].q_no + "'>삭제</a>";
+							str += "			<span class='float-right text-muted'>|</span>";
+							str += "			<a href='#' onclick='return false' class='float-right text-muted' style='text-decoration:none' id='modifyQuestion' data-q_no='" + list[i].q_no + "'>수정</a>";
+						}
 						str += "		</div>";
 						str += "		<input name='question' value='" + list[i].question + "' style='border:0px' readonly='readonly'>";
 						str += "	</div>";
@@ -888,6 +900,11 @@ ul.tab li.active a {
 							str += "				<i class='fas fa-share'></i>";
 							str += "				<strong>HOST</strong>";
 							str += "				<small class='text-muted'>" + qnaService.displayTime(list[i].a_regdate) + "</small>";
+							if (hostId == userInfoId.val()){
+								str += "				<a href='#' onclick='return false' class='float-right text-muted' style='text-decoration:none' id='removeAnswer' data-q_no='" + list[i].q_no + "'>삭제</a>";
+								str += "				<span class='float-right text-muted'>|</span>";
+								str += "				<a href='#' onclick='return false' class='float-right text-muted' style='text-decoration:none' id='modifyAnswer' data-q_no='" + list[i].q_no + "'>수정</a>";
+							}
 	 						str += "			</div>";
 							str += "			<input name='answer' value='" + list[i].answer + "' style='border:0px;padding-left:20px;' readonly='readonly'>";
 							str += "		</div>";
@@ -903,16 +920,103 @@ ul.tab li.active a {
 		
 		
 		// add QNA START
+		var inputQNA = $("#formQNA");
+		
+		var inputQNAQuestion = inputQNA.find("textarea[name='content']");  // review content
+		
+		var btnInputQNA = $("#btnInputQNA");
+		
+		
+		btnInputQNA.on("click", function(){
+			
+			console.log(userInfoId.val());
+			console.log(inputQNAQuestion.val());
+			
+			var qna = {};
+			
+			qna.id = userInfoId.val();
+			qna.p_no = p_noValue;
+			qna.question = inputQNAQuestion.val();
+			
+			console.log(qna);
+			qnaService.add(qna, function(result){
+				
+				alert(result);
+				
+				showQNAList();
+			});
+		});
 		// add QNA END
 		
 		
-		// get QNA START
-		// get QNA END
+		// modify QNA Question START
+		$(".QNAList").on("click", "#modifyQuestion", function(){
+			
+			var listItem = $("li");
+			var q_no = $(this).data("q_no");
+			
+			console.log(q_no);
+			
+			var modifyQNA = QNAUL.find("li[data-q_no='" + q_no + "']");
+			var modifyQNAQuestion = modifyQNA.find("input[name='question']");
+			
+			console.log(modifyQNAQuestion.val());
+			
+			var str = "";
+			
+			str += "<li class='list-group-item' data-q_no='" + q_no + "'>";
+			str += "	<div id='question'>";
+			str += "		<form class='form' action='/QNA/modifyQuestion/q_no' method='post'>";
+			str += "			<textarea rows='3' cols='20' name='contentModify'>" + modifyQNAQuestion.val() + "</textarea>";
+			str += "			<button type='button' class='btn btn-lg' id='btnModifyQuestion' data-q_no='" + q_no + "'>수정</button>";
+			str += "		</form>";
+			str += "	</div>";
+/* 			if (list[i].answer != null) {
+				str += "		<div id='answer'>";
+				str += "			<div class='header'>";
+				str += "				<i class='fas fa-share'></i>";
+				str += "				<strong>HOST</strong>";
+				str += "				<small class='text-muted'>" + qnaService.displayTime(list[i].a_regdate) + "</small>";
+				str += "				<a href='#' onclick='return false' class='float-right text-muted' style='text-decoration:none' id='removeAnswer' data-q_no='" + list[i].q_no + "'>삭제</a>";
+				str += "				<span class='float-right text-muted'>|</span>";
+				str += "				<a href='#' onclick='return false' class='float-right text-muted' style='text-decoration:none' id='modifyAnswer' data-q_no='" + list[i].q_no + "'>수정</a>";
+				str += "			</div>";
+				str += "			<input name='answer' value='" + list[i].answer + "' style='border:0px;padding-left:20px;' readonly='readonly'>";
+				str += "		</div>";
+			}
+ */			str += "</li>"
+			modifyQNA.html(str);
+						
+		});
+		
+		$(".QNAList").on("click", "#btnModifyQuestion", function(){
+			
+			var q_no = $(this).data("q_no");
+			console.log(q_no);
+			
+			var modifyQNA = $(".QNAList");
+			var modifyQNAQuestion = modifyQNA.find("textarea[name='contentModify']");
+			console.log(modifyQNAQuestion.val());
+			
+			var qna = {
+					question: modifyQNAQuestion.val(),
+					q_no: q_no
+			};
+			console.log(qna);
+					
+			qnaService.modifyQuestion(qna, function(result){
+				
+				alert(result);
+				
+				showQNAList();
+			});
+		});
+		// modify QNA Question END		
 				
 		
-		// modify QNA Answer START
+		// register QNA Answer START
 		
-		$(".QNAList").on("click", "#modify", function(){
+		$(".QNAList").on("click", "#registerAnswer", function(){
 			
 			var listItem = $(".QNAList li");
 			var q_no = $(this).data("q_no");
@@ -926,14 +1030,14 @@ ul.tab li.active a {
 			str += "	<div id='answer'>";
 			str += "		<form class='form' action='/QNA/q_no' method='post'>";
 			str += "			<textarea rows='3' cols='20' name='answer'></textarea>";
-			str += "			<button type='button' class='btn btn-lg' id='btnModifyAnswer' data-q_no='" + q_no + "'>등록</button>";
+			str += "			<button type='button' class='btn btn-lg' id='btnRegisterAnswer' data-q_no='" + q_no + "'>등록</button>";
 			str += "		</form>";
 			str += "	</div>";
 			
 			modifyQNA.append(str);
 		});
 		
-		$(".QNAList").on("click", "#btnModifyAnswer", function(){
+		$(".QNAList").on("click", "#btnRegisterAnswer", function(){
 			
 			var q_no = $(this).data("q_no");
 			console.log(q_no);
@@ -955,24 +1059,112 @@ ul.tab li.active a {
 				showQNAList();
 			});
 		});
-		// modify QNA Answer END
+		// register QNA Answer END
 		
 		
-		// remove QNA START
-		$(".QNAList").on("click", "#remove", function(){
+		// modify QNA Answer START
+		$(".QNAList").on("click", "#modifyAnswer", function(){
 			
+			var listItem = $("li");
 			var q_no = $(this).data("q_no");
 			
 			console.log(q_no);
 			
-			qnaService.remove(q_no, function(result){
+			var modifyQNA = QNAUL.find("li[data-q_no='" + q_no + "']");
+			var modifyQNAAnswer = modifyQNA.find("input[name='answer']");
+			
+			console.log(modifyQNAAnswer.val());
+			
+			var str = "";
+			
+			str += "<li class='list-group-item' data-q_no='" + q_no + "'>";
+			str += "	<div id='question'>";
+			str += "		<form class='form' action='/QNA/modifyAnswer/q_no' method='post'>";
+			str += "			<textarea rows='3' cols='20' name='contentModify'>" + modifyQNAAnswer.val() + "</textarea>";
+			str += "			<button type='button' class='btn btn-lg' id='btnModifyAnswer' data-q_no='" + q_no + "'>수정</button>";
+			str += "		</form>";
+			str += "	</div>";
+/* 			if (list[i].answer != null) {
+				str += "		<div id='answer'>";
+				str += "			<div class='header'>";
+				str += "				<i class='fas fa-share'></i>";
+				str += "				<strong>HOST</strong>";
+				str += "				<small class='text-muted'>" + qnaService.displayTime(list[i].a_regdate) + "</small>";
+				str += "				<a href='#' onclick='return false' class='float-right text-muted' style='text-decoration:none' id='removeAnswer' data-q_no='" + list[i].q_no + "'>삭제</a>";
+				str += "				<span class='float-right text-muted'>|</span>";
+				str += "				<a href='#' onclick='return false' class='float-right text-muted' style='text-decoration:none' id='modifyAnswer' data-q_no='" + list[i].q_no + "'>수정</a>";
+				str += "			</div>";
+				str += "			<input name='answer' value='" + list[i].answer + "' style='border:0px;padding-left:20px;' readonly='readonly'>";
+				str += "		</div>";
+			}
+ */			str += "</li>"
+			modifyQNA.html(str);
+						
+		});
+		
+		$(".QNAList").on("click", "#btnModifyAnswer", function(){
+			
+			var q_no = $(this).data("q_no");
+			console.log(q_no);
+			
+			var modifyQNA = $(".QNAList");
+			var modifyQNAAnswer = modifyQNA.find("textarea[name='contentModify']");
+			console.log(modifyQNAAnswer.val());
+			
+			var qna = {
+					answer: modifyQNAAnswer.val(),
+					q_no: q_no
+			};
+			console.log(qna);
+					
+			qnaService.modifyAnswer(qna, function(result){
 				
 				alert(result);
 				
 				showQNAList();
 			});
 		});
-		// remove QNA END
+		// modify QNA Answer END
+		
+		
+		// remove QNA Answer START
+		$(".QNAList").on("click", "#removeAnswer", function(){
+			
+			var q_no = $(this).data("q_no");
+			
+			console.log(q_no);
+			
+			var qna = {
+					q_no: q_no
+			};
+			
+			console.log(qna);
+			
+			qnaService.removeAnswer(qna, function(result){
+				
+				alert(result);
+				
+				showQNAList();
+			});
+		});
+		// remove QNA Answer END
+		
+		
+		// remove QNA Question START
+		$(".QNAList").on("click", "#removeQuestion", function(){
+			
+			var q_no = $(this).data("q_no");
+			
+			console.log(q_no);
+			
+			qnaService.removeQuestion(q_no, function(result){
+				
+				alert(result);
+				
+				showQNAList();
+			});
+		});
+		// remove QNA Question END
 		
 		
 	}); 

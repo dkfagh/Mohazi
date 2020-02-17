@@ -50,7 +50,41 @@ public class QNAController {
 	
 	
 	// QNA answer 등록
-	@RequestMapping(value = "/{q_no}", method = {RequestMethod.PUT, RequestMethod.PATCH},  consumes = "application/json")
+	@RequestMapping(value = "/new/{q_no}", method = {RequestMethod.PUT, RequestMethod.PATCH},  consumes = "application/json")
+	public ResponseEntity<String> registerAnswer(@RequestBody QNAVO vo, @PathVariable("q_no") Long q_no) {
+		
+		vo.setQ_no(q_no);
+		
+		log.info("q_no : " + q_no);
+		log.info("register : " + vo);
+		
+		return service.registerAnswer(vo) == 1 ? new ResponseEntity<>("success", HttpStatus.OK) : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+	
+	
+	// QNA 삭제
+	@RequestMapping(value = "/{q_no}", method = RequestMethod.DELETE, produces = {MediaType.TEXT_PLAIN_VALUE})
+	public ResponseEntity<String> removeQuestion(@PathVariable("q_no") Long q_no) {
+		
+		log.info("remove : " + q_no);
+		
+		return service.removeQuestion(q_no) == 1 ? new ResponseEntity<>("success", HttpStatus.OK) : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+	
+	// QNA Question 수정
+	@RequestMapping(value = "/modifyQuestion/{q_no}", method = {RequestMethod.PUT, RequestMethod.PATCH},  consumes = "application/json")
+	public ResponseEntity<String> modifyQuestion(@RequestBody QNAVO vo, @PathVariable("q_no") Long q_no) {
+		
+		vo.setQ_no(q_no);
+		
+		log.info("q_no : " + q_no);
+		log.info("modify : " + vo);
+		
+		return service.modifyQuestion(vo) == 1 ? new ResponseEntity<>("success", HttpStatus.OK) : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+	
+	// QNA Answer 수정
+	@RequestMapping(value = "/modifyAnswer/{q_no}", method = {RequestMethod.PUT, RequestMethod.PATCH},  consumes = "application/json")
 	public ResponseEntity<String> modifyAnswer(@RequestBody QNAVO vo, @PathVariable("q_no") Long q_no) {
 		
 		vo.setQ_no(q_no);
@@ -61,14 +95,13 @@ public class QNAController {
 		return service.modifyAnswer(vo) == 1 ? new ResponseEntity<>("success", HttpStatus.OK) : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
-	
-	// QNA 삭제
-	@RequestMapping(value = "/{q_no}", method = RequestMethod.DELETE, produces = {MediaType.TEXT_PLAIN_VALUE})
-	public ResponseEntity<String> remove(@PathVariable("q_no") Long q_no) {
+	// QNA Answer 삭제
+	@RequestMapping(value = "/removeAnswer/{q_no}", method = {RequestMethod.PUT, RequestMethod.PATCH},  consumes = "application/json")
+	public ResponseEntity<String> removeAnswer(@PathVariable("q_no") Long q_no) {
+				
+		log.info("q_no : " + q_no);
 		
-		log.info("remove : " + q_no);
-		
-		return service.remove(q_no) == 1 ? new ResponseEntity<>("success", HttpStatus.OK) : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		return service.removeAnswer(q_no) == 1 ? new ResponseEntity<>("success", HttpStatus.OK) : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 
 }

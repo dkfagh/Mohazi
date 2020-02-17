@@ -27,13 +27,29 @@ public class QNAServiceImpl implements QNAService {
 	}
 
 	@Override
-	public int remove(Long q_no) {
+	public int removeQuestion(Long q_no) {
 		
 		log.info("!!! remove !!!" + q_no);
 		
-		return mapper.delete(q_no);
+		return mapper.deleteQuestion(q_no);
+	}
+	
+	@Override
+	public int modifyQuestion(QNAVO vo) {
+
+		log.info("!!! modify Question !!!" + vo);
+		
+		return mapper.updateQuestion(vo);
 	}
 
+	@Override
+	public int registerAnswer(QNAVO vo) {
+		
+		log.info("!!! register Answer !!!" + vo);
+		
+		return mapper.insertAnswer(vo);
+	}
+	
 	@Override
 	public int modifyAnswer(QNAVO vo) {
 		
@@ -43,12 +59,19 @@ public class QNAServiceImpl implements QNAService {
 	}
 
 	@Override
+	public int removeAnswer(Long q_no) {
+		
+		log.info("!!! remove Answer !!!" + q_no);
+		
+		return mapper.deleteAnswer(q_no);
+	}
+
+	@Override
 	public List<QNAVO> getList(Long p_no) {
 		
 		log.info("!!! get QNA List !!!" + p_no);
 		
 		return mapper.getList(p_no);
 	}
-
 
 }

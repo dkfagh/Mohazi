@@ -8,16 +8,28 @@
 		INSERT INTO QNA (Q_NO, ID, P_NO, QUESTION) VALUES(SEQ_QNA.NEXTVAL, #{id}, #{p_no}, #{question})
 	</insert>
 	
-	<delete id="delete">
+	<delete id="deleteQuestion">
 		DELETE FROM QNA WHERE Q_NO = #{q_no}
 	</delete>
+	
+	<update id="updateQuestion">
+		UPDATE QNA SET QUESTION = #{question} WHERE Q_NO = #{q_no}
+	</update>
 		
-	<update id="updateAnswer">
+	<update id="insertAnswer">
 		UPDATE QNA SET ANSWER = #{answer}, A_REGDATE = SYSDATE WHERE Q_NO = #{q_no}
 	</update>
 	
+	<update id="updateAnswer">
+		UPDATE QNA SET ANSWER = #{answer} WHERE Q_NO = #{q_no}
+	</update>
+	
+	<update id="deleteAnswer">
+		UPDATE QNA SET ANSWER = '' WHERE Q_NO = #{q_no}
+	</update>
+	
 	<select id="getList" resultType="com.mohazi.domain.QNAVO">
-		SELECT PQ.Q_NO Q_NO, U.NICKNAME NICKNAME, PQ.QUESTION QUESTION, PQ.Q_REGDATE Q_REGDATE, PQ.ANSWER ANSWER, PQ.A_REGDATE A_REGDATE
+		SELECT PQ.Q_NO Q_NO, U.ID ID, U.NICKNAME NICKNAME, PQ.QUESTION QUESTION, PQ.Q_REGDATE Q_REGDATE, PQ.ANSWER ANSWER, PQ.A_REGDATE A_REGDATE
 		FROM (
 				SELECT /*+ INDEX_DESC(Q IDX_QNA) */
 				Q.Q_NO Q_NO, Q.ID ID, Q.P_NO P_NO, Q.QUESTION QUESTION, Q.Q_REGDATE Q_REGDATE, Q.ANSWER ANSWER, Q.A_REGDATE A_REGDATE

@@ -177,7 +177,7 @@ input::-moz-placeholder { color: white; }
             			
             		</form>
             			<!-- 로그인 시 id 값 갖고 있기 -->
-            			<input type="hidden" name="id" value="<sec:authentication var='principal' property ='principal' />" readonly />
+            			<input type="hidden" name="id" value="<sec:authentication property ='principal.username' />" readonly />
             			<!-- 로그인 시 id 값 갖고 있기 -->
 	            		
 						<button id="btnLogout">로그아웃</button>

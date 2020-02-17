@@ -3,6 +3,7 @@ package com.mohazi.controller;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
@@ -104,8 +105,7 @@ public class BoardController {
    @RequestMapping(value = "/get", method = RequestMethod.GET)
    public void get(@RequestParam("p_no") Long p_no, @ModelAttribute("cri") Criteria cri, Model model) {
       log.info("!!! GET !!!");
-
-
+      
       model.addAttribute("party", service.get(p_no));
       
    }
