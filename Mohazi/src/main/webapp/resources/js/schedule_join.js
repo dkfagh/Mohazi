@@ -74,8 +74,7 @@ var schedule_joinService= (function(){
 	
 	return {add: add,
 			getList: getList,
-			remove : remove,
-			update : update,
+			remove : remove,			
 			get : get
 			};
 	

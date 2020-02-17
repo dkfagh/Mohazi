@@ -15,13 +15,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mohazi.domain.Schedule_JoinVO;
+import com.mohazi.service.ReviewService;
 import com.mohazi.service.Schedule_JoinService;
 
+import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
 @RequestMapping("/schedules_join/")
 @RestController
 @Log4j
+@AllArgsConstructor
 public class Schedule_JoinController {
 	
 	private Schedule_JoinService service;

@@ -55,52 +55,38 @@
 	position: relative;
 	padding: 20px;
 }
-.detail-party-info .party-img {
-	position: absolute;
-	top: 20px;
-	left: 20px;
-	width: 70px;
-	height: 70px;
-	border-radius: 50%;
-	background-color: #ebebeb;
-}
-.detail-party-info .party-img .img {
-	width: 100%;
-	height: 100%;
-	background-position: center center;
-	background-size: cover;
-	overflow: hidden;
-	border-radius: 50%;
-}
-.detail-party-info .party-txt {
-	padding-left: 90px;
-}
-#party-txt01 {
-	font-size: 20px;
-	font-weight: bold;
-}
-#party-txt02 {
-	margin-top: 6px;
-	font-size: 15px;
-	line-height: 22px;
-	word-break: keep-all;
-	height: 200px;
-	white-space: pre-line;
-	overflow-y: scroll;
+
+#partyJoinBtn{
+	width:100%;	
+	background-color: #7bd4ac;	
+	color: white;
 }
 
-#party-txt03 a {
-	display: inline-block;
-	color: #FF5862;
-	font-size: 15px;
-	line-height: 18px; 
-	height: 18px;
-	padding-right: 15px;
-	background-image: url(../image/icon/more_12_red.svg);
-	background-position: right center;
-	background-repeat: no-repeat;
-	background-size: 12px 12px;
+#partyJoinBtn:hover{
+	background-color: rgb(60, 189, 157);
+	color: white;
 }
+
+
+.detail-party-info .party-txt {
+ margin:auto;
+}
+#party-txt01 {
+ text-align:center;
+  font-size: 20px;
+  font-weight: bold;
+}
+#party-txt02 {
+	text-align:center;
+  padding: 10px;
+  font-size: 15px;
+  line-height: 22px;
+  word-break: keep-all;
+  height: 150px;
+  white-space: pre-line;
+ /*  overflow-y: scroll; */
+}
+
 .detail-info01 {
 	border-top: 1px solid #e4e9ef;
 	padding: 20px;
@@ -194,54 +180,51 @@ ul.tab li.active a {
 	vertical-align: middle;
 }
 .class-confirm02 .btn-swip {
-	border-bottom: 1px solid #e4e9ef;
-	cursor: pointer;
+  border-bottom: 1px solid #e4e9ef;
+  cursor: pointer;
 }
 .class-confirm02 .btn-swip a {
-	position: relative;
-	display: block;
-	height: 56px;
-	line-height: 56px;
-	padding-left: 54px;
-	font-size: 16px;
+  position: relative;
+  display: block;
+  height: 56px;
+  line-height: 56px;
+  padding-left: 54px;
+  font-size: 16px;
 }
 .class-confirm02 .btn-swip a:hover {
-	background-color: #f7f7f7;
+  background-color: #f7f7f7;
 }
 .class-confirm02 .btn-swip a:before {
-	position: absolute;
-	top: 18px;
-	left: 24px;
-	display: block;
-	width: 20px;
-	height: 20px;
-	content: "";
+  position: absolute;
+  top: 18px;
+  left: 24px;
+  display: block;
+  width: 20px;
+  height: 20px;
+  content: "";
 }
 .class-confirm02 .btn-swip a:after {
-	position: absolute;
-	top: 18px;
-	right: 30px;
-	display: block;
-	width: 20px;
-	height: 20px;
-	content: "";
-	background-image: url(../image/icon_arrow_bottom.png);
+  position: absolute;
+  top: 18px;
+  right: 30px;
+  display: block;
+  width: 20px;
+  height: 20px;
+  content: ""; 
 }
-.class-confirm02 .btn-swip.open a:after {
-	background-image: url(../image/icon_arrow_top.png);
-}
+
 .class-confirm02 .swip-date a:before {
-	background-image: url(../image/icon/ic_calendar_gray.svg);
-	background-size: 20px 20px;
+ 
+  background-size: 20px 20px;
 }
 .class-confirm02 .swip-time a:before {
-	background-image: url(../image/icon/ic_time_gray.svg);
-	background-size: 20px 20px;
+ 
+  background-size: 20px 20px;
 }
 .class-confirm02 .class-date {
-	border-bottom: 1px solid #e4e9ef;
-	padding: 10px 0 30px;
-}
+  border-bottom: 1px solid #e4e9ef;
+  padding: 10px 0 30px;
+ }
 .class-date input{
 	border-radius: 5px;
 	width: 100%;
@@ -313,17 +296,15 @@ ul.tab li.active a {
 			
 			<div class="col-sm-4">
 				<div class="sub-profile">
-					<div class="detail-party-info">
-						<div class="party-img" id="authorProfileImgArea">
-							<div class="img"></div>
-						</div>
+					<div class="detail-party-info">					
 						<div class="party-txt">
-							<div id="party-txt01"><c:out value="${party.id}" /></div>
-							<div id="party-txt02">매일매일 달콤한 파티가 열리는곳 어썸블리스로 여러분을 초대합니다. </div>
-							<div id="party-txt03">
-								<a href="#">모임장 프로필</a>
-							</div>
+							<div id="party-txt01"> 모임장 : <c:out value="${party.id}" /></div>
+							<div id="party-txt02">매일매일 달콤한 파티가 열리는곳 어썸블리스로 여러분을 초대합니다. </div>							
 						</div>
+						<div class="party-btn">
+							<button id="partyJoinBtn" type="submit" class="btn btn-large">나의모임으로 등록하기</button>
+						</div>
+					
 					</div>
 					<div class="detail-info01">
 						<ul class="info-text">
@@ -434,6 +415,7 @@ ul.tab li.active a {
 						<div class="text02">일정 참가 인원수 확인 후 신청하기 버튼을 눌러주세요.</div>
 					</div>									
 					
+					
 					<div class="class-confirm02">
 						<div class="btn-swip swip-date closed schedule-date-trigger" id="btn-date">
 							<a>일정 확인</a>
@@ -443,17 +425,25 @@ ul.tab li.active a {
 							</ul>							
 						</div>					
 					</div>
-					
-					<div class="class-confirm03">
-						<button type="submit" class="btn">참여하기</button>
+					<sec:authorize access="isAuthenticated()">
+                    <sec:authentication property="principal.username" var="user_id" />
+                    	<input class="result" name="schedule_join" type="hidden" id= "${user_id}" style="width:100%;" value=${user_id }>
+               		 </sec:authorize>			
+					<div class="class-confirm03">						
+						<button id="scheduleJoinBtn" type="submit" class="btn btn-large">참여하기</button>						
 					</div>
 					
-					<div id="addSchedule">
-						<button id="addScheduleBtn" class="btn btn-large" data-oper="addSchedule">SCHEDULE 등록</button>						
-					</div>
+					<sec:authentication property="principal" var="pinfo"/>
+					<sec:authorize access="isAuthenticated()">
+					<c:if test="${pinfo.username eq party.id }">	
+						<div id="addSchedule">
+							<button id="addScheduleBtn" class="btn btn-large" data-oper="addSchedule">SCHEDULE 등록</button>						
+						</div>
+					</c:if>
+					</sec:authorize>
 				</div>				
 			</div>
-		</div>
+		</div>		
 
 
 	<!-- type입력 -------------------------------------------------------------------------->
@@ -513,6 +503,7 @@ ul.tab li.active a {
 
 <%@ include file="../includes/footer.jsp" %>
 <script type="text/javascript" src="/resources/js/schedule.js"></script>
+<script type="text/javascript" src="/resources/js/schedule_join.js"></script>
 <script src="/resources/js/review.js"></script>
 <script src="/resources/js/qna.js"></script>
 <script type="text/javascript"> 
@@ -570,34 +561,8 @@ ul.tab li.active a {
 				$(this).addClass('active');
 				$('#' + activeTab).addClass('active');
 			})
-		}); 
-		
-		// datepicker 토글
-		// $(function(){
-		//	$('#btn-date').click(function(){
-		//		$('.class-date').toggle("slow");
-		//	});
-		// });
-		//timepicker 토글
-		// $(function(){
-		//	$('#btn-time').click(function(){
-		//	$('.class-time').toggle("slow");
-		//	});
-	    //   });
-
-		// //datpicker
-		// $(function () {
-		// 	$('#date').bootstrapMaterialDatePicker({
-		// 		time: false
-		// 	});
-		// });
-		// // //timepicker
-		// $(function () {
-		// 	$('#time').bootstrapMaterialDatePicker({
-		// 		date: false,
-		// 		format: 'HH:mm'
-		// 	});
-		// });
+		}); 		
+	
 		 //nav 상단고정
 		 $(function() {
                 $(window).scroll(function() {
@@ -642,17 +607,16 @@ ul.tab li.active a {
 			});
 		});	
 
-	
-		
-		
-		// 스케쥴 목록 출력 
+// 스케쥴 목록 출력 		
 		
 		var scheduleUL = $(".dateTimeGroup")
 
 		
 		showScheduleList();
 		
-			function showScheduleList(){
+			function showScheduleList(){		
+				
+				
 				scheduleService.getList({p_no:p_noValue}, function(list){
 					var str=""
 					if(list == null || list.length ==0){
@@ -661,16 +625,53 @@ ul.tab li.active a {
 						return;
 					}
 					for (var i = 0, len = list.length || 0; i < len; i++){
-						str+="<li class='left clearfix' data-s_no='"+list[i].s_no+"'>";
-						str+=" <input class='result' type='hidden' value='"+list[i].s_no+"'>"; 
-						str+=" <input class='result' type='button' id='date' value='날짜 : "+((list[i].s_date).toString()).substring(0,10)+" 시간 :"+((list[i].s_time).toString()).substring(10,16)+" 인원현황: /"+list[i].max_people+"'>";
+						str+="<li class='left clearfix' name='li_result' data-s_no='"+list[i].s_no+"'>";						
+						str+=" <input class='result' name='result' type='button' s_no='"+list[i].s_no+"' value='날짜 : "+((list[i].s_date).toString()).substring(0,10)+" 시간 :"+((list[i].s_time).toString()).substring(10,16)+" 인원현황: /"+list[i].max_people+"'>";
 						str+="</li>";
 					}
 					scheduleUL.html(str);
-				});//end function
+				});//end function				
 
-			}//end showScheduleList		
+			};//end showScheduleList	
 			
+			 // 스케쥴 input버튼 눌렀을때 (스케쥴 날짜 시간 선택버튼)		
+		
+			var schedule_join = {};
+			
+			$(document).on("click", "input[name='result']", function(e){						
+				var s_no = $(this).attr("s_no");			
+			    var id = $("input[name='schedule_join']").attr("id"); 
+			  /* 	var userid=$("input[name='schedule_join']"); */
+			 
+				console.log("s_no============"+s_no+"id================ "+id); 				
+					
+			  	schedule_join.s_no = s_no;
+			  	schedule_join.id = id;
+			  	console.log("schedule join : " + schedule_join);
+					/* var schedule_join = {
+							s_no: s_no,
+							id: id
+							
+					};	 */				
+				console.log("schedule_join.s_no : "+ schedule_join.s_no+"schedule_join.id : "+schedule_join.id);			
+									
+			});
+			
+			//참여하기버튼 클릭시 이벤트
+			$("#scheduleJoinBtn").on("click", function(e){
+				console.log(schedule_join);
+				if(schedule_join.id==null){
+					alert("로그인 해주세요");
+				}else{
+					schedule_joinService.add(schedule_join, function(){
+					alert("참여 되었습니다.");
+					
+					showScheduleList();	
+					
+				});
+				};
+			});
+
 		
 			//모달의 add스케쥴버튼 눌렀을때	
 			var modal = $(".modal");
@@ -698,8 +699,6 @@ ul.tab li.active a {
 
 					});
 				});
-
-			
 			
 		// review list START
 		
