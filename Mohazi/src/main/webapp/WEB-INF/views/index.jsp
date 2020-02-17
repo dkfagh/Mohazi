@@ -181,7 +181,7 @@
                             		<i class="fas fa-chevron-down"></i>
                             	</button>
                                 <ul class="sub-menu">
-                                	<li>
+                                	<li style="margin-bottom: 1px;">
                                 		<label for="meeting" class="checkbox-inputLabel" style="width: 100%;">
                                 			모임
                                 			<input id="meeting" type="radio" name="type" value="M" checked>
