@@ -175,30 +175,24 @@
                                 </c:when>
                                 <c:when test="${pageMaker.total > 0 }">
                                 	<c:forEach items="${list}" var="party">
+                                		<!-- 개설자 ID -->
                                 		<c:set var="writer" value = "${party.id}" />
-                                		
+                                		<!-- 개설자 ID 끝 -->
                              			<tr>
-                                   			<td >
+                                   			<td>
                                            		<a class="move" href='<c:out value="${party.p_no}"/>'>
                                                		<c:out value="${party.title}" /> 
                                            		</a>
                                    			</td>
                                    			<td></td>
-                                   			<td >
-                                   			
-                                   			<!-- 내가 개설한 정보표시-->
-                                   			
+                                   			<td>
+                                   			<!-- 내가 개설한 정보표시-->	
                                        			<c:if test = "${principal.username eq writer}"> 
 		                                       		<i class="fab fa-angellist" style="background:red"></i>
 		                                       	</c:if>
                                        		<!-- 내가 개설한 정보표시 끝-->
                                    			</td>
-                                   			<!-- 개설자 ID -->
-                                   			<%-- <td>
-                                 				<c:out value="${party.id}"/>
-                                   			</td> --%>
-                                   			<!-- 개설자 ID 끝 -->
-                                   			<td >
+                                   			<td>
                                    				<c:choose>
                                    					<c:when test="${ principal.username ne writer}"> <!-- 참여한 글일때 -->
                                    						<button data-oper='exit' data-p_no="<c:out value='${party.p_no}'/>" class="btn btn-sm" type="button">나가기</button>
@@ -208,10 +202,10 @@
                                						</c:when>
                                    				</c:choose>
                                    			</td>
-                                       </tr>
-                         			</c:forEach>
-                                </c:when>
-                           </c:choose>
+                                      	 </tr>
+                       				</c:forEach>
+                           	 	</c:when>
+                       		</c:choose>
                         
                            <!-- 테이블 내용 끝 ---------------------------------------->
                     
@@ -305,13 +299,13 @@ $(document).ready(function(){
 				var que = confirm("개설한 글을 삭제하시겠습니까?");
 
 				if (que == true) {
-					//var conf = confirm("게시글에 참여인원이 있을 수 있습니다, 그냥 나가시겠습니까?");
+					var conf = confirm("게시글에 참여인원이 있을 수 있습니다, 그냥 나가시겠습니까?");
 					console.log($(this).data("p_no"));
-					//if(conf = true){
+					if(conf = true){
 						actionForm.append("<input type='hidden' name='p_no' value='"+$(this).data("p_no")+"'>");
 					
 						actionForm.attr("action", "/mypage/delete");   //   acition변경
-					//}else{return false;}
+					}else{return;}
 				} else {
 					return false;
 				}	      

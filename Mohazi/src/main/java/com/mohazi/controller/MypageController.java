@@ -2,15 +2,11 @@ package com.mohazi.controller;
 
 import java.security.Principal;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -36,6 +32,7 @@ public class MypageController {
 	private MyPageService myPageService; // myPage 리스트값
 	
 	// 내 모임 화면
+	@PreAuthorize("isAuthenticated()")
 	@RequestMapping(value = "/myMeeting", method = RequestMethod.GET)
 	public void myMeeting(Principal principal, Criteria cri,Model model) {
 		char type = 'M';  // type을 M 타입으로 지정
@@ -54,6 +51,7 @@ public class MypageController {
 	}
 	
 	// 내 클래스 화면
+	@PreAuthorize("isAuthenticated()")
 	@RequestMapping(value = "/myClass", method = RequestMethod.GET)
 	public void myClass(Principal principal, Criteria cri,Model model) {
 		char type = 'C';		// type을 C 타입으로 지정
@@ -134,6 +132,7 @@ public class MypageController {
    }*/
 	
 	// 내정보 변경 화면
+  	@PreAuthorize("isAuthenticated()")
 	@RequestMapping(value = "/myInfo", method = RequestMethod.GET)
 	public void myInfo(@ModelAttribute("users") UsersVO users,Model model) {
 		log.info("/myInfo");

@@ -163,38 +163,37 @@
                                 </c:when>
                                 <c:when test="${pageMaker.total > 0 }">
                                 	<c:forEach items="${list}" var="party">
+                                		<!-- 개설자 ID -->
+                                		<c:set var="writer" value = "${party.id}" />
+                                		<!-- 개설자 ID 끝 -->
                              			<tr>
                                    			<td>
                                            		<a class="move" href='<c:out value="${party.p_no}"/>'>
                                                		<c:out value="${party.title}" /> 
                                            		</a>
                                    			</td>
+                                   			<td></td>
                                    			<td>
                                    			<!-- 내가 개설한 정보표시-->
-                                       			<c:set var="writer" value = "${party.id}" />
-                                       			
-                                       			<c:if test = "${principal.username eq writer }">
-		                                       		<%-- <b>[<c:out value="${party.replyCnt}" />]</b> --%> 
-		                                       		<i class="fab fa-angellist"></i>
+                                   			
+                                       			<c:if test = "${principal.username eq writer}"> 
+		                                       		<i class="fab fa-angellist" style="background:red"></i>
 		                                       	</c:if>
                                        		<!-- 내가 개설한 정보표시 끝-->
                                    			</td>
                                    			<td>
-                                 				<c:choose>
-                                   					<c:when test="${ username ne writer}"> <!-- 참여한 글일때 -->
-                                   						<button class="btn btn-sm" name="exit" type="button">나가기</button>
+                                   				<c:choose>
+                                   					<c:when test="${ principal.username ne writer}"> <!-- 참여한 글일때 -->
+                                   						<button data-oper='exit' data-p_no="<c:out value='${party.p_no}'/>" class="btn btn-sm" type="button">나가기</button>
                                						</c:when>
-                               						<c:when test="${ username eq writer}"> <!--  작성한 글일때 -->
-                                   						<button data-oper='remove' class="btn btn-sm" name="delete" type="button">삭제</button>
+                               						<c:when test="${ principal.username eq writer}"> <!--  작성한 글일때 -->
+                                   						<button data-oper='delete' data-p_no="<c:out value='${party.p_no}'/>" class="btn btn-sm" type="button">삭제</button>
                                						</c:when>
-                                   				</c:choose> 	
+                                   				</c:choose>
                                    			</td>
-                                   			<td>
-                                   				
-                                   			</td>
-                                       </tr>
-                         			</c:forEach>
-                                </c:when>
+                                      	 </tr>
+                       				</c:forEach>
+                           	 	</c:when>
                            </c:choose>
 	                            
                            <!-- 테이블 내용 끝 ---------------------------------------->
@@ -206,7 +205,7 @@
                             <input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
                             <input type="hidden" name="amount" value="${pageMaker.cri.amount}">
                             <input type="hidden" name="type" value="${pageMaker.cri.type}">
-                            
+                            <input type="hidden" name="writer" value="${writer}">
                             
                         </form>         
                         <div class ="float-right">
@@ -250,11 +249,11 @@
 <script>
 $(document).ready(function(){
 	
-	/////////// Paging 처리
+/////////// Paging 처리
 	var actionForm=$("#actionForm"); // paing actionForm
 	
 	// paging 번호 클릭시 해당 번호로 이동
-	$(".pagination a").on("click",function(e){
+	$(".page-item a").on("click",function(e){
 		e.preventDefault(); // 페이지 이동을 막는다
 		
 		console.log("click");
@@ -270,6 +269,45 @@ $(document).ready(function(){
 		actionForm.attr("action","/board/get");
 		actionForm.submit();
 	});
+	
+	
+	// 나가기 버튼 클릭시 해당 게시글 삭제 버튼(동작 = party_join 테이블에서 삭제)
+	$("button[data-oper='exit']").on("click",function(e){
+		   e.preventDefault();
+		   
+		   
+				var que = confirm("참여한 글을 나가시겠습니까?");
+
+				if (que == true) {
+					
+					actionForm.append("<input type='hidden' name='p_no' value='"+$(this).data("p_no")+"'>");
+					actionForm.attr("action", "/mypage/exit");   //   acition변경
+				} else {
+					return false;
+				}	      
+				actionForm.submit();
+   }); 
+	
+	// 삭제 버튼 클릭시 해당 게시글 삭제 버튼(동작 = party_join 테이블에서 삭제 + party 테이블에서 삭제)
+	$("button[data-oper='delete']").on("click",function(e){
+		   e.preventDefault();
+		   
+		   
+				var que = confirm("개설한 글을 삭제하시겠습니까?");
+
+				if (que == true) {
+					var conf = confirm("게시글에 참여인원이 있을 수 있습니다, 그냥 나가시겠습니까?");
+					console.log($(this).data("p_no"));
+					if(conf = true){
+						actionForm.append("<input type='hidden' name='p_no' value='"+$(this).data("p_no")+"'>");
+					
+						actionForm.attr("action", "/mypage/delete");   //   acition변경
+					}else{return;}
+				} else {
+					return false;
+				}	      
+				actionForm.submit();
+   }); 
 });
 </script>
 <!--  Script 영역 끝 -->
