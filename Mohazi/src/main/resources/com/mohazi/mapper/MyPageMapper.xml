@@ -59,9 +59,15 @@
    </select>
 
  
-   <!-- DELETE 해당 게시글 삭제 -->
-   <delete id="delete">
-      DELETE FROM PARTY
+   <!-- Exit :나가기 버튼 클릭시 Party_Join 테이블에서 아이디로 해당 글 컬럼 삭제 -->
+   <delete id="exit"  parameterType="com.mohazi.domain.Party_JoinVO">
+      DELETE FROM PARTY_JOIN
+      WHERE P_NO = #{p_no} and ID = #{id}
+   </delete>
+   
+   <!-- LetOut : 해당 게시글 삭제 버튼 클릭시 그 party에 참여한 인원 모두 내보내기 -->
+   <delete id="LetOut">
+      DELETE FROM PARTY_JOIN
       WHERE P_NO = #{p_no}
    </delete>
    

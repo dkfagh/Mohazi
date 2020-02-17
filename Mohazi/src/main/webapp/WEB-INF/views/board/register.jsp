@@ -87,17 +87,20 @@
       margin: 0px !important;
     }
 
-
+    
     .regBtn,
-    .modBtn {
-      /* background-color:rgb(0, 0, 0);
-      color: black;
-      border-radius: 5px; 
-      width: 80px;
-      height: 30px;*/
-      float: right;
-
-    }
+    .modBtn{
+     float: right;
+    background-color:#e9faf2;
+	border-radius:5px;
+	font-weight:bold;
+	padding:7px;
+	width:75px;
+	color:#66a385;
+	font-size:14px;
+	border:0px;
+	margin-top:43px;
+	margin-right:10px;}
 
     #contents {
       position: relative;
@@ -166,25 +169,19 @@
 .filebox label {
   display: inline-block;
   padding: .5em .75em;
-  color: #fff;
-  font-size: inherit;
+  color:#66a385;
+  font-size:14px;
   line-height: normal;
   vertical-align: middle;
-  background-color: #5cb85c;
+  background-color:#e9faf2;
   cursor: pointer;
-  border: 1px solid #4cae4c;
-  border-radius: .25em;
+   border-radius:5px;
   -webkit-transition: background-color 0.2s;
   transition: background-color 0.2s;
+  font-weight:bold;
+ 
 }
 
-.filebox label:hover {
-  background-color: #6ed36e;
-}
-
-.filebox label:active {
-  background-color: #367c36;
-}
 
 .filebox input[type="file"] {
   position: absolute;
@@ -241,6 +238,18 @@ input[type=text]:-ms-clear{
     color: black;
     background-color: #fff;
 }
+
+.mapBtn{
+
+    background-color:#e9faf2;
+	border-radius:5px;
+	font-weight:bold;
+	padding:0px 7px;
+	width:75px;
+	color:#66a385;
+	font-size:14px;
+	border:0px;
+}
 </style>
 
 
@@ -294,7 +303,7 @@ input[type=text]:-ms-clear{
             <tr>
                <th>소개입력</th>
                <td>
-                  <textarea id="summernote" name="content"></textarea>
+                  <textarea id="summernote" name="content" id="content"></textarea>
                </td>
             </tr>
 
@@ -305,7 +314,7 @@ input[type=text]:-ms-clear{
                   placeholder="주소를 입력하세요." style="width: 300px;" name="address">
                   <input type="button" onclick="sample5_execDaumPostcode()"
                   value="검색" class="mapBtn"
-                  style="font-size: 12px; background-color: black; color: white; border-radius: 3px;"><br>
+              ><br>
                   <div id="map"
                      style="width: 300px; height: 300px; margin-top: 10px; display: none"></div>
                </td>
@@ -377,6 +386,7 @@ input[type=text]:-ms-clear{
 
    <!-- Container끝 ----------------------------------------------------------------->
 </div>
+<%@ include file="../includes/footer.jsp" %>
 
 
 
@@ -446,6 +456,28 @@ input[type=text]:-ms-clear{
            focus: true, 
            lang : 'ko-KR'
      });
+     
+/*      var registerForm = $("#registerForm");
+     $("#registerForm button").on("click", function(e){
+       e.stopImmediatePropagation();
+       e.stopPropagation();
+       var title = $("#inputBox").val();
+       var cat = $("#cat_main").val();
+       var cat2 = $("cat_sub").val();
+       var content = $("#content").val();
+       
+       if(inputBox == ""){
+          alert("제목을 입력하세요.");
+          registerForm.find("#inputBox").focus();
+          return false;
+       }else if(cat_main == ""){
+    	   alert("카테고리를 선택하세요.");
+           registerForm.find("#cat_main").focus();
+           return false;
+       }
+       registerForm.submit();
+     }); */
+
    });
 </script>
 <!--textEditor------------------------------------------------------------------->
@@ -693,4 +725,11 @@ $(document).ready(function(){
 	});
 </script>
 
+<!-- 
+<script>
+$(document).ready(function(){
+	
+	
+});
 
+</script> -->
