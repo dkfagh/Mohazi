@@ -279,7 +279,7 @@ ul.tab li.active a {
 		<div class="row">
         	<div class="col-sm-8">
 				<div id="title-img">
-					<ul class="bxslider"">											
+					<ul class="bxslider">											
 					</ul>
 				</div>
 				<div class="title-text">
