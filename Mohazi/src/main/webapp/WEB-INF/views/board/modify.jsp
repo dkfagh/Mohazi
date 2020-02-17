@@ -89,15 +89,20 @@
     }
 
 
-    .regBtn,
-    .modBtn {
-      /* background-color:rgb(0, 0, 0);
-      color: black;
-      border-radius: 5px; 
-      width: 80px;
-      height: 30px;*/
-      float: right;
-
+    .listBtn,
+    .modBtn,
+    .remBtn {
+     float: right;
+    background-color:#e9faf2;
+	border-radius:5px;
+	font-weight:bold;
+	padding:7px;
+	width:75px;
+	color:#66a385;
+	font-size:14px;
+	border:0px;
+	margin-top:43px;
+	margin-right:10px;
     }
 
     #contents {
@@ -165,18 +170,19 @@
 
 <style>
 .filebox label {
-  display: inline-block;
+   display: inline-block;
   padding: .5em .75em;
-  color: #fff;
-  font-size: inherit;
+  color:#66a385;
+  font-size:14px;
   line-height: normal;
   vertical-align: middle;
-  background-color: #5cb85c;
+  background-color:#e9faf2;
   cursor: pointer;
-  border: 1px solid #4cae4c;
-  border-radius: .25em;
+   border-radius:5px;
   -webkit-transition: background-color 0.2s;
   transition: background-color 0.2s;
+  font-weight:bold;
+ 
 }
 
 .filebox label:hover {
@@ -283,16 +289,16 @@ input[type=text]:-ms-clear{
                <th style="width: 200px !important;">카테고리</th>
                <td class="cat">
                	<select name="cat_main" id="cat_main">
-                     <option SELECTED>선택하세요.</option>
-                     <option value="문화">문화</option>
-                     <option value="IT">IT</option>
-                     <option value="스포츠">스포츠</option>
-                     <option value="창작">창작</option>
-                     <option value="체험">체험</option>
+                     <option>선택하세요.</option>
+                     <option value="문화" id="문화">문화</option>
+                     <option value="IT" id="IT">IT</option>
+                     <option value="스포츠" id="스포츠">스포츠</option>
+                     <option value="창작" id="창작">창작</option>
+                     <option value="체험" id="체험">체험</option>
                </select></td>
                <td class="cat">
                <select name="cat_sub" id="cat_sub">
-                     <option SELECTED>선택하세요.</option>
+                     <option>선택하세요.</option>
                </select></td>
             </tr>
 
@@ -375,9 +381,10 @@ input[type=text]:-ms-clear{
       
       <!-- 등록버튼입력 -------------------------------------------------------------------------->
       
-      <button type="submit" data-oper='list' class="regBtn btn btn-outline-secondary" style="margin:3px;">목록</button>
-      <button type="submit" data-oper='remove' class="regBtn btn btn-outline-secondary" style="margin:3px;">삭제</button>
-      <button type="submit" data-oper='modify' class="regBtn btn btn-outline-secondary" style="margin:3px;">수정</button>
+      <button type="submit" data-oper='list' class="listBtn btn btn-outline-secondary" style="margin:3px;">목록</button>
+      <button type="submit" data-oper='remove' class="remBtn btn btn-outline-secondary" style="margin:3px;" 
+      onclick="del(${party.p_no})">삭제</button>
+      <button type="submit" data-oper='modify' class="modBtn btn btn-outline-secondary" style="margin:3px;">수정</button>
 <br>
 <br>
 <br>
@@ -695,25 +702,67 @@ $(document).ready(function(){
 	var c=['구기','수상','익스트림','러닝','헬스'];
 	var d=['공예','연주','요리','사진','미술'];
 	var e=['여행','맛집'];
+	   //test
+	   var cat_main = "${party.cat_main}";
+	   var cat_sub = "${party.cat_sub}";
+	   $("#"+cat_main).attr("selected", "selected");
+	   var sel = "${party.cat_main}";
+	   if(sel == "문화"){
+	      $('.op').remove();
+	      $.each(a,function(i,item){
+	         $('#cat_sub').append('<option class="op" id="'+item+'">'+item+'</option>');
+	      });
+	   }
+	   else if(sel == "IT"){
+	      $('.op').remove();
+	      $.each(b,function(i,item){
+	         $('#cat_sub').append('<option class="op" id="'+item+'">'+item+'</option>');
+	   
+	      });
+	   }
+	   else if(sel == "스포츠"){
+	      $('.op').remove();
+	      $.each(c,function(i,item){
+	         $('#cat_sub').append('<option class="op" id="'+item+'">'+item+'</option>');
+	   
+	      });
+	   }
+	   
+	   else if(sel == "창작"){
+	      $('.op').remove();
+	      $.each(d,function(i,item){
+	         $('#cat_sub').append('<option class="op" id="'+item+'">'+item+'</option>');
+	   
+	      });
+	   }
+	   else if(sel == "체험"){
+	      $('.op').remove();
+	      $.each(e,function(i,item){
+	         $('#cat_sub').append('<option class="op" id="'+item+'">'+item+'</option>');
+	   
+	      });
+	   }
+	   $("#"+cat_sub).attr("selected", "selected");
+	   /////////////////////////////////////////////
 	$('#cat_main').change(function(){
 		var sel = $(this).val();
 		if(sel == "문화"){
 			$('.op').remove();
 			$.each(a,function(i,item){
-				$('#cat_sub').append('<option class="op">'+item+'</option>');
+				$('#cat_sub').append('<option class="op" id="'+item+'">'+item+'</option>');
 			});
 		}
 		else if(sel == "IT"){
 			$('.op').remove();
 			$.each(b,function(i,item){
-				$('#cat_sub').append('<option class="op">'+item+'</option>');
+				$('#cat_sub').append('<option class="op" id="'+item+'">'+item+'</option>');
 		
 			});
 		}
 		else if(sel == "스포츠"){
 			$('.op').remove();
 			$.each(c,function(i,item){
-				$('#cat_sub').append('<option class="op">'+item+'</option>');
+				$('#cat_sub').append('<option class="op" id="'+item+'">'+item+'</option>');
 		
 			});
 		}
@@ -721,20 +770,23 @@ $(document).ready(function(){
 		else if(sel == "창작"){
 			$('.op').remove();
 			$.each(d,function(i,item){
-				$('#cat_sub').append('<option class="op">'+item+'</option>');
+				$('#cat_sub').append('<option class="op" id="'+item+'">'+item+'</option>');
 		
 			});
 		}
 		else if(sel == "체험"){
 			$('.op').remove();
 			$.each(e,function(i,item){
-				$('#cat_sub').append('<option class="op">'+item+'</option>');
+				$('#cat_sub').append('<option class="op" id="'+item+'">'+item+'</option>');
 		
 			});
 		}		
 	});
 	
 });
+
+
+
 
 </script>
 
@@ -751,8 +803,17 @@ $(document).ready(function(){
 		$("#inputBox").val('').focus();
 		$(this).hide();
 	});
+	
+	 
+
 </script>
 
-
-
+<script>
+	function del(p_no){
+		var chk = confirm("정말 삭제하시겠습니까?");
+		if (chk) {
+			location.href='delete?p_no='+p_no;
+		}
+	}	
+</script>
 
