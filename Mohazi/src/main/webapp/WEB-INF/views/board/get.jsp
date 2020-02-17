@@ -511,9 +511,15 @@ ul.tab li.active a {
 		
     $(document).ready(function(){  	
     	
-    	var p_noValue='<c:out value="${party.p_no}"/>';
+    	var p_noValue="${party.p_no}";  // 게시글 번호
     	
-    	var hostId='<c:out value="${party.id}"/>';
+    	var hostId="${party.id}";  // HOST ID
+    	
+    	var userId="${principal.username}";  // 로그인한 유저 ID
+    	
+    	console.log(p_noValue);
+    	console.log(hostId);
+    	console.log(userId);
     	
     	 //ajaxSend시 토큰값 전달---------------------------------------------------------------	
     	var csrfHeaderName = "${_csrf.headerName}";
@@ -727,7 +733,7 @@ ul.tab li.active a {
 						str += "		<input type='hidden' value='" + list[i].id + "'>";
 						str += "			<strong>" + list[i].nickname + "</strong>";
 						str += "			<small class='text-muted'>" + reviewService.displayTime(list[i].regdate) + "</small>";
-						if(list[i].id == userInfoId.val()){
+						if(list[i].id == userId){
 							str += "			<a href='#' onclick='return false' class='float-right text-muted' style='text-decoration:none' id='removeReview' data-r_no='" + list[i].r_no + "'>삭제</a>";
 							str += "			<span class='float-right text-muted'>|</span>";
 							str += "			<a href='#' onclick='return false' class='float-right text-muted' style='text-decoration:none' id='modifyReview' data-r_no='" + list[i].r_no + "'>수정</a>";
@@ -747,24 +753,20 @@ ul.tab li.active a {
 			
 			
 		// add review START
-		var userInfo = $("#logBox");
 		var inputReview = $("#formReview");
 		
-		var userInfoId = userInfo.find("input[name='id']");  // user ID
 		var inputReviewContent = inputReview.find("textarea[name='content']");  // review content
-		
 		
 		var btnInputReview = $("#btnInputReview");
 		
 		
 		btnInputReview.on("click", function(){
 			
-			console.log(userInfoId.val());
 			console.log(inputReviewContent.val());
 			
 			var review = {};
 			
-			review.id = userInfoId.val();
+			review.id = userId;
 			review.p_no = p_noValue;
 			review.content = inputReviewContent.val();
 			
@@ -783,7 +785,6 @@ ul.tab li.active a {
 		// modify review START
 		$(".reviewList").on("click", "#modifyReview", function(){
 			
-			var listItem = $("li");
 			var r_no = $(this).data("r_no");
 			
 			console.log(r_no);
@@ -882,10 +883,10 @@ ul.tab li.active a {
 						str += "		<input type='hidden' value='" + list[i].id + "'>";
 						str += "			<strong>" + list[i].nickname + "</strong>";
 						str += "			<small class='text-muted'>" + qnaService.displayTime(list[i].q_regdate) + "</small>";
-						if (hostId == userInfoId.val() && list[i].answer == null){
+						if (hostId == userId && list[i].answer == null){
 							str += "			<a href='#' onclick='return false' class='float-right text-muted' style='text-decoration:none' id='registerAnswer' data-q_no='" + list[i].q_no + "'>답글</a>";
 						}
-						if (list[i].id == userInfoId.val()){
+						if (list[i].id == userId){
 							str += "			<a href='#' onclick='return false' class='float-right text-muted' style='text-decoration:none' id='removeQuestion' data-q_no='" + list[i].q_no + "'>삭제</a>";
 							str += "			<span class='float-right text-muted'>|</span>";
 							str += "			<a href='#' onclick='return false' class='float-right text-muted' style='text-decoration:none' id='modifyQuestion' data-q_no='" + list[i].q_no + "'>수정</a>";
@@ -899,7 +900,7 @@ ul.tab li.active a {
 							str += "				<i class='fas fa-share'></i>";
 							str += "				<strong>HOST</strong>";
 							str += "				<small class='text-muted'>" + qnaService.displayTime(list[i].a_regdate) + "</small>";
-							if (hostId == userInfoId.val()){
+							if (hostId == userId){
 								str += "				<a href='#' onclick='return false' class='float-right text-muted' style='text-decoration:none' id='removeAnswer' data-q_no='" + list[i].q_no + "'>삭제</a>";
 								str += "				<span class='float-right text-muted'>|</span>";
 								str += "				<a href='#' onclick='return false' class='float-right text-muted' style='text-decoration:none' id='modifyAnswer' data-q_no='" + list[i].q_no + "'>수정</a>";
@@ -928,12 +929,11 @@ ul.tab li.active a {
 		
 		btnInputQNA.on("click", function(){
 			
-			console.log(userInfoId.val());
 			console.log(inputQNAQuestion.val());
 			
 			var qna = {};
 			
-			qna.id = userInfoId.val();
+			qna.id = userId;
 			qna.p_no = p_noValue;
 			qna.question = inputQNAQuestion.val();
 			
@@ -951,7 +951,6 @@ ul.tab li.active a {
 		// modify QNA Question START
 		$(".QNAList").on("click", "#modifyQuestion", function(){
 			
-			var listItem = $("li");
 			var q_no = $(this).data("q_no");
 			
 			console.log(q_no);
@@ -1017,7 +1016,6 @@ ul.tab li.active a {
 		
 		$(".QNAList").on("click", "#registerAnswer", function(){
 			
-			var listItem = $(".QNAList li");
 			var q_no = $(this).data("q_no");
 			
 			console.log(q_no);
@@ -1064,7 +1062,6 @@ ul.tab li.active a {
 		// modify QNA Answer START
 		$(".QNAList").on("click", "#modifyAnswer", function(){
 			
-			var listItem = $("li");
 			var q_no = $(this).data("q_no");
 			
 			console.log(q_no);
@@ -1097,6 +1094,7 @@ ul.tab li.active a {
 				str += "		</div>";
 			}
  */			str += "</li>"
+ 
 			modifyQNA.html(str);
 						
 		});
