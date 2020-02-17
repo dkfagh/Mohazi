@@ -286,16 +286,16 @@ input[type=text]:-ms-clear{
                <th style="width: 200px !important;">카테고리</th>
                <td class="cat">
                	<select name="cat_main" id="cat_main">
-                     <option SELECTED>선택하세요.</option>
-                     <option value="문화">문화</option>
-                     <option value="IT">IT</option>
-                     <option value="스포츠">스포츠</option>
-                     <option value="창작">창작</option>
-                     <option value="체험">체험</option>
+                     <option>선택하세요</option>
+                     <option value="문화" id="문화">문화</option>
+                     <option value="IT" id="IT">IT</option>
+                     <option value="스포츠" id="스포츠">스포츠</option>
+                     <option value="창작" id="창작">창작</option>
+                     <option value="체험" id="체험">체험</option>
                </select></td>
                <td class="cat">
                <select name="cat_sub" id="cat_sub">
-                     <option SELECTED>선택하세요.</option>
+                     <option>선택하세요</option>
                </select></td>
             </tr>
 
@@ -303,7 +303,7 @@ input[type=text]:-ms-clear{
             <tr>
                <th>소개입력</th>
                <td>
-                  <textarea id="summernote" name="content" id="content"></textarea>
+                  <textarea id="summernote" name="content"></textarea>
                </td>
             </tr>
 
@@ -313,10 +313,8 @@ input[type=text]:-ms-clear{
                <td id="address"><input type="text" id="inputAddress"
                   placeholder="주소를 입력하세요." style="width: 300px;" name="address">
                   <input type="button" onclick="sample5_execDaumPostcode()"
-                  value="검색" class="mapBtn"
-              ><br>
-                  <div id="map"
-                     style="width: 300px; height: 300px; margin-top: 10px; display: none"></div>
+                  value="검색" class="mapBtn"><br>
+                  <div id="map" style="width:100%;height:350px;display:none"></div>
                </td>
             </tr>
 
@@ -393,28 +391,28 @@ input[type=text]:-ms-clear{
 <!-- 카카오맵API ------------------------------------------------------------------------------------------------>
 
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e5d55372dfb08cff48fa326451e35832&libraries=services"></script>
+<script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=e5d55372dfb08cff48fa326451e35832&libraries=services"></script>
 <script>
-   $(document).ready(function() {
-      var mapContainer = document.getElementById('map'), // 지도를 표시할 div
-      mapOption = {
-         center : new daum.maps.LatLng(37.537187, 127.005476), // 지도의 중심좌표
-         level : 5
-      // 지도의 확대 레벨
-      };
-
-      //지도를 미리 생성
-      var map = new daum.maps.Map(mapContainer, mapOption);
-      //주소-좌표 변환 객체를 생성
-      var geocoder = new daum.maps.services.Geocoder();
-      //마커를 미리 생성
-      var marker = new daum.maps.Marker({
-         position : new daum.maps.LatLng(37.537187, 127.005476),
-         map : map
-      });
-   });
-
-   function sample5_execDaumPostcode() {
+		/*   $(document).ready(function() {
+		var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+		mapOption = {
+		   center : new daum.maps.LatLng(37.537187, 127.005476), // 지도의 중심좌표
+		   level : 5
+		// 지도의 확대 레벨
+		};
+		
+		//지도를 미리 생성
+		var map = new daum.maps.Map(mapContainer, mapOption);
+		//주소-좌표 변환 객체를 생성
+		var geocoder = new daum.maps.services.Geocoder();
+		//마커를 미리 생성
+		var marker = new daum.maps.Marker({
+		   position : new daum.maps.LatLng(37.537187, 127.005476),
+		   map : map
+		});
+		}); */
+  
+  function sample5_execDaumPostcode() {
       new daum.Postcode({
          oncomplete : function(data) {
             var addr = data.address; // 최종 주소 변수
@@ -422,6 +420,7 @@ input[type=text]:-ms-clear{
             // 주소 정보를 해당 필드에 넣는다.
             document.getElementById("inputAddress").value = addr;
             // 주소로 상세 정보를 검색
+            var geocoder = new daum.maps.services.Geocoder();
             geocoder.addressSearch(data.address, function(results, status) {
                // 정상적으로 검색이 완료됐으면
                if (status === daum.maps.services.Status.OK) {
@@ -431,11 +430,24 @@ input[type=text]:-ms-clear{
                   // 해당 주소에 대한 좌표를 받아서
                   var coords = new daum.maps.LatLng(result.y, result.x);
                   // 지도를 보여준다.
+                  
+                  var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+                  mapOption = {
+                     center : coords, // 지도의 중심좌표
+                     level : 5
+                  // 지도의 확대 레벨
+                  };
+                  var map = new daum.maps.Map(mapContainer, mapOption);
+                  
                   mapContainer.style.display = "block";
                   map.relayout();
                   // 지도 중심을 변경한다.
                   map.setCenter(coords);
                   // 마커를 결과값으로 받은 위치로 옮긴다.
+                  var marker = new daum.maps.Marker({
+                  position : coords,
+                  map : map
+               });
                   marker.setPosition(coords)
                }
             });
@@ -456,27 +468,6 @@ input[type=text]:-ms-clear{
            focus: true, 
            lang : 'ko-KR'
      });
-     
-/*      var registerForm = $("#registerForm");
-     $("#registerForm button").on("click", function(e){
-       e.stopImmediatePropagation();
-       e.stopPropagation();
-       var title = $("#inputBox").val();
-       var cat = $("#cat_main").val();
-       var cat2 = $("cat_sub").val();
-       var content = $("#content").val();
-       
-       if(inputBox == ""){
-          alert("제목을 입력하세요.");
-          registerForm.find("#inputBox").focus();
-          return false;
-       }else if(cat_main == ""){
-    	   alert("카테고리를 선택하세요.");
-           registerForm.find("#cat_main").focus();
-           return false;
-       }
-       registerForm.submit();
-     }); */
 
    });
 </script>
@@ -507,6 +498,36 @@ $(document).ready(function(e){
   $("button[type='submit']").on("click", function(e){
     
     e.preventDefault();
+    
+	//게시글 등록시 null값 없는 alert띄우기!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    var title = $("#inputBox").val();
+	var catm = $("#cat_main").val();
+	var cats = $("#cat_sub").val();
+	var address=$("#inputAddress").val();
+	var content = $("#summernote").val();
+	
+	
+       if(title == ""){
+          alert("제목을 입력하세요.");
+          return;
+       }
+       if(catm == "선택하세요" ){
+    	   alert("선택하세요.");
+    	   return;
+       }
+        if(cats == "선택하세요" ){
+    	   alert("선택하세요.");
+    	   return;
+       } 
+       if(address == ""){
+    	   alert("주소를 입력하세요.");
+    	   return;
+       }
+       if(content == ""){
+    	   alert("내용을 입력하세요.");
+    	   return;
+       }
+
     
    var str = "";
     
@@ -657,7 +678,6 @@ $(document).ready(function(e){
   </script>
 <!--첨부파일업로드 ------------------------------------------------------------------->
 
-
 <!-- 카테고리분류 JQUERY -------------------------------->
 <script>
 $(document).ready(function(){
@@ -710,6 +730,9 @@ $(document).ready(function(){
 </script>
 
 
+
+
+
 <!-- title deleteall ---------------------------------------------------------->
 <script>
 	var $ipt = $('#inputBox'), $clearIpt = $('#searchclear');
@@ -724,12 +747,3 @@ $(document).ready(function(){
 		$(this).hide();
 	});
 </script>
-
-<!-- 
-<script>
-$(document).ready(function(){
-	
-	
-});
-
-</script> -->
