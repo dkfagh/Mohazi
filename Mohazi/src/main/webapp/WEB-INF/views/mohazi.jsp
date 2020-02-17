@@ -6,7 +6,7 @@
 <style>
 	.container{
 		position: relative;
-		height: 600px;
+		height: 500px;
 	}
     .title{
         text-align: center;
@@ -19,6 +19,7 @@
     	/* position: relative; */
     	width: 150px;
     	margin: auto;
+    	margin-top:30px;
 		background-color:#e9faf2;
 		border-radius:5px;
 		font-weight:bold;
@@ -42,7 +43,7 @@
         border-radius: 50px;
         text-align: center;
         color: #5D5D5D;
-        background: #E8E8E7;
+        background: #e9faf2;
         opacity: 0;  
         transition: 1s;
     }
@@ -53,29 +54,42 @@
     .resultWrapper{
         position: absolute;
         left: 0;
-        margin: 10px 0;
+        margin:0;
+        margin-top:-10px;
         padding: 20px;
         width: 100%;
-        height: 300px;
+        height:470px;
         border-radius: 50px;
         text-align: center;
         color: #5D5D5D;
-        background: #E8E8E7;
+        background: #EDEDED;
         opacity: 0;
         transition: 1.2s;
+        font-weight:bold;
     }
+    .resultWrapper h4{
+    	font-weight:bold;
+    }
+    
     .result{
         position: absolute;
         top: 100; left: 0;
         text-align: center;
         width: 100%;
         opacity: 0;
+    	font-size:26px;
+    }
+    .result img{
+    	width:40%
     }
     .item{
         width: 50%;
         float: left;
         line-height: 100px;
         cursor: pointer;
+        font-weight:bold;
+        background-color:#e9faf2;
+        border-radius:100px;
     }
     .item.on{
         color: #7bd4ac;
@@ -87,6 +101,16 @@
         top: -14px;
         z-index: 11;
     }
+    
+    #goList{
+     text-decoration:none;
+    }
+    
+    footer{
+    	width:100%;
+    	position:fixed;
+    	bottom:0px
+    	 }
 </style>
 
 <div class="container">
@@ -94,11 +118,11 @@
 		<img src="/resources/img/mohazi_title.png" alt="mohazi title" style="width: 500px;" />
 	</h1>
 	<div class="questionTitle">
-		<img src="/resources/img/mohazi_choice.png" alt="당신에게 더 가까운 모습을 선택해주세요" style="width: 500px; top: -100px;" />
+		<img src="/resources/img/mohazi_choice.png" alt="당신에게 더 가까운 모습을 선택해주세요" style="width: 500px;" />
 	</div>
 
 	<div class="introWrapper">
-	    <div><img src="/resources/img/mohazi_find.png" alt="당신의 성향에 맞는 취미를 찾아드려요" style="width: 500px;"/></div>
+	    <div><img src="/resources/img/mohazi_find.png" alt="당신의 성향에 맞는 취미를 찾아드려요" style="width: 500px; margin-top: -50px;"/></div>
 	    <button id="btnStart" type="button" class="btn">시작하기</button>
 	</div>
 
@@ -133,34 +157,42 @@
 	<!-- Question Wrapper. End -->
 	<!-- Result Wrapper. Start -------------------------------------------------------->
 	<div class="resultWrapper">
-	    <h4>당신에게 잘 맞는 취미는</h4>
+	    <h5 style="font-weight:bold;">당신에게 어울리는 취미는</h5>
 	    
 	    <div class="result" id="111" data-result="구기">
 	    	<p>"<span class="resultKeyword"></span>" 입니다.</p>
+	    	<img alt="ball" src="/resources/img/ball.jpg">
 	    </div>
-	    <div class="result" id="112" data-result="익스트림">
+	    <div class="result" id="112" data-result="익스트림 스포츠">
 	    	<p>"<span class="resultKeyword"></span>" 입니다.</p>
+	    	<img alt="ball" src="/resources/img/surfer.jpg">
 	    </div>
 	    <div class="result" id="121" data-result="헬스">
 	    	<p>"<span class="resultKeyword"></span>" 입니다.</p>
+	    	<img alt="ball" src="/resources/img/health.jpg">
 	    </div>
 	    <div class="result" id="122" data-result="러닝">
 	    	<p>"<span class="resultKeyword"></span>" 입니다.</p>
+	    	<img alt="ball" src="/resources/img/running.jpg">
 	    </div>
 	    <div class="result" id="211" data-result="독서">
 	    	<p>"<span class="resultKeyword"></span>" 입니다.</p>
+	    	<img alt="ball" src="/resources/img/reading.jpg">
 	    </div>
 	    <div class="result" id="212" data-result="여행">
 	    	<p>"<span class="resultKeyword"></span>" 입니다.</p>
+	    	<img alt="ball" src="/resources/img/travel.jpg">
 	    </div>
 	    <div class="result" id="221" data-result="프로그래밍">
 	    	<p>"<span class="resultKeyword"></span>" 입니다.</p>
+	    	<img alt="ball" src="/resources/img/programming.jpg">
 	    </div>
 	    <div class="result" id="222" data-result="사진">
 	    	<p>"<span class="resultKeyword"></span>" 입니다.</p>
+	    	<img alt="ball" src="/resources/img/picture.jpg">
 	    </div>
 	    
-	    <div style="padding-top: 100px;">
+	    <div style="padding-top: 375px;">
 	    	<a href="#" id="goList">취미 보러가기</a>
 	    </div>
 	</div>
