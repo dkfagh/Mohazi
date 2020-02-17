@@ -504,6 +504,7 @@ ul.tab li.active a {
 <%@ include file="../includes/footer.jsp" %>
 <script type="text/javascript" src="/resources/js/schedule.js"></script>
 <script type="text/javascript" src="/resources/js/schedule_join.js"></script>
+<script type="text/javascript" src="/resources/js/party_join.js"></script>
 <script src="/resources/js/review.js"></script>
 <script src="/resources/js/qna.js"></script>
 <script type="text/javascript"> 
@@ -705,6 +706,29 @@ ul.tab li.active a {
 
 					});
 				});
+				
+				//파티조인버튼 눌렀을때 (나의 모임에 등록하기버튼)
+				
+				$("#partyJoinBtn").on("click", function(e){
+					var id = $("input[name='schedule_join']").attr("id"); 
+					var party_join = {
+							id: id,
+							p_no:p_noValue
+					};
+					console.log(party_join);
+					if(party_join.id==null){
+						alert("로그인 해주세요");
+					}else{
+						party_joinService.add(party_join, function(){
+						alert("나의 모임에 등록 되었습니다.");
+						
+						showScheduleList();	
+						
+					});
+					};
+					
+				})
+					
 			
 		// review list START
 		
