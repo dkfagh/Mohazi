@@ -279,7 +279,7 @@ ul.tab li.active a {
 		<div class="row">
         	<div class="col-sm-8">
 				<div id="title-img">
-					<ul class="bxslider">											
+					<ul class="bxslider"">											
 					</ul>
 				</div>
 				<div class="title-text">
@@ -312,6 +312,7 @@ ul.tab li.active a {
 								<i class="fas fa-map-marker-alt"></i>
 								<!-- PartyVO에 위치정보관련 칼럼 추가 후 region을 address로 수정할 것 -->
 								<span><c:out value="${party.address}" /></span> 
+								<input type = "hidden" id="address" coord_x="${party.coord_x}" coord_y="${party.coord_y}">
 							</li>
 
 							<li class="info-guest" id="scheduleExplainArea">
@@ -345,8 +346,15 @@ ul.tab li.active a {
 			
 					<div id="tab1" class="tabContent active">
 						<h4>상세정보</h4>
-						<p id="introduction">${party.content}</p>
-						<div id="map" style="width:100%;height:400px;"></div>					
+						<p id="introduction">${party.content}</p>						
+						 <div id="map" class="container-fluid text-center bg-grey" style="width:100%;height:500px;">
+						        <p style="padding-bottom: 20px; float:left">오시는길</p>
+						        <div class="container">
+						            <!-- 카카오맵 ----------------------------------------------->
+						      		<div id="kakaomap" style="width: 100%;height: 500px;"></div>
+						    		  <!-- 카카오맵 --->	
+						        </div>
+						 </div>				
 					</div>
 			
 					<div id="tab2" class="tabContent card">
@@ -407,10 +415,10 @@ ul.tab li.active a {
 					<div class="class-confirm01">
 						<div class="text01">
 							모임 일정 
-							<span class="badge badge-primary">
+							<!-- <span class="badge badge-primary">
 								원데이			
 								
-							</span>
+							</span> -->
 						</div>
 						<div class="text02">일정 참가 인원수 확인 후 신청하기 버튼을 눌러주세요.</div>
 					</div>									
@@ -507,6 +515,7 @@ ul.tab li.active a {
 <script type="text/javascript" src="/resources/js/party_join.js"></script>
 <script src="/resources/js/review.js"></script>
 <script src="/resources/js/qna.js"></script>
+<script type="text/javascript" src="http://dapi.kakao.com/v2/maps/sdk.js?appkey=c41b984f9b2cf26e2b879b39a839b430"></script>
 <script type="text/javascript"> 
 // <![CDATA[ 
 		
@@ -614,7 +623,7 @@ ul.tab li.active a {
 			});
 		});	
 
-// 스케쥴 목록 출력 		
+		// 스케쥴 목록 출력 		
 		
 		var scheduleUL = $(".dateTimeGroup")
 
@@ -641,7 +650,7 @@ ul.tab li.active a {
 
 			};//end showScheduleList	
 			
-			 // 스케쥴 input버튼 눌렀을때 (스케쥴 날짜 시간 선택버튼)		
+			// 스케쥴 input버튼 눌렀을때 (스케쥴 날짜 시간 선택버튼)		
 		
 			var schedule_join = {};
 			
@@ -1186,6 +1195,33 @@ ul.tab li.active a {
 			});
 		});
 		// remove QNA Question END
+		
+		
+		//카카오맵		     
+		 var coord_x = $("#address").attr('coord_x');
+		 var coord_y = $("#address").attr('coord_y');
+		 
+		 console.log("coord_x:" +coord_x+"coord_y:"+coord_y);
+		 
+	          var mapContainer = document.getElementById('kakaomap'), // 지도를 표시할 div 
+	           mapOption = { 
+	                  center: new daum.maps.LatLng(37.534625, 126.898577), // 지도의 중심좌표
+	                  level: 3 // 지도의 확대 레벨
+	              };
+
+	          var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
+	          // 마커가 표시될 위치입니다 
+	          var markerPosition  = new daum.maps.LatLng(coord_x, coord_y); 
+
+	          // 마커를 생성합니다
+	          var marker = new daum.maps.Marker({
+	              position: markerPosition
+	          });
+
+	          // 마커가 지도 위에 표시되도록 설정합니다
+	          marker.setMap(map);	     
+	    
 		
 		
 	}); 
