@@ -364,7 +364,7 @@ ul.tab li.active a {
 								<li class="list-group-item">
 									<div>
 										<form id="formReview" action="/review/new" method="post">
-											<textarea rows="3" cols="20" name="content"></textarea>
+											<textarea rows="3" cols="62" name="content"></textarea>
 											<button type="button" class="btn btn-lg" id="btnInputReview">등록</button>
 										</form>
 									</div>
@@ -382,7 +382,7 @@ ul.tab li.active a {
 								<li class="list-group-item">
 									<div>
 										<form id="formQNA" action="/QNA/new" method="post">
-											<textarea rows="3" cols="20" name="content"></textarea>
+											<textarea rows="3" cols="62" name="content"></textarea>
 											<button type="button" class="btn btn-lg" id="btnInputQNA">등록</button>
 										</form>
 									</div>
@@ -772,7 +772,8 @@ ul.tab li.active a {
 							str += "			<a href='#' onclick='return false' class='float-right text-muted' style='text-decoration:none' id='modifyReview' data-r_no='" + list[i].r_no + "'>수정</a>";
 						}
 						str += "		</div>";
-						str += "		<input name='content' value='" + list[i].content + "' style='border:0px' readonly='readonly'>";
+						str += "		<input name='content' type='hidden' value='" + list[i].content + "'>";
+						str += "		<p name='content' style='margin:0;margin-top:10px;'>" + list[i].content + "</p>";
 						str += "	</div>";
 						str += "</li>"
 					}
@@ -832,7 +833,7 @@ ul.tab li.active a {
 			str += "<li class='list-group-item'>";
 			str += "	<div>";
 			str += "		<form class='form' action='/review/r_no' method='post'>";
-			str += "			<textarea rows='3' cols='20' name='contentModify'>" + modifyReviewContent.val() + "</textarea>";
+			str += "			<textarea rows='3' cols='58' name='contentModify'>" + modifyReviewContent.val() + "</textarea>";
 			str += "			<button type='button' class='btn btn-lg' id='btnModifyReview' data-r_no='" + r_no + "'>수정</button>";
 			str += "		</form>";
 			str += "	</div>";
