@@ -7,12 +7,16 @@ import com.mohazi.domain.QNAVO;
 public interface QNAService {
 	
 	public int register(QNAVO vo);
-
-	public QNAVO get(Long q_no);
 	
-	public int remove(Long q_no);
+	public int removeQuestion(Long q_no);
 	
-	public int modify(QNAVO vo);
+	public int modifyQuestion(QNAVO vo);
+		
+	public int registerAnswer(QNAVO vo);
+	
+	public int modifyAnswer(QNAVO vo);
+	
+	public int removeAnswer(Long q_no);
 	
 	public List<QNAVO> getList(Long p_no);
 }

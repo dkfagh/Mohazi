@@ -6,8 +6,8 @@
     display: none;
 }
 .text-center{
-    border-top:  1px solid #7bd4ac ;
-    border-bottom: 1px solid #7bd4ac ;
+    border-top:  #EBEBEB solid 1px;
+    border-bottom: #EBEBEB solid 1px;
 }
 
 </style>

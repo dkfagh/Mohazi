@@ -40,7 +40,7 @@
 <style>
 
 *{
-	font-family: 'Nanum Gothic Coding', monospace ;
+	font-family: 'Nanum Gothic Coding', monospace;
 }
 
 #header {
@@ -62,49 +62,49 @@
 }
 
 #btnLogin{
-	margin-top:45px;
+	margin-top:43px;
     float: right;
     margin-right:7%;
 	background-color:#e9faf2;
-	border-radius:15px;
+	border-radius:5px;
 	font-weight:bold;
-	padding:8px;
+	padding:7px;
 	width:75px;
-	}
-	
-#btnLogin a{
-	text-decoration:none;
 	color:#66a385;
 	font-size:14px;
-	
-}
-
-
+	}
 
 #login a{
     background-color: #7bd4ac ;
     color: white;
 }
 
-#logoutBox{
-    padding-top: 45px;
+#btnLogout{
     float: right;
-    padding-right:5%;
-	 
+    background-color:#e9faf2;
+	border-radius:5px;
+	font-weight:bold;
+	padding:7px;
+	width:75px;
+	color:#66a385;
+	font-size:14px;
+	border:0px;
+	margin-top:43px;
+	margin-right:5%;
 }
-#logoutBox button{
-    background-color: #7bd4ac ;
-    color: white;
-}
-#myPage{
-	padding-top: 45px;
+
+#btnMypage{
     float: right;
-    margin-right:0;
-    
-}
-#myPage a{
-    background-color: #7bd4ac ;
-    color: white;
+    background-color:#e9faf2;
+	border-radius:5px;
+	font-weight:bold;
+	padding:7px;
+	width:75px;
+	color:#66a385;
+	font-size:14px;
+	border:0px;
+	margin-top:43px;
+	margin-right:10px;
 }
 
 
@@ -177,21 +177,22 @@ input::-moz-placeholder { color: white; }
             			
             		</form>
             			<!-- 로그인 시 id 값 갖고 있기 -->
-            			<input type="hidden" name="id" value="<sec:authentication var='principal' property ='principal' />" readonly />
+            			<input type="hidden" name="id" value="<sec:authentication var="principal" property ='principal' />" readonly />
             			<!-- 로그인 시 id 값 갖고 있기 -->
-	            		<div id="logoutBox">
-							<button id="logout" class="btn">로그아웃</button>
-						</div>
-					
-					<div id="myPage">
-                		<a href="/mypage/myMeeting" class="btn">내정보</a>
-            		</div>
+	            		
+						<button id="btnLogout">로그아웃</button>
+                		<a href="/mypage/myMeeting">
+                			<button id="btnMypage">내정보</button>
+                		</a>
+            		
            		</div>
             </sec:authorize>
             <sec:authorize access="isAnonymous()">
+            	<a href="/customLogin">
             	<button id="btnLogin" class="btn">
-                  	<a href="/customLogin">로그인</a>
+                  	로그인
                	</button>
+               	</a>
             </sec:authorize>
             <!-- 시큐리티 영역 끝 -------------------------------------->
             
@@ -216,7 +217,7 @@ input::-moz-placeholder { color: white; }
 	$(document).ready(function(){
 
 		// 로그아웃 버튼 클릭시
-		$("#logout").click(function(){
+		$("#btnLogout").click(function(){
 			if(confirm("로그아웃하시겠습니까?")){
 				$("#logoutForm").submit();
 			}

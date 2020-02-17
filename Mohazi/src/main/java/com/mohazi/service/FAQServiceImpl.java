@@ -22,7 +22,7 @@ public class FAQServiceImpl implements FAQService {
 
 	@Override
 	public List<FAQVO> getList(FAQVO FAQ) {
-		log.info("!!! LIST !!!");
+		log.info("!!! FAQ LIST !!!");
 		return mapper.getList(FAQ);
 	}
 	

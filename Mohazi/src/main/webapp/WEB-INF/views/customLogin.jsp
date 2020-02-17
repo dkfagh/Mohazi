@@ -213,10 +213,7 @@
 <!-- 스크립트 영역 -->
 	<script>
 		$(document).ready(function(){
-			$("button[type='submit']").click(function(){
-				e.preventDefault();
-				$("form").submit();
-			});
+			
 			
 			// 비밀번호 보이기, 안보이기, 클릭시 전환
 			$(".userPw3").on("click",function(){

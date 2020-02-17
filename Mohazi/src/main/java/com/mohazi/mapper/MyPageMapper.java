@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.mohazi.domain.Criteria;
 import com.mohazi.domain.PartyVO;
+import com.mohazi.domain.Party_JoinVO;
 
 public interface MyPageMapper {
    
@@ -16,6 +17,7 @@ public interface MyPageMapper {
 
    public void insert(PartyVO party);
    
-   public int delete(Long p_no);
+   public int LetOut(Long p_no);
+   public int exit(Party_JoinVO pj);
 
 }
