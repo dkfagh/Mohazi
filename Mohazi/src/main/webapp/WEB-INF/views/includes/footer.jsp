@@ -1,20 +1,30 @@
 <style>
 #top-btn {    
     position: fixed;
+    border:0px;
     right: 1%;
     bottom: 70px;
     display: none;
+    background-color:#e9faf2;
 }
+
+#btnArrow{
+    color:#66a385;
+    background-color:#e9faf2;
+    border:0px;
+}
+
 .text-center{
     border-top:  #EBEBEB solid 1px;
     border-bottom: #EBEBEB solid 1px;
 }
 
+
 </style>
    <!-- to top button ------------------------------------------>
    <div id="top-btn">
-       <button class="btn btn-outline-secondary">
-           <a href="#" class="top"><i class="fas fa-arrow-up"></i></a>
+       <button class="btn">
+           <a href="#" class="top"><i class="fas fa-arrow-up" id="btnArrow"></i></a>
        </button>
    </div>
     <!-- to top button ---> 
