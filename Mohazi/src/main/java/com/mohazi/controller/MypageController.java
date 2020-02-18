@@ -2,11 +2,15 @@ package com.mohazi.controller;
 
 import java.security.Principal;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,6 +24,7 @@ import com.mohazi.service.MyPageService;
 import com.mohazi.service.UsersService;
 
 import lombok.AllArgsConstructor;
+import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
 @Log4j
@@ -30,6 +35,9 @@ public class MypageController {
 
 	private UsersService userService;
 	private MyPageService myPageService; // myPage 리스트값
+	
+	@Setter(onMethod_ = @Autowired)
+	private PasswordEncoder pwencoder; 
 	
 	// 내 모임 화면
 	@PreAuthorize("isAuthenticated()")
@@ -133,9 +141,30 @@ public class MypageController {
 	
 	// 내정보 변경 화면
   	@PreAuthorize("isAuthenticated()")
-	@RequestMapping(value = "/myInfo", method = RequestMethod.GET)
-	public void myInfo(@ModelAttribute("users") UsersVO users,Model model) {
+	@GetMapping({"/myInfo"})  // 주소 두개를 분리
+	public void myInfoForm(Principal principal, Model model) {
 		log.info("/myInfo");
-		model.addAttribute("users",userService.read(users.getId()));
+		log.info("principal : "+principal.getName());
+		
+		model.addAttribute("users",userService.read(principal.getName()));
 	}
+  	// 내정보 변경 화면
+   	
+   	@PostMapping("/myInfo")  // 주소 두개를 분리
+ 	public String myInfo(UsersVO users, RedirectAttributes rttr, Model model) {
+ 		log.info("/myInfo 회원정보수정 폼");
+		/* log.info("!!! ERROR :" + error); */
+ 		String encodedPw = pwencoder.encode(users.getPw());
+		users.setPw(encodedPw);
+		/*
+		 * if(error != null) { model.addAttribute("error", "myInfo 에러입니다."); }
+		 */
+ 		if(userService.updateUser(users)) {
+ 			log.info(users+"회원정보수정 성공!!!!!!!!!!!!!!!!!!!!!!!!!!");
+ 			rttr.addFlashAttribute("result", "success");
+ 		}
+ 		
+ 		
+ 		return "redirect:/mypage/myMeeting";
+ 	}
 }

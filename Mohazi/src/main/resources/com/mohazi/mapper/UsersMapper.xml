@@ -39,7 +39,14 @@
 		VALUES(#{id}, #{auth, jdbcType=VARCHAR})
 	</insert>
 	
+	<update id="updateUser" parameterType="com.mohazi.domain.UsersVO">
+		UPDATE users SET PW=#{pw}, EMAIL=${email}, NICKNAME=#{nickname}, PHONE=#{phone} WHERE ID=#{id};
+	</update>
 	
-	
+	<select id="readModify" resultMap="usersMap">
+		SELECT ID, PW, EMAIL, NAME, NICKNAME, PHONE, BIRTH, ENABLED  
+		FROM USERS 
+		WHERE USERS.ID = #{id}
+	</select>
 	
 </mapper>

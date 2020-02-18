@@ -22,19 +22,19 @@
 	
 				union all
 	             
-	             SELECT /*+INDEX_DESC(PARTY IDX_PARTY) */
+	             SELECT
 	                 P_NO, TITLE , id
 	             FROM
 	                PARTY
-	             WHERE id =#{id} and TYPE=#{type}) 
+	             WHERE id =#{id} and TYPE=#{type} order by p_no desc)
       ]]> 
         
          <![CDATA[ 
          		where 
-                 rownum <=#{pageNum} * #{amount} 
+                 rownum <=#{pageNum} * #{amount} order by p_no desc
                   
              )
-         where rn > (#{pageNum}-1) * #{amount} 
+         where rn > (#{pageNum}-1) * #{amount}
         ]]>
    </select>
    <!-- 아이디로 등록한 글과 참여한 글로 타입별로 불러와 몇개의 글이 있는지 count 갯수로 환산하여 합함 -->
