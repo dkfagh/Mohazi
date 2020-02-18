@@ -467,7 +467,7 @@ $(document).ready(function() {
         	   alert("주소를 입력하세요.");
         	   return;
            }
-           if(content == "" || content == "<p><br></p>"){
+           if(content == ""){
         	   alert("내용을 입력하세요.");
         	   return;
            }
@@ -488,7 +488,7 @@ $(document).ready(function() {
 	          
 	        });
 	        
-	        formObj.append(str).submit();
+	        formObj.append(str);
     	}
 	    else if(operation === 'list'){
 	      //move to list
@@ -507,7 +507,7 @@ $(document).ready(function() {
 	      formObj.append(typeTag);	  
 	      
 	    }
-	    
+	    formObj.submit();
 	  });
 
 });
