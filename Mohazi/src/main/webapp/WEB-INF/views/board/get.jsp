@@ -312,7 +312,9 @@ ul.tab li.active a {
 								<i class="fas fa-map-marker-alt"></i>
 								<!-- PartyVO에 위치정보관련 칼럼 추가 후 region을 address로 수정할 것 -->
 								<span><c:out value="${party.address}" /></span> 
-								<input type = "hidden" id="address" coord_x="${party.coord_x}" coord_y="${party.coord_y}">
+								<input type="hidden" id="coord_x" value="${party.coord_x}" />
+								<input type="hidden" id="coord_y" value="${party.coord_y}" />
+								<%-- <input type = "hidden" id="address" coord_x="${party.coord_x}" coord_y="${party.coord_y}"> --%>
 							</li>
 
 							<li class="info-guest" id="scheduleExplainArea">
@@ -1207,22 +1209,23 @@ ul.tab li.active a {
 		// remove QNA Question END
 		
 		
-		//카카오맵		     
-		 var coord_x = $("#address").attr('coord_x');
-		 var coord_y = $("#address").attr('coord_y');
-		 
-		 console.log("coord_x:" +coord_x+"coord_y:"+coord_y);
-		 
+		//카카오맵
+		// 읽어온 x, y좌표를 이용
+		var coord_x = $("#coord_x").val();
+		var coord_y = $("#coord_y").val();
+		var coords = new daum.maps.LatLng(coord_y, coord_x);
+
+		console.log("coord_x:" +coord_x+"coord_y:"+coord_y);
 	          var mapContainer = document.getElementById('kakaomap'), // 지도를 표시할 div 
 	           mapOption = { 
-	                  center: new daum.maps.LatLng(37.534625, 126.898577), // 지도의 중심좌표
+	                  center: coords, // 지도의 중심좌표
 	                  level: 3 // 지도의 확대 레벨
 	              };
 
 	          var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 
 	          // 마커가 표시될 위치입니다 
-	          var markerPosition  = new daum.maps.LatLng(coord_x, coord_y); 
+	          var markerPosition  = coords; 
 
 	          // 마커를 생성합니다
 	          var marker = new daum.maps.Marker({
@@ -1231,9 +1234,7 @@ ul.tab li.active a {
 
 	          // 마커가 지도 위에 표시되도록 설정합니다
 	          marker.setMap(map);	     
-	    
-		
-		
+
 	}); 
     //]]>
  </script>
