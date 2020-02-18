@@ -48,7 +48,7 @@
             
             float: left;
             border: black solid 2px;
-            
+            margin-right:15px;
             max-width: 161.64px;
             height:400px;
             padding: 0;
@@ -84,13 +84,12 @@
 
         #pages{
             position:relative;
-            float: right;
-            
             display:inline-block;
             width:100%;
+            min-width:484px;
             height: 500px;
             padding:30px;
-            
+            overflow:hidden;
             border:solid black 1px;
         }
 		/* paging 부분 */
@@ -120,11 +119,17 @@
 		}
 		/* paging 부분 끝 */
 		#myList{
-			
+			box-sizing:border-box;
 			display:inline-block;
 		}
-		
-
+		.table th,.table td{
+			border:none;
+			border-top: none;
+		}
+		.table h4{
+			text-align:center;
+			color:#66a385;
+		}
 		.table button{
 			width:75px;
 			color:#66a385;
@@ -136,6 +141,23 @@
 			background-color:#e9faf2;
 			border-radius:5px;
 			font-weight:bold;
+		}
+		.th1,.tr1 td{
+			border:none;
+			border-bottom: solid #dee2e6 1px;
+		}
+		td i{
+		
+		font-size:30px;
+		}
+		.td1{
+			width:70%;
+		}
+		.td2{
+			width:20%;
+		}
+		.td3{
+			width:10%;
 		}
 		.move{
 			text-decoration:none;
@@ -152,8 +174,9 @@
  <div class="container">
             
         <div class="row"> <!-- 내정보 네비, 페이지 분할 -->
+        	<div class="col-sm-1" ></div>
             <!-- 네비 시작 -->
-            <div id="myNav"class="col-sm-3" >
+            <div id="myNav"class="col-sm-2" >
                 
                     <div class="myNavHome">
                             <h4>내정보</h4>
@@ -169,63 +192,62 @@
             <!-- 네비 끝 -->
             
             <!-- 페이지 바디 시작 -->
-            <div id="pages" class="col-sm-9">
+            <div id="pages" class="col-sm-8">
                 <!-- 만든 Class 시작 -->
                 <div id="myList" class="col-sm-12">
                     <h3>나의 클래스</h3>
-                    <table class="table-responsive">
+                    <table class="table">
+                    <!-- 테이블 내용 ----------------------------------------->
+                    	<!-- 분기 -->
+                   		<c:choose>
+                            <c:when test="${ pageMaker.total <= 0}">
+                            <!-- 불러올 게시글이 하나도 없는 경우(party, party_join) -->
+                             	<tr><td></td></tr><tr><td></td></tr>
+                             	<tr>
+                              		<td>
+                              			<h4>내 클래스 리스트가 없습니다.</h4>
+                             		</td>
+                           		</tr>
+                            </c:when> 
+                            <c:when test="${pageMaker.total > 0 }"><!-- 불러올 게시글이 있는 경우 -->
+                               	<c:forEach items="${list}" var="party">
+                               		<!-- 개설자 ID -->
+                               		<c:set var="writer" value = "${party.id}" />
+                               		<!-- 개설자 ID 끝 -->
+                           			<tr class="tr1">
+                               			<td class="td1">
+                                       		<a class="move" href='<c:out value="${party.p_no}"/>'>
+                                           		<c:out value="${party.title}" /> 
+                                       		</a>
+                               			</td>
+                               			<td></td>
+                               			<td class="td2">
+                               			<!-- 내가 개설한 정보표시-->	
+                                   			<c:if test = "${principal.username eq writer}"> 
+                   		                  		<i class="fab fa-angellist"></i>
+                        	              	</c:if>
+                                   		<!-- 내가 개설한 정보표시 끝-->
+                               			</td>
+                               			<td class="td3">
+                               				<c:choose>
+                               					<c:when test="${ principal.username ne writer}"> <!-- 참여한 글일때 -->
+                               					<!-- 내가 참여한 글이면 나가기 버튼 생성(party_join에서 삭제) -->
+                               						<button data-oper='exit' data-p_no="<c:out value='${party.p_no}'/>" class="btn btn-sm" type="button">나가기</button>
+                           						</c:when>
+                           						
+                           						<c:when test="${ principal.username eq writer}"> <!--  작성한 글일때 -->
+                           						<!-- 내가 등록한 글이면 삭제 버튼 생성(party의 파일, party_join, party 삭제) -->
+                              						<button data-oper='delete' data-p_no="<c:out value='${party.p_no}'/>" class="btn btn-sm" type="button">삭제</button> 
+                           						</c:when>
+                               				</c:choose>
+                               			</td>
+                                   	 </tr>
+                   				</c:forEach>
+                       	 	</c:when>
+                   		</c:choose>
                         
-                        <table class="table table-bordered" id="dataTable" >
-
-                            <!-- 테이블 내용 ----------------------------------------->
-                    
-                            
-                           	<c:choose>
-                                <c:when test="${ pageMaker.total <= 0}">
-                                 	<tr><td></td></tr><tr><td></td></tr>
-                                 	<tr>
-                                  		<td>
-                                  			<h4>내 클래스 리스트가 없습니다.</h4>
-                                 		</td>
-                               		</tr>
-                                </c:when>
-                                <c:when test="${pageMaker.total > 0 }">
-                                	<c:forEach items="${list}" var="party">
-                                		<!-- 개설자 ID -->
-                                		<c:set var="writer" value = "${party.id}" />
-                                		<!-- 개설자 ID 끝 -->
-                             			<tr>
-                                   			<td>
-                                           		<a class="move" href='<c:out value="${party.p_no}"/>'>
-                                               		<c:out value="${party.title}" /> 
-                                           		</a>
-                                   			</td>
-                                   			<td></td>
-                                   			<td>
-                                   			<!-- 내가 개설한 정보표시-->	
-                                       			<c:if test = "${principal.username eq writer}"> 
-		                                       		<i class="fab fa-angellist" style="background:red"></i>
-		                                       	</c:if>
-                                       		<!-- 내가 개설한 정보표시 끝-->
-                                   			</td>
-                                   			<td>
-                                   				<c:choose>
-                                   					<c:when test="${ principal.username ne writer}"> <!-- 참여한 글일때 -->
-                                   						<button data-oper='exit' data-p_no="<c:out value='${party.p_no}'/>" class="btn btn-sm" type="button">나가기</button>
-                               						</c:when>
-                               						<c:when test="${ principal.username eq writer}"> <!--  작성한 글일때 -->
-                                   						<button data-oper='delete' data-p_no="<c:out value='${party.p_no}'/>" class="btn btn-sm" type="button">삭제</button>
-                               						</c:when>
-                                   				</c:choose>
-                                   			</td>
-                                      	 </tr>
-                       				</c:forEach>
-                           	 	</c:when>
-                       		</c:choose>
-                        
-                           <!-- 테이블 내용 끝 ---------------------------------------->
-                    
-                        </table>
+                    <!-- 테이블 내용 끝 ---------------------------------------->
+                    </table>
                     
                         <!-- Paging --------------------------------------------------->
                         <form id="actionForm" action="/mypage/myClass" method="get">
@@ -249,7 +271,7 @@
                            </c:if>
                         </div>
                         <!-- Paging 끝 --------------------------------------------------->
-                    </table> <!-- 테이블 끝 -------->
+                   
                 </div>
                 <!-- 만든 클래스 끝 -->
             </div><!-- 페이지 바디 끝 -->    

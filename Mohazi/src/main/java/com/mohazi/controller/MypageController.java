@@ -153,7 +153,7 @@ public class MypageController {
    	@PostMapping("/myInfo")  // 주소 두개를 분리
  	public String myInfo(UsersVO users, RedirectAttributes rttr, Model model) {
  		log.info("/myInfo 회원정보수정 폼");
-		/* log.info("!!! ERROR :" + error); */
+		log.info("!!! get Users :" + users);
  		String encodedPw = pwencoder.encode(users.getPw());
 		users.setPw(encodedPw);
 		/*
@@ -161,7 +161,7 @@ public class MypageController {
 		 */
  		if(userService.updateUser(users)) {
  			log.info(users+"회원정보수정 성공!!!!!!!!!!!!!!!!!!!!!!!!!!");
- 			rttr.addFlashAttribute("result", "success");
+ 			//rttr.addFlashAttribute("result", "success");
  		}
  		
  		

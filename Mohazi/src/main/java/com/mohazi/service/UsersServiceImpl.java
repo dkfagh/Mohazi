@@ -2,6 +2,7 @@ package com.mohazi.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.mohazi.domain.AuthVO;
 import com.mohazi.domain.UsersVO;
@@ -37,7 +38,8 @@ public class UsersServiceImpl implements UsersService{
 		return mapper.read(id);
 		
 	}
-
+	
+	@Transactional
 	@Override
 	public boolean updateUser(UsersVO user) {
 		log.info("회원정보수정....."+user);

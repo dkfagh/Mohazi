@@ -4,7 +4,8 @@
 <%@ include file="../includes/navigation.jsp" %>
 
   <style>
-  		*{
+  		/* reset */
+        *{
             margin:0;
             padding: 0;
         }
@@ -45,7 +46,7 @@
             
             float: left;
             border: black solid 2px;
-            
+            margin-right:15px;
             max-width: 161.64px;
             height:400px;
             padding: 0;
@@ -53,6 +54,13 @@
         }
         #myNav a{
             display: block;
+            transition: background-color .3s;
+		    text-decoration:none;
+		    color:black;
+        }
+        #myNav a:hover{
+		    background: #7bd4ac ;
+		   	color: white;
         }
         .myNavHome{
             background-color: #aaf0d1;
@@ -62,29 +70,34 @@
             border-bottom: black solid 1px;
             margin:0;
         }
+        .myNavHome h4{
+        	margin:0;
+        	top:15px;
+        }
         .myNavItem{
             padding:10px;
             margin:0;
-            
         }
         /* mypage 네비 끝 */
 
         #pages{
             position:relative;
-            float: right;
-            background: wheat;
-            
+            display:inline-block;
             width:100%;
             height: 100%;
-            padding:20px;
-            display:inline-block;
-            border:solid black 2px;
+            padding:30px;
+            box-sizing:border-box;
+            border:solid black 1px;
             
+            margin:0 auto;
         }
         
         #myList{
-			border:solid green 1px;
-			text-align:center;
+			width:100%;
+			height:100%;
+			margin:0 auto;
+			
+			
 		}
 		/* #myList h4{
 			text-align:center;
@@ -92,7 +105,8 @@
 			
 		} */
   		#inputValue{
-        	margin:auto;	
+  			width:50%;
+        	margin:0 auto;
         }
         #userId,
         #userPw,
@@ -332,12 +346,17 @@
 				            </div>
 				            <div class="birthDate2">
 			
-				                <input id="date" type="date" name="birth" style="font-size:11px" value="${users.birth }" readonly>
-			
+							<fmt:formatDate value="${users.birth}" pattern="yyyy/MM/dd" />
+
+
+				                <%-- <input id="date" type="text" name="birth" style="font-size:11px" value="${users.birth}" readonly> --%>
+									
 				            </div>
 				        </div>
-				</div><!-- input id="inputValue 끝 -->
-				
+						<!-- input id="inputValue 끝 -->
+				    	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+				    	
+			      	
 				
 				      
 				      
@@ -348,10 +367,8 @@
 					        <p>
 					            <button type="submit" class="userModify">회원정보변경</button>
 					        </p>
-					
-					    	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-				    	
-			      	</form>
+					</div>
+					</form>
 			      	</div>
                 <!-- 만든 클래스 끝 -->
             </div><!-- 페이지 바디 끝 -->    
@@ -362,13 +379,10 @@
 
 
 <!-- 스크립트 영역 -------------------------------------->
+<script src="../resources/js/review.js"></script>
 <script>
 $(document).ready(function(){
-	// datePicker
-	
-		$("#date").value = $(this).val();
-	
-	
+		
 	// 비밀번호 보이기, 안보이기, 클릭시 전환
 	$(".userPw3").on("click",function(){
 		$(".userPw2 input").toggleClass("active");
@@ -436,7 +450,10 @@ $(document).ready(function(){
 		  
 		  else{
 			
-		  	//formObj.submit();
+				
+				
+			
+		  	formObj.submit();
 		  }
 	   });
 });
