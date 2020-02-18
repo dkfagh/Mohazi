@@ -6,7 +6,7 @@
 <%@ include file="../includes/navigation.jsp" %>
 
     <style>
- /* reset */
+ 		/* reset */
         *{
             margin:0;
             padding: 0;
@@ -56,6 +56,13 @@
         }
         #myNav a{
             display: block;
+            transition: background-color .3s;
+		    text-decoration:none;
+		    color:black;
+        }
+        #myNav a:hover{
+		    background: #7bd4ac ;
+		   	color: white;
         }
         .myNavHome{
             background-color: #aaf0d1;
@@ -64,6 +71,10 @@
             text-align: center;
             border-bottom: black solid 1px;
             margin:0;
+        }
+        .myNavHome h4{
+        	margin:0;
+        	top:15px;
         }
         .myNavItem{
             padding:10px;
@@ -74,23 +85,21 @@
         #pages{
             position:relative;
             float: right;
-            background: wheat;
             
+            display:inline-block;
             width:100%;
             height: 500px;
             padding:30px;
             
-            border:solid black 2px;
+            border:solid black 1px;
         }
 		/* paging 부분 */
 		.pagination{
-			
-			
-			width:70%;
-			
+			display:block;
+		   text-align:center;
 		   padding-top:5px;
-		   
-		   
+		   width:100%;
+		   margin:0 auto;
 		}
 		
 		.pagination a{
@@ -98,8 +107,7 @@
 		   transition: background-color .3s;
 		   text-decoration:none;
 		   color:black;
-		   
-		   
+		   padding: 6px 12px;
 		}
 		
 		.pagination a.active {
@@ -112,22 +120,32 @@
 		}
 		/* paging 부분 끝 */
 		#myList{
-			border:solid green 1px;
-		}
-		#myList h4{
-			text-align:center;
-			color:gray;
 			
+			display:inline-block;
 		}
-		.table td{
-			margin-top:0;
-			margin-bottom:0;
-		}
+		
+
 		.table button{
-			width:80px;
+			width:75px;
+			color:#66a385;
+			font-size:14px;
+			border:0px;
 			margin-top:0;
 			margin-botton:0;
-			border:solid red 0.5px;
+			
+			background-color:#e9faf2;
+			border-radius:5px;
+			font-weight:bold;
+		}
+		.move{
+			text-decoration:none;
+			color:black;
+			
+		}
+		.move:hover{
+			text-decoration:none;
+			color:gray;
+			
 		}
     </style>
 
@@ -138,9 +156,7 @@
             <div id="myNav"class="col-sm-3" >
                 
                     <div class="myNavHome">
-                        <a href="/mypage/myMeeting">
                             <h4>내정보</h4>
-                        </a>
                     </div>
                     <div class="myNavItem">
                         <a href="/mypage/myMeeting">내 모임</a>
@@ -159,7 +175,7 @@
                     <h3>나의 클래스</h3>
                     <table class="table-responsive">
                         
-                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <table class="table table-bordered" id="dataTable" >
 
                             <!-- 테이블 내용 ----------------------------------------->
                     
@@ -220,26 +236,17 @@
                             <input type="hidden" name="writer" value="${writer}">
                            
                         </form>         
-                        <div class ="float-right">
-                            <ul class="pagination">
-                                <c:if test="${pageMaker.prev}">
-                                    <li class="page-item previous">
-                                        <a class="page-link" href="${pageMaker.startPage-1}">Previous</a>
-                                    </li>
-                                </c:if>
-                                <c:forEach var="num" begin="${pageMaker.startPage}"
-                                    end="${pageMaker.endPage}">
-                                    <li class="page-item ${pageMaker.cri.pageNum == num ? 'active':''}">
-                                        <a class="page-link" href="${num}">${num}</a>
-                                    </li>
-                                    
-                                </c:forEach>
-                                 <c:if test="${pageMaker.next}"> 
-                                    <li class="page-item next">
-                                        <a class="page-link" href="${pageMaker.endPage+1}">Next</a>
-                                    </li>
-                                  </c:if>
-                            </ul>
+                        <div class ="pagination">
+                           <c:if test="${pageMaker.prev}">
+                                 <a href="${pageMaker.startPage-1}">Previous</a>
+                           </c:if>
+                           <c:forEach var="num" begin="${pageMaker.startPage}"
+                               end="${pageMaker.endPage}">
+                                 <a class="${pageMaker.cri.pageNum == num ? 'active' : ''}" href="${num}">${num}</a>
+                           </c:forEach>
+                           <c:if test="${pageMaker.next}"> 
+                                 <a href="${pageMaker.endPage+1}">Next</a>
+                           </c:if>
                         </div>
                         <!-- Paging 끝 --------------------------------------------------->
                     </table> <!-- 테이블 끝 -------->
@@ -247,7 +254,7 @@
                 <!-- 만든 클래스 끝 -->
             </div><!-- 페이지 바디 끝 -->    
         </div><!-- 내정보 네비, 페이지 분할 -->
-
+</div>
 <!--  Script 영역 -->
 <script>
 $(document).ready(function(){
@@ -256,7 +263,7 @@ $(document).ready(function(){
 	var actionForm=$("#actionForm"); // paing actionForm
 	
 	// paging 번호 클릭시 해당 번호로 이동
-	$(".page-item a").on("click",function(e){
+	$(".pagination a").on("click",function(e){
 		e.preventDefault(); // 페이지 이동을 막는다
 		
 		console.log("click");

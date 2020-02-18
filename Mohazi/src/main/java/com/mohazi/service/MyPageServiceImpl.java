@@ -12,6 +12,8 @@ import com.mohazi.domain.Party_JoinVO;
 import com.mohazi.mapper.BoardAttachMapper;
 import com.mohazi.mapper.BoardMapper;
 import com.mohazi.mapper.MyPageMapper;
+import com.mohazi.mapper.ScheduleMapper;
+import com.mohazi.mapper.Schedule_JoinMapper;
 
 import lombok.AllArgsConstructor;
 import lombok.Setter;
@@ -30,13 +32,22 @@ public class MyPageServiceImpl implements MyPageService{
    @Setter(onMethod_ = @Autowired)
    private BoardMapper boardMapper;
    
+   @Setter(onMethod_ = @Autowired)
+   private Schedule_JoinMapper SJMapper;
+   
+   @Setter(onMethod_ = @Autowired)
+   private ScheduleMapper sMapper;
+   
    
    @Transactional
    @Override
    public boolean delete(Long p_no) {
 	   log.info("myPage Delete!!!!");
+
+	   
 	   mapper.LetOut(p_no);  // 게시글의 참여인원들을 다 내보낸다.
 	   attachMapper.deleteAll(p_no);
+	   
 
 		return boardMapper.delete(p_no) == 1; // 삭제되면 리턴
    }
