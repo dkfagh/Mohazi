@@ -50,6 +50,12 @@ public class Schedule_JoinController {
 		return new ResponseEntity<>(service.getList(s_no), HttpStatus.OK);
 	}
 	
+	// 해당 스케쥴에 참가한 인원 수 구하기
+	@GetMapping(value="/count/{s_no}", produces= {MediaType.APPLICATION_JSON_UTF8_VALUE})
+	public ResponseEntity<Integer> participantsCount(@PathVariable("s_no") Long s_no){
+		log.info("!!! GET TOTAL PARTICIPANTS OF " + s_no);
+		return new ResponseEntity<>(service.participantsCount(s_no), HttpStatus.OK);
+	}
 	@GetMapping(value="/get/{sj_no}",
 			produces= { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE})
 	public ResponseEntity<Schedule_JoinVO> get(@PathVariable("sj_no") Long sj_no){

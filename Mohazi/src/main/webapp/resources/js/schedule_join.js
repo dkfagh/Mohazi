@@ -72,10 +72,23 @@ var schedule_joinService= (function(){
 		});
 	}
 	
+	function count(s_no, callback, error){
+		$.get("/schedules_join/count/"+s_no+".json", function(result){
+			if(callback){
+				callback(result);
+			}
+		}).fail(function(xhr, status, err){
+			if(error){
+				error();
+			}
+		});
+	}
+	
 	return {add: add,
 			getList: getList,
 			remove : remove,			
-			get : get
+			get : get,
+			count : count
 			};
 	
 })();

@@ -19,5 +19,7 @@ public interface Schedule_JoinMapper {
 	
 	public List<Schedule_JoinVO> getList(
 			@Param("s_no") Long s_no);
+	
+	public int participantsCount(Long s_no);
 
 }

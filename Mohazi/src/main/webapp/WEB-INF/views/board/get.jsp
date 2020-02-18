@@ -633,9 +633,7 @@ ul.tab li.active a {
 		
 		showScheduleList();
 		
-			function showScheduleList(){		
-				
-				
+			function showScheduleList(){
 				scheduleService.getList({p_no:p_noValue}, function(list){
 					var str=""
 					if(list == null || list.length ==0){
@@ -644,8 +642,17 @@ ul.tab li.active a {
 						return;
 					}
 					for (var i = 0, len = list.length || 0; i < len; i++){
+						// 스케쥴 목록 출력 시 참가 인원 같이 출력하도록.
+						var s_noValue = list[i].s_no;
+						var participantsCount = 0;
+						console.log("여기!!! s_no : " + s_noValue);
+						schedule_joinService.count(s_noValue, function(count){
+							console.log(s_noValue + "참가 인원 : " + count);
+							participantsCount = count;
+						});
+						////////////////////////////////
 						str+="<li class='left clearfix' name='li_result' data-s_no='"+list[i].s_no+"'>";						
-						str+=" <input class='result' name='result' type='button' s_no='"+list[i].s_no+"' value='날짜 : "+((list[i].s_date).toString()).substring(0,10)+" 시간 :"+((list[i].s_time).toString()).substring(10,16)+" 인원현황: /"+list[i].max_people+"'>";
+						str+=" <input class='result' name='result' type='button' s_no='"+list[i].s_no+"' value='날짜 : "+((list[i].s_date).toString()).substring(0,10)+" 시간 :"+((list[i].s_time).toString()).substring(10,16)+" 인원현황: " + participantsCount + " /"+list[i].max_people+"'>";
 						str+="</li>";
 					}
 					scheduleUL.html(str);

@@ -49,4 +49,10 @@ public class Schedule_JoinServiceImpl implements Schedule_JoinService {
 		return mapper.getList(s_no);
 	}
 
+	@Override
+	public int participantsCount(Long s_no) {
+		log.info("!!! GET TOTAL COUNT OF PARTICIPANTS !!!" + s_no);
+		return mapper.participantsCount(s_no);
+	}
+
 }

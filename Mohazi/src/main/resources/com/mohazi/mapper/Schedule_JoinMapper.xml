@@ -26,4 +26,8 @@
 		where s_no = #{s_no}
 		order by sj_no
 	</select>
+	
+	<select id="participantsCount" resultType="int">
+		SELECT COUNT(*) FROM SCHEDULE_JOIN WHERE S_NO=#{s_no}
+	</select>
 </mapper>

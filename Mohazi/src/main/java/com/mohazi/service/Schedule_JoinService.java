@@ -15,5 +15,7 @@ public int register(Schedule_JoinVO vo);
 	public int remove(Long sj_no);
 	
 	public List<Schedule_JoinVO> getList(Long s_no);
+	
+	public int participantsCount(Long s_no);
 
 }
