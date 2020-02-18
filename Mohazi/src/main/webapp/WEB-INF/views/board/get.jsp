@@ -273,13 +273,21 @@ ul.tab li.active a {
 	color: white;
 }
 
+.bx-wrapper{
+    margin: 5px;
+}
+
+.bx-wrapper, .bx-viewport {
+    height: 410px !important;
+}
+
 </style>
 
 	<div class="container" id="contents">
 		<div class="row">
         	<div class="col-sm-8">
 				<div id="title-img">
-					<ul class="bxslider">											
+					<ul class="bxslider">
 					</ul>
 				</div>
 				<div class="title-text">
@@ -554,10 +562,17 @@ ul.tab li.active a {
     		
     		$(arr).each(function(i,attach){
     			var fileCallPath = encodeURIComponent( attach.uploadPath +"/"+ attach.uuid +"_"+ attach.fileName);
-    			str += "<li data-path='"+attach.uploadPath+"' data-uuid='"+attach.uuid+"' data-filename='"+attach.fileName+"' data-type='"+attach.fileType+"' ><div>";
+    			/* str += "<li data-path='"+attach.uploadPath+"' data-uuid='"+attach.uuid+"' data-filename='"+attach.fileName+"' data-type='"+attach.fileType+"' ><div>";
     			str +="<img src='/display?fileName="+fileCallPath+"'>";
     			str +="</div>";
-    			str +"</li>";    			
+    			str +"</li>"; */
+    			
+    			str += "	<li>";
+    			str += "		<div style='width:700px;height:400px;'>";
+    			str += "			<img src='/display?fileName="+fileCallPath+"'>";
+    			str += "		</div>";
+    			str += "	</li>";
+    			
     		});
     		
     		$(".bxslider").html(str);
@@ -568,7 +583,10 @@ ul.tab li.active a {
     	
 		//bxslider
 		$(function(){
-  			$('.bxslider').bxSlider();
+  			$('.bxslider').bxSlider({
+  				slideWidth:720,
+  				pager:true
+  			});
 		});
     	
 		//tabList
