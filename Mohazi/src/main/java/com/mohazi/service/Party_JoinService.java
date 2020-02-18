@@ -16,5 +16,6 @@ public int register(Party_JoinVO vo);
 	
 	public List<Party_JoinVO> getList(Long p_no);
 	
+	public int count(Long p_no);
 
 }

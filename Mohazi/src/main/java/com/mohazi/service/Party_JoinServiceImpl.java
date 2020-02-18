@@ -47,5 +47,11 @@ public class Party_JoinServiceImpl implements Party_JoinService{
 		log.info("get Schedule LIst............"+p_no);
 		return mapper.getList(p_no);
 	}
+	
+	@Override
+	public int count(Long p_no) {
+		log.info("!!! GET TOTAL COUNT OF PARTICIPANTS !!!" + p_no);
+		return mapper.count(p_no);
+	}
 
 }

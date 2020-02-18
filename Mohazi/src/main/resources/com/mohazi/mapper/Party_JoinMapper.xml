@@ -22,4 +22,8 @@
 		where p_no = #{p_no}
 		order by pj_no
 	</select>
+	
+	<select id="count" resultType="int">
+		SELECT COUNT(*) FROM party_JOIN WHERE p_no=#{p_no}
+	</select>
 </mapper>

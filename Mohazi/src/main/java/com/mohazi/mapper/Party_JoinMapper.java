@@ -17,5 +17,7 @@ public int insert(Party_JoinVO vo);
 	
 	public List<Party_JoinVO> getList(
 			@Param("p_no") Long p_no);
+	
+	public int count(Long p_no);
 
 }

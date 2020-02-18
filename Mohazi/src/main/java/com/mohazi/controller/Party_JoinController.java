@@ -57,6 +57,13 @@ public class Party_JoinController {
 		return new ResponseEntity<>(service.get(pj_no), HttpStatus.OK);
 	}
 	
+	// 해당 모임에 등록된 인원 수 구하기
+	@GetMapping(value="/count/{p_no}", produces= {MediaType.APPLICATION_JSON_UTF8_VALUE})
+	public ResponseEntity<Integer> participantsCount(@PathVariable("p_no") Long p_no){
+		log.info("!!! GET TOTAL PARTICIPANTS OF " + p_no);
+		return new ResponseEntity<>(service.count(p_no), HttpStatus.OK);
+	}
+	
 	@DeleteMapping(value="/{pj_no}",
 			produces= { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE})
 	public ResponseEntity<String> remove(@PathVariable("pj_no") Long pj_no){
