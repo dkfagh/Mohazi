@@ -437,7 +437,42 @@ $(document).ready(function() {
 	             formObj.attr("action", "/board/remove");
 	          }
 	          else{return false;}
-	    }
+	    }    
+	    
+	    //게시글 수정시 null값 없는 alert띄우기!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    	if(operation === 'modify'){
+    		
+	        var title = $("#inputBox").val();
+		      
+	    	var catm = $("#cat_main").val();
+	    	var cats = $("#cat_sub").val();
+	    	var address=$("#inputAddress").val();
+	    	//var content = $("#summernote").val();
+	    	//var content = "${party.content}".val();
+	    	
+           if(title == ""){
+              alert("제목을 입력하세요.");
+              return;
+           }
+           if(catm == "선택하세요" ){
+        	   alert("선택하세요.");
+        	   return;
+           }
+            if(cats == "선택하세요" ){
+        	   alert("선택하세요.");
+        	   return;
+           } 
+           if(address == ""){
+        	   alert("주소를 입력하세요.");
+        	   return;
+           }
+        /*    if(content == ""){
+        	   alert("내용을 입력하세요.");
+        	   return;
+           }	 */
+    }
+	    	
+	   
 	    else if(operation === 'list'){
 	      //move to list
 	      formObj.attr("action", "/board/list").attr("method","get");

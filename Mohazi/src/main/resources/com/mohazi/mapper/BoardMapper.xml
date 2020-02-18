@@ -165,6 +165,9 @@
       CAT_MAIN = #{cat_main},
       CAT_SUB = #{cat_sub},
       CONTENT = #{content},
+      ADDRESS = #{address},
+      COORD_X = #{coord_x},
+      COORD_Y = #{coord_y}, 
       TAG = #{tag, jdbcType=VARCHAR},
       PRICE = #{price, jdbcType=NUMERIC}
       WHERE P_NO = #{p_no}
