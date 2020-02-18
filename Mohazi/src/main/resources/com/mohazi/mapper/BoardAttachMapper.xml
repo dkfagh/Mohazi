@@ -27,4 +27,12 @@
 			delete attach where p_no = #{p_no}
 	
 	</delete>
+	
+	
+	<select id="getOldFiles"
+		resultType="com.mohazi.domain.BoardAttachVO">
+
+		select * from attach where uploadpath = to_char(sysdate -1 ,'yyyy\mm\dd')
+
+	</select>
 </mapper>

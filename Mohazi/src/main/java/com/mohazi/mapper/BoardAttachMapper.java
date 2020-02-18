@@ -14,5 +14,8 @@ public interface BoardAttachMapper {
 	public List<BoardAttachVO> findByPno(Long p_no);
 	
 	public void deleteAll(Long p_no);
+	
+	public List<BoardAttachVO> getOldFiles();
+
 
 }

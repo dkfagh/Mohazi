@@ -254,7 +254,6 @@ input[type=text]:-ms-clear{
 	border-radius:5px;
 	font-weight:bold;
 	padding:0px 7px;
-	width:75px;
 	color:#66a385;
 	font-size:14px;
 	border:0px;
@@ -324,7 +323,7 @@ input[type=text]:-ms-clear{
             <tr>
                <th>위치</th>
                <td id="address"><input type="text" value="${party.address}" id="inputAddress"
-                  placeholder="주소를 입력하세요." style="width: 300px;" name="address">
+                  placeholder="주소를 입력하세요." style="width: 300px; height:30px" name="address">
                   <input type="button" onclick="sample5_execDaumPostcode()"
                   value="검색" class="mapBtn"><br>
                   <input type="hidden" name="coord_x" id="coord_x" value="${party.coord_x}" />
@@ -373,11 +372,9 @@ input[type=text]:-ms-clear{
 			</c:choose>
 
 			<!-- id입력 -------------------------------------------------------------------------->
-			<tr>
-			<th>ID</th>
-			<td> <input type="text" name="id" id="id" value='<sec:authentication property="principal.username"/>' readonly="readonly">
-			</td>
-			</tr>
+			
+			<input type="hidden" name="id" id="id" value='<sec:authentication property="principal.username"/>'/>
+			
       
             
             <!-- type입력 -------------------------------------------------------------------------->
@@ -424,91 +421,89 @@ input[type=text]:-ms-clear{
 $(document).ready(function() {
 
 
-	  var formObj = $("form");
+     var formObj = $("form");
 
-	  $('button').on("click", function(e){
-	    
-	    e.preventDefault(); 
-	    
-	    var operation = $(this).data("oper");
-	    
-	    console.log(operation);
-	    
-	    if(operation === 'remove'){
-	    	if(confirm("정말 삭제 하시겠습니까?")){
-	             formObj.attr("action", "/board/remove");
-	          }
-	          else{return false;}
-	    }
-	    //게시글 수정시 null값 없는 alert띄우기!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	    else if(operation === 'modify'){
-    		
-	        var title = $("#inputBox").val();
-		      
-	    	var catm = $("#cat_main").val();
-	    	var cats = $("#cat_sub").val();
-	    	var address=$("#inputAddress").val();
-	    	var content = $("#summernote").val();
-	    	//var content = "${party.content}".val();
-	    	console.log("!!![" + content + "]");
+     $('button').on("click", function(e){
+       
+       e.preventDefault(); 
+       
+       var operation = $(this).data("oper");
+       
+       console.log(operation);
+       
+       if(operation === 'remove'){
+          if(confirm("정말 삭제 하시겠습니까?")){
+                formObj.attr("action", "/board/remove");
+             }
+             else{return false;}
+       }
+       //게시글 수정시 null값 없는 alert띄우기!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+       else if(operation === 'modify'){
+          
+          var title = $("#inputBox").val();
+          var catm = $("#cat_main").val();
+          var cats = $("#cat_sub").val();
+          var address=$("#inputAddress").val();
+          var content = $("#summernote").val();
+          console.log("!!![" + content + "]");
            if(title == ""){
               alert("제목을 입력하세요.");
               return;
            }
            if(catm == "선택하세요." ){
-        	   alert("카테고리를 선택하세요.");
-        	   return;
+              alert("카테고리를 선택하세요.");
+              return;
            }
             if(cats == "선택하세요." ){
-        	   alert("카테고리를 선택하세요.");
-        	   return;
+              alert("카테고리를 선택하세요.");
+              return;
            } 
            if(address == ""){
-        	   alert("주소를 입력하세요.");
-        	   return;
+              alert("주소를 입력하세요.");
+              return;
            }
            if(content == ""){
-        	   alert("내용을 입력하세요.");
-        	   return;
+              alert("내용을 입력하세요.");
+              return;
            }
            
            // 첨부파일 관련
            var str = "";
-	        
-	        $(".uploadResult ul li").each(function(i, obj){
-	          
-	          var jobj = $(obj);
-	          
-	          console.dir(jobj);
-	          
-	          str += "<input type='hidden' name='attachList["+i+"].fileName' value='"+jobj.data("filename")+"'>";
-	          str += "<input type='hidden' name='attachList["+i+"].uuid' value='"+jobj.data("uuid")+"'>";
-	          str += "<input type='hidden' name='attachList["+i+"].uploadPath' value='"+jobj.data("path")+"'>";
-	          str += "<input type='hidden' name='attachList["+i+"].fileType' value='"+ jobj.data("type")+"'>";
-	          
-	        });
-	        
-	        formObj.append(str);
-    	}
-	    else if(operation === 'list'){
-	      //move to list
-	      formObj.attr("action", "/board/list").attr("method","get");
-	      
-	      var pageNumTag = $("input[name='pageNum']").clone();
-	      var amountTag = $("input[name='amount']").clone();
-	      var keywordTag = $("input[name='keyword']").clone();
-	      var typeTag = $("input[name='type']").clone();      
-	      
-	      formObj.empty();
-	      
-	      formObj.append(pageNumTag);
-	      formObj.append(amountTag);
-	      formObj.append(keywordTag);
-	      formObj.append(typeTag);	  
-	      
-	    }
-	    formObj.submit();
-	  });
+           
+           $(".uploadResult ul li").each(function(i, obj){
+             
+             var jobj = $(obj);
+             
+             console.dir(jobj);
+             
+             str += "<input type='hidden' name='attachList["+i+"].fileName' value='"+jobj.data("filename")+"'>";
+             str += "<input type='hidden' name='attachList["+i+"].uuid' value='"+jobj.data("uuid")+"'>";
+             str += "<input type='hidden' name='attachList["+i+"].uploadPath' value='"+jobj.data("path")+"'>";
+             str += "<input type='hidden' name='attachList["+i+"].fileType' value='"+ jobj.data("type")+"'>";
+             
+           });
+           
+           formObj.append(str);
+       }
+       else if(operation === 'list'){
+         //move to list
+         formObj.attr("action", "/board/list").attr("method","get");
+         
+         var pageNumTag = $("input[name='pageNum']").clone();
+         var amountTag = $("input[name='amount']").clone();
+         var keywordTag = $("input[name='keyword']").clone();
+         var typeTag = $("input[name='type']").clone();      
+         
+         formObj.empty();
+         
+         formObj.append(pageNumTag);
+         formObj.append(amountTag);
+         formObj.append(keywordTag);
+         formObj.append(typeTag);     
+         
+       }
+       formObj.submit();
+     });
 
 });
 </script>

@@ -245,7 +245,6 @@ input[type=text]:-ms-clear{
 	border-radius:5px;
 	font-weight:bold;
 	padding:0px 7px;
-	width:75px;
 	color:#66a385;
 	font-size:14px;
 	border:0px;
@@ -311,7 +310,7 @@ input[type=text]:-ms-clear{
             <tr>
                <th>위치</th>
                <td id="address"><input type="text" id="inputAddress"
-                  placeholder="주소를 입력하세요." style="width: 300px;" name="address">
+                  placeholder="주소를 입력하세요." style="width: 300px; height:30px" name="address">
                   <input type="button" onclick="sample5_execDaumPostcode()"
                   value="검색" class="mapBtn"><br>
                   <!-- 카카오맵에서 읽어온 좌표 -->
@@ -362,14 +361,10 @@ input[type=text]:-ms-clear{
 			</c:choose>
 			
 			<!-- id입력 -------------------------------------------------------------------------->
-			<tr>
-			<th>ID</th>
-			<td> <input type="text" name="id" id="id" value='<sec:authentication property="principal.username"/>' readonly="readonly">
-			</td>
-			</tr>
-	            
+			 <input type="hidden" name="id" id="id" value='<sec:authentication property="principal.username"/>'/>
+			
             <!-- type입력 -------------------------------------------------------------------------->
-            <input type="hidden" name="type" id="type" value="${param.type}">
+            <input type="hidden" name="type" id="type" value="${param.type}"/>
             
          </tbody>
          <!-- Table끝 ----------------------------------------------------------------->
