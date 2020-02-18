@@ -327,10 +327,7 @@ input[type=text]:-ms-clear{
                   placeholder="주소를 입력하세요." style="width: 300px;" name="address">
                   <input type="button" onclick="sample5_execDaumPostcode()"
                   value="검색" class="mapBtn"><br>
-                  <!-- 카카오맵에서 읽어온 좌표 -->
-                 <input type="hidden" id="coord_x" value="${party.coord_x}" />
-				 <input type="hidden" id="coord_y" value="${party.coord_y}" />
-                  <div id="map" style="width:100%;height:350px;"></div>
+                  <div id="map" style="width:100%;height:350px;display:none"></div>
                </td>
             </tr>
 
@@ -440,42 +437,43 @@ $(document).ready(function() {
 	             formObj.attr("action", "/board/remove");
 	          }
 	          else{return false;}
-	    }
-	    	
-	    //게시글 수정시 null값 없는 alert띄우기!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	    	if(operation === 'modify'){
-	    		
-		        var title = $("#inputBox").val();
-			      
-		    	var catm = $("#cat_main").val();
-		    	var cats = $("#cat_sub").val();
-		    	var address=$("#inputAddress").val();
-		    	//var content = $("#summernote").val();
-		    	//var content = "${party.content}".val();
-		    	
-	           if(title == ""){
-	              alert("제목을 입력하세요.");
-	              return;
-	           }
-	           if(catm == "선택하세요" ){
-	        	   alert("선택하세요.");
-	        	   return;
-	           }
-	            if(cats == "선택하세요" ){
-	        	   alert("선택하세요.");
-	        	   return;
-	           } 
-	           if(address == ""){
-	        	   alert("주소를 입력하세요.");
-	        	   return;
-	           }
-	        /*    if(content == ""){
-	        	   alert("내용을 입력하세요.");
-	        	   return;
-	           }	 */
-	    }
+	    }    
 	    
-	    	else if(operation === 'list'){
+	    //게시글 수정시 null값 없는 alert띄우기!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    	if(operation === 'modify'){
+    		
+	        var title = $("#inputBox").val();
+		      
+	    	var catm = $("#cat_main").val();
+	    	var cats = $("#cat_sub").val();
+	    	var address=$("#inputAddress").val();
+	    	//var content = $("#summernote").val();
+	    	//var content = "${party.content}".val();
+	    	
+           if(title == ""){
+              alert("제목을 입력하세요.");
+              return;
+           }
+           if(catm == "선택하세요" ){
+        	   alert("선택하세요.");
+        	   return;
+           }
+            if(cats == "선택하세요" ){
+        	   alert("선택하세요.");
+        	   return;
+           } 
+           if(address == ""){
+        	   alert("주소를 입력하세요.");
+        	   return;
+           }
+        /*    if(content == ""){
+        	   alert("내용을 입력하세요.");
+        	   return;
+           }	 */
+    }
+	    	
+	   
+	    else if(operation === 'list'){
 	      //move to list
 	      formObj.attr("action", "/board/list").attr("method","get");
 	      
@@ -671,35 +669,25 @@ $(document).ready(function() {
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e5d55372dfb08cff48fa326451e35832&libraries=services"></script>
 <script>
-    $(document).ready(function() {
-    	//카카오맵
-		// 읽어온 x, y좌표를 이용
-		var coord_x = $("#coord_x").val();
-		var coord_y = $("#coord_y").val();
-		var coords = new daum.maps.LatLng(coord_y, coord_x);
-		console.log("coord_x:" +coord_x+"coord_y:"+coord_y);
-		
+/*    $(document).ready(function() {
+
       var mapContainer = document.getElementById('map'), // 지도를 표시할 div
       mapOption = {
-         center : coords, // 지도의 중심좌표
+         center : new daum.maps.LatLng(37.537187, 127.005476), // 지도의 중심좌표
          level : 5
       // 지도의 확대 레벨
       };
 
-      var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-
-      // 마커가 표시될 위치입니다 
-      var markerPosition  = coords; 
-
-      // 마커를 생성합니다
+      //지도를 미리 생성
+      var map = new daum.maps.Map(mapContainer, mapOption);
+      //주소-좌표 변환 객체를 생성
+      var geocoder = new daum.maps.services.Geocoder();
+      //마커를 미리 생성
       var marker = new daum.maps.Marker({
-          position: markerPosition
+         position : new daum.maps.LatLng(37.537187, 127.005476),
+         map : map
       });
-
-      // 마커가 지도 위에 표시되도록 설정합니다
-      marker.setMap(map);	     
-
-   }); 
+   }); */
 
    function sample5_execDaumPostcode() {
 	      new daum.Postcode({
@@ -715,10 +703,6 @@ $(document).ready(function() {
 	               if (status === daum.maps.services.Status.OK) {
 
 	                  var result = results[0]; //첫번째 결과의 값을 활용
-	                  
-	              	 // input tag에 x, y 좌표 넣기
-	                  $("#coord_x").val(result.x);	
-	                  $("#coord_y").val(result.y);
 
 	                  // 해당 주소에 대한 좌표를 받아서
 	                  var coords = new daum.maps.LatLng(result.y, result.x);
