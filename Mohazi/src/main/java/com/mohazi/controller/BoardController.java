@@ -121,6 +121,7 @@ public class BoardController {
    }
 
    // 수정 처리
+   @PreAuthorize("principal.username == #party.id")
    @RequestMapping(value = "/modify", method = RequestMethod.POST)
    public String modify(PartyVO party, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
       log.info("!!! MODIFY !!!"+party);
@@ -139,8 +140,9 @@ public class BoardController {
    }
 
    // 삭제 처리
+   @PreAuthorize("principal.username == #id")
    @RequestMapping(value = "/remove", method = RequestMethod.POST)
-   public String remove(@RequestParam("p_no") Long p_no, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
+   public String remove(@RequestParam("p_no") Long p_no, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr, String id) {
       log.info("!!! REMOVE !!!"+p_no);
   
       List<BoardAttachVO> attachList = service.getAttachList(p_no);

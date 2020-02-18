@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 
 <%@ include file="../includes/header.jsp" %>
 <%@ include file="../includes/navigation.jsp" %>
@@ -467,9 +469,18 @@ ul.tab li.active a {
 	<!-- type입력 -------------------------------------------------------------------------->
 	<input type="hidden" name="type" id="type" value="${party.type}">
 
-	<button type="submit" data-oper='modify'
-		class="regBtn btn btn-outline-secondary" style="margin: 3px;">수정</button>
+    <sec:authentication property="principal" var="pinfo"/>
 
+        <sec:authorize access="isAuthenticated()">
+
+        <c:if test="${pinfo.username eq party.id}">
+        
+     <button type="submit" data-oper='modify'
+		class="regBtn btn btn-outline-secondary">수정</button>
+
+        
+        </c:if>
+        </sec:authorize>
 
 	<form id='operForm' action="/boad/modify" method="get">
 		<input type='hidden' id='p_no' name='p_no'

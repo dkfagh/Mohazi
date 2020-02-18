@@ -390,8 +390,17 @@ input[type=text]:-ms-clear{
       <!-- 등록버튼입력 -------------------------------------------------------------------------->
       
     
-      <button type="submit" id="remBtn" data-oper='remove' class="remBtn btn btn-outline-secondary" style="margin:3px;">삭제</button>
-      <button type="submit" id="modBtn" data-oper='modify' class="modBtn btn btn-outline-secondary" style="margin:3px;">수정</button>
+		<sec:authentication property="principal" var="pinfo"/>
+		
+		<sec:authorize access="isAuthenticated()">
+		
+		<c:if test="${pinfo.username eq party.id}">
+		
+		
+		      <button type="submit" id="remBtn" data-oper='remove' class="remBtn btn btn-outline-secondary" style="margin:3px;">삭제</button>
+		      <button type="submit" id="modBtn" data-oper='modify' class="modBtn btn btn-outline-secondary" style="margin:3px;">수정</button>
+		</c:if>
+		</sec:authorize>
 <br>
 <br>
 <br>
@@ -448,7 +457,7 @@ $(document).ready(function() {
 	    }else if(operation === 'modify'){
 	        
 	        console.log("submit clicked");
-	        
+	       
 	        var str = "";
 	        
 	        $(".uploadResult ul li").each(function(i, obj){
@@ -463,6 +472,8 @@ $(document).ready(function() {
 	          str += "<input type='hidden' name='attachList["+i+"].fileType' value='"+ jobj.data("type")+"'>";
 	          
 	        });
+	        
+	        
 	        formObj.append(str).submit();
         }
     
