@@ -25,8 +25,7 @@
 		select s_no, p_no, s_date, s_time, min_people, max_people
 		from schedule
 		where p_no = #{p_no}
-		  AND S_DATE >= TO_DATE(SYSDATE)
-		  AND S_TIME >= TO_DATE(TO_CHAR(SYSDATE, 'HH24:MI:SS'), 'HH24:MI:SS')
+		  AND S_DATE >= TO_DATE(SYSDATE)		 
 		order by s_no
 	</select>
 </mapper>

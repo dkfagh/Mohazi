@@ -3,7 +3,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
-
 <%@ include file="../includes/header.jsp" %>
 <%@ include file="../includes/navigation.jsp" %>
 
@@ -65,6 +64,16 @@
 }
 
 #partyJoinBtn:hover{
+	background-color: rgb(60, 189, 157);
+	color: white;
+}
+#partyModyBtn{
+	width:100%;	
+	background-color: #7bd4ac;	
+	color: white;
+}
+
+#partyModyBtn:hover{
 	background-color: rgb(60, 189, 157);
 	color: white;
 }
@@ -317,8 +326,13 @@ display:inline;
 						<div class="party-txt">
 							<div id="party-txt01"> 모임장 : ${users.nickname}(<c:out value="${party.id}" />)</div>
 							<div id="party-txt02">
-							<p> e-mail: <c:out value="${users.email}"/></p>
-							<p> phone : <c:out value="${users.phone}"/></p></div>							
+								<div id="hostInfo">
+									<%-- <p> e-mail : <c:out value="${users.email}"/></p>
+									<p> phone  : <c:out value="${users.phone}"/></p> --%>
+									
+								</div>	
+							</div>
+														
 						</div>
 							<sec:authentication property="principal" var="pinfo"/>
 							<sec:authorize access="isAnonymous()">
@@ -329,7 +343,8 @@ display:inline;
 							
 							<sec:authorize access="isAuthenticated()">
 							<c:if test="${pinfo.username eq party.id }">	
-								<div class="party-btn">									
+								<div class="party-btn">		
+								<button id="partyModyBtn" type="submit" data-oper='modify' class="btn btn-large">수정하기</button>							
 								</div>
 							</c:if>
 							<c:if test="${pinfo.username ne party.id }">	
@@ -475,17 +490,31 @@ display:inline;
                     <sec:authentication property="principal.username" var="user_id" />
                     	<input class="result" name="schedule_join" type="hidden" id= "${user_id}" style="width:100%;" value=${user_id }>
                		 </sec:authorize>			
-					<div class="class-confirm03">						
-						<button id="scheduleJoinBtn" type="submit" class="btn btn-large">참여하기</button>						
-					</div>
 					
 					<sec:authentication property="principal" var="pinfo"/>
 					<sec:authorize access="isAuthenticated()">
-					<c:if test="${pinfo.username eq party.id }">	
-						<div id="addSchedule">
-							<button id="addScheduleBtn" class="btn btn-large" data-oper="addSchedule">SCHEDULE 등록</button>						
-						</div>
+					<c:if test="${pinfo.username eq party.id }">					
+					<div class="class-confirm03">						
+					<!-- 	<button id="scheduleJoinBtn" type="submit" class="btn btn-large">참여하기</button>		 -->				
+					</div>							
+					<div id="addSchedule">
+						<button id="addScheduleBtn" class="btn btn-large" data-oper="addSchedule">SCHEDULE 등록</button>						
+					</div>
 					</c:if>
+					
+					<c:if test="${pinfo.username ne party.id }">					
+					<div class="class-confirm03">						
+						<button id="scheduleJoinBtn" type="submit" class="btn btn-large">참여하기</button>		 			
+					</div>							
+					<div id="addSchedule">
+						<!-- <button id="addScheduleBtn" class="btn btn-large" data-oper="addSchedule">SCHEDULE 등록</button>	 -->					
+					</div>
+					</c:if>
+					</sec:authorize>
+					<sec:authorize access="isAnonymous()">
+					<div class="class-confirm03">						
+						<button id="scheduleJoinBtn" type="submit" class="btn btn-large">참여하기</button>		 			
+					</div>							
 					</sec:authorize>
 				</div>				
 			</div>
@@ -539,7 +568,14 @@ display:inline;
 					 <label>시간</label>
 					 <input class="result" type="text" id="modaltime" placeholder="시간을 선택해주세요" name="time">
 				</div>	
-						
+				 <div class="form-group">
+					 <label>최소 참가인원</label>
+					 <input class="result" type="text" id="modal_min" placeholder="숫자만 입력해주세요" name="minPeople">
+				 </div>				 
+				  <div class="form-group">
+					 <label>최대 참가인원</label>
+						<input class="result" type="text" id="modal_max" placeholder="숫자만 입력해주세요" name="maxPeople">
+				 </div>							
 			</div>
 	  
 			<!-- Modal footer -->
@@ -574,10 +610,10 @@ display:inline;
     	var hostId="${party.id}";  // HOST ID
     	
     	var userId="${principal.username}";  // 로그인한 유저 ID
-    	
+    
     	console.log(p_noValue);
     	console.log(hostId);
-    	console.log(userId);
+    	console.log(userId);   	
     	
     	 //ajaxSend시 토큰값 전달---------------------------------------------------------------	
     	var csrfHeaderName = "${_csrf.headerName}";
@@ -689,48 +725,49 @@ display:inline;
 
 		// 스케쥴 목록 출력 		
 		
-		var scheduleUL = $(".dateTimeGroup")
+		var scheduleUL = $(".dateTimeGroup");
 
 		
 		showScheduleList();
 		
-			function showScheduleList(){
-				scheduleService.getList({p_no:p_noValue}, function(list){
-					var str=""
-					if(list == null || list.length ==0){
-						scheduleUL.html("");
-						
-						return;
-					}
-					for (var i = 0, len = list.length || 0; i < len; i++){
-						// 스케쥴 목록 출력 시 참가 인원 같이 출력하도록.
-						var s_noValue = list[i].s_no;
-						var participantsCount = 0;
-						console.log("여기!!! s_no : " + s_noValue);
-						schedule_joinService.count(s_noValue, function(count){
-							console.log(s_noValue + "참가 인원 : " + count);
-							participantsCount = count;
-						});
-						////////////////////////////////
-						str+="<li class='left clearfix' name='li_result' data-s_no='"+list[i].s_no+"'>";						
-						str+=" <input class='result' name='result' type='button' s_no='"+list[i].s_no+"' value='날짜 : "+((list[i].s_date).toString()).substring(0,10)+" 시간 :"+((list[i].s_time).toString()).substring(10,16)+" 인원현황: " + participantsCount + " /"+list[i].max_people+"'>";
-						str+="</li>";
-					}
-					scheduleUL.html(str);
-				});//end function				
+		function showScheduleList(){
+			scheduleService.getList({p_no:p_noValue}, function(list){
+				console.log("왔니??");
+				var str="";
+				if(list == null || list.length ==0){
+					scheduleUL.html("");
+					console.log("목록없음")
+					return;
+				}
+				for (var i = 0, len = list.length || 0; i < len; i++){
+					// 스케쥴 목록 출력 시 참가 인원 같이 출력하도록.
+					var s_noValue = list[i].s_no;
+					var participantsCount = 0;
+					console.log("여기!!! s_no : " + s_noValue);
+					schedule_joinService.count(s_noValue, function(count){
+						console.log(s_noValue + "참가 인원 : " + count);
+						participantsCount = count;
+					});
+					////////////////////////////////
+					str+="<li class='left clearfix' name='li_result' data-s_no='"+list[i].s_no+"'>";						
+					str+=" <input class='result' name='result' type='button' s_no='"+list[i].s_no+"' value='날짜 : "+((list[i].s_date).toString()).substring(0,10)+" 시간 :"+((list[i].s_time).toString()).substring(10,16)+" 인원현황: " + participantsCount + "/"+list[i].max_people+"'>";
+					str+="</li>";
+				}
+				scheduleUL.html(str);
+			});//end function				
 
-			};//end showScheduleList	
+		};//end showScheduleList	
 			
 			
-			//등록회원 카운트  	
+	//등록회원 카운트  	
 			
 			var countDiv = $("#count");
 			
 			showCount();
 			 function showCount(){					
-				 var str=""
+				 var str="";
 				 var Count = 0;
-				console.log("여기!!! p_no : " + p_noValue);
+				console.log(" p_no : " + p_noValue);
 				party_joinService.count(p_noValue, function(count){
 					console.log(p_noValue + "모임 등록 인원 : " + count);
 						Count=count;
@@ -769,10 +806,13 @@ display:inline;
 			});
 			
 			//참여하기버튼 클릭시 이벤트
-			$("#scheduleJoinBtn").on("click", function(e){
-				console.log(schedule_join);
-				if(schedule_join.id==null){
+			$("#scheduleJoinBtn").on("click", function(e){				
+				 var id = $("input[name='schedule_join']").attr("id"); 
+				if(id==null || id.lengh==0){
 					alert("로그인 해주세요");
+				}else if((id !=null || id.lengh != 0) && (schedule_join.s_no==null||(schedule_join.s_no).lengh == 0)){
+					
+					alert("일정을 선택해주세요")
 				}else{
 					schedule_joinService.add(schedule_join, function(){
 					alert("참여 되었습니다.");
@@ -788,6 +828,8 @@ display:inline;
 			var modal = $(".modal");
 			var modalInputS_date = modal.find("input[name='date']");
 			var modalInputS_time = modal.find("input[name='time']");
+			var modalInputS_minPeople = modal.find("input[name='minPeople']");
+			var modalInputS_maxPeople = modal.find("input[name='maxPeople']");
 		
 			
 		
@@ -795,9 +837,12 @@ display:inline;
 					var schedule = {
 							s_date: modalInputS_date.val(),
 							s_time: modalInputS_time.val(),
+							min_people:modalInputS_minPeople.val(), 
+							max_people:modalInputS_maxPeople.val(), 
 							p_no:p_noValue
 							
 					};
+					console.log(schedule);
 
 					scheduleService.add(schedule, function(){
 						
@@ -1327,7 +1372,7 @@ display:inline;
 	          // 마커가 지도 위에 표시되도록 설정합니다
 	          marker.setMap(map);	     
 
-	}); 
+	}); 			
     //]]>
  </script>
  
