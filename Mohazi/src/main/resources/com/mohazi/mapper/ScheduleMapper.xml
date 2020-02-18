@@ -22,7 +22,7 @@
 	</update>
 	
 	<select id="getList" resultType="com.mohazi.domain.ScheduleVO">
-		select s_no, p_no, s_date, s_time,  max_people
+		select s_no, p_no, s_date, s_time, min_people, max_people
 		from schedule
 		where p_no = #{p_no}
 		order by s_no
