@@ -436,10 +436,10 @@ $(document).ready(function(){
 		  
 		  
 		  // 비밀번호 비교 /////////////////////////////
- 		  /* else if(pw == ""){
+ 		  else if(pw == ""){
 			  alert("비밀번호를 입력해주세요.");
 			  return;
-		  }  */
+		  }
 	      
 	      else if(pw != pwEqual){
 			  alert("비밀번호가 같지 않습니다.");
