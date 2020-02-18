@@ -3,14 +3,13 @@
 <%@ include file="../includes/header.jsp" %>
 <%@ include file="../includes/navigation.jsp" %>
 
-    <style>
-        /* reset */
-        *{
+  <style>
+  		*{
             margin:0;
             padding: 0;
         }
 
-		/* content 부분 시작 */
+        /* content 부분 시작 */
         .container{
             
             position: relative;
@@ -23,7 +22,7 @@
             margin-top: 20px;
             display: inline-block;
             
-            border: 1px olive solid;
+            
             
             height:100%;
             
@@ -34,7 +33,7 @@
             width:80%;
             margin-left:10%;
             box-sizing: border-box;
-            border: 1px orange solid;
+            
             height: 100%;
             display:inline-block;
             padding:0;
@@ -45,7 +44,7 @@
         #myNav{
             
             float: left;
-            border: black solid 1px;
+            border: black solid 2px;
             
             max-width: 161.64px;
             height:400px;
@@ -66,52 +65,164 @@
         .myNavItem{
             padding:10px;
             margin:0;
+            
         }
         /* mypage 네비 끝 */
-        
+
         #pages{
             position:relative;
             float: right;
             background: wheat;
             
             width:100%;
-            height: 500px;
-            padding:30px;
+            height: 100%;
+            padding:20px;
+            display:inline-block;
+            border:solid black 2px;
             
-            border:solid blue 1px;
         }
-
-
-        .pw-equal{
-            text-align: center;
-            width:100%;
-            height:100%;
+        
+        #myList{
+			border:solid green 1px;
+			text-align:center;
+		}
+		/* #myList h4{
+			text-align:center;
+			color:gray;
+			
+		} */
+  		#inputValue{
+        	margin:auto;	
         }
-        .pw-equal h2{
-            margin-top: 120px;
-        }
-        .pw-equal input{
-            margin-top: 30px;
-            width:200px;
-        }
-        .pw-equal button{
-            width:80px;
-            margin-top:20px;
+        #userId,
+        #userPw,
+        #userPwCheck,
+        #userEmail,
+        #userName,
+        #userNickName,
+        #userPhone,
+        #birthDate
+        {
+            width: 350px;
+            height: 50px;
+         
         }
         
 
+        .userId1,
+        .userId2,
+        .userEmail1,
+        .userEmail2,
+        .userName1,
+        .userName2,
+        .userNickName1,
+        .userNickName2,
+        .userPhone1,
+        .userPhone2,
+        .birthDate1,
+        .birthDate2 {
+            height: 40px;
+            float: left;
+            border: 1px solid #bbbbbb;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+     
+
+        .userId1,
+        .userEmail1,
+        .userName1,
+        .userNickName1,
+        .userPhone1,
+        .birthDate1 {
+            width: 40px;
+            
+            background: rgb(248, 252, 250);
+        }
+
+        .userId2,
+        .userEmail2,
+        .userName2,
+        .userNickName2,
+        .userPhone2,
+        .birthDate2 {
+            width: 260px;
+        
+        }
+
+        .userPw1,
+        .userPw2,
+        .userPw3 {
+            height: 40px;
+            float: left;
+            border: 1px solid #bbbbbb;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        .userPw1 {
+            width: 40px;
+            
+            background: rgb(248, 252, 250);
+        }
+
+        .userPw2 {
+            width: 220px;
+            
+        }
+
+        .userPw3 {
+            width: 40px;
+            cursor: pointer;
+        }
+        input::placeholder{
+           font-size: 11px; 
+        }
+
+        input {
+            border: none;
+            width: 260px;
+            height: 38px;
+            font-size: 16px;
+            padding-left: 5px;
+        }
+
+        .material-icons {
+            opacity: 0.2;
+        }
+
+        /* #contents {
+            width: 300px;
+            margin: auto;
+           
+        } */
+
+        .userModify {
+            width: 310px;
+            height: 50px;
+            background: rgb(24, 24, 24);
+            color: white;
+            border: 2px solid #cccccc;
+            font-size: 16px;
+        }
+        
+        .text-center{
+            border-top:  1px solid #7bd4ac ;
+            border-bottom: 1px solid #7bd4ac ;
+        }
     </style>
 
-        <div class="container">
-            
-        <div class="row"> <!-- 내정보 네비, 페이지 분할 -->
+ 
+  <div class="container">
+	<div class="row"> <!-- 내정보 네비, 페이지 분할 -->
             <!-- 네비 시작 -->
             <div id="myNav"class="col-sm-3" >
                 
                     <div class="myNavHome">
-                        <a href="/mypage/myMeeting">
                             <h4>내정보</h4>
-                        </a>
                     </div>
                     <div class="myNavItem">
                         <a href="/mypage/myMeeting">내 모임</a>
@@ -125,44 +236,211 @@
             
             <!-- 페이지 바디 시작 -->
             <div id="pages" class="col-sm-9">
-                <div class="pw-equal">
-                    <h2>정보를 확인하려면 비밀번호를 입력해주세요</h2>
-                    <form id="myModify" action="/myInfo" method="get">
-                    <%-- 	<input type="hidden" name="id" value="${principal.username}">
-                    	<input id="pw" type="hidden" name="pw" value="${principal.password}"> --%>
-                    	<input id="pw2" type="password" name="pw2" placeholder="비밀번호를 입력하세요"><br>
-                    	<button type="submit">확인</button>
-                    </form>
-                </div>
-            </div>
-            <!-- 페이지 바디 끝 -->
+            	<div id="myList" class="col-sm-12">
+			        <form role="form" action="/mypage/myInfo" method="post">
+					<div id="inputValue">
+				        <!--userId 영역시작------------------------------------------------------------>
+				        <div id="userId">
+				            <div class="userId1">
+				                <span><img src="../resources/img/user.png" width="30"></span>
+				            </div>
+				            <div class="userId2" style="font-size: 5px;">
+				                <input type="text" placeholder="아이디" name="id" value="${users.id }" readonly>
+				            </div>
+				        </div>
+						<!--userId 영역 끝----------------->
+				
+				        <!--userPw 영역시작------------------------------------------------------------>
+				        <p />
+				        <div id="userPw">
+				            <div class="userPw1"> <span><img src="../resources/img/userPw.png" width="30"></span> </div>
+				            <div class="userPw2"> <input id ="pw" type="password" placeholder="비밀번호" name="pw" value=""> </div>
+				            <div class="userPw3" onclick="chg_icon()">
+				                <span class="material-icons" id="icon3"> visibility </span>
+				            </div>
+				        </div>
+				        
+						<!--userPw 영역 끝---------------->
+						
+				        <!--userPwCheck 영역시작------------------------------------------------------------>
+				        <p />
+				        <div id="userPwCheck">
+				            <div class="userPw1"> <span><img src="../resources/img/userPwCheck.png" width="30"></span> </div>
+				            <div class="userPw2"> <input id="pwEqual" type="password" placeholder="비밀번호 확인"> </div>
+				            <div class="userPw3" onclick="chg_icon()">
+				                <span class="material-icons" id="icon3"> visibility </span>
+				            </div>
+				        </div>
+				        
+				
+				        <!--userEmail 영역시작------------------------------------------------------------>
+				        <p />
+				        <div id="userEmail">
+				            <div class="userEmail1">
+				                <span><img src="../resources/img/userEmail.png" width="30"></span>
+				            </div>
+				            <div class="userEmail2">
+				                <input id ="email" type="text" placeholder="이메일" name="email" value="${users.email }">
+				            </div>
+				        </div>
+				        
+				
+				        <!--userName 영역시작------------------------------------------------------------>
+				        <p />
+				        <div id="userName">
+				            <div class="userName1">
+				                <span><img src="../resources/img/user.png" width="30"></span>
+				            </div>
+				            <div class="userName2">
+				                <input id ="name" type="text" placeholder="이름" name="name" value="${users.name }" readonly>
+				            </div>
+				        </div>
+				        
+				
+				        <!--userNickName 영역시작------------------------------------------------------------>
+				        <p />
+				        <div id="userNickName">
+				            <div class="userNickName1">
+				                <span><img src="../resources/img/userNickName.png" width="30"></span>
+				            </div>
+				            <div class="userNickName2">
+				                <input id="nickname" type="text" placeholder="닉네임" name="nickname" value="${users.nickname }" >
+				            </div>
+				        </div>
+				        
+				
+				        <!--userPhone 영역시작------------------------------------------------------------>
+				        <p />
+				        <div id="userPhone">
+				            <div class="userPhone1">
+				                <span><img src="../resources/img/userPhone.png" width="30"></span>
+				            </div>
+				            <div class="userPhone2">
+				                <input id="phone" type="text" placeholder="휴대폰 번호" name="phone" value="${users.phone }">
+				            </div>
+				        </div>
+				        
+				
+				
+				        <!--userPhone 영역시작------------------------------------------------------------>
+				
+				
+						<p />
+				        <div id="birthDate">
+				            <div class="birthDate1">
+				                <span><img src="../resources/img/user.png" width="30" ></span>
+				            </div>
+				            <div class="birthDate2">
+			
+				                <input id="date" type="date" name="birth" style="font-size:11px" value="${users.birth }" readonly>
+			
+				            </div>
+				        </div>
+				</div><!-- input id="inputValue 끝 -->
+				
+				
+				      
+				      
+				        <!--회원정보변경 영역시작------------------------------------------------------------>
+				        <div id="submitBtn">
+				            <hr style="width:310px;border:none;border-bottom:1px solid #111111">
+					    </div>    
+					        <p>
+					            <button type="submit" class="userModify">회원정보변경</button>
+					        </p>
+					
+					    	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+				    	
+			      	</form>
+			      	</div>
+                <!-- 만든 클래스 끝 -->
+            </div><!-- 페이지 바디 끝 -->    
         </div><!-- 내정보 네비, 페이지 분할 -->
-        <!-- to top button ------------------------------------------>
-        <div id="top-btn">
-            <button class="btn btn-outline-secondary">
-                <a href="#" class="top"><i class="fas fa-arrow-up"></i></a>
-            </button>
-        </div>
-         <!-- to top button --->
+
     </div>
-<!-- 스크립트 영역 -->
+ <!-- 컨텐츠 영역 끝 ------------------------------------------------------->
+
+
+<!-- 스크립트 영역 -------------------------------------->
 <script>
-	$(document).ready(function(){
-		var myModify = $("#myModify"); // form값
-		var pw = $("#pw").val(); // 기존 비밀번호의 값을 가져옴
-		
-		
-		$("button[type='submit']").on("click",function(e){
-		      e.preventDefault();
-		      var pw2 = $("#pw2").val(); // 입력한 비밀번호의 값을 가져옴
-		      if(pw != pw2){
-		    	  return;
-		      }
-		      else{
-		    	  myModify.attr("action", "/mypage/myInfo").submit();   //   acition변경
-		      }
-	   });
+$(document).ready(function(){
+	// datePicker
+	
+		$("#date").value = $(this).val();
+	
+	
+	// 비밀번호 보이기, 안보이기, 클릭시 전환
+	$(".userPw3").on("click",function(){
+		$(".userPw2 input").toggleClass("active");
+		 if($(".userPw2 input").hasClass("active")){
+            $(".userPw2 input").attr("type","text");
+        }else{
+            $(".userPw2 input").attr("type","password");
+        }
 	});
+	
+	
+	
+	var formObj = $("form[role='form']");
+	console.log("hello userModify");
+	  
+	$("button[type='submit']").on("click",function(e){
+		  e.preventDefault();
+
+		  
+		  var pw=$("#pw").val();
+		  var pwEqual=$("#pwEqual").val();
+		  var phone=$("#phone").val();
+		  
+		  var email=$("#email").val();
+		  $("#date").attr("type","date");
+		   
+		  // phone 정규식 : 
+		  var regNumber = /^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/;
+		  // email 정규식 : 
+		  var regEmail=/^[_a-zA-Z0-9-\.]+@[\.a-zA-Z0-9-]+\.[a-zA-Z]+$/;
+		  
+		  if(!regEmail.test(email)) // email 정규식이 맞지 않을 때
+		    {
+		        alert("잘못된 이메일입니다. 다시 입력해주세요.");
+		        console.log("email: "+email);
+		        
+		        
+		        $("#email").val("");
+		        return;
+		    }
+		  
+		  else if(!regNumber.test(phone)) // phone 정규식이 맞지 않을 때
+		    {
+		        alert("잘못된 휴대폰 번호입니다. 숫자, - 를 포함한 숫자만 입력하세요.");
+		        console.log("phone1: "+phone);
+		        
+		        
+		        $("#phone").val("");
+		        return;
+		    }
+		  
+		  
+		  // 비밀번호 비교 /////////////////////////////
+ 		  /* else if(pw == ""){
+			  alert("비밀번호를 입력해주세요.");
+			  return;
+		  }  */
+	      
+	      else if(pw != pwEqual){
+			  alert("비밀번호가 같지 않습니다.");
+			  return;
+		  }
+		  
+		  ///비밀번호 비교 끝 //////////////////////////////
+		  
+		  else{
+			
+		  	//formObj.submit();
+		  }
+	   });
+});
 </script>
-<!-- 스크립트 영역 끝 -->
+<!-- 스크립트 영역 끝 -------------------------------------->
+
 <%@ include file="../includes/footer.jsp" %>

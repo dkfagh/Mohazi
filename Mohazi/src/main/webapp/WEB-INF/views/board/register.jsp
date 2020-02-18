@@ -314,6 +314,9 @@ input[type=text]:-ms-clear{
                   placeholder="주소를 입력하세요." style="width: 300px;" name="address">
                   <input type="button" onclick="sample5_execDaumPostcode()"
                   value="검색" class="mapBtn"><br>
+                  <!-- 카카오맵에서 읽어온 좌표 -->
+                  <input type="hidden" name="coord_x" id="coord_x" />
+                  <input type="hidden" name="coord_y" id="coord_y" />
                   <div id="map" style="width:100%;height:350px;display:none"></div>
                </td>
             </tr>
@@ -426,11 +429,13 @@ input[type=text]:-ms-clear{
                if (status === daum.maps.services.Status.OK) {
 
                   var result = results[0]; //첫번째 결과의 값을 활용
-
+                  // input tag에 x, y 좌표 넣기
+                  $("#coord_x").val(result.x);	
+                  $("#coord_y").val(result.y);
+                  
                   // 해당 주소에 대한 좌표를 받아서
                   var coords = new daum.maps.LatLng(result.y, result.x);
                   // 지도를 보여준다.
-                  
                   var mapContainer = document.getElementById('map'), // 지도를 표시할 div
                   mapOption = {
                      center : coords, // 지도의 중심좌표

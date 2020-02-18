@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mohazi.mapper.Schedule_JoinMapper">
+	<insert id="insert">
+		insert into schedule_join (sj_no, id, s_no)
+		values (seq_schedule_join.nextval, #{id}, #{s_no})
+	</insert>
+	
+	<select id="read" resultType="com.mohazi.domain.Schedule_JoinVO">
+		select * from schedule_join where sj_no=#{sj_no}
+	</select>
+	
+	<delete id="delete">
+		delete from schedule_join where sj_no = #{sj_no}
+	</delete>
+	
+	<!-- <update id="update">
+		update schedule_join set s_date=#{s_date}, s_time=#{s_time} where s_no=#{s_no} 
+	</update> -->
+	
+	<select id="getList" resultType="com.mohazi.domain.Schedule_JoinVO">
+		select sj_no, id, s_no
+		from schedule_join
+		where s_no = #{s_no}
+		order by sj_no
+	</select>
+	
+	<select id="participantsCount" resultType="int">
+		SELECT COUNT(*) FROM SCHEDULE_JOIN WHERE S_NO=#{s_no}
+	</select>
+</mapper>

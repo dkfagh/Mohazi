@@ -1,10 +1,55 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ include file="./includes/header.jsp" %>
-<%@ include file="./includes/navigation.jsp" %>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+    <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+	<title>list</title>
+	<!-- jQuery -->
+	<script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+	<!-- jQuery UI -->
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+	<!-- bxslider -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css"> 
+	<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script> 
+	<!-- 부트스트랩 -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+ 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+	<!-- 폰트어썸 -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+	<!-- 데이트피커 -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-datetimepicker/2.7.1/css/bootstrap-material-datetimepicker.min.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">	
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-datetimepicker/2.7.1/js/bootstrap-material-datetimepicker.min.js"></script>
+	<!-- 📝 If change language, add language file » https://cdnjs.com/libraries/moment.js  -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/locale/ja.js"></script>
+	<!-- FAQ accordion -->
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<link rel="stylesheet" href="/resources/demos/style.css">
+	<!-- 구글폰트  -->
+	<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic+Coding&display=swap" rel="stylesheet">
+
 
  <style>
+ 
+ 	#main{
+ 	width:300px;
+ 		margin-top:80px;
+ 		margin-bottom:40px;
+ 		
+ 		display:inline-block;
+ 	}
+ 	#main img{
+ 		width:300px;
+ 	}
     #userId,
     #userPw {
       width: 310px;
@@ -106,9 +151,10 @@
       width: 310px;
       height: 40px;
       margin-top: 20px;
-      background: rgb(248, 246, 246);
-      color: rgb(22, 22, 22);
+      background-color:#e9faf2;
+      color:#66a385;
       border: 2px solid #cccccc;
+      font-weight:bold;
       font-size: 16px;
     }
 
@@ -144,10 +190,12 @@
       background-color: white;
     }  
   </style>
+</head>
 
+<body>
  <div class="container" id="contents">
  	<!-- 화면영역 시작 -->
-    <div align="center"> <img src="resources/img/logoImg.png" width="200"> </div>
+    <div id="main"> <a href="index"><img src="resources/img/logoImg.png" ></a> </div>
 
 
     <form method="post" action="/login">

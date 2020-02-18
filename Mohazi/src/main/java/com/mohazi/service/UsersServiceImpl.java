@@ -38,4 +38,10 @@ public class UsersServiceImpl implements UsersService{
 		
 	}
 
+	@Override
+	public boolean updateUser(UsersVO user) {
+		log.info("회원정보수정....."+user);
+		return mapper.updateUser(user) == 1;
+	}
+
 }
