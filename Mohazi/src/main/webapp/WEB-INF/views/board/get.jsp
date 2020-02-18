@@ -283,6 +283,10 @@ ul.tab li.active a {
     height: 410px !important;
 }
 
+.bx-clone {
+	display:none;
+}
+
 </style>
 
 	<div class="container" id="contents">
@@ -571,20 +575,23 @@ ul.tab li.active a {
     		
     		var str = "";
     		
-    		$(arr).each(function(i,attach){
-    			var fileCallPath = encodeURIComponent( attach.uploadPath +"/"+ attach.uuid +"_"+ attach.fileName);
-    			/* str += "<li data-path='"+attach.uploadPath+"' data-uuid='"+attach.uuid+"' data-filename='"+attach.fileName+"' data-type='"+attach.fileType+"' ><div>";
-    			str +="<img src='/display?fileName="+fileCallPath+"'>";
-    			str +="</div>";
-    			str +"</li>"; */
-    			
+    		if(!arr.length){
     			str += "	<li>";
-    			str += "		<div style='width:700px;height:400px;'>";
-    			str += "			<img src='/display?fileName="+fileCallPath+"'>";
+    			str += "		<div style='width:700px; height:400px; display:flex; align-items:center; overflow:hidden;'>";
+    			str += "			<img src='/resources/img/default_thumbnail.png' style='display:block; margin:auto;'>";
     			str += "		</div>";
     			str += "	</li>";
-    			
-    		});
+    		} else {
+    			$(arr).each(function(i,attach){
+        			var fileCallPath = encodeURIComponent( attach.uploadPath +"/"+ attach.uuid +"_"+ attach.fileName);
+        			console.log(attach);
+    	    			str += "	<li>";
+    	    			str += "		<div style='width:700px; height:400px; display:flex; align-items:center; overflow:hidden;'>";
+    	    			str += "			<img src='/display?fileName=" + fileCallPath + "' style='display:block; margin:auto;'>";
+    	    			str += "		</div>";
+    	    			str += "	</li>";
+        		});
+    		}
     		
     		$(".bxslider").html(str);
     		
@@ -596,7 +603,10 @@ ul.tab li.active a {
 		$(function(){
   			$('.bxslider').bxSlider({
   				slideWidth:720,
-  				pager:true
+  				pager:true,
+  				touchEnabled:false,
+  				infiniteLoop:false,
+  				hideControlOnEnd:true
   			});
 		});
     	
