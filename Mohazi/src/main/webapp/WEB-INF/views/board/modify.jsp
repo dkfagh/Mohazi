@@ -26,8 +26,8 @@
   
   <!--게시판설정을위한 스크립트  -->
    <script src="/resources/js/summernote-ko-KR.js"></script>
-  <link href="summernote.css" rel="stylesheet">
-  <script src="summernote.min.js"></script>
+<!--   <link href="summernote.css" rel="stylesheet">
+  <script src="summernote.min.js"></script> -->
   
   <!-- include libraries(jQuery, bootstrap) -->
   <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
@@ -327,7 +327,9 @@ input[type=text]:-ms-clear{
                   placeholder="주소를 입력하세요." style="width: 300px;" name="address">
                   <input type="button" onclick="sample5_execDaumPostcode()"
                   value="검색" class="mapBtn"><br>
-                  <div id="map" style="width:100%;height:350px;display:none"></div>
+                  <input type="hidden" name="coord_x" id="coord_x" value="${party.coord_x}" />
+                  <input type="hidden" name="coord_y" id="coord_y" value="${party.coord_y}" />
+                  <div id="map" style="width:100%;height:350px;"></div>
                </td>
             </tr>
 
@@ -418,7 +420,7 @@ input[type=text]:-ms-clear{
 	
 
 <!--첨부파일업로드 ------------------------------------------------------------------->
-<script type="text/javascript">
+<script>
 $(document).ready(function() {
 
 
@@ -437,42 +439,57 @@ $(document).ready(function() {
 	             formObj.attr("action", "/board/remove");
 	          }
 	          else{return false;}
-	    }    
-	    
+	    }
 	    //게시글 수정시 null값 없는 alert띄우기!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    	if(operation === 'modify'){
+	    else if(operation === 'modify'){
     		
 	        var title = $("#inputBox").val();
 		      
 	    	var catm = $("#cat_main").val();
 	    	var cats = $("#cat_sub").val();
 	    	var address=$("#inputAddress").val();
-	    	//var content = $("#summernote").val();
+	    	var content = $("#summernote").val();
 	    	//var content = "${party.content}".val();
-	    	
+	    	console.log("!!![" + content + "]");
            if(title == ""){
               alert("제목을 입력하세요.");
               return;
            }
-           if(catm == "선택하세요" ){
-        	   alert("선택하세요.");
+           if(catm == "선택하세요." ){
+        	   alert("카테고리를 선택하세요.");
         	   return;
            }
-            if(cats == "선택하세요" ){
-        	   alert("선택하세요.");
+            if(cats == "선택하세요." ){
+        	   alert("카테고리를 선택하세요.");
         	   return;
            } 
            if(address == ""){
         	   alert("주소를 입력하세요.");
         	   return;
            }
-        /*    if(content == ""){
+           if(content == "" || content == "<p><br></p>"){
         	   alert("내용을 입력하세요.");
         	   return;
-           }	 */
-    }
-	    	
-	   
+           }
+           
+           // 첨부파일 관련
+           var str = "";
+	        
+	        $(".uploadResult ul li").each(function(i, obj){
+	          
+	          var jobj = $(obj);
+	          
+	          console.dir(jobj);
+	          
+	          str += "<input type='hidden' name='attachList["+i+"].fileName' value='"+jobj.data("filename")+"'>";
+	          str += "<input type='hidden' name='attachList["+i+"].uuid' value='"+jobj.data("uuid")+"'>";
+	          str += "<input type='hidden' name='attachList["+i+"].uploadPath' value='"+jobj.data("path")+"'>";
+	          str += "<input type='hidden' name='attachList["+i+"].fileType' value='"+ jobj.data("type")+"'>";
+	          
+	        });
+	        
+	        formObj.append(str).submit();
+    	}
 	    else if(operation === 'list'){
 	      //move to list
 	      formObj.attr("action", "/board/list").attr("method","get");
@@ -489,30 +506,8 @@ $(document).ready(function() {
 	      formObj.append(keywordTag);
 	      formObj.append(typeTag);	  
 	      
-	    }else if(operation === 'modify'){
-	        
-	        console.log("submit clicked");
-	       
-	        var str = "";
-	        
-	        $(".uploadResult ul li").each(function(i, obj){
-	          
-	          var jobj = $(obj);
-	          
-	          console.dir(jobj);
-	          
-	          str += "<input type='hidden' name='attachList["+i+"].fileName' value='"+jobj.data("filename")+"'>";
-	          str += "<input type='hidden' name='attachList["+i+"].uuid' value='"+jobj.data("uuid")+"'>";
-	          str += "<input type='hidden' name='attachList["+i+"].uploadPath' value='"+jobj.data("path")+"'>";
-	          str += "<input type='hidden' name='attachList["+i+"].fileType' value='"+ jobj.data("type")+"'>";
-	          
-	        });
-	        
-	        
-	        formObj.append(str).submit();
-        }
-    
-	    formObj.submit();
+	    }
+	    
 	  });
 
 });
@@ -667,27 +662,28 @@ $(document).ready(function() {
 <!-- 카카오맵API ------------------------------------------------------------------------------------------------>
 
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e5d55372dfb08cff48fa326451e35832&libraries=services"></script>
+<script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=e5d55372dfb08cff48fa326451e35832&libraries=services"></script>
 <script>
-/*    $(document).ready(function() {
+    $(document).ready(function() {
+      var coord_x = $("#coord_x").val();
+      var coord_y = $("#coord_y").val();
+      var coords = new daum.maps.LatLng(coord_y, coord_x);
+      console.log("coords : " + coords);
 
-      var mapContainer = document.getElementById('map'), // 지도를 표시할 div
-      mapOption = {
-         center : new daum.maps.LatLng(37.537187, 127.005476), // 지도의 중심좌표
-         level : 5
-      // 지도의 확대 레벨
+      var mapContainer = document.getElementById('map'); // 지도를 표시할 div
+      var mapOption = {
+         center : coords, // 지도의 중심좌표
+         level : 5		  // 지도의 확대 레벨
       };
-
       //지도를 미리 생성
       var map = new daum.maps.Map(mapContainer, mapOption);
-      //주소-좌표 변환 객체를 생성
-      var geocoder = new daum.maps.services.Geocoder();
       //마커를 미리 생성
-      var marker = new daum.maps.Marker({
-         position : new daum.maps.LatLng(37.537187, 127.005476),
+       var marker = new daum.maps.Marker({
+         position : coords,
          map : map
       });
-   }); */
+      marker.setMap(map);
+   });
 
    function sample5_execDaumPostcode() {
 	      new daum.Postcode({
@@ -703,13 +699,15 @@ $(document).ready(function() {
 	               if (status === daum.maps.services.Status.OK) {
 
 	                  var result = results[0]; //첫번째 결과의 값을 활용
-
 	                  // 해당 주소에 대한 좌표를 받아서
+	                  // input tag에 넣어 준 후
+	                  $("#coord_x").val(result.x);
+	                  $("#coord_y").val(result.y);
+	                  console.log("주소 수정 후 좌표 : " + $("#coord_x").val() + ", " + $("#coord_y").val());
 	                  var coords = new daum.maps.LatLng(result.y, result.x);
 	                  // 지도를 보여준다.
-	                  
-	                  var mapContainer = document.getElementById('map'), // 지도를 표시할 div
-	                  mapOption = {
+	                  var mapContainer = document.getElementById('map'); // 지도를 표시할 div
+	                  var mapOption = {
 	                     center : coords, // 지도의 중심좌표
 	                     level : 5
 	                  // 지도의 확대 레벨
