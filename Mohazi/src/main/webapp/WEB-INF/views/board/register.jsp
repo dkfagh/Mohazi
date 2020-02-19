@@ -252,8 +252,7 @@ input[type=text]:-ms-clear{
 }
 .mo{
   font-family: 'Nanum Gothic', sans-serif;
-    font-size:35px;
-	font-weight:bold;
+    font-size:30px;
 	padding:15px}
 </style>
 
@@ -268,7 +267,7 @@ input[type=text]:-ms-clear{
 
 
 
-      <h2 class="mo">등록</h2>
+      <h2 class="mo text-center">게시글 등록</h2>
       
       <!-- Table시작 ----------------------------------------------------------------->
       <table class="table">
@@ -316,13 +315,13 @@ input[type=text]:-ms-clear{
             <tr>
                <th>위치</th>
                <td id="address"><input type="text" id="inputAddress"
-                  placeholder="주소를 입력하세요." style="width: 300px; height:30px" name="address">
+                  placeholder="주소를 입력하세요." style="width: 300px; height:40px" name="address">
                   <input type="button" onclick="sample5_execDaumPostcode()"
                   value="검색" class="mapBtn"><br>
                   <!-- 카카오맵에서 읽어온 좌표 -->
                   <input type="hidden" name="coord_x" id="coord_x" />
                   <input type="hidden" name="coord_y" id="coord_y" />
-                  <div id="map" style="width:100%;height:350px;display:none"></div>
+                  <div id="map" style="width:100%;height:340px;display:none"></div>
                </td>
             </tr>
 
@@ -361,7 +360,8 @@ input[type=text]:-ms-clear{
 				<c:when test="${param.type eq 'C'}">
 					<tr>
 						<th>가격</th>
-						<td id="price"><input type="text" placeholder="가격을 입력하세요." name="price" id="class" />원</td>
+						<td id="price"><input type="text" placeholder="가격을 입력하세요." name="price" id="class" 
+						onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"/>원</td>
 					</tr>
 				</c:when>
 			</c:choose>

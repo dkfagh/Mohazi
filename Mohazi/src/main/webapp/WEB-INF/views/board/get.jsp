@@ -6,7 +6,21 @@
 <%@ include file="../includes/header.jsp" %>
 <%@ include file="../includes/navigation.jsp" %>
 
+	<!-- bxslider -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+    
+    <!-- 데이트피커 -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-datetimepicker/2.7.1/css/bootstrap-material-datetimepicker.min.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">	
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-datetimepicker/2.7.1/js/bootstrap-material-datetimepicker.min.js"></script>
+	<!--  📝 If change language, add language file » https://cdnjs.com/libraries/moment.js   -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/locale/ja.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 
+	
 <style>
 #contents {
 	position: relative;
@@ -43,6 +57,10 @@
 	font-size: 16px;
 	margin-bottom: 2px;
 	color: #96969d;
+}
+.title-subject{
+ 	 font-size: 20px;
+  font-weight: bold;
 }
 .sub-profile {
 	border: 1px solid #e4e9ef;
@@ -82,20 +100,22 @@
 .detail-party-info .party-txt {
  margin:auto;
 }
-#party-txt01 {
+#party-txt01 { 
  text-align:center;
-  font-size: 20px;
+  font-size: 19px;
   font-weight: bold;
 }
 #party-txt02 {
-	text-align:center;
-  padding: 10px;
-  font-size: 15px;
-  line-height: 22px;
-  word-break: keep-all;
-  height: 150px;
-  white-space: pre-line;
- /*  overflow-y: scroll; */
+	margin-top:30px;
+	margin-left:20px;
+	float:left;
+	padding: 10px;
+	font-size: 18px;
+	line-height: 22px;
+	word-break: keep-all;
+	height: 150px;
+	white-space: pre-line;
+	 /*  overflow-y: scroll; */
 }
 
 .detail-info01 {
@@ -115,7 +135,7 @@
 .detail-info01 i{	
 	margin-right: 30px;
 }
-.detail-info01 span{	
+.detail-info01 span{
 	font-size: 16px;
 }
 
@@ -163,7 +183,7 @@ ul.tab li.active a {
 	min-height: 700px;
 }
 .class-confirm01 {
-	padding: 25px;
+	padding: 17px;
 	border-bottom: 1px solid #e4e9ef;
 }
 .class-confirm01 .text01 {
@@ -202,65 +222,32 @@ display:inline;
   display: block;
   height: 56px;
   line-height: 56px;
-  padding-left: 54px;
+  padding-left: 24px; 
   font-size: 16px;
+  font-weight: bold;
 }
 .class-confirm02 .btn-swip a:hover {
   background-color: #f7f7f7;
-}
-.class-confirm02 .btn-swip a:before {
-  position: absolute;
-  top: 18px;
-  left: 24px;
-  display: block;
-  width: 20px;
-  height: 20px;
-  content: "";
-}
-.class-confirm02 .btn-swip a:after {
-  position: absolute;
-  top: 18px;
-  right: 30px;
-  display: block;
-  width: 20px;
-  height: 20px;
-  content: ""; 
-}
-
-.class-confirm02 .swip-date a:before {
- 
-  background-size: 20px 20px;
-}
-.class-confirm02 .swip-time a:before {
- 
-  background-size: 20px 20px;
 }
 .class-confirm02 .class-date {
   border-bottom: 1px solid #e4e9ef;
   padding: 10px 0 30px;
  }
-.class-date input{
+.class-date input{	
 	border-radius: 5px;
 	width: 100%;
 	text-align: center;
-	cursor: pointer;
+	cursor: pointer;	
 }
 .dateTimeGroup {
 	list-style:none;
 	padding-left:0px;
 }
-.dateTimeGroup p{	
-	font-size: 15px;
-	margin-left: 10px;
-	margin-bottom: 10px
-}
+
 .result{
 	font-size: 14px;
 }
-.class-confirm02 .class-time {
-	padding: 0;
-	display: none;
-}
+
 .class-confirm03 {
 	margin-top: 20px;
 	margin-bottom: 20px;
@@ -314,30 +301,27 @@ display:inline;
 					</div>
 					<div class="title-type">
 						<c:out value="${party.cat_sub}" />				
-						<span class="badge badge-default">3,000원 추가할인</span>						
+						<span class="badge badge-default"><!-- 3,000원 추가할인 --></span>						
 					</div>
-					<div class="title-subject">[<c:out value="${party.title}"/>]</div>
+					<div class="title-subject"><c:out value="${party.title}"/></div>
 				</div>
 			</div>
 			
 			<div class="col-sm-4">
 				<div class="sub-profile">
 					<div class="detail-party-info">					
-						<div class="party-txt">
-							<div id="party-txt01"> 모임장 : ${users.nickname}(<c:out value="${party.id}" />)</div>
-							<div id="party-txt02">
-								<div id="hostInfo">
-									<%-- <p> e-mail : <c:out value="${users.email}"/></p>
-									<p> phone  : <c:out value="${users.phone}"/></p> --%>
-									
-								</div>	
-							</div>
-														
-						</div>
+						<div class="party-txt" id="hostInfo">							 
+							 	<%-- <div id="party-txt01"> 모임장 : ${users.nickname}(<c:out value="${party.id}" />)</div> 
+								<div id="party-txt02">								
+										 <p> e-mail : <c:out value="${users.email}"/></p>
+										<p> phone  : <c:out value="${users.phone}"/></p>
+								</div>	 --%>							
+						</div>							
+						
 							<sec:authentication property="principal" var="pinfo"/>
 							<sec:authorize access="isAnonymous()">
 								<div class="party-btn">
-									<button id="partyJoinBtn" type="submit" class="btn btn-large">나의 모임으로 등록하기</button>
+									<button id="partyJoinBtn" type="submit" class="btn btn-large">나의 하비로 등록하기</button>
 								</div>
 							</sec:authorize>
 							
@@ -349,7 +333,7 @@ display:inline;
 							</c:if>
 							<c:if test="${pinfo.username ne party.id }">	
 								<div class="party-btn">
-									<button id="partyJoinBtn" type="submit" class="btn btn-large">나의 모임으로 등록하기</button>
+									<button id="partyJoinBtn" type="submit" class="btn btn-large">나의 하비로 등록하기</button>
 								</div>
 							</c:if>							
 							</sec:authorize>	
@@ -401,7 +385,7 @@ display:inline;
 						<h4>상세정보</h4>
 						<p id="introduction">${party.content}</p>						
 						 <div id="map" class="container-fluid text-center bg-grey" style="width:100%;height:500px;">
-						        <p style="padding-bottom: 20px; float:left">오시는길</p>
+						        <p style="padding-bottom: 20px; float:left; margin-top:20px; font-weight: bold;">찾아 오시는 길</p>
 						        <div class="container">
 						            <!-- 카카오맵 ----------------------------------------------->
 						      		<div id="kakaomap" style="width: 100%;height: 500px;"></div>
@@ -452,9 +436,7 @@ display:inline;
 							<ul class="tip_list" style="padding-left: 10px;">
 		                        <li><strong>모임/클래스의 신청/취소/변경/환불은 참여신청 기간 내에만 가능합니다.</strong></li>
 		                        <li><strong>결제한 클래스는 환불 시 결제 수단과 환불 시점에 따라 수수료가 부과될 수 있습니다.</strong></li>
-		                        <li>결제, 환불, 참여신청 수정/취소, 참여상태 확인, 참여내역 확인은 마이페이지에서 할 수 있습니다.</li>
-		                        <li>모임 또는 클래스의 설정, 모집정원 초과 여부에 따라 대기자로 선정될 수 있습니다. 자세한 사항은 <a href="#">FAQ</a>를 확인해주세요.</li>
-		                        <li>모하지 결제서비스를 이용하는 모임은 개설자의 사업자 여부에 따라 결제증빙 발행이 가능합니다. 자세한 사항은 <a href="#">FAQ</a>를 확인해 주세요.</li>
+		                        <li>모하지 결제서비스를 이용하는 모임은 개설자의 사업자 여부에 따라 결제증빙 발행이 가능합니다. 자세한 사항은 FAQ를 확인해 주세요.</li>
 		                        <li>개설자 선정방식 또는 개설자 통장입금 방식의 모임 참여/결제 확인은 개설자에게 문의 바랍니다.</li>
 		                        <li>모하지는 참여신청 및 참가비 결제 기능을 제공하는 회사로 모임/클래스 개설자(주최측)가 아닙니다. 모임/클래스 내용과 관련한 사항은 모임/클래스 개설자에게 문의 바랍니다.</li>
 		                    </ul>
@@ -473,7 +455,7 @@ display:inline;
 								
 							</span> -->
 						</div>
-						<div class="text02">일정 참가 인원수 확인 후 신청하기 버튼을 눌러주세요.</div>
+						<div class="text02">일정 참가 인원수 확인 후신청하기 버튼을 눌러주세요.</div>
 					</div>									
 					
 					
@@ -531,7 +513,7 @@ display:inline;
         <c:if test="${pinfo.username eq party.id}">
         
      <button type="submit" data-oper='modify'
-		class="regBtn btn btn-outline-secondary">수정</button>
+		class="regBtn btn btn-outline-secondary"  style="display:none">수정</button>
 
         
         </c:if>
@@ -645,7 +627,7 @@ display:inline;
         			console.log(attach);
     	    			str += "	<li>";
     	    			str += "		<div style='width:700px; height:400px; display:flex; align-items:center; overflow:hidden;'>";
-    	    			str += "			<img src='/display?fileName=" + fileCallPath + "' style='display:block; margin:auto;'>";
+    	    			str += "			<img src='/display?fileName=" + fileCallPath + "' style='display:block; margin:auto; max-height:100%; width:auto;'>";
     	    			str += "		</div>";
     	    			str += "	</li>";
         		});
@@ -757,7 +739,54 @@ display:inline;
 				scheduleUL.html(str);
 			});//end function				
 
-		};//end showScheduleList	
+		};//end showScheduleList		
+		
+	// 모임장 정보 불러오기	
+		var usersService= (function(){
+			function read(id, callback, error){
+				$.get("/users/read/" + id + ".json", function(result){
+					if(callback){
+						callback(result);
+					}
+				}).fail(function(xhr, status, err){
+					if(error){
+						error();
+					}
+				});
+			};
+			return {						
+				read : read,			
+				};
+		})();	
+		
+		
+		
+		var hostInfoDiv = $("#hostInfo");
+		showHostInfo();
+		function showHostInfo(){
+			console.log("=========여여여여영여여=====hostId: "+hostId);
+			usersService.read(hostId, function(read){				
+				var str="";
+				console.log(read);
+				if(read == null || read.length ==0){
+					hostInfoDiv.html("");
+					return;
+				}else{
+					str += "<div id='party-txt01'> 모임장 :"+read.nickname+"("+read.id+")</div>";
+					str += " <div id='party-txt02'>";	
+					str += "<p> <i class='far fa-envelope'></i>   "+read.email+" </p>";
+					str += "<p> <i class='fas fa-mobile-alt'></i>   "+read.phone+" </p>";
+					str += "</div>";
+				}							
+			
+				hostInfoDiv.html(str);
+			});
+		};
+
+		
+		
+		
+		
 			
 			
 	//등록회원 카운트  	
@@ -781,7 +810,7 @@ display:inline;
 					countDiv.html(str);	
 					
 				});				 
-			 };
+			 };			
 			
 			// 스케쥴 input버튼 눌렀을때 (스케쥴 날짜 시간 선택버튼)		
 		
