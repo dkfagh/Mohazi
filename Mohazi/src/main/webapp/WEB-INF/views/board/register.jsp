@@ -66,8 +66,9 @@
     } 
 
     th {
-      color: black;
-      font-style: bold;
+      font-family: 'Nanum Gothic', sans-serif;
+      font-size:16px;
+	  font-weight:bold;
       width: 200px;
     }
 
@@ -249,6 +250,11 @@ input[type=text]:-ms-clear{
 	font-size:14px;
 	border:0px;
 }
+.mo{
+  font-family: 'Nanum Gothic', sans-serif;
+    font-size:35px;
+	font-weight:bold;
+	padding:15px}
 </style>
 
 
@@ -262,8 +268,8 @@ input[type=text]:-ms-clear{
 
 
 
-      <h2>등록</h2>
-      <br>
+      <h2 class="mo">등록</h2>
+      
       <!-- Table시작 ----------------------------------------------------------------->
       <table class="table">
 

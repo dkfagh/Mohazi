@@ -28,9 +28,10 @@ public class BoardServiceImpl implements BoardService{
    @Setter(onMethod_ = @Autowired)
 	private BoardAttachMapper attachMapper;
    
-	/*
-	 * @Setter(onMethod_ = @Autowired) private MyPageMapper pagemapper;
-	 */
+	
+	@Setter(onMethod_ = @Autowired) 
+	private MyPageMapper pagemapper;
+	
    
    /*
    @Override
@@ -103,9 +104,8 @@ public class BoardServiceImpl implements BoardService{
 	   
 	   log.info("remove...." + p_no);
 	 
-		/*
-		 * pagemapper.LetOut(p_no); // 게시글의 참여인원들을 다 내보낸다.
-		 */
+	   pagemapper.LetOut(p_no); // 게시글의 참여인원들을 다 내보낸다.
+		 
 	   attachMapper.deleteAll(p_no);
 
 	   return mapper.delete(p_no) == 1;
