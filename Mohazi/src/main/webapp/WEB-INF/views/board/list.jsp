@@ -248,8 +248,8 @@ function showThumbnail(p_no){
                                         <li>
                                             <div id="when-box" > 
                                                 <div class="class-date">
-                                                    <input type="text" name="startDate" id="startDate" class="datepicker" placeholder="시작일 선택">
-                                                    <input type="text" name="endDate" id="endDate" class="datepicker" placeholder="종료일 선택">
+                                                    <input type="text" name="startDate" id="startDate" class="datepicker" placeholder="시작일 선택" readonly />
+                                                    <input type="text" name="endDate" id="endDate" class="datepicker" placeholder="종료일 선택" readonly />
                                                 </div>                                           
                                             </div> 
                                         </li>  

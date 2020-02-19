@@ -4,6 +4,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+
     
     
 <%@ include file="../includes/header.jsp" %>
@@ -66,9 +68,10 @@
       width:100% !important;
     } 
 
-    th {
-      color: black;
-      font-style: bold;
+     th {
+      font-family: 'Nanum Gothic', sans-serif;
+      font-size:16px;
+	  font-weight:bold;
       width: 200px;
     }
 
@@ -258,6 +261,11 @@ input[type=text]:-ms-clear{
 	font-size:14px;
 	border:0px;
 }
+.mo{
+  font-family: 'Nanum Gothic', sans-serif;
+    font-size:35px;
+	font-weight:bold;
+	padding:15px}
 </style>
 
 <!-- Container시작 ----------------------------------------------------------------->
@@ -268,8 +276,8 @@ input[type=text]:-ms-clear{
       role="form">
 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 		
-      <h2>수정</h2>
-      <br>
+      <h2 class="mo">수정</h2>
+ 
       <!-- Table시작 ----------------------------------------------------------------->
       <table class="table">
 
@@ -362,14 +370,14 @@ input[type=text]:-ms-clear{
             </tr>
 
             <!-- 가격입력 -------------------------------------------------------------------------->
-			<c:choose>
-				<c:when test="${param.type eq 'C'}">
+		
+				<c:if test="${fn:contains(party.type,'C')}">
 					<tr>
 						<th>가격</th>
 						<td id="price"><input type="text" placeholder="가격을 입력하세요." name="price" id="class" value="${party.price}"/>원</td>
 					</tr>
-				</c:when>
-			</c:choose>
+				</c:if>
+			
 
 			<!-- id입력 -------------------------------------------------------------------------->
 			

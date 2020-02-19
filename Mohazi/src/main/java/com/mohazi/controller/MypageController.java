@@ -46,7 +46,7 @@ public class MypageController {
 		char type = 'M';  // type을 M 타입으로 지정
 		
     
-		cri.setAmount(6); // 페이지당 출력할 게시글 수
+		cri.setAmount(10); // 페이지당 출력할 게시글 수
 		
 		cri.setType(type); // type을 fixed
 		cri.setId(principal.getName()); // id값을 로그인 아이디로

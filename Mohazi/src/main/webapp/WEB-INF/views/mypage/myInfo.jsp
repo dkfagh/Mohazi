@@ -9,10 +9,8 @@
             margin:0;
             padding: 0;
         }
-
         /* content 부분 시작 */
         .container{
-            
             position: relative;
             max-width: 100%;
             width:100%;
@@ -20,37 +18,33 @@
             margin-right:0;
             padding-left: 0;
             padding-right: 0;
-            margin-top: 20px;
+            margin-top: 10px;
             display: inline-block;
-            
-            
-            
+            padding-top:20px;
+            padding-bottom:20px;
             height:100%;
-            
         }
 
         .row{
             position: relative;
-            width:80%;
-            margin-left:10%;
+            width:100%;
+            padding-left:22%;
             box-sizing: border-box;
-            
             height: 100%;
             display:inline-block;
-            padding:0;
+            
         }
         /* content 부분 끝 */
 
-        /* mypage 네비 시작 */
+       /* mypage 네비 시작 */
         #myNav{
-            
-            float: left;
-            border: black solid 2px;
+            border-radius:10px;
+            border: #e9faf2 solid 2px;
             margin-right:15px;
             max-width: 161.64px;
-            height:400px;
+            height:630px;
             padding: 0;
-            
+            float: left;            
         }
         #myNav a{
             display: block;
@@ -63,51 +57,43 @@
 		   	color: white;
         }
         .myNavHome{
-            background-color: #aaf0d1;
+            background-color: #e9faf2;
             height: 40px;
             width:100%;
             text-align: center;
-            border-bottom: black solid 1px;
+            border-bottom: #e9faf2 solid 2px;
             margin:0;
         }
-        .myNavHome h4{
-        	margin:0;
-        	top:15px;
+        .myNavHome h5{
+        	padding-top:7px;
+        	font-weight:bold;
+        	color:#66a385;
         }
         .myNavItem{
-            padding:10px;
+            padding:15px;
             margin:0;
+            font-weight:bold;
         }
         /* mypage 네비 끝 */
 
-        #pages{
+         #pages{
             position:relative;
             display:inline-block;
-            width:100%;
-            height: 100%;
-            padding:30px;
-            box-sizing:border-box;
-            border:solid black 1px;
+            width:60%;
+            min-width:484px;
+            height: 630px;
+            overflow:hidden;
+            border-radius:10px;
+            border: #e9faf2 solid 2px;
             
-            margin:0 auto;
         }
         
-        #myList{
-			width:100%;
-			height:100%;
-			margin:0 auto;
-			
-			
-		}
-		/* #myList h4{
-			text-align:center;
-			color:gray;
-			
-		} */
   		#inputValue{
   			width:50%;
-        	margin:0 auto;
+  			margin-left:30%;
+  			padding-top:25px;
         }
+        
         #userId,
         #userPw,
         #userPwCheck,
@@ -117,9 +103,9 @@
         #userPhone,
         #birthDate
         {
-            width: 350px;
+            width: 300px;
             height: 50px;
-         
+			margin-top:10px;
         }
         
 
@@ -137,7 +123,7 @@
         .birthDate2 {
             height: 40px;
             float: left;
-            border: 1px solid #bbbbbb;
+            border: #EBEBEB solid 1px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -170,7 +156,7 @@
         .userPw3 {
             height: 40px;
             float: left;
-            border: 1px solid #bbbbbb;
+            border:  #EBEBEB solid 1px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -214,19 +200,23 @@
            
         } */
 
-        .userModify {
-            width: 310px;
-            height: 50px;
-            background: rgb(24, 24, 24);
-            color: white;
-            border: 2px solid #cccccc;
-            font-size: 16px;
+        .btnMypageModify {
+			background-color:#e9faf2;
+			border-radius:5px;
+			font-weight:bold;
+			padding:7px;
+			margin-top:10px;
+			width:300px;
+			color:#66a385;
+			font-size:14px;
+      		border:0px;
         }
         
         .text-center{
             border-top:  1px solid #7bd4ac ;
             border-bottom: 1px solid #7bd4ac ;
         }
+        
     </style>
 
  
@@ -236,7 +226,7 @@
             <div id="myNav"class="col-sm-3" >
                 
                     <div class="myNavHome">
-                            <h4>내정보</h4>
+                            <h5>내정보</h5>
                     </div>
                     <div class="myNavItem">
                         <a href="/mypage/myMeeting">내 모임</a>
@@ -250,9 +240,8 @@
             
             <!-- 페이지 바디 시작 -->
             <div id="pages" class="col-sm-9">
-            	<div id="myList" class="col-sm-12">
-			        <form role="form" action="/mypage/myInfo" method="post">
-					<div id="inputValue">
+			        <form role="form" action="/mypage/myInfo" method="post" id="mypageModify">
+					<div id="inputValue" class="col-sm-12">
 				        <!--userId 영역시작------------------------------------------------------------>
 				        <div id="userId">
 				            <div class="userId1">
@@ -356,25 +345,16 @@
 						<!-- input id="inputValue 끝 -->
 				    	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 				    	
-			      	
-				
-				      
-				      
 				        <!--회원정보변경 영역시작------------------------------------------------------------>
-				        <div id="submitBtn">
-				            <hr style="width:310px;border:none;border-bottom:1px solid #111111">
-					    </div>    
-					        <p>
-					            <button type="submit" class="userModify">회원정보변경</button>
-					        </p>
+				        <button type="submit" class="btnMypageModify">회원정보변경</button>
+					    
 					</div>
 					</form>
 			      	</div>
                 <!-- 만든 클래스 끝 -->
             </div><!-- 페이지 바디 끝 -->    
         </div><!-- 내정보 네비, 페이지 분할 -->
-
-    </div>
+        
  <!-- 컨텐츠 영역 끝 ------------------------------------------------------->
 
 

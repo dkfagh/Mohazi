@@ -12,23 +12,9 @@
 	font-size: 16px;
 }
 .row{
-	padding-top: 150px;
+	/* padding-top: 150px; */
+	margin-bottom: 50px;
 }
-.col-sm-7{
-	padding-bottom: 200px;
-}
-/* .col-sm-8{  
-	box-sizing: border-box !important;
-	margin-top: 100px;
-	padding:20px !important;
-	overflow: hidden;
-}
-.col-sm-4{
-	padding:20px !important;
-	margin-top: 100px;
-	box-sizing: border-box !important;
-	overflow: hidden;
-} */
 #main-choice-title{
     margin-top: 20px;
     text-align: center;
@@ -49,9 +35,7 @@
 	height: 100%;
 }
 #menu-container{
-    /* width: 100%;  
-    height: auto; */
-    margin-top: 50px; 
+
     margin-left: 30px;  
     text-align: center;    
 }
@@ -74,8 +58,6 @@
     width: 100%; 
     height: 100%;
     text-align: left;
-    /* font-size: 14px; */  
-    /* font-family: 'Sunflower', sans-serif; */
     background-color:  #7bd4ac;
     color: white;
 }
@@ -92,8 +74,6 @@
     background-color: rgb(22, 145, 118);
     text-align: center;
     color: white;
-    /* font-size: 14px;   */
-    /* font-family: 'Sunflower', sans-serif; */
 }
 #goList:hover{ background-color: rgb(60, 189, 157);}
 #where{ display:none; position:absolute; top:50px; left:-85%; width: 400%;}
@@ -108,8 +88,6 @@
     width: 23%; 
     height: 50px;
     text-align: center;   
-    /* font-size: 14px; */  
-   /*  font-family: 'Sunflower', sans-serif */;
     background-color:  #7bd4ac;
     color: white;   
     margin-bottom: 1px;
@@ -124,51 +102,13 @@
 .checkbox-inputLabel input, .checkbox-inputLabel label {
 	cursor: pointer;
 }
-/* 아래 삭제 예정 */
-/* .checkbox-inputLabel input{
-    margin-top: 12%;
-    margin-right: 12%;
-	float: right;
-	cursor: pointer;    
-}
-.checkbox-inputLabel label{
-    margin-top: 9%;
-    margin-left: 12%;
-	float: left;
-	cursor: pointer;
-	font-size: 16px;
-	font: bold;
-}
- */
 </style>
-<!--
-<form action="/board/list" method="get">
-	<select name="type">
-		<option value="M" selected>소모임</option>
-		<option value="C">클래스</option>
-	</select>
-	<br />
-	
-	<h3>관심사</h3>
-	<input type="checkbox" name="category" value="운동"> 운동 <br />
-	<input type="checkbox" name="category" value="실무"> 실무 <br />
-	
-	<h3>지역</h3>
-	<input type="checkbox" name="region" value="서울"> 서울 <br />
-	<input type="checkbox" name="region" value="경기"> 경기 <br />
-	
-	<input type="submit" value="GO LIST" />
-</form>
--->
-
- <!-- 윗 부분이름 맞춰서 아랫부분 수정할것 -->
- 
 	<div class="container-fluid" id="contents">
 		<div class="row">
-            <div class="col-sm-6">
+            <div class="col-sm-6" style="padding-top: 100px; padding-bottom: 200px;">
                 <div class="main-choice">
                     <div id="main-choice-title">
-                        <h1>모하지 로고</h1>
+                        <img src="/resources/img/mohazi_title.png" alt="mohazi logo" style="position: relative; top: 0; width: 500px;"/>
                     </div>
  <!-- 메뉴 초이스 부분 form태그--------------------------------------------------------------------->
                     <div id="menu-container" >
@@ -177,7 +117,7 @@
                         
                             <li class="menu">
                             	<button type="button" class="btn  btn-large">
-                            		타입
+                            		모임/클래스
                             		<i class="fas fa-chevron-down"></i>
                             	</button>
                                 <ul class="sub-menu">
@@ -302,7 +242,7 @@
         <!-- 메뉴 초이스 부분 form태그--->                
                 </div> 				
 			</div>			
-			<div class="col-sm-6" >
+			<div class="col-sm-6" style="padding-top: 80px;">
 				<div class="main-image">
 					<img src="/resources/img/indexImage.png" style="max-width: 100%; height: auto;">
 				</div>
@@ -317,8 +257,7 @@
 <script>
 
 	$(document).ready(function(){
-		console.log("HELLO");
-		
+
 		// 타입 선택 이벤트
 		$("input:radio[name=type]").on("click", function(e){
 			console.log("radiobutton is clicked!");
@@ -333,16 +272,16 @@
 			console.log("region checkbox is clicked!");
 			console.log($(this).val());
 			
-			console.log("=============선택된지역들")
+			// console.log("=============선택된지역들")
 			var region = "";
 			$("input:checkbox[name=region]:checked").each(function(){
 				//var test = $(this).val();
 				region += $(this).val() + " ";
-				console.log(region);
+				// console.log(region);
 			});
-			console.log("===============");
+			// console.log("===============");
 			
-			console.log(region.length);
+			// console.log(region.length);
 			if(region.length > 9){
 				region = region.substring(0, 9) + "...";
 			} else if(region.length < 1){
@@ -354,18 +293,18 @@
 		
 		// 카테고리 선택 이벤트
 		$("input:checkbox[name=category]").on("click", function(e){
-			console.log("category checkbox is clicked!");
-			console.log($(this).val());
+			// console.log("category checkbox is clicked!");
+			// console.log($(this).val());
 			
-			console.log("=============선택된카테고리들");
+			// console.log("=============선택된카테고리들");
 			var category = "";
 			$("input:checkbox[name=category]:checked").each(function(){
 				category += $(this).val() + " ";
-				console.log(category);
+				// console.log(category);
 			});
-			console.log("=============");
+			// console.log("=============");
 			
-			console.log(category.length);
+			// console.log(category.length);
 			if(category.length > 10){
 				category = category.substring(0, 10) + "...";
 			} else if(category.lenght < 1){
@@ -373,22 +312,6 @@
 			}
 			$(this).closest(".menu").children("button").text(category).append('<i class="fas fa-chevron-down"></i>');
 		});
-		
-		/* $(".submenu button").on("click", function(e){
-			e.preventDefault();
-			console.log("!! SUB MENU BUTTON CLICK !!!");
-			
-			var clickedValue = $(this).text();
-			console.log("클릭 : " + clickedValue);
-			
-			var inputMenu = $(this).closest(".menu").children("input");
-	
-			console.log("부모 버튼 : " + inputMenu.val());
-			
-			inputMenu.text(clickedValue);
-			
-		}); */
 	
 	});
-
 </script>
