@@ -73,17 +73,23 @@ var schedule_joinService= (function(){
 	}
 	
 	function count(s_no, callback, error){
-		$.get("/schedules_join/count/"+s_no+".json", function(result){
-			if(callback){
-				callback(result);
-			}
-		}).fail(function(xhr, status, err){
-			if(error){
-				error();
+		$.ajax({
+			type : "get",
+			url : "/schedules_join/count/"+s_no+".json",
+			async : false,		// 스케쥴 참가 인원 카운트 전 스케쥴 목록 출력하는 것 방지
+			success : function(result){
+				if(callback){
+					callback(result);
+				}
+			},
+			error : function(err){
+				if(error){
+					error(err);
+				}
 			}
 		});
 	}
-	
+
 	return {add: add,
 			getList: getList,
 			remove : remove,			
