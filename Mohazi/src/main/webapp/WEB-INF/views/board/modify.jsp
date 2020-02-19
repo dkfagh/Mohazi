@@ -264,7 +264,7 @@ input[type=text]:-ms-clear{
 .mo{
   font-family: 'Nanum Gothic', sans-serif;
     font-size:30px;
-	padding:15px}
+	padding:40px}
 </style>
 
 <!-- Container시작 ----------------------------------------------------------------->

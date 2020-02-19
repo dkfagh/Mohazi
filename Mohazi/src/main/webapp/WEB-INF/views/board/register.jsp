@@ -253,7 +253,7 @@ input[type=text]:-ms-clear{
 .mo{
   font-family: 'Nanum Gothic', sans-serif;
     font-size:30px;
-	padding:15px}
+	padding:40px}
 </style>
 
 
@@ -266,7 +266,7 @@ input[type=text]:-ms-clear{
       <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 
 
-
+ 
       <h2 class="mo text-center">게시글 등록</h2>
       
       <!-- Table시작 ----------------------------------------------------------------->
