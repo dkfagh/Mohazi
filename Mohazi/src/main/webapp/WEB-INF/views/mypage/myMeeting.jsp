@@ -77,6 +77,10 @@
             margin:0;
             font-weight:bold;
         }
+        
+        .myNavItem a{
+			padding:7px;
+        }
         /* mypage 네비 끝 */
 
         #pages{
@@ -141,7 +145,8 @@
 		.td3{
 			width:10%;
 		}
-		.table h4{
+		.table h5{
+			font-weight:bold;
 			text-align:center;
 			color:#66a385;
 		}
@@ -167,8 +172,8 @@
 			
 		}
 		.fas{
-		font-size:16px;
-		color:#FFFA99;
+		font-size:17px;
+		color:#FFEB00;
 		}
 		
 		#myList h3{
@@ -209,7 +214,7 @@
                              	<tr><td></td></tr><tr><td></td></tr>
                              	<tr>
                               		<td>
-                               			<h4>내 모임 리스트가 없습니다.</h4>
+                               			<h5>내 모임 리스트가 없습니다.</h5>
                              		</td>
                            		</tr>
                             </c:when> 

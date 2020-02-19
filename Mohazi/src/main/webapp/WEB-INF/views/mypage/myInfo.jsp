@@ -8,6 +8,8 @@
         *{
             margin:0;
             padding: 0;
+			font-family: 'Nanum Gothic Coding', monospace;
+		
         }
         /* content 부분 시작 */
         .container{
@@ -73,6 +75,9 @@
             padding:15px;
             margin:0;
             font-weight:bold;
+        }
+        .myNavItem a{
+			padding:7px;
         }
         /* mypage 네비 끝 */
 

@@ -39,17 +39,18 @@
 
 
  <style>
- 
- 	#main{
- 	width:300px;
- 		margin-top:80px;
- 		margin-bottom:40px;
- 		
- 		display:inline-block;
- 	}
- 	#main img{
- 		width:300px;
- 	}
+ 	*{
+			font-family: 'Nanum Gothic Coding', monospace;
+		}
+      	#main{
+		 	width:280px;
+	 		margin:auto;
+	 		padding:30px;
+	 		padding-left:50px !important;
+	 	}
+	 	#main img{
+	 		width:100%;
+	 	}
     #userId,
     #userPw {
       width: 310px;
@@ -137,41 +138,45 @@
     }
 
     #autoCheck {
+      margin-top:20px;
       height: 20px;
       font-size: 12px;
       display: flex;
       align-items: center;
     }
 	#logMsg{
-		width: 310px;		
+		width: 310px;
+		margin-top:-10px;		
 	}
 
 
     .loginBtn {
-      width: 310px;
-      height: 40px;
-      margin-top: 20px;
-      background-color:#e9faf2;
-      color:#66a385;
-      border: 2px solid #cccccc;
-      font-weight:bold;
-      font-size: 16px;
+    background-color:#e9faf2;
+	border-radius:5px;
+	font-weight:bold;
+	padding:7px;
+	width:300px;
+	color:#66a385;
+	font-size:14px;
+    border:0px;
+    margin-top:10px;
+    text-align:center;
     }
 
     .signUpBtn {
-      width: 310px;
-      height: 50px;
-      background: rgb(3, 3, 3);
-      color: rgb(250, 246, 246);
-      border: 2px solid #cccccc;
-      font-size: 16px;
-      text-align:center;
-      margin:auto;
-      line-height:40px;
+    background-color:#e9faf2;
+	border-radius:5px;
+	font-weight:bold;
+	padding:7px;
+	width:300px;
+	color:#66a385;
+	font-size:14px;
+    border:0px;
+    text-align:center;d0gie-r
     }
     .signUpBtn:hover{
     	text-decoration: none;
-    	color:#fff;
+    	color:#66a385;
     }
 
     .logBtn{
@@ -229,7 +234,7 @@
         <div>
           <div id="autoCheck"> <input type="checkbox" name="remember-me">자동로그인</div>
         </div><br>
-		<div id="logMsg" style="text-align:center">
+		<div id="logMsg" style="text-align:center; font-weight:bold;">
 			<c:out value="${error}" />
             <c:out value="${logout}" />
 		</div>
@@ -246,7 +251,7 @@
 	</form>
     
     <div>
-      <hr style="width:310px;border:none;border-bottom:1px solid #cccccc">
+      <hr style="width:310px;border:none;border-bottom:1px solid #EBEBEB">
     </div>
    
     <p />
@@ -290,4 +295,3 @@
 	</script>
 </c:if>
 <!-- 스크립트 영역 끝-->
-<%@ include file="./includes/footer.jsp" %>

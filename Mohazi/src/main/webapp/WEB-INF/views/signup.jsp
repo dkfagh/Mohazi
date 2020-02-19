@@ -40,15 +40,21 @@
 
      <style>
      
+		*{
+			font-family: 'Nanum Gothic Coding', monospace;
+		}
       	#main{
-		 	width:300px;
-	 		margin-top:30px;
-	 		margin-bottom:40px;
-		 		
-	 		display:inline-block;
+		 	width:280px;
+	 		margin:auto;
+	 		padding:30px;
+	 		padding-left:50px !important;
 	 	}
 	 	#main img{
-	 		width:300px;
+	 		width:100%;
+	 	}
+	 	
+	 	.formSignup div{
+	 		margin:auto !important;
 	 	}
         #userId,
         #userPw,
@@ -58,7 +64,7 @@
         #userNickName,
         #userPhone,
         #birthDate {
-            width: 350px;
+            width: 300px;
             height: 50px;
         }
 
@@ -155,12 +161,15 @@
         }
 
         .signUpBtn {
-            width: 310px;
-            height: 50px;
-            background: rgb(24, 24, 24);
-            color: white;
-            border: 2px solid #cccccc;
-            font-size: 16px;
+        	background-color:#e9faf2;
+			border-radius:5px;
+			font-weight:bold;
+			padding:7px;
+			width:300px;
+			color:#66a385;
+			font-size:14px;
+      		border:0px;
+      		margin-top:20px;
         }
         
         .text-center{
@@ -176,7 +185,7 @@
         <!-- 화면영역 시작 -->
         <div id="main"> <a href="index"><img src="resources/img/logoImg.png" ></a> </div>
 
-        <form role="form" action="/signup" method="post">
+        <form role="form" action="/signup" method="post" id="formSignup">
 
 	        <!--userId 영역시작------------------------------------------------------------>
 	        <div id="userId">
@@ -281,12 +290,8 @@
 	      
 	      
 	        <!--회원가입버튼 영역시작------------------------------------------------------------>
-	        <div>
-	            <hr style="width:310px;border:none;border-bottom:1px solid #111111">
-	        </div>
-	        <p>
-	            <button type="submit" class="signUpBtn">회원가입</button>
-	        </p>
+	        
+	        <button type="submit" class="signUpBtn">회원가입</button>
 	
 	    	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
       	</form>
@@ -388,4 +393,3 @@ $(document).ready(function(){
 });
 </script>
 <!-- 스크립트 영역 끝 -------------------------------------->
-<%@ include file="./includes/footer.jsp" %>
