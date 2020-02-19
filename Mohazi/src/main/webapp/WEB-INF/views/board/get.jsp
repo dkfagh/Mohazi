@@ -121,7 +121,7 @@
 .detail-info01 i{	
 	margin-right: 30px;
 }
-.detail-info01 span{	
+.detail-info01 span{
 	font-size: 16px;
 }
 
@@ -169,7 +169,7 @@ ul.tab li.active a {
 	min-height: 700px;
 }
 .class-confirm01 {
-	padding: 25px;
+	padding: 17px;
 	border-bottom: 1px solid #e4e9ef;
 }
 .class-confirm01 .text01 {
@@ -208,65 +208,32 @@ display:inline;
   display: block;
   height: 56px;
   line-height: 56px;
-  padding-left: 54px;
+  padding-left: 24px; 
   font-size: 16px;
+  font-weight: bold;
 }
 .class-confirm02 .btn-swip a:hover {
   background-color: #f7f7f7;
-}
-.class-confirm02 .btn-swip a:before {
-  position: absolute;
-  top: 18px;
-  left: 24px;
-  display: block;
-  width: 20px;
-  height: 20px;
-  content: "";
-}
-.class-confirm02 .btn-swip a:after {
-  position: absolute;
-  top: 18px;
-  right: 30px;
-  display: block;
-  width: 20px;
-  height: 20px;
-  content: ""; 
-}
-
-.class-confirm02 .swip-date a:before {
- 
-  background-size: 20px 20px;
-}
-.class-confirm02 .swip-time a:before {
- 
-  background-size: 20px 20px;
 }
 .class-confirm02 .class-date {
   border-bottom: 1px solid #e4e9ef;
   padding: 10px 0 30px;
  }
-.class-date input{
+.class-date input{	
 	border-radius: 5px;
 	width: 100%;
 	text-align: center;
-	cursor: pointer;
+	cursor: pointer;	
 }
 .dateTimeGroup {
 	list-style:none;
 	padding-left:0px;
 }
-.dateTimeGroup p{	
-	font-size: 15px;
-	margin-left: 10px;
-	margin-bottom: 10px
-}
+
 .result{
 	font-size: 14px;
 }
-.class-confirm02 .class-time {
-	padding: 0;
-	display: none;
-}
+
 .class-confirm03 {
 	margin-top: 20px;
 	margin-bottom: 20px;
@@ -340,7 +307,7 @@ display:inline;
 							<sec:authentication property="principal" var="pinfo"/>
 							<sec:authorize access="isAnonymous()">
 								<div class="party-btn">
-									<button id="partyJoinBtn" type="submit" class="btn btn-large">나의 모임으로 등록하기</button>
+									<button id="partyJoinBtn" type="submit" class="btn btn-large">나의 하비로 등록하기</button>
 								</div>
 							</sec:authorize>
 							
@@ -352,7 +319,7 @@ display:inline;
 							</c:if>
 							<c:if test="${pinfo.username ne party.id }">	
 								<div class="party-btn">
-									<button id="partyJoinBtn" type="submit" class="btn btn-large">나의 모임으로 등록하기</button>
+									<button id="partyJoinBtn" type="submit" class="btn btn-large">나의 하비로 등록하기</button>
 								</div>
 							</c:if>							
 							</sec:authorize>	
@@ -404,7 +371,7 @@ display:inline;
 						<h4>상세정보</h4>
 						<p id="introduction">${party.content}</p>						
 						 <div id="map" class="container-fluid text-center bg-grey" style="width:100%;height:500px;">
-						        <p style="padding-bottom: 20px; float:left">오시는길</p>
+						        <p style="padding-bottom: 20px; float:left; margin-top:20px; font-weight: bold;">찾아 오시는 길</p>
 						        <div class="container">
 						            <!-- 카카오맵 ----------------------------------------------->
 						      		<div id="kakaomap" style="width: 100%;height: 500px;"></div>
@@ -476,7 +443,7 @@ display:inline;
 								
 							</span> -->
 						</div>
-						<div class="text02">일정 참가 인원수 확인 후 신청하기 버튼을 눌러주세요.</div>
+						<div class="text02">일정 참가 인원수 확인 후신청하기 버튼을 눌러주세요.</div>
 					</div>									
 					
 					
@@ -648,7 +615,7 @@ display:inline;
         			console.log(attach);
     	    			str += "	<li>";
     	    			str += "		<div style='width:700px; height:400px; display:flex; align-items:center; overflow:hidden;'>";
-    	    			str += "			<img src='/display?fileName=" + fileCallPath + "' style='display:block; margin:auto;'>";
+    	    			str += "			<img src='/display?fileName=" + fileCallPath + "' style='display:block; margin:auto; max-height:100%; width:auto;'>";
     	    			str += "		</div>";
     	    			str += "	</li>";
         		});
