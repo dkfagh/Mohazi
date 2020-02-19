@@ -380,7 +380,16 @@ display:inline;
 								<c:if test="${(party.type).toString() eq 'M'}">
 								<span>모임-<c:out value="${party.cat_main}" />-<c:out value="${party.cat_sub}" /></span>
 								</c:if>
-							</li>	                        
+							</li>	
+								<li class="info-price" id="price">								
+								<c:if test="${(party.type).toString() eq 'C'}">
+								<i class="fas fa-won-sign"></i>
+								<span><c:out value="${party.price}" /> 원</span>
+								</c:if>
+								<c:if test="${(party.type).toString() eq 'M'}">
+								<%-- <span><c:out value="${party.price}" /></span> --%>
+								</c:if>
+							</li>	                                           
 						</ul>
 					</div>
 				</div>
