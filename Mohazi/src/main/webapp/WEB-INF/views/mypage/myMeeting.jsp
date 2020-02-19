@@ -14,7 +14,6 @@
 
         /* content 부분 시작 */
         .container{
-            
             position: relative;
             max-width: 100%;
             width:100%;
@@ -22,37 +21,33 @@
             margin-right:0;
             padding-left: 0;
             padding-right: 0;
-            margin-top: 20px;
+            margin-top: 10px;
             display: inline-block;
-            
-            
-            
+            padding-top:20px;
+            padding-bottom:20px;
             height:100%;
-            
         }
 
         .row{
             position: relative;
-            width:80%;
-            margin-left:10%;
+            width:100%;
+            padding-left:22%;
             box-sizing: border-box;
-            
             height: 100%;
             display:inline-block;
-            padding:0;
+            
         }
         /* content 부분 끝 */
 
         /* mypage 네비 시작 */
         #myNav{
-            
-            float: left;
-            border: black solid 2px;
+            border-radius:10px;
+            border: #e9faf2 solid 2px;
             margin-right:15px;
             max-width: 161.64px;
-            height:400px;
+            height:630px;
             padding: 0;
-            
+            float: left;            
         }
         #myNav a{
             display: block;
@@ -65,38 +60,41 @@
 		   	color: white;
         }
         .myNavHome{
-            background-color: #aaf0d1;
+            background-color: #e9faf2;
             height: 40px;
             width:100%;
             text-align: center;
-            border-bottom: black solid 1px;
+            border-bottom: #e9faf2 solid 2px;
             margin:0;
         }
-        .myNavHome h4{
-        	margin:0;
-        	top:15px;
+        .myNavHome h5{
+        	padding-top:7px;
+        	font-weight:bold;
+        	color:#66a385;
         }
         .myNavItem{
-            padding:10px;
+            padding:15px;
             margin:0;
+            font-weight:bold;
         }
         /* mypage 네비 끝 */
 
         #pages{
             position:relative;
             display:inline-block;
-            width:100%;
+            width:60%;
             min-width:484px;
-            height: 500px;
+            height: 630px;
             padding:30px;
             overflow:hidden;
-            border:solid black 1px;
+            border-radius:10px;
+            border: #e9faf2 solid 2px;
         }
 		/* paging 부분 */
 		.pagination{
 			display:block;
 		   text-align:center;
-		   padding-top:5px;
+		   padding-top:10px;
 		   width:100%;
 		   margin:0 auto;
 		}
@@ -128,14 +126,14 @@
 		}
 		.th1,.tr1 td{
 			border:none;
-			border-bottom: solid #dee2e6 1px;
+			border-bottom:  #EBEBEB solid 1px;
+			padding:11px;
+			padding-bottom:6px !important;
 		}
-		td i{
 		
-		font-size:30px;
-		}
 		.td1{
 			width:70%;
+			
 		}
 		.td2{
 			width:20%;
@@ -162,12 +160,19 @@
 		.move{
 			text-decoration:none;
 			color:black;
-			
 		}
 		.move:hover{
 			text-decoration:none;
 			color:gray;
 			
+		}
+		.fas{
+		font-size:16px;
+		color:#FFFA99;
+		}
+		
+		#myList h3{
+		font-weight:bold;
 		}
     </style>
             <div class="container">
@@ -178,7 +183,7 @@
             <div id="myNav"class="col-sm-2" >
                 
                     <div class="myNavHome">
-                            <h4>내정보</h4>
+                            <h5>내정보</h5>
                     </div>
                     <div class="myNavItem">
                         <a href="/mypage/myMeeting">내 모임</a>
@@ -223,7 +228,7 @@
                                			<td class="td2">
                                			<!-- 내가 개설한 정보표시-->	
                                    			<c:if test = "${principal.username eq writer}"> 
-                   		                  		<i class="fab fa-angellist"></i>
+                   		                  		<i class="fas fa-crown"></i>
                         	              	</c:if>
                                    		<!-- 내가 개설한 정보표시 끝-->
                                			</td>
