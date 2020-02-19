@@ -44,6 +44,10 @@
 	margin-bottom: 2px;
 	color: #96969d;
 }
+.title-subject{
+ 	 font-size: 20px;
+  font-weight: bold;
+}
 .sub-profile {
 	border: 1px solid #e4e9ef;
 	height: 100%;
@@ -82,20 +86,22 @@
 .detail-party-info .party-txt {
  margin:auto;
 }
-#party-txt01 {
+#party-txt01 { 
  text-align:center;
-  font-size: 20px;
+  font-size: 19px;
   font-weight: bold;
 }
 #party-txt02 {
-	text-align:center;
-  padding: 10px;
-  font-size: 15px;
-  line-height: 22px;
-  word-break: keep-all;
-  height: 150px;
-  white-space: pre-line;
- /*  overflow-y: scroll; */
+	margin-top:30px;
+	margin-left:20px;
+	float:left;
+	padding: 10px;
+	font-size: 18px;
+	line-height: 22px;
+	word-break: keep-all;
+	height: 150px;
+	white-space: pre-line;
+	 /*  overflow-y: scroll; */
 }
 
 .detail-info01 {
@@ -314,26 +320,23 @@ display:inline;
 					</div>
 					<div class="title-type">
 						<c:out value="${party.cat_sub}" />				
-						<span class="badge badge-default">3,000원 추가할인</span>						
+						<span class="badge badge-default"><!-- 3,000원 추가할인 --></span>						
 					</div>
-					<div class="title-subject">[<c:out value="${party.title}"/>]</div>
+					<div class="title-subject"><c:out value="${party.title}"/></div>
 				</div>
 			</div>
 			
 			<div class="col-sm-4">
 				<div class="sub-profile">
 					<div class="detail-party-info">					
-						<div class="party-txt">
-							<div id="party-txt01"> 모임장 : ${users.nickname}(<c:out value="${party.id}" />)</div>
-							<div id="party-txt02">
-								<div id="hostInfo">
-									<%-- <p> e-mail : <c:out value="${users.email}"/></p>
-									<p> phone  : <c:out value="${users.phone}"/></p> --%>
-									
-								</div>	
-							</div>
-														
-						</div>
+						<div class="party-txt" id="hostInfo">							 
+							 	<%-- <div id="party-txt01"> 모임장 : ${users.nickname}(<c:out value="${party.id}" />)</div> 
+								<div id="party-txt02">								
+										 <p> e-mail : <c:out value="${users.email}"/></p>
+										<p> phone  : <c:out value="${users.phone}"/></p>
+								</div>	 --%>							
+						</div>							
+						
 							<sec:authentication property="principal" var="pinfo"/>
 							<sec:authorize access="isAnonymous()">
 								<div class="party-btn">
@@ -531,7 +534,7 @@ display:inline;
         <c:if test="${pinfo.username eq party.id}">
         
      <button type="submit" data-oper='modify'
-		class="regBtn btn btn-outline-secondary">수정</button>
+		class="regBtn btn btn-outline-secondary"  style="display:none">수정</button>
 
         
         </c:if>
@@ -757,7 +760,54 @@ display:inline;
 				scheduleUL.html(str);
 			});//end function				
 
-		};//end showScheduleList	
+		};//end showScheduleList		
+		
+	// 모임장 정보 불러오기	
+		var usersService= (function(){
+			function read(id, callback, error){
+				$.get("/users/read/" + id + ".json", function(result){
+					if(callback){
+						callback(result);
+					}
+				}).fail(function(xhr, status, err){
+					if(error){
+						error();
+					}
+				});
+			};
+			return {						
+				read : read,			
+				};
+		})();	
+		
+		
+		
+		var hostInfoDiv = $("#hostInfo");
+		showHostInfo();
+		function showHostInfo(){
+			console.log("=========여여여여영여여=====hostId: "+hostId);
+			usersService.read(hostId, function(read){				
+				var str="";
+				console.log(read);
+				if(read == null || read.length ==0){
+					hostInfoDiv.html("");
+					return;
+				}else{
+					str += "<div id='party-txt01'> 모임장 :"+read.nickname+"("+read.id+")</div>";
+					str += " <div id='party-txt02'>";	
+					str += "<p> <i class='far fa-envelope'></i>   "+read.email+" </p>";
+					str += "<p> <i class='fas fa-mobile-alt'></i>   "+read.phone+" </p>";
+					str += "</div>";
+				}							
+			
+				hostInfoDiv.html(str);
+			});
+		};
+
+		
+		
+		
+		
 			
 			
 	//등록회원 카운트  	
@@ -781,7 +831,7 @@ display:inline;
 					countDiv.html(str);	
 					
 				});				 
-			 };
+			 };			
 			
 			// 스케쥴 input버튼 눌렀을때 (스케쥴 날짜 시간 선택버튼)		
 		

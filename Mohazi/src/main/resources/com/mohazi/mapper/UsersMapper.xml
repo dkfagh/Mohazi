@@ -22,7 +22,7 @@
 		<result property="auth" column="auth" />
 	</resultMap>
 
-	<select id="read" resultMap="usersMap">
+	<select id="read" resultMap="usersMap" >
 		SELECT USERS.ID, USERS.PW, USERS.EMAIL, USERS.NAME, USERS.NICKNAME, USERS.PHONE, USERS.BIRTH, USERS.ENABLED, AUTH.AUTH 
 		FROM USERS LEFT OUTER JOIN USERS_AUTH AUTH ON USERS.ID = AUTH.ID
 		WHERE USERS.ID = #{id}
