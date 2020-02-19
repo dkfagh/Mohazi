@@ -263,8 +263,7 @@ input[type=text]:-ms-clear{
 }
 .mo{
   font-family: 'Nanum Gothic', sans-serif;
-    font-size:35px;
-	font-weight:bold;
+    font-size:30px;
 	padding:15px}
 </style>
 
@@ -276,7 +275,7 @@ input[type=text]:-ms-clear{
       role="form">
 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 		
-      <h2 class="mo">수정</h2>
+      <h2 class="mo text-center">게시글 수정</h2>
  
       <!-- Table시작 ----------------------------------------------------------------->
       <table class="table">
@@ -331,12 +330,12 @@ input[type=text]:-ms-clear{
             <tr>
                <th>위치</th>
                <td id="address"><input type="text" value="${party.address}" id="inputAddress"
-                  placeholder="주소를 입력하세요." style="width: 300px; height:30px" name="address">
+                  placeholder="주소를 입력하세요." style="width: 300px; height:40px" name="address">
                   <input type="button" onclick="sample5_execDaumPostcode()"
                   value="검색" class="mapBtn"><br>
                   <input type="hidden" name="coord_x" id="coord_x" value="${party.coord_x}" />
                   <input type="hidden" name="coord_y" id="coord_y" value="${party.coord_y}" />
-                  <div id="map" style="width:100%;height:350px;"></div>
+                  <div id="map" style="width:100%;height:340px;"></div>
                </td>
             </tr>
 
@@ -374,7 +373,9 @@ input[type=text]:-ms-clear{
 				<c:if test="${fn:contains(party.type,'C')}">
 					<tr>
 						<th>가격</th>
-						<td id="price"><input type="text" placeholder="가격을 입력하세요." name="price" id="class" value="${party.price}"/>원</td>
+						<td id="price"><input type="text" placeholder="가격을 입력하세요." name="price" id="class" 
+						value="${party.price}"
+						onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"/>원</td>
 					</tr>
 				</c:if>
 			
