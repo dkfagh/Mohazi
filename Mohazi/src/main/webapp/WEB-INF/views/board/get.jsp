@@ -15,9 +15,7 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-datetimepicker/2.7.1/css/bootstrap-material-datetimepicker.min.css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">	
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-datetimepicker/2.7.1/js/bootstrap-material-datetimepicker.min.js"></script>
-	<!--  📝 If change language, add language file » https://cdnjs.com/libraries/moment.js   -->
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/locale/ja.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-datetimepicker/2.7.1/js/bootstrap-material-datetimepicker.min.js"></script>		
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 
 	
@@ -297,7 +295,8 @@ display:inline;
 				</div>
 				<div class="title-text">
 					<div class="title-course">
-						[<c:out value="${party.p_no}" />]
+						<%-- [<c:out value="${party.p_no}" />] --%>
+						[<c:out value="${party.cat_main}" />]
 					</div>
 					<div class="title-type">
 						<c:out value="${party.cat_sub}" />				
@@ -321,7 +320,12 @@ display:inline;
 							<sec:authentication property="principal" var="pinfo"/>
 							<sec:authorize access="isAnonymous()">
 								<div class="party-btn">
-									<button id="partyJoinBtn" type="submit" class="btn btn-large">나의 하비로 등록하기</button>
+									<c:if test="${(party.type).toString() eq 'C'}">
+									<button id="partyJoinBtn" type="submit" class="btn btn-large">나의 클래스로 등록하기</button>
+									</c:if>
+									<c:if test="${(party.type).toString() eq 'M'}">
+									<button id="partyJoinBtn" type="submit" class="btn btn-large">나의 모임으로 등록하기</button>
+									</c:if>
 								</div>
 							</sec:authorize>
 							
@@ -333,7 +337,12 @@ display:inline;
 							</c:if>
 							<c:if test="${pinfo.username ne party.id }">	
 								<div class="party-btn">
-									<button id="partyJoinBtn" type="submit" class="btn btn-large">나의 하비로 등록하기</button>
+									<c:if test="${(party.type).toString() eq 'C'}">
+									<button id="partyJoinBtn" type="submit" class="btn btn-large">나의 클래스로 등록하기</button>
+									</c:if>
+									<c:if test="${(party.type).toString() eq 'M'}">
+									<button id="partyJoinBtn" type="submit" class="btn btn-large">나의 모임으로 등록하기</button>
+									</c:if>
 								</div>
 							</c:if>							
 							</sec:authorize>	
@@ -364,7 +373,13 @@ display:inline;
 							</li>	
 							<li class="info-sort" id="sort">
 								<i class="fas fa-sort-amount-down"></i>
-								<span><c:out value="${party.type}" />-<c:out value="${party.cat_main}" />-<c:out value="${party.cat_sub}" /></span>
+								
+								<c:if test="${(party.type).toString() eq 'C'}">
+								<span>클래스-<c:out value="${party.cat_main}" />-<c:out value="${party.cat_sub}" /></span>
+								</c:if>
+								<c:if test="${(party.type).toString() eq 'M'}">
+								<span>모임-<c:out value="${party.cat_main}" />-<c:out value="${party.cat_sub}" /></span>
+								</c:if>
 							</li>	                        
 						</ul>
 					</div>
@@ -455,7 +470,7 @@ display:inline;
 								
 							</span> -->
 						</div>
-						<div class="text02">일정 참가 인원수 확인 후신청하기 버튼을 눌러주세요.</div>
+						<div class="text02">일정/참가 인원수 확인 후신청하기 버튼을 눌러주세요.</div>
 					</div>									
 					
 					
@@ -760,7 +775,7 @@ display:inline;
 		})();	
 		
 		
-		
+		//모임장 정보 출력
 		var hostInfoDiv = $("#hostInfo");
 		showHostInfo();
 		function showHostInfo(){
@@ -772,7 +787,7 @@ display:inline;
 					hostInfoDiv.html("");
 					return;
 				}else{
-					str += "<div id='party-txt01'> 모임장 :"+read.nickname+"("+read.id+")</div>";
+					str += "<div id='party-txt01'> 모임장 : "+read.nickname+"("+read.id+")</div>";
 					str += " <div id='party-txt02'>";	
 					str += "<p> <i class='far fa-envelope'></i>   "+read.email+" </p>";
 					str += "<p> <i class='fas fa-mobile-alt'></i>   "+read.phone+" </p>";
@@ -782,11 +797,6 @@ display:inline;
 				hostInfoDiv.html(str);
 			});
 		};
-
-		
-		
-		
-		
 			
 			
 	//등록회원 카운트  	
