@@ -229,7 +229,7 @@
         <div>
           <div id="autoCheck"> <input type="checkbox" name="remember-me">자동로그인</div>
         </div><br>
-		<div id="logMsg">
+		<div id="logMsg" style="text-align:center">
 			<c:out value="${error}" />
             <c:out value="${logout}" />
 		</div>
@@ -237,11 +237,11 @@
         <button type="submit" class="loginBtn" >로그인</button>
         
 		<!--자동로그인,로그인,회원가입버튼 영역 끝 ------>
-        
+<!--         
 		<br>
         <button class="logBtn" name="naverLog" type="submit"><img src="resources/img/naverLogin.PNG" class="logImg"></button>
         <button class="logBtn" name="kakaoLog" type="submit"><img src="resources/img/kakaoLogin.png" class="logImg"></button>
-        
+ -->        
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 	</form>
     

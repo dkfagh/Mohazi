@@ -747,6 +747,7 @@ display:inline;
 					schedule_joinService.count(s_noValue, function(count){
 						console.log(s_noValue + "참가 인원 : " + count);
 						participantsCount = count;
+						console.log(participantsCount);
 					});
 					////////////////////////////////
 					str+="<li class='left clearfix' name='li_result' data-s_no='"+list[i].s_no+"'>";						

@@ -11,7 +11,7 @@
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
     <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
-	<title>list</title>
+	<title>MOHAZI</title>
 	<!-- jQuery -->
 	<script src="https://code.jquery.com/jquery-1.11.3.js"></script>
 	<!-- jQuery UI -->
@@ -33,8 +33,8 @@
 	<!-- 📝 If change language, add language file » https://cdnjs.com/libraries/moment.js  -->
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/locale/ja.js"></script>
 	<!-- FAQ accordion -->
-	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-	<link rel="stylesheet" href="/resources/demos/style.css">
+	<!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<link rel="stylesheet" href="/resources/demos/style.css"> -->
 	<!-- 구글폰트  -->
 	<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic+Coding&display=swap" rel="stylesheet">
 
