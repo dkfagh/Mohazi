@@ -8,7 +8,7 @@
         *{
             margin:0;
             padding: 0;
-			font-family: 'Nanum Gothic Coding', monospace;
+			font-family: 'Nanum Gothic', sans-serif;
 		
         }
         /* content 부분 시작 */
@@ -184,7 +184,7 @@
             cursor: pointer;
         }
         input::placeholder{
-           font-size: 11px; 
+           font-size: 13px; 
         }
 
         input {
@@ -207,7 +207,8 @@
 
         .btnMypageModify {
 			background-color:#e9faf2;
-			border-radius:5px;
+			font-family: 'Nanum Gothic Coding', monospace;
+   	 		border-radius:5px;
 			font-weight:bold;
 			padding:7px;
 			margin-top:10px;
