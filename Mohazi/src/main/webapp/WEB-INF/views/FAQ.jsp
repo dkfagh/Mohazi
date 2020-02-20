@@ -15,6 +15,9 @@
     	padding: 20px 15px;
     }
     
+    .row h2{
+    	font-weight:bold;
+    }
     ul, li{
     	list-style: none;
     }
@@ -35,6 +38,10 @@
     .Explanation{            
         height: 80px;
         width: 100%;            
+    }
+    
+    .Explanation p{
+    	padding-left:2px;
     }
         
     .FAQsearch{

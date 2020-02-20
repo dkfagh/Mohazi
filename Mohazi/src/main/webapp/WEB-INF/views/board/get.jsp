@@ -77,13 +77,12 @@
 
 #partyModyBtn{
 	width:100%;	
-	background-color: #7bd4ac;	
-	color: white;
-}
-
-#partyModyBtn:hover{
-	background-color: rgb(60, 189, 157);
-	color: white;
+	background-color:#e9faf2;
+	border-radius:5px;
+	font-weight:bold;
+	padding:7px;
+	color:#66a385;
+	font-size:14px;
 }
 
 
@@ -286,13 +285,12 @@ display:inline;
 
 #addScheduleBtn{
 	width:100%;	
-	background-color: #7bd4ac;	
-	color: white;
-}
-
-#addScheduleBtn:hover{
-	background-color: rgb(60, 189, 157);
-	color: white;
+	background-color:#e9faf2;
+	border-radius:5px;
+	font-weight:bold;
+	padding:7px;
+	color:#66a385;
+	font-size:14px;
 }
 
 .bx-wrapper{
