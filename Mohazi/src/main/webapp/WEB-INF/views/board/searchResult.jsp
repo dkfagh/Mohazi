@@ -45,7 +45,7 @@ padding:20px !important;
 }
 .list-title-img img{
     width: 100%;
-    height: auto;
+    height: 100%;
 }
    
 .list-title-text {
