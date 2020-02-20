@@ -19,6 +19,10 @@
     border-bottom: #EBEBEB solid 1px;
 }
 
+.text-center p{
+	font-family: 'Nanum Gothic', sans-serif !important;
+}
+
 
 </style>
    <!-- to top button ------------------------------------------>

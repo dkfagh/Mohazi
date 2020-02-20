@@ -45,6 +45,7 @@
 	padding: 25px 30px 40px;
 }
 .title-course {
+	font-weight:bold;
 	font-size: 16px;
 	margin-bottom: 2px;
 	color: #6a82ec;
@@ -52,6 +53,7 @@
 	padding-right: 5px;
 }
 .title-type {
+	font-weight:bold;
 	font-size: 16px;
 	margin-bottom: 2px;
 	color: #96969d;
@@ -73,16 +75,6 @@
 	padding: 20px;
 }
 
-#partyJoinBtn{
-	width:100%;	
-	background-color: #7bd4ac;	
-	color: white;
-}
-
-#partyJoinBtn:hover{
-	background-color: rgb(60, 189, 157);
-	color: white;
-}
 #partyModyBtn{
 	width:100%;	
 	background-color: #7bd4ac;	
@@ -104,14 +96,14 @@
   font-weight: bold;
 }
 #party-txt02 {
-	margin-top:30px;
+	margin-top:10px;
 	margin-left:20px;
 	float:left;
 	padding: 10px;
 	font-size: 18px;
 	line-height: 22px;
 	word-break: keep-all;
-	height: 150px;
+	height: 100px;
 	white-space: pre-line;
 	 /*  overflow-y: scroll; */
 }
@@ -130,11 +122,11 @@
 	font-size: 20px;
 	line-height: 50px;
 }
-.detail-info01 i{	
-	margin-right: 30px;
-}
+
 .detail-info01 span{
 	font-size: 16px;
+	font-weight:bold;
+	color:#262626;
 }
 
 .tab {
@@ -157,13 +149,18 @@
 	font-size: 17px;
 	transition:0.3s;
 	cursor: pointer;
+	font-weight:bold;
 }
 /* Style the tab content */
 .tabContent {
 	display: none;	
 	padding: 6px 12px;
 }
+.tabContent h4{
+	font-weight:bold;
+}
 ul.tab li.active{
+	font-weight:bold;
 	color: #222;
 	border-bottom: #7bd4ac solid;
 }
@@ -188,6 +185,7 @@ ul.tab li.active a {
 
 .card-body {
 	padding: 0 20px;
+	overflow:hidden;
 }
 
 .textarea {
@@ -205,19 +203,19 @@ ul.tab li.active a {
 	height:80px;
 }
 
-.class-confirm01 {
+.text01{
 	padding: 17px;
 	border-bottom: 1px solid #e4e9ef;
-}
-.class-confirm01 .text01 {
 	font-size: 18px;
 	font-weight: bold;
+	margin-bottom:10px;
 }
 .class-confirm01 .text01 .badge {
 	margin-top: 3px;
 	vertical-align: top;
 }
-.class-confirm01 .text02 {
+.text02 {
+	text-align:center;
 	font-size: 12px;
 	color: #9faab7;
 }
@@ -240,6 +238,10 @@ display:inline;
   border-bottom: 1px solid #e4e9ef;
   cursor: pointer;
 }
+
+.class-confirm02{
+	margin-bottom:0px !important;
+}
 .class-confirm02 .btn-swip a {
   position: relative;
   display: block;
@@ -254,7 +256,7 @@ display:inline;
 }
 .class-confirm02 .class-date {
   border-bottom: 1px solid #e4e9ef;
-  padding: 10px 0 30px;
+  padding: 10px 0px;
  }
 .class-date input{	
 	border-radius: 5px;
@@ -265,10 +267,6 @@ display:inline;
 .dateTimeGroup {
 	list-style:none;
 	padding-left:0px;
-}
-
-.result{
-	font-size: 14px;
 }
 
 .class-confirm03 {
@@ -309,6 +307,80 @@ display:inline;
 	display:none;
 }
 
+#partyJoinBtn{
+	width:100%;	
+	background-color:#e9faf2;
+	border-radius:5px;
+	font-weight:bold;
+	padding:7px;
+	color:#66a385;
+	font-size:14px;
+}
+.result{
+	font-size: 14px;
+	background-color:#EBEBEB;
+	padding:7px;
+	margin-bottom:10px;
+	border:0px;
+	font-family: 'Nanum Gothic', sans-serif;
+}
+
+#scheduleJoinBtn{
+    float: right;
+	background-color:#e9faf2;
+	border-radius:5px;
+	font-weight:bold;
+	padding:7px;
+	margin-top:10px;
+	color:#66a385;
+	font-size:14px;
+}
+
+#hostInfo p{
+	font-family: 'Nanum Gothic', sans-serif !important;
+}
+
+.fa-mobile-alt{
+	font-size:20px;
+	padding-left:3px;
+	padding-right:10px;
+}
+.fa-envelope{
+	padding-right:7px;
+}
+
+#btnInputReview,#btnInputQNA{
+	font-weight:bold;
+}
+
+.text-muted{
+	font-family: 'Nanum Gothic', sans-serif !important;
+}
+
+.fa-map-marker-alt{
+	padding-top:2px;
+	padding-left:4px;
+	padding-right:11px;
+}
+.fa-user-friends{
+	padding-top:2px;
+	padding-right:6px;
+}
+.fa-slack-hash{
+	padding-top:2px;
+	padding-left:2px;
+	padding-right:10px;
+}
+.fa-sort-amount-down{
+	padding-top:2px;
+	padding-left:1px;
+	padding-right:9px;
+}
+
+.fa-won-sign{
+	padding-top:2px;
+	padding-right:8px;
+}
 </style>
 
 	<div class="container" id="contents">
@@ -497,14 +569,11 @@ display:inline;
 						<div class="text01">
 							모임 일정 
 						</div>
-						<div class="text02">일정/참가 인원수 확인 후 신청하기 버튼을 눌러주세요.</div>
+						<div class="text02">날짜/인원 확인 후 신청하기 버튼을 눌러주세요.</div>
 					</div>									
 					
 					
 					<div class="class-confirm02">
-						<div class="btn-swip swip-date closed schedule-date-trigger" id="btn-date">
-							<a>일정 확인</a>
-						</div>
 						<div class="class-date">
 							<ul class="dateTimeGroup">								
 							</ul>							
@@ -1150,7 +1219,7 @@ display:inline;
 								str += "				<a href='#' onclick='return false' class='float-right text-muted' style='text-decoration:none' id='modifyAnswer' data-q_no='" + list[i].q_no + "'>수정</a>";
 							}
 	 						str += "			</div>";
-							str += "			<input name='answer' type='hidden' value='" + list[i].question + "'>";
+							str += "			<input name='answer' type='hidden' value='" + list[i].answer + "'>";
 							str += "			<p name='content' style='margin-bottom=10px;'>" + list[i].answer + "</p>";
 							str += "		</div>";
 						}

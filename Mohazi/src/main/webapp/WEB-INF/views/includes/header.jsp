@@ -40,7 +40,7 @@
 	<!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> -->
 	<!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
 	<!-- 구글폰트  -->
-	<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic+Coding&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Nanum+Gothic+Coding&display=swap" rel="stylesheet">
 
 <style>
 
