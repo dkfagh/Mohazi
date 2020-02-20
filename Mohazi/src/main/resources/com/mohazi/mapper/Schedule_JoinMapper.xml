@@ -4,8 +4,8 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mohazi.mapper.Schedule_JoinMapper">
 	<insert id="insert">
-		insert into schedule_join (sj_no, id, s_no)
-		values (seq_schedule_join.nextval, #{id}, #{s_no})
+		insert into schedule_join (id, s_no)
+		values (#{id}, #{s_no})
 	</insert>
 	
 	<select id="read" resultType="com.mohazi.domain.Schedule_JoinVO">
