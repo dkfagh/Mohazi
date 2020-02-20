@@ -22,7 +22,7 @@ padding:20px !important;
 }
 
 .col-sm-3{   
-    height: 350px;
+    height: 390px;
     padding-bottom: 20px;
 }
 
@@ -40,7 +40,7 @@ padding:20px !important;
    border-radius: 6px 6px 0 0;
    border: 1px solid #d5dadf;
    overflow: hidden;
-   height: 70%;
+   height: 67%;
    background-color: white;
 }
 .list-title-img img{
@@ -53,7 +53,7 @@ padding:20px !important;
    border-radius: 0 0 6px 6px;
    border: 1px solid #d5dadf;
    border-top: 0 none;
-   height: 30%;
+   height: 33%;
    font-weight:bold;
    padding:12.5px;
 }
@@ -88,6 +88,10 @@ padding:20px !important;
 	color:#66a385;
 	font-size:14px;
 	margin-top:-4px;
+}
+
+.btnWrite:hover{
+	color:#66a385;
 }
 
 .pagination{
