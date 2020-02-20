@@ -26,6 +26,6 @@
 		from schedule
 		where p_no = #{p_no}
 		  AND S_DATE >= TO_DATE(SYSDATE)		 
-		order by s_no
+		order by s_date
 	</select>
 </mapper>
