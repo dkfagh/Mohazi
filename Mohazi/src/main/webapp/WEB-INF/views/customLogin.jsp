@@ -112,7 +112,7 @@
     }
     
     input::placeholder{
-           font-size: 11px; 
+           font-size: 13px; 
         }
 
     input {

@@ -107,7 +107,7 @@
     cursor: pointer;   
 } 
 .col-sm-3{   
-    height: 350px;
+    height: 390px;
     padding-bottom: 20px;
 }
 .list-title-img{
@@ -115,7 +115,7 @@
    border-radius: 6px 6px 0 0;
    border: 1px solid #d5dadf;
    overflow: hidden;
-   height: 70%;
+   height: 67%;
    background-color: white;
 }
 .list-title-img img{
@@ -129,7 +129,7 @@
    border-top: 0 none;
    padding: 12.5px;
    font-weight:bold;
-   height: 30%;
+   height: 33%;
 }
 .list-category-main {
    font-size: 16px;
@@ -179,6 +179,11 @@
 	font-size:14px;
 	margin-top:-4px;
 }
+.btnWrite:hover{
+	color:#66a385;
+
+}
+
 .pagination{
 	display:block;
 	margin:0 auto;

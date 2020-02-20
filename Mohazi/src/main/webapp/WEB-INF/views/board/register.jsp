@@ -169,9 +169,10 @@
 <style>
 .filebox label {
   display: inline-block;
-  padding: .5em .75em;
+  padding: 7px;
   color:#66a385;
   font-size:14px;
+  width:75px;
   line-height: normal;
   vertical-align: middle;
   background-color:#e9faf2;
@@ -198,6 +199,9 @@
 </style>
 
 <style>
+.container h2{
+	font-weight:bold;
+}
 
 select {
   width: 200px;
@@ -241,11 +245,11 @@ input[type=text]:-ms-clear{
 }
 
 .mapBtn{
-
     background-color:#e9faf2;
 	border-radius:5px;
 	font-weight:bold;
-	padding:0px 7px;
+	padding:7px;
+	width:75px;
 	color:#66a385;
 	font-size:14px;
 	border:0px;
