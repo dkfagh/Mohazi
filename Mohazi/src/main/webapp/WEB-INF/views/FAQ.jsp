@@ -27,7 +27,7 @@
     .FAQ-h{            
         width: 100%;       
         right: 10%;
-        height: 180px;
+        height: 190px;
         z-index: 5;
         border-bottom:solid 1.5px #66a385;
     }
@@ -40,7 +40,7 @@
     .FAQsearch{
         width: 100%;
         border-bottom:solid 1.5px #66a385;
-        margin-bottom: 20px;
+        margin-bottom: 10px;
     }
     
     #inputKeyword{
@@ -56,28 +56,28 @@
     	outline: none; 
     }
     
-    #category{
-    	margin:5px;
-    	margin-bottom: 20px;
-    }
-    
     #category ul li{
     	list-style:none;
     }
     
+    #category {
+    	margin-left: 20px;
+    }
+    
     #category li{        	
     	float:left;
+    	font-size:18px;
+    	font-weight:bold;
     }
     
     .category{
-    	margin-left:30px;
+    	margin-left:40px;
     }
     
     #category a{
     	color:black;
     }
-    
-    
+       
     
     .FAQ-b{            
         width: 100%;            
