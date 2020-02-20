@@ -774,7 +774,7 @@ $(document).ready(function(){
 	var b=['게임','프로그래밍','블로그'];
 	var c=['구기','수상','익스트림','러닝','헬스'];
 	var d=['공예','연주','요리','사진','미술'];
-	var e=['여행','맛집'];
+	var e=['여행','맛집','친목''];
 	   //test
 	   var cat_main = "${party.cat_main}";
 	   var cat_sub = "${party.cat_sub}";

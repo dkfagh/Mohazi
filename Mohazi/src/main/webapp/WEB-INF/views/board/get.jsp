@@ -180,6 +180,15 @@ ul.tab li.active a {
 	display: block;
 	min-height: 700px;
 }
+
+.card-title {
+	padding-top: 20px;
+	padding-left: 20px;
+}
+
+.card-body{
+	padding: 0 20px;
+}
 .class-confirm01 {
 	padding: 17px;
 	border-bottom: 1px solid #e4e9ef;
@@ -295,12 +304,11 @@ display:inline;
 				</div>
 				<div class="title-text">
 					<div class="title-course">
-						<%-- [<c:out value="${party.p_no}" />] --%>
 						[<c:out value="${party.cat_main}" />]
 					</div>
 					<div class="title-type">
 						<c:out value="${party.cat_sub}" />				
-						<span class="badge badge-default"><!-- 3,000원 추가할인 --></span>						
+						<span class="badge badge-default"></span>						
 					</div>
 					<div class="title-subject"><c:out value="${party.title}"/></div>
 				</div>
@@ -310,41 +318,35 @@ display:inline;
 				<div class="sub-profile">
 					<div class="detail-party-info">					
 						<div class="party-txt" id="hostInfo">							 
-							 	<%-- <div id="party-txt01"> 모임장 : ${users.nickname}(<c:out value="${party.id}" />)</div> 
-								<div id="party-txt02">								
-										 <p> e-mail : <c:out value="${users.email}"/></p>
-										<p> phone  : <c:out value="${users.phone}"/></p>
-								</div>	 --%>							
-						</div>							
-						
+						</div>													
 							<sec:authentication property="principal" var="pinfo"/>
 							<sec:authorize access="isAnonymous()">
 								<div class="party-btn">
 									<c:if test="${(party.type).toString() eq 'C'}">
-									<button id="partyJoinBtn" type="submit" class="btn btn-large">나의 클래스로 등록하기</button>
+										<button id="partyJoinBtn" type="submit" class="btn btn-large">나의 클래스로 등록하기</button>
 									</c:if>
 									<c:if test="${(party.type).toString() eq 'M'}">
-									<button id="partyJoinBtn" type="submit" class="btn btn-large">나의 모임으로 등록하기</button>
+										<button id="partyJoinBtn" type="submit" class="btn btn-large">나의 모임으로 등록하기</button>
 									</c:if>
 								</div>
 							</sec:authorize>
 							
 							<sec:authorize access="isAuthenticated()">
-							<c:if test="${pinfo.username eq party.id }">	
-								<div class="party-btn">		
-								<button id="partyModyBtn" type="submit" data-oper='modify' class="btn btn-large">수정하기</button>							
-								</div>
-							</c:if>
-							<c:if test="${pinfo.username ne party.id }">	
-								<div class="party-btn">
-									<c:if test="${(party.type).toString() eq 'C'}">
-									<button id="partyJoinBtn" type="submit" class="btn btn-large">나의 클래스로 등록하기</button>
-									</c:if>
-									<c:if test="${(party.type).toString() eq 'M'}">
-									<button id="partyJoinBtn" type="submit" class="btn btn-large">나의 모임으로 등록하기</button>
-									</c:if>
-								</div>
-							</c:if>							
+								<c:if test="${pinfo.username eq party.id }">	
+									<div class="party-btn">		
+										<button id="partyModyBtn" type="submit" data-oper='modify' class="btn btn-large">수정하기</button>							
+									</div>
+								</c:if>
+								<c:if test="${pinfo.username ne party.id }">	
+									<div class="party-btn">
+										<c:if test="${(party.type).toString() eq 'C'}">
+											<button id="partyJoinBtn" type="submit" class="btn btn-large">나의 클래스로 등록하기</button>
+										</c:if>
+										<c:if test="${(party.type).toString() eq 'M'}">
+											<button id="partyJoinBtn" type="submit" class="btn btn-large">나의 모임으로 등록하기</button>
+										</c:if>
+									</div>
+								</c:if>							
 							</sec:authorize>	
 					
 					</div>
@@ -353,10 +355,11 @@ display:inline;
 							 <li class="info-location">
 								<i class="fas fa-map-marker-alt"></i>
 								<!-- PartyVO에 위치정보관련 칼럼 추가 후 region을 address로 수정할 것 -->
-								<span><c:out value="${party.address}" /></span> 
+								<span>
+									<c:out value="${party.address}" />
+								</span> 
 								<input type="hidden" id="coord_x" value="${party.coord_x}" />
 								<input type="hidden" id="coord_y" value="${party.coord_y}" />
-								<%-- <input type = "hidden" id="address" coord_x="${party.coord_x}" coord_y="${party.coord_y}"> --%>
 							</li>
 
 							<li class="info-guest" id="scheduleExplainArea">
@@ -369,25 +372,26 @@ display:inline;
 							<li class="info-hash" id="hashTagList">
 								<i class="fab fa-slack-hash"></i>
 								<!-- PARTY TABLE에서 태그 가져오기 -->
-								<span><c:out value="${party.tag}" /></span>
+								<span>
+									<c:out value="${party.tag}" />
+								</span>
 							</li>	
 							<li class="info-sort" id="sort">
-								<i class="fas fa-sort-amount-down"></i>
-								
+								<i class="fas fa-sort-amount-down"></i>								
 								<c:if test="${(party.type).toString() eq 'C'}">
-								<span>클래스-<c:out value="${party.cat_main}" />-<c:out value="${party.cat_sub}" /></span>
+									<span>클래스-<c:out value="${party.cat_main}" />-<c:out value="${party.cat_sub}" /></span>
 								</c:if>
 								<c:if test="${(party.type).toString() eq 'M'}">
-								<span>모임-<c:out value="${party.cat_main}" />-<c:out value="${party.cat_sub}" /></span>
+									<span>모임-<c:out value="${party.cat_main}" />-<c:out value="${party.cat_sub}" /></span>
 								</c:if>
 							</li>	
 								<li class="info-price" id="price">								
 								<c:if test="${(party.type).toString() eq 'C'}">
-								<i class="fas fa-won-sign"></i>
-								<span><c:out value="${party.price}" /> 원</span>
+									<i class="fas fa-won-sign"></i>
+									<span><c:out value="${party.price}" /> 원</span>
 								</c:if>
 								<c:if test="${(party.type).toString() eq 'M'}">
-								<%-- <span><c:out value="${party.price}" /></span> --%>
+									<%-- <span><c:out value="${party.price}" /></span> --%>
 								</c:if>
 							</li>	                                           
 						</ul>
@@ -405,17 +409,19 @@ display:inline;
 						<li data-tab="tab4"><a rel="tab4">변경 및 취소</a></li>
 					</ul>
 			
-					<div id="tab1" class="tabContent active">
-						<h4>상세정보</h4>
-						<p id="introduction">${party.content}</p>						
-						 <div id="map" class="container-fluid text-center bg-grey" style="width:100%;height:500px;">
-						        <p style="padding-bottom: 20px; float:left; margin-top:20px; font-weight: bold;">찾아 오시는 길</p>
-						        <div class="container">
-						            <!-- 카카오맵 ----------------------------------------------->
-						      		<div id="kakaomap" style="width: 100%;height: 500px;"></div>
-						    		  <!-- 카카오맵 --->	
-						        </div>
-						 </div>				
+					<div id="tab1" class="tabContent card active">
+						<h4 class="card-title">상세정보</h4>
+						<div class="card-body">
+							<p id="introduction">${party.content}</p>						
+							 <div id="map" class="container-fluid text-center bg-grey" style="width:100%;height:500px;">
+							        <p style="padding-bottom: 20px; float:left; margin-top:20px; font-weight: bold;">찾아 오시는 길</p>
+							        <div class="container">
+							            <!-- 카카오맵 ----------------------------------------------->
+							      		<div id="kakaomap" style="width: 100%;height: 500px;"></div>
+							    		  <!-- 카카오맵 --->	
+							        </div>
+							 </div>
+						</div>
 					</div>
 			
 					<div id="tab2" class="tabContent card">
@@ -425,8 +431,8 @@ display:inline;
 								<li class="list-group-item">
 									<div>
 										<form id="formReview" action="/review/new" method="post">
-											<textarea rows="3" cols="62" id="inputReview" name="content"></textarea>
-											<button type="button" class="btn" style="width:80px;height:70px;" id="btnInputReview">등록</button>
+											<textarea id="inputReview" name="content" style="position:relative;resize:none;width:90%;height:80px;"></textarea>
+											<button type="button" class="btn" id="btnInputReview" style="border:solid gray 0.5px;position:absolute;margin-left:5px;width:60px;height:80px;">등록</button><!--  style="width:80px;height:70px;" -->
 										</form>
 									</div>
 								</li>
@@ -443,8 +449,8 @@ display:inline;
 								<li class="list-group-item">
 									<div>
 										<form id="formQNA" action="/QNA/new" method="post">
-											<textarea rows="3" cols="62" id="inputQuestion" name="content"></textarea>
-											<button type="button" class="btn" style="width:80px;height:70px;" id="btnInputQNA">등록</button>
+											<textarea id="inputQuestion" name="content" style="position:relative;resize:none;width:90%;height:80px;"></textarea>
+											<button type="button" class="btn" id="btnInputQNA" style="border:solid gray 0.5px;position:absolute;margin-left:5px;width:60px;height:80px;">등록</button>
 										</form>
 									</div>
 								</li>
@@ -474,12 +480,8 @@ display:inline;
 					<div class="class-confirm01">
 						<div class="text01">
 							모임 일정 
-							<!-- <span class="badge badge-primary">
-								원데이			
-								
-							</span> -->
 						</div>
-						<div class="text02">일정/참가 인원수 확인 후신청하기 버튼을 눌러주세요.</div>
+						<div class="text02">일정/참가 인원수 확인 후 신청하기 버튼을 눌러주세요.</div>
 					</div>									
 					
 					
@@ -493,34 +495,32 @@ display:inline;
 						</div>					
 					</div>
 					<sec:authorize access="isAuthenticated()">
-                    <sec:authentication property="principal.username" var="user_id" />
-                    	<input class="result" name="schedule_join" type="hidden" id= "${user_id}" style="width:100%;" value=${user_id }>
-               		 </sec:authorize>			
+	                    <sec:authentication property="principal.username" var="user_id" />
+	                    	<input class="result" name="schedule_join" type="hidden" id= "${user_id}" style="width:100%;" value=${user_id }>
+               		</sec:authorize>			
 					
 					<sec:authentication property="principal" var="pinfo"/>
 					<sec:authorize access="isAuthenticated()">
-					<c:if test="${pinfo.username eq party.id }">					
-					<div class="class-confirm03">						
-					<!-- 	<button id="scheduleJoinBtn" type="submit" class="btn btn-large">참여하기</button>		 -->				
-					</div>							
-					<div id="addSchedule">
-						<button id="addScheduleBtn" class="btn btn-large" data-oper="addSchedule">SCHEDULE 등록</button>						
-					</div>
-					</c:if>
-					
-					<c:if test="${pinfo.username ne party.id }">					
-					<div class="class-confirm03">						
-						<button id="scheduleJoinBtn" type="submit" class="btn btn-large">참여하기</button>		 			
-					</div>							
-					<div id="addSchedule">
-						<!-- <button id="addScheduleBtn" class="btn btn-large" data-oper="addSchedule">SCHEDULE 등록</button>	 -->					
-					</div>
-					</c:if>
+						<c:if test="${pinfo.username eq party.id }">					
+							<div class="class-confirm03">						
+							</div>							
+							<div id="addSchedule">
+								<button id="addScheduleBtn" class="btn btn-large" data-oper="addSchedule">SCHEDULE 등록</button>						
+							</div>
+						</c:if>
+						
+						<c:if test="${pinfo.username ne party.id }">					
+							<div class="class-confirm03">						
+								<button id="scheduleJoinBtn" type="submit" class="btn btn-large">참여하기</button>		 			
+							</div>							
+							<div id="addSchedule">
+							</div>
+						</c:if>
 					</sec:authorize>
 					<sec:authorize access="isAnonymous()">
-					<div class="class-confirm03">						
-						<button id="scheduleJoinBtn" type="submit" class="btn btn-large">참여하기</button>		 			
-					</div>							
+						<div class="class-confirm03">						
+							<button id="scheduleJoinBtn" type="submit" class="btn btn-large">참여하기</button>		 			
+						</div>							
 					</sec:authorize>
 				</div>				
 			</div>
@@ -533,22 +533,15 @@ display:inline;
     <sec:authentication property="principal" var="pinfo"/>
 
         <sec:authorize access="isAuthenticated()">
-
-        <c:if test="${pinfo.username eq party.id}">
-        
-     <button type="submit" data-oper='modify'
-		class="regBtn btn btn-outline-secondary"  style="display:none">수정</button>
-
-        
-        </c:if>
+	        <c:if test="${pinfo.username eq party.id}">	        
+		     	<button type="submit" data-oper='modify' class="regBtn btn btn-outline-secondary"  style="display:none">수정</button>		        
+	        </c:if>
         </sec:authorize>
 
 	<form id='operForm' action="/boad/modify" method="get">
 		<input type='hidden' id='p_no' name='p_no'
 			value='<c:out value="${party.p_no}"/>'>
 	</form>
-
-
 
 </div>
 	
@@ -617,9 +610,9 @@ display:inline;
     	
     	var userId="${principal.username}";  // 로그인한 유저 ID
     
-    	console.log(p_noValue);
-    	console.log(hostId);
-    	console.log(userId);   	
+    	console.log("글 번호 : " + p_noValue);
+    	console.log("호스트 ID : " + hostId);
+    	console.log("로그인한 유저 ID : " + userId);   	
     	
     	 //ajaxSend시 토큰값 전달---------------------------------------------------------------	
     	var csrfHeaderName = "${_csrf.headerName}";
@@ -796,10 +789,10 @@ display:inline;
 					hostInfoDiv.html("");
 					return;
 				}else{
-					str += "<div id='party-txt01'> 모임장 : "+read.nickname+"("+read.id+")</div>";
-					str += " <div id='party-txt02'>";	
-					str += "<p> <i class='far fa-envelope'></i>   "+read.email+" </p>";
-					str += "<p> <i class='fas fa-mobile-alt'></i>   "+read.phone+" </p>";
+					str += "<div id='party-txt01'> 모임장 : " + read.nickname + "(" + read.id + ")</div>";
+					str += "<div id='party-txt02'>";	
+					str += "	<p><i class='far fa-envelope'></i>" + read.email + "</p>";
+					str += "	<p><i class='fas fa-mobile-alt'></i>" + read.phone + "</p>";
 					str += "</div>";
 				}							
 			
@@ -985,23 +978,31 @@ display:inline;
 		
 		btnInputReview.on("click", function(){
 			
-			console.log(inputReviewContent.val());
-			
-			var review = {};
-			
-			review.id = userId;
-			review.p_no = p_noValue;
-			review.content = inputReviewContent.val();
-			
-			console.log(review);
-			reviewService.add(review, function(result){
+			if(!userId) {
 				
-				alert(result);
+				confirm("로그인 후 이용해주세요.");
 				
 				$('#inputReview').val('');
 				
-				showReviewList();
-			});
+				return;
+				
+			} else {
+				console.log(inputReviewContent.val());
+				
+				var review = {};
+				
+				review.id = userId;
+				review.p_no = p_noValue;
+				review.content = inputReviewContent.val();
+				
+				console.log(review);
+				reviewService.add(review, function(result){
+									
+					$('#inputReview').val('');
+					
+					showReviewList();
+				});
+			}
 		});
 		// add review END
 				
@@ -1051,9 +1052,7 @@ display:inline;
 			console.log(review);
 					
 			reviewService.modify(review, function(result){
-				
-				alert(result);
-				
+								
 				showReviewList();
 			});
 		});
@@ -1067,13 +1066,16 @@ display:inline;
 			var r_no = $(this).data("r_no");
 			
 			console.log(r_no);
+						
+			if(confirm("작성한 댓글을 삭제하시겠습니까?") == true){
+				reviewService.remove(r_no, function(result){
+					
+					showReviewList();
+				});			
+			} else {
+				return;
+			}
 			
-			reviewService.remove(r_no, function(result){
-				
-				alert(result);
-				
-				showReviewList();
-			});			
 		});
 		// remove review END
 		
@@ -1158,23 +1160,32 @@ display:inline;
 		
 		btnInputQNA.on("click", function(){
 			
-			console.log(inputQNAQuestion.val());
+			if(!userId) {
 			
-			var qna = {};
-			
-			qna.id = userId;
-			qna.p_no = p_noValue;
-			qna.question = inputQNAQuestion.val();
-			
-			console.log(qna);
-			qnaService.add(qna, function(result){
-				
-				alert(result);
+				confirm("로그인 후 이용해주세요.");
 				
 				$('#inputQuestion').val('');
 				
-				showQNAList();
-			});
+				return;
+				
+			} else {
+			
+				console.log(inputQNAQuestion.val());
+				
+				var qna = {};
+				
+				qna.id = userId;
+				qna.p_no = p_noValue;
+				qna.question = inputQNAQuestion.val();
+				
+				console.log(qna);
+				qnaService.add(qna, function(result){
+									
+					$('#inputQuestion').val('');
+					
+					showQNAList();
+				});
+			}
 		});
 		// add QNA END
 		
@@ -1234,9 +1245,7 @@ display:inline;
 			console.log(qna);
 					
 			qnaService.modifyQuestion(qna, function(result){
-				
-				alert(result);
-				
+								
 				showQNAList();
 			});
 		});
@@ -1281,9 +1290,7 @@ display:inline;
 			console.log(qna);
 			
 			qnaService.modifyAnswer(qna, function(result){
-				
-				alert(result);
-				
+								
 				showQNAList();
 			});
 		});
@@ -1346,9 +1353,7 @@ display:inline;
 			console.log(qna);
 					
 			qnaService.modifyAnswer(qna, function(result){
-				
-				alert(result);
-				
+								
 				showQNAList();
 			});
 		});
@@ -1368,12 +1373,15 @@ display:inline;
 			
 			console.log(qna);
 			
-			qnaService.removeAnswer(qna, function(result){
-				
-				alert(result);
-				
-				showQNAList();
-			});
+			if(confirm("작성한 답글을 삭제하시겠습니까?") == true) {
+				qnaService.removeAnswer(qna, function(result){
+					
+					showQNAList();
+				});
+			} else {
+				return;
+			}
+			
 		});
 		// remove QNA Answer END
 		
@@ -1385,12 +1393,14 @@ display:inline;
 			
 			console.log(q_no);
 			
-			qnaService.removeQuestion(q_no, function(result){
-				
-				alert(result);
-				
-				showQNAList();
-			});
+			if(confirm("작성한 질문을 삭제하시겠습니까?") == true) {
+				qnaService.removeQuestion(q_no, function(result){
+									
+					showQNAList();
+				});
+			} else {
+				return;
+			}
 		});
 		// remove QNA Question END
 		
