@@ -282,7 +282,7 @@ function showThumbnail(p_no){
 	                                            </label>
 	                                            <label for="chungcheong" class="checkbox-inputLabel">
 	                                               	충청
-	                                                <input id="chungcheong" type="checkbox" name="region" value="충청">
+	                                                <input id="chungcheong" type="checkbox" name="region" value="충">
 	                                            </label>
 	                                            <label for="daejeon" class="checkbox-inputLabel">
 	                                               	대전
@@ -290,7 +290,7 @@ function showThumbnail(p_no){
 	                                            </label>
 	                                            <label for="gyeongsang" class="checkbox-inputLabel">
 	                                               	경상
-	                                                <input id="gyeongsang" type="checkbox" name="region" value="경상">
+	                                                <input id="gyeongsang" type="checkbox" name="region" value="경">
 	                                            </label>
 	                                            <label for="daegu" class="checkbox-inputLabel">
 	                                               	대구
@@ -310,7 +310,7 @@ function showThumbnail(p_no){
 	                                            </label>
 	                                            <label for="jeolla" class="checkbox-inputLabel">                                               
 	                                               	전라
-	                                                <input id="jeolla" type="checkbox" name="region" value="전라">
+	                                                <input id="jeolla" type="checkbox" name="region" value="전">
 	                                            </label>
 	                                            <label for="jeju" class="checkbox-inputLabel">                                               
 	                                               	제주
