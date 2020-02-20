@@ -9,7 +9,7 @@
 	<!-- bxslider -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.js"></script>
     
     <!-- 데이트피커 -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-datetimepicker/2.7.1/css/bootstrap-material-datetimepicker.min.css">
@@ -708,7 +708,40 @@ display:inline;
     	//이미지 데이터 가져오는 부분
     	(function(){
     	
-    	$.getJSON("/board/getAttachList", {p_no:p_noValue},function(arr){
+    	$.ajax({
+    		type : "get",
+    		url : "/board/getAttachList",
+    		data : {p_no:p_noValue},
+    		dataType : "json",
+    		async: false,
+    		success : function(arr){
+    			console.log(arr);
+    	    	
+        		
+        		var str = "";
+        		
+        		if(!arr.length){
+        			str += "	<li>";
+        			str += "		<div style='width:700px; height:400px; display:flex; align-items:center; overflow:hidden;'>";
+        			str += "			<img src='/resources/img/default_thumbnail.png' style='display:block; margin:auto;'>";
+        			str += "		</div>";
+        			str += "	</li>";
+        		} else {
+        			$(arr).each(function(i,attach){
+            			var fileCallPath = encodeURIComponent( attach.uploadPath +"/"+ attach.uuid +"_"+ attach.fileName);
+            			console.log(attach);
+        	    			str += "	<li>";
+        	    			str += "		<div style='width:700px; height:400px; display:flex; align-items:center; overflow:hidden;'>";
+        	    			str += "			<img src='/display?fileName=" + fileCallPath + "' style='display:block; margin:auto; max-height:100%; width:auto;'>";
+        	    			str += "		</div>";
+        	    			str += "	</li>";
+            		});
+        		}
+        		
+        		$(".bxslider").html(str);
+    		}
+    	});
+    	/* $.getJSON("/board/getAttachList", {p_no:p_noValue},function(arr){
     		
     		console.log(arr);
     	
@@ -735,7 +768,7 @@ display:inline;
     		
     		$(".bxslider").html(str);
     		
-    		});//end getjson
+    		}); */ //end getjson
     	})();//end function
     	
     	
