@@ -186,9 +186,25 @@ ul.tab li.active a {
 	padding-left: 20px;
 }
 
-.card-body{
+.card-body {
 	padding: 0 20px;
 }
+
+.textarea {
+	position:relative;
+	resize:none;
+	width:90%;
+	height:80px
+}
+
+.btnTA {
+	border:solid gray 0.5px;
+	position:absolute;
+	margin-left:5px;
+	width:60px;
+	height:80px;
+}
+
 .class-confirm01 {
 	padding: 17px;
 	border-bottom: 1px solid #e4e9ef;
@@ -431,8 +447,8 @@ display:inline;
 								<li class="list-group-item">
 									<div>
 										<form id="formReview" action="/review/new" method="post">
-											<textarea id="inputReview" name="content" style="position:relative;resize:none;width:90%;height:80px;"></textarea>
-											<button type="button" class="btn" id="btnInputReview" style="border:solid gray 0.5px;position:absolute;margin-left:5px;width:60px;height:80px;">등록</button><!--  style="width:80px;height:70px;" -->
+											<textarea id="inputReview" class="textarea" name="content"></textarea>
+											<button type="button" class="btn btnTA" id="btnInputReview">등록</button>
 										</form>
 									</div>
 								</li>
@@ -449,8 +465,8 @@ display:inline;
 								<li class="list-group-item">
 									<div>
 										<form id="formQNA" action="/QNA/new" method="post">
-											<textarea id="inputQuestion" name="content" style="position:relative;resize:none;width:90%;height:80px;"></textarea>
-											<button type="button" class="btn" id="btnInputQNA" style="border:solid gray 0.5px;position:absolute;margin-left:5px;width:60px;height:80px;">등록</button>
+											<textarea id="inputQuestion" class="textarea" name="content"></textarea>
+											<button type="button" class="btn btnTA" id="btnInputQNA">등록</button>
 										</form>
 									</div>
 								</li>
@@ -1025,8 +1041,8 @@ display:inline;
 			str += "<li class='list-group-item'>";
 			str += "	<div>";
 			str += "		<form class='form' action='/review/r_no' method='post'>";
-			str += "			<textarea rows='3' cols='58' name='contentModify'>" + modifyReviewContent.val() + "</textarea>";
-			str += "			<button type='button' class='btn' style='width:70px;height:60px;' id='btnModifyReview' data-r_no='" + r_no + "'>수정</button>";
+			str += "			<textarea class='textarea' name='contentModify'>" + modifyReviewContent.val() + "</textarea>";
+			str += "			<button type='button' class='btn btnTA' id='btnModifyReview' data-r_no='" + r_no + "'>수정</button>";
 			str += "		</form>";
 			str += "	</div>";
 			str += "</li>";
@@ -1119,7 +1135,6 @@ display:inline;
 							str += "			<a href='#' onclick='return false' class='float-right text-muted' style='text-decoration:none' id='modifyQuestion' data-q_no='" + list[i].q_no + "'>수정</a>";
 						}
 						str += "		</div>";
-						/* str += "		<input name='question' value='" + list[i].question + "' style='border:0px' readonly='readonly'>"; */
 						str += "		<input name='question' type='hidden' value='" + list[i].question + "'>";
 						str += "		<p name='content' style='margin-bottom=10px;'>" + list[i].question + "</p>";
 						str += "	</div>";
@@ -1135,7 +1150,6 @@ display:inline;
 								str += "				<a href='#' onclick='return false' class='float-right text-muted' style='text-decoration:none' id='modifyAnswer' data-q_no='" + list[i].q_no + "'>수정</a>";
 							}
 	 						str += "			</div>";
-							/* str += "			<input name='answer' value='" + list[i].answer + "' style='border:0px;padding-left:20px;' readonly='readonly'>"; */
 							str += "			<input name='answer' type='hidden' value='" + list[i].question + "'>";
 							str += "			<p name='content' style='margin-bottom=10px;'>" + list[i].answer + "</p>";
 							str += "		</div>";
@@ -1207,8 +1221,8 @@ display:inline;
 			str += "<li class='list-group-item' data-q_no='" + q_no + "'>";
 			str += "	<div id='question'>";
 			str += "		<form class='form' action='/QNA/modifyQuestion/q_no' method='post'>";
-			str += "			<textarea rows='3' cols='58' name='contentModify'>" + modifyQNAQuestion.val() + "</textarea>";
-			str += "			<button type='button' class='btn' style='width:70px;height:60px;' id='btnModifyQuestion' data-q_no='" + q_no + "'>수정</button>";
+			str += "			<textarea class='textarea' name='contentModify'>" + modifyQNAQuestion.val() + "</textarea>";
+			str += "			<button type='button' class='btn btnTA' id='btnModifyQuestion' data-q_no='" + q_no + "'>수정</button>";
 			str += "		</form>";
 			str += "	</div>";
 /* 			if (list[i].answer != null) {
@@ -1266,8 +1280,8 @@ display:inline;
 			
 			str += "	<div id='answer'>";
 			str += "		<form class='form' action='/QNA/q_no' method='post'>";
-			str += "			<textarea rows='3' cols='58' name='answer'></textarea>";
-			str += "			<button type='button' class='btn' style='width:70px;height:60px;' id='btnRegisterAnswer' data-q_no='" + q_no + "'>등록</button>";
+			str += "			<textarea class='textarea' name='answer'></textarea>";
+			str += "			<button type='button' class='btn btnTA' id='btnRegisterAnswer' data-q_no='" + q_no + "'>등록</button>";
 			str += "		</form>";
 			str += "	</div>";
 			
@@ -1314,8 +1328,8 @@ display:inline;
 			str += "<li class='list-group-item' data-q_no='" + q_no + "'>";
 			str += "	<div id='question'>";
 			str += "		<form class='form' action='/QNA/modifyAnswer/q_no' method='post'>";
-			str += "			<textarea rows='3' cols='58' name='contentModify'>" + modifyQNAAnswer.val() + "</textarea>";
-			str += "			<button type='button' class='btn' style='width:70px;height:60px;' id='btnModifyAnswer' data-q_no='" + q_no + "'>수정</button>";
+			str += "			<textarea class='textarea' name='contentModify'>" + modifyQNAAnswer.val() + "</textarea>";
+			str += "			<button type='button' class='btn btnTA' id='btnModifyAnswer' data-q_no='" + q_no + "'>수정</button>";
 			str += "		</form>";
 			str += "	</div>";
 /* 			if (list[i].answer != null) {
