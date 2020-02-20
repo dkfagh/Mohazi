@@ -83,15 +83,14 @@ public class CommonController {
 		usersService.insertUser(user);
 		usersService.insertAuth(auth);
 		
-		return "successSignup";
+		// 회원가입 완료시 창띄움
+		rttr.addFlashAttribute("successSignup","회원가입 완료!");
+		
+		return "redirect:/customLogin";
 		/* return "redirect:successSignup"; */
 	}
 	
-	// 회원가입 처리화면
-		@RequestMapping(value = "/successSignup", method = RequestMethod.GET)
-		public void successSignup(Model model) {
-			log.info("!!! SIGN UP SuccessPage !!!");
-		}
+
 	
 	// FAQ 화면
 	@RequestMapping(value = "/FAQ", method = RequestMethod.GET)

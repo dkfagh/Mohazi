@@ -221,8 +221,8 @@
 	    <div id="userPw">
 	        <div class="userPw1"> <span><img src="resources/img/userPw.png" width="30"></span> </div>
 	        <div class="userPw2"> <input type="password" placeholder="비밀번호" name="password"> </div>
-	        <div class="userPw3" onclick="chg_icon()">
-	            <span class="material-icons" id="icon3"> visibility </span>
+	        <div class="userPw3">
+	            <span class="material-icons"> visibility </span>
 	            
 	        </div>
 	    </div>
@@ -237,6 +237,7 @@
 		<div id="logMsg" style="text-align:center; font-weight:bold;">
 			<c:out value="${error}" />
             <c:out value="${logout}" />
+            <c:out value="${successSignup }" />
 		</div>
         <p />
         <button type="submit" class="loginBtn" >로그인</button>
@@ -294,4 +295,5 @@
 		});
 	</script>
 </c:if>
+
 <!-- 스크립트 영역 끝-->

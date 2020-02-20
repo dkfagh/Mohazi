@@ -204,7 +204,7 @@
 	            <div class="userPw1"> <span><img src="resources/img/userPw.png" width="30"></span> </div>
 	            <div class="userPw2"> <input id ="pw" type="password" placeholder="비밀번호" name="pw"> </div>
 	            <div class="userPw3" onclick="chg_icon()">
-	                <span class="material-icons" id="icon3"> visibility </span>
+	                <span class="material-icons"> visibility </span>
 	            </div>
 	        </div>
 	        
@@ -215,8 +215,8 @@
 	        <div id="userPwCheck">
 	            <div class="userPw1"> <span><img src="resources/img/userPwCheck.png" width="30"></span> </div>
 	            <div class="userPw2"> <input id="pwEqual" type="password" placeholder="비밀번호 확인"> </div>
-	            <div class="userPw3" onclick="chg_icon()">
-	                <span class="material-icons" id="icon3"> visibility </span>
+	            <div class="userPw3">
+	                <span class="material-icons"> visibility </span>
 	            </div>
 	        </div>
 	        
