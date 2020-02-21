@@ -402,7 +402,8 @@ $(document).ready(function(){
 		  
 		  if(!regEmail.test(email)) // email 정규식이 맞지 않을 때
 		    {
-		        alert("잘못된 이메일입니다. 다시 입력해주세요.");
+		        /* alert("잘못된 이메일입니다. 다시 입력해주세요."); */
+		        swal("Notice","잘못된 이메일입니다. 다시 입력해주세요.");
 		        console.log("email: "+email);
 		        
 		        
@@ -412,7 +413,8 @@ $(document).ready(function(){
 		  
 		  else if(!regNumber.test(phone)) // phone 정규식이 맞지 않을 때
 		    {
-		        alert("잘못된 휴대폰 번호입니다. 숫자, - 를 포함한 숫자만 입력하세요.");
+		        /* alert("잘못된 휴대폰 번호입니다. 숫자, - 를 포함한 숫자만 입력하세요."); */
+		        swal("Notice","잘못된 휴대폰 번호입니다. 숫자, - 를 포함한 숫자만 입력하세요.");
 		        console.log("phone1: "+phone);
 		        
 		        
@@ -423,12 +425,14 @@ $(document).ready(function(){
 		  
 		  // 비밀번호 비교 /////////////////////////////
  		  else if(pw == ""){
-			  alert("비밀번호를 입력해주세요.");
+			  /* alert("비밀번호를 입력해주세요."); */
+			  swal("Notice","비밀번호를 입력해주세요.");
 			  return;
 		  }
 	      
 	      else if(pw != pwEqual){
-			  alert("비밀번호가 같지 않습니다.");
+			  /* alert("비밀번호가 같지 않습니다."); */
+			  swal("Notice","비밀번호가 같지 않습니다.");
 			  return;
 		  }
 		  

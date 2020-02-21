@@ -319,7 +319,7 @@ $(document).ready(function(){
 		   e.preventDefault();
 		   
 		   
-				var que = confirm("참여한 글을 나가시겠습니까?");
+				/* var que = confirm("참여한 글을 나가시겠습니까?");
 
 				if (que == true) {
 					
@@ -328,15 +328,31 @@ $(document).ready(function(){
 				} else {
 					return false;
 				}	      
-				actionForm.submit();
+				actionForm.submit(); */
+				
+				
+			swal({
+			     title: "NOTICE",
+			     text: "함여한 모임을 나가시겠습니까?",
+			     buttons: ["YES", "NO"],
+			}).then((YES) => {
+			     if (YES) {
+			    	 return;
+			     } else {
+			    	 actionForm.append("<input type='hidden' name='p_no' value='"+$(this).data("p_no")+"'>");
+					 actionForm.attr("action", "/mypage/exit");   //   acition변경
+					 actionForm.submit();
+			     }
+			});
+			
+			
    }); 
 	
 	// 삭제 버튼 클릭시 해당 게시글 삭제 버튼(동작 = party_join 테이블에서 삭제 + party 테이블에서 삭제)
 	$("button[data-oper='delete']").on("click",function(e){
 		   e.preventDefault();
 		   
-		   
-				var que = confirm("개설한 글을 삭제하시겠습니까?");
+				/* var que = confirm("개설한 글을 삭제하시겠습니까?");
 
 				if (que == true) {
 					var conf = confirm("게시글에 참여인원이 있을 수 있습니다, 그냥 나가시겠습니까?");
@@ -345,11 +361,38 @@ $(document).ready(function(){
 						actionForm.append("<input type='hidden' name='p_no' value='"+$(this).data("p_no")+"'>");
 					
 						actionForm.attr("action", "/mypage/delete");   //   acition변경
-					}else{return;}
+					}else{
+						return;
+					}
 				} else {
 					return false;
 				}	      
-				actionForm.submit();
+				actionForm.submit(); */
+				
+			swal({
+			     title: "NOTICE",
+			     text: "개설한 모임을 삭제하시겠습니까?",
+			     buttons: ["YES", "NO"],
+			}).then((YES) => {
+			     if (YES) {
+			    	 return;
+			     } else {
+			    	 swal({
+					     title: "NOTICE",
+					     text: "모임에 참여인원이 있을 수 있습니다. 정말 삭제하시겠습니까?",
+					     buttons: ["YES", "NO"],
+					}).then((YES) => {
+					     if (YES) {
+					    	 return;
+					     } else {
+					    	 actionForm.append("<input type='hidden' name='p_no' value='"+$(this).data("p_no")+"'>");
+							 actionForm.attr("action", "/mypage/delete");   //   acition변경
+							 actionForm.submit();
+					     }
+					});
+			     }
+			});	
+			
    }); 
 });
 </script>
