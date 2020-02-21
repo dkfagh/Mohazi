@@ -186,7 +186,10 @@ ul.tab li.active a {
 	padding: 0 20px;
 	overflow:hidden;
 }
-
+.card-body img{
+	width: 100% !important;
+	height: auto;
+}
 .textarea {
 	position:relative;
 	resize:none;
