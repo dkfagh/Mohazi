@@ -186,7 +186,10 @@ ul.tab li.active a {
 	padding: 0 20px;
 	overflow:hidden;
 }
-
+#introduction img{
+	width: 100% !important;
+	height: auto;
+}
 .textarea {
 	position:relative;
 	resize:none;
@@ -498,7 +501,7 @@ display:inline;
 					<div id="tab1" class="tabContent card active">
 						<h4 class="card-title">상세정보</h4>
 						<div class="card-body">
-							<p id="introduction">${party.content}</p>						
+							<div id="introduction">${party.content}</div>						
 							 <div id="map" class="container-fluid text-center bg-grey" style="width:100%;height:500px;">
 							        <p style="padding-bottom: 20px; float:left; margin-top:20px; font-weight: bold;">찾아 오시는 길</p>
 							        <div class="container">
