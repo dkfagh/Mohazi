@@ -8,10 +8,7 @@
 <%@ include file="../includes/header.jsp" %>
 <%@ include file="../includes/navigation.jsp" %>
 
-  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"> -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script> -->
 
   <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css'>
 
@@ -20,7 +17,6 @@
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" 
   integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" 
   crossorigin="anonymous"></script>
-  
   
   <!--게시판설정을위한 스크립트  -->
   <script src="/resources/js/summernote-ko-KR.js"></script>
@@ -33,24 +29,11 @@
  
   <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.15/dist/summernote-bs4.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.15/dist/summernote-bs4.min.js"></script>
-  
-
-  <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-    crossorigin="anonymous"></script> -->
-
-
 
   <!-- tagEditor ----------------------------------------------------------------------------->
 
   <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery-tagsinput/1.3.6/jquery.tagsinput.min.css" rel="stylesheet">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-tagsinput/1.3.6/jquery.tagsinput.min.js"></script>
-
-  <!-- 폰트어썸 -->
-  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" /> -->
-  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-tagsinput/1.3.6/jquery.tagsinput.min.js"></script>  
   
 <style>
     input::placeholder {
@@ -518,23 +501,28 @@ $(document).ready(function(e){
 	
 	
        if(title == ""){
-          alert("제목을 입력하세요.");
+          /* alert("제목을 입력하세요."); */
+          swal("Notice","제목을 입력하세요.");
           return;
        }
        if(catm == "선택하세요" ){
-    	   alert("선택하세요.");
+    	   /* alert("선택하세요."); */
+    	   swal("Notice","카테고리를 선택하세요.");
     	   return;
        }
         if(cats == "선택하세요" ){
-    	   alert("선택하세요.");
+    	   /* alert("선택하세요."); */
+    	   swal("Notice","카테고리를 선택하세요.");
     	   return;
        } 
        if(address == ""){
-    	   alert("주소를 입력하세요.");
+    	   /* alert("주소를 입력하세요."); */
+    	   swal("Notice","주소를 입력하세요.");
     	   return;
        }
        if(content == ""){
-    	   alert("내용을 입력하세요.");
+    	   /* alert("내용을 입력하세요."); */
+    	   swal("Notice","내용을 입력하세요.");
     	   return;
        }
 
@@ -569,12 +557,14 @@ $(document).ready(function(e){
   function checkExtension(fileName, fileSize){
     
     if(fileSize >= maxSize){
-      alert("파일 사이즈 초과");
+      /* alert("파일 사이즈 초과"); */
+      swal("Notice","파일 사이즈 초과");
       return false;
     }
     
     if(regex.test(fileName)){
-      alert("해당 종류의 파일은 업로드할 수 없습니다.");
+      /* alert("해당 종류의 파일은 업로드할 수 없습니다."); */
+      swal("Notice","해당 종류의 파일은 업로드할 수 없습니다.");
       return false;
     }
     return true;
@@ -678,7 +668,8 @@ $(document).ready(function(e){
          dataType:'text',
          type: 'POST',
            success: function(result){
-              alert(result);
+              /* alert(result); */
+              swal("Notice",result);
               
               targetLi.remove();
             }

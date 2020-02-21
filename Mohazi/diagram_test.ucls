@@ -1,0 +1,862 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.2.4" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
+  <class id="1" language="java" name="com.mohazi.domain.PartyVO" project="Mohazi" 
+    file="/Mohazi/src/main/java/com/mohazi/domain/PartyVO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="113" width="181" x="296" y="79"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="com.mohazi.domain.UsersVO" project="Mohazi" 
+    file="/Mohazi/src/main/java/com/mohazi/domain/UsersVO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="53" width="134" x="610" y="15"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="com.mohazi.domain.Criteria" project="Mohazi" 
+    file="/Mohazi/src/main/java/com/mohazi/domain/Criteria.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="53" width="143" x="151" y="13"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="com.mohazi.domain.AuthVO" project="Mohazi" 
+    file="/Mohazi/src/main/java/com/mohazi/domain/AuthVO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="53" width="93" x="629" y="114"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="com.mohazi.domain.AttachFileDTO" project="Mohazi" 
+    file="/Mohazi/src/main/java/com/mohazi/domain/AttachFileDTO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="53" width="108" x="498" y="211"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="com.mohazi.domain.FAQVO" project="Mohazi" 
+    file="/Mohazi/src/main/java/com/mohazi/domain/FAQVO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="53" width="99" x="176" y="214"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="com.mohazi.domain.PageDTO" project="Mohazi" 
+    file="/Mohazi/src/main/java/com/mohazi/domain/PageDTO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="53" width="93" x="11" y="11"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="com.mohazi.domain.ScheduleVO" project="Mohazi" 
+    file="/Mohazi/src/main/java/com/mohazi/domain/ScheduleVO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="53" width="108" x="326" y="13"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="9" language="java" name="com.mohazi.domain.BoardAttachVO" project="Mohazi" 
+    file="/Mohazi/src/main/java/com/mohazi/domain/BoardAttachVO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="53" width="112" x="331" y="213"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="10" language="java" name="com.mohazi.domain.Party_JoinVO" project="Mohazi" 
+    file="/Mohazi/src/main/java/com/mohazi/domain/Party_JoinVO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="53" width="102" x="498" y="114"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="11" language="java" name="com.mohazi.domain.Schedule_JoinVO" project="Mohazi" 
+    file="/Mohazi/src/main/java/com/mohazi/domain/Schedule_JoinVO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="53" width="125" x="454" y="13"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="12" language="java" name="com.mohazi.domain.QNAVO" project="Mohazi" 
+    file="/Mohazi/src/main/java/com/mohazi/domain/QNAVO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="53" width="100" x="178" y="147"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="13" language="java" name="com.mohazi.domain.ReviewVO" project="Mohazi" 
+    file="/Mohazi/src/main/java/com/mohazi/domain/ReviewVO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="53" width="100" x="177" y="78"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="14" language="java" name="com.mohazi.mapper.Party_JoinMapper" project="Mohazi" 
+    file="/Mohazi/src/main/java/com/mohazi/mapper/Party_JoinMapper.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="117" width="128" x="34" y="647"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="15" language="java" name="com.mohazi.mapper.MyPageMapper" project="Mohazi" 
+    file="/Mohazi/src/main/java/com/mohazi/mapper/MyPageMapper.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="99" width="166" x="373" y="648"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="16" language="java" name="com.mohazi.mapper.Schedule_JoinMapper" project="Mohazi" 
+    file="/Mohazi/src/main/java/com/mohazi/mapper/Schedule_JoinMapper.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="117" width="151" x="185" y="643"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="17" language="java" name="com.mohazi.mapper.ScheduleMapper" project="Mohazi" 
+    file="/Mohazi/src/main/java/com/mohazi/mapper/ScheduleMapper.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="99" width="123" x="982" y="638"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="18" language="java" name="com.mohazi.mapper.BoardMapper" project="Mohazi" 
+    file="/Mohazi/src/main/java/com/mohazi/mapper/BoardMapper.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="171" width="166" x="577" y="624"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="19" language="java" name="com.mohazi.mapper.UsersMapper" project="Mohazi" 
+    file="/Mohazi/src/main/java/com/mohazi/mapper/UsersMapper.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="81" width="103" x="645" y="1393"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="20" language="java" name="com.mohazi.mapper.ReviewMapper" project="Mohazi" 
+    file="/Mohazi/src/main/java/com/mohazi/mapper/ReviewMapper.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="81" width="115" x="1404" y="525"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="21" language="java" name="com.mohazi.mapper.QNAMapper" project="Mohazi" 
+    file="/Mohazi/src/main/java/com/mohazi/mapper/QNAMapper.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="135" width="103" x="1668" y="515"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="22" language="java" name="com.mohazi.mapper.BoardAttachMapper" project="Mohazi" 
+    file="/Mohazi/src/main/java/com/mohazi/mapper/BoardAttachMapper.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="99" width="156" x="789" y="639"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="23" language="java" name="com.mohazi.mapper.FAQMapper" project="Mohazi" 
+    file="/Mohazi/src/main/java/com/mohazi/mapper/FAQMapper.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="53" width="112" x="1234" y="1179"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="24" language="java" name="com.mohazi.service.FAQServiceImpl" project="Mohazi" 
+    file="/Mohazi/src/main/java/com/mohazi/service/FAQServiceImpl.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="77" width="136" x="1222" y="1073"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="25" language="java" name="com.mohazi.service.FAQService" project="Mohazi" 
+    file="/Mohazi/src/main/java/com/mohazi/service/FAQService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="55" width="136" x="1051" y="1088"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="26" language="java" name="com.mohazi.service.BoardService" project="Mohazi" 
+    file="/Mohazi/src/main/java/com/mohazi/service/BoardService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="138" width="200" x="776" y="311"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="27" language="java" name="com.mohazi.service.QNAServiceImpl" project="Mohazi" 
+    file="/Mohazi/src/main/java/com/mohazi/service/QNAServiceImpl.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="132" width="136" x="1657" y="677"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="28" language="java" name="com.mohazi.service.Party_JoinService" project="Mohazi" 
+    file="/Mohazi/src/main/java/com/mohazi/service/Party_JoinService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="113" width="152" x="23" y="1038"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="29" language="java" name="com.mohazi.service.Schedule_JoinService" project="Mohazi" 
+    file="/Mohazi/src/main/java/com/mohazi/service/Schedule_JoinService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="113" width="172" x="230" y="1058"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="30" language="java" name="com.mohazi.service.MyPageServiceImpl" project="Mohazi" 
+    file="/Mohazi/src/main/java/com/mohazi/service/MyPageServiceImpl.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="179" width="258" x="511" y="881"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="31" language="java" name="com.mohazi.service.QNAService" project="Mohazi" 
+    file="/Mohazi/src/main/java/com/mohazi/service/QNAService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="100" width="142" x="1654" y="859"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="32" language="java" name="com.mohazi.service.ReviewServiceImpl" project="Mohazi" 
+    file="/Mohazi/src/main/java/com/mohazi/service/ReviewServiceImpl.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="131" width="145" x="1392" y="682"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="33" language="java" name="com.mohazi.service.Schedule_JoinServiceImpl" project="Mohazi" 
+    file="/Mohazi/src/main/java/com/mohazi/service/Schedule_JoinServiceImpl.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="167" width="178" x="229" y="849"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="34" language="java" name="com.mohazi.service.Party_JoinServiceImpl" project="Mohazi" 
+    file="/Mohazi/src/main/java/com/mohazi/service/Party_JoinServiceImpl.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="141" width="168" x="14" y="868"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="35" language="java" name="com.mohazi.service.ScheduleService" project="Mohazi" 
+    file="/Mohazi/src/main/java/com/mohazi/service/ScheduleService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="95" width="147" x="1183" y="826"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="36" language="java" name="com.mohazi.service.ReviewService" project="Mohazi" 
+    file="/Mohazi/src/main/java/com/mohazi/service/ReviewService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="77" width="139" x="1400" y="858"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="37" language="java" name="com.mohazi.service.UsersServiceImpl" project="Mohazi" 
+    file="/Mohazi/src/main/java/com/mohazi/service/UsersServiceImpl.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="131" width="147" x="803" y="1370"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="38" language="java" name="com.mohazi.service.MyPageService" project="Mohazi" 
+    file="/Mohazi/src/main/java/com/mohazi/service/MyPageService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="77" width="137" x="564" y="1085"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="39" language="java" name="com.mohazi.service.UsersService" project="Mohazi" 
+    file="/Mohazi/src/main/java/com/mohazi/service/UsersService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="77" width="140" x="805" y="1248"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="40" language="java" name="com.mohazi.service.BoardServiceImpl" project="Mohazi" 
+    file="/Mohazi/src/main/java/com/mohazi/service/BoardServiceImpl.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="156" width="219" x="488" y="304"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="41" language="java" name="com.mohazi.service.ScheduleServiceImpl" project="Mohazi" 
+    file="/Mohazi/src/main/java/com/mohazi/service/ScheduleServiceImpl.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="149" width="153" x="968" y="798"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="42" language="java" name="com.mohazi.controller.MypageController" project="Mohazi" 
+    file="/Mohazi/src/main/java/com/mohazi/controller/MypageController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="145" width="191" x="537" y="1223"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="43" language="java" name="com.mohazi.controller.ScheduleController" project="Mohazi" 
+    file="/Mohazi/src/main/java/com/mohazi/controller/ScheduleController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="75" width="133" x="1189" y="694"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="44" language="java" name="com.mohazi.controller.Party_JoinController" project="Mohazi" 
+    file="/Mohazi/src/main/java/com/mohazi/controller/Party_JoinController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="93" width="141" x="30" y="1193"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="45" language="java" name="com.mohazi.controller.BoardController" project="Mohazi" 
+    file="/Mohazi/src/main/java/com/mohazi/controller/BoardController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="165" width="167" x="1041" y="298"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="46" language="java" name="com.mohazi.controller.UploadController" project="Mohazi" 
+    file="/Mohazi/src/main/java/com/mohazi/controller/UploadController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="147" width="185" x="25" y="1357"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="47" language="java" name="com.mohazi.controller.HomeController" project="Mohazi" 
+    file="/Mohazi/src/main/java/com/mohazi/controller/HomeController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="53" width="113" x="277" y="1422"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="48" language="java" name="com.mohazi.controller.ReviewController" project="Mohazi" 
+    file="/Mohazi/src/main/java/com/mohazi/controller/ReviewController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="81" width="128" x="1406" y="965"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="49" language="java" name="com.mohazi.controller.UsersController" project="Mohazi" 
+    file="/Mohazi/src/main/java/com/mohazi/controller/UsersController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="53" width="114" x="988" y="1263"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="50" language="java" name="com.mohazi.controller.QNAController" project="Mohazi" 
+    file="/Mohazi/src/main/java/com/mohazi/controller/QNAController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="111" width="120" x="1673" y="1000"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="51" language="java" name="com.mohazi.controller.CommonController" project="Mohazi" 
+    file="/Mohazi/src/main/java/com/mohazi/controller/CommonController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="147" width="167" x="792" y="1043"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="52" language="java" name="com.mohazi.controller.Schedule_JoinController" project="Mohazi" 
+    file="/Mohazi/src/main/java/com/mohazi/controller/Schedule_JoinController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="93" width="164" x="231" y="1221"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <association id="53">    
+    <end type="SOURCE" refId="40" navigable="false">      
+      <attribute id="54" name="pagemapper">        
+        <position height="0" width="0" x="223" y="-4"/>      
+      </attribute>      
+      <multiplicity id="55" minimum="0" maximum="1">        
+        <position height="0" width="0" x="223" y="-4"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="15" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="56">    
+    <end type="SOURCE" refId="30" navigable="false">      
+      <attribute id="57" name="SJMapper">        
+        <position height="0" width="0" x="-188" y="5"/>      
+      </attribute>      
+      <multiplicity id="58" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-188" y="5"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="16" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="59">    
+    <end type="SOURCE" refId="51" navigable="false">      
+      <attribute id="60" name="usersService">        
+        <position height="0" width="0" x="-416" y="22"/>      
+      </attribute>      
+      <multiplicity id="61" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-416" y="22"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="39" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="62">    
+    <end type="SOURCE" refId="30" navigable="false">      
+      <attribute id="63" name="attachMapper">        
+        <position height="0" width="0" x="-187" y="-19"/>      
+      </attribute>      
+      <multiplicity id="64" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-187" y="-19"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="22" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="65">    
+    <end type="SOURCE" refId="42" navigable="false">      
+      <attribute id="66" name="myPageService">        
+        <position height="0" width="0" x="-338" y="-148"/>      
+      </attribute>      
+      <multiplicity id="67" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-338" y="-148"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="38" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="68">    
+    <end type="SOURCE" refId="37" navigable="false">      
+      <attribute id="69" name="mapper">        
+        <position height="0" width="0" x="-366" y="555"/>      
+      </attribute>      
+      <multiplicity id="70" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-366" y="555"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="19" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="71">    
+    <end type="SOURCE" refId="44" navigable="false">      
+      <attribute id="72" name="service">        
+        <position height="0" width="0" x="-39" y="-113"/>      
+      </attribute>      
+      <multiplicity id="73" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-39" y="-113"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="28" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="74">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="75" name="cri">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="76" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="77">    
+    <end type="SOURCE" refId="30"/>    
+    <end type="TARGET" refId="38"/>  
+  </realization>  
+  <association id="78">    
+    <end type="SOURCE" refId="30" navigable="false">      
+      <attribute id="79" name="mapper">        
+        <position height="0" width="0" x="223" y="-4"/>      
+      </attribute>      
+      <multiplicity id="80" minimum="0" maximum="1">        
+        <position height="0" width="0" x="223" y="-4"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="15" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="81">    
+    <end type="SOURCE" refId="33"/>    
+    <end type="TARGET" refId="29"/>  
+  </realization>  
+  <association id="82">    
+    <end type="SOURCE" refId="50" navigable="false">      
+      <attribute id="83" name="service">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="84" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="31" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="85">    
+    <end type="SOURCE" refId="30" navigable="false">      
+      <attribute id="86" name="sMapper">        
+        <position height="0" width="0" x="410" y="4"/>      
+      </attribute>      
+      <multiplicity id="87" minimum="0" maximum="1">        
+        <position height="0" width="0" x="410" y="4"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="17" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="88">    
+    <end type="SOURCE" refId="24"/>    
+    <end type="TARGET" refId="25"/>  
+  </realization>  
+  <association id="89">    
+    <end type="SOURCE" refId="40" navigable="false">      
+      <attribute id="90" name="attachMapper">        
+        <position height="0" width="0" x="-187" y="-19"/>      
+      </attribute>      
+      <multiplicity id="91" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-187" y="-19"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="22" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="92">    
+    <end type="SOURCE" refId="41"/>    
+    <end type="TARGET" refId="35"/>  
+  </realization>  
+  <association id="93">    
+    <end type="SOURCE" refId="40" navigable="false">      
+      <attribute id="94" name="mapper">        
+        <position height="0" width="0" x="-171" y="0"/>      
+      </attribute>      
+      <multiplicity id="95" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-171" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="18" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="96">    
+    <end type="SOURCE" refId="42" navigable="false">      
+      <attribute id="97" name="userService">        
+        <position height="0" width="0" x="-416" y="22"/>      
+      </attribute>      
+      <multiplicity id="98" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-416" y="22"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="39" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="99">    
+    <end type="SOURCE" refId="49" navigable="false">      
+      <attribute id="100" name="service">        
+        <position height="0" width="0" x="-416" y="22"/>      
+      </attribute>      
+      <multiplicity id="101" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-416" y="22"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="39" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="102">    
+    <end type="SOURCE" refId="32" navigable="false">      
+      <attribute id="103" name="mapper">        
+        <position height="0" width="0" x="-46" y="2"/>      
+      </attribute>      
+      <multiplicity id="104" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-46" y="2"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="20" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="105">    
+    <end type="SOURCE" refId="45" navigable="false">      
+      <attribute id="106" name="service">        
+        <position height="0" width="0" x="-112" y="-13"/>      
+      </attribute>      
+      <multiplicity id="107" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-112" y="-13"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="26" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="108">    
+    <end type="SOURCE" refId="43" navigable="false">      
+      <attribute id="109" name="service">        
+        <position height="0" width="0" x="658" y="-403"/>      
+      </attribute>      
+      <multiplicity id="110" minimum="0" maximum="1">        
+        <position height="0" width="0" x="658" y="-403"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="35" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="111">    
+    <end type="SOURCE" refId="40"/>    
+    <end type="TARGET" refId="26"/>  
+  </realization>  
+  <association id="112">    
+    <end type="SOURCE" refId="24" navigable="false">      
+      <attribute id="113" name="mapper">        
+        <position height="0" width="0" x="0" y="373"/>      
+      </attribute>      
+      <multiplicity id="114" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="373"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="23" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="115">    
+    <end type="SOURCE" refId="27"/>    
+    <end type="TARGET" refId="31"/>  
+  </realization>  
+  <realization id="116">    
+    <end type="SOURCE" refId="34"/>    
+    <end type="TARGET" refId="28"/>  
+  </realization>  
+  <association id="117">    
+    <end type="SOURCE" refId="51" navigable="false">      
+      <attribute id="118" name="FAQService">        
+        <position height="0" width="0" x="-175" y="56"/>      
+      </attribute>      
+      <multiplicity id="119" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-175" y="56"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="25" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="120">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="121" name="authList">        
+        <position height="0" width="0" x="-194" y="-1"/>      
+      </attribute>      
+      <multiplicity id="122" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="-194" y="-1"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="123">    
+    <end type="SOURCE" refId="33" navigable="false">      
+      <attribute id="124" name="mapper">        
+        <position height="0" width="0" x="-188" y="5"/>      
+      </attribute>      
+      <multiplicity id="125" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-188" y="5"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="16" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="126">    
+    <end type="SOURCE" refId="30" navigable="false">      
+      <attribute id="127" name="boardMapper">        
+        <position height="0" width="0" x="-171" y="0"/>      
+      </attribute>      
+      <multiplicity id="128" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-171" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="18" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="129">    
+    <end type="SOURCE" refId="52" navigable="false">      
+      <attribute id="130" name="service">        
+        <position height="0" width="0" x="-49" y="-169"/>      
+      </attribute>      
+      <multiplicity id="131" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-49" y="-169"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="29" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="132">    
+    <end type="SOURCE" refId="32"/>    
+    <end type="TARGET" refId="36"/>  
+  </realization>  
+  <association id="133">    
+    <end type="SOURCE" refId="27" navigable="false">      
+      <attribute id="134" name="mapper">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="135" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="21" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="136">    
+    <end type="SOURCE" refId="48" navigable="false">      
+      <attribute id="137" name="service">        
+        <position height="0" width="0" x="-46" y="2"/>      
+      </attribute>      
+      <multiplicity id="138" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-46" y="2"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="36" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="139">    
+    <end type="SOURCE" refId="41" navigable="false">      
+      <attribute id="140" name="mapper">        
+        <position height="0" width="0" x="410" y="4"/>      
+      </attribute>      
+      <multiplicity id="141" minimum="0" maximum="1">        
+        <position height="0" width="0" x="410" y="4"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="17" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="142">    
+    <end type="SOURCE" refId="37"/>    
+    <end type="TARGET" refId="39"/>  
+  </realization>  
+  <association id="143">    
+    <end type="SOURCE" refId="34" navigable="false">      
+      <attribute id="144" name="mapper">        
+        <position height="0" width="0" x="22" y="-4"/>      
+      </attribute>      
+      <multiplicity id="145" minimum="0" maximum="1">        
+        <position height="0" width="0" x="22" y="-4"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="14" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="146">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="147" name="attachList">        
+        <position height="0" width="0" x="-21" y="-28"/>      
+      </attribute>      
+      <multiplicity id="148" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="-21" y="-28"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

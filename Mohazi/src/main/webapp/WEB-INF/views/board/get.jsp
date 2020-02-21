@@ -934,18 +934,22 @@ display:inline;
 			$("#scheduleJoinBtn").on("click", function(e){				
 				 var id = $("input[name='schedule_join']").attr("id"); 
 				if(id==null || id.lengh==0){
-					alert("로그인 해주세요");
+					/* alert("로그인 후 이용해주세요"); */
+					swal("Notice","로그인 후 이용해주세요");
 				}else if((id !=null || id.lengh != 0) && (schedule_join.s_no==null||(schedule_join.s_no).lengh == 0)){
 					
-					alert("일정을 선택해주세요")
+					/* alert("일정을 선택해주세요") */
+					swal("Notice","일정을 선택해주세요");
 				}else{
 					schedule_joinService.add(schedule_join, function(){
-					alert("참여 되었습니다.");
+					/* alert("참여 되었습니다."); */
+					swal("Notice","참여 되었습니다.");
 					
 					showScheduleList();	
 					
 				}, function(){
-					alert("해당 일정에는 이미 참여신청을 하였습니다.");
+					/* alert("해당 일정에는 이미 참여신청을 하였습니다."); */
+					swal("Notice","해당 일정에는 이미 참여신청을 하였습니다.");
 				});
 				};
 			});
@@ -973,7 +977,8 @@ display:inline;
 
 					scheduleService.add(schedule, function(){
 						
-						alert("등록되었습니다");
+						/* alert("등록되었습니다"); */
+						swal("Notice","등록되었습니다");
 					
 						modal.find("input").val("");
 						modal.modal("hide");
@@ -992,22 +997,27 @@ display:inline;
 					};
 					console.log(party_join);
 					if(party_join.id==null){
-						alert("로그인 해주세요");
+						/* alert("로그인 해주세요"); */
+						swal("Notice","로그인 후 이용해주세요");
 					}else{
 						party_joinService.add(party_join, function(){
 							if(partyType == "M"){
-								alert("나의 모임에 등록 되었습니다.");
+								/* alert("나의 모임에 등록 되었습니다."); */
+								swal("Notice","나의 모임에 등록 되었습니다.");
 							}else if(partyType == "C"){
-								alert("나의 클래스에 등록 되었습니다.");
+								/* alert("나의 클래스에 등록 되었습니다."); */
+								swal("Notice","나의 클래스에 등록 되었습니다.");
 							}
 
 							showCount();
 						
 					}, function(){
 						if(partyType == "M"){
-							alert("이미 가입된 모임입니다.");
+							/* alert("이미 가입된 모임입니다."); */
+							swal("Notice","이미 가입된 모임입니다.");
 						}else if(partyType == "C"){
-							alert("이미 가입된 클래스입니다.");
+							/* alert("이미 가입된 클래스입니다."); */
+							swal("Notice","이미 가입된 클래스입니다.");
 						}
 					});
 					};

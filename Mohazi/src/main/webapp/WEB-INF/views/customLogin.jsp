@@ -242,12 +242,6 @@
         <p />
         <button type="submit" class="loginBtn" >로그인</button>
         
-		<!--자동로그인,로그인,회원가입버튼 영역 끝 ------>
-<!--         
-		<br>
-        <button class="logBtn" name="naverLog" type="submit"><img src="resources/img/naverLogin.PNG" class="logImg"></button>
-        <button class="logBtn" name="kakaoLog" type="submit"><img src="resources/img/kakaoLogin.png" class="logImg"></button>
- -->        
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 	</form>
     
@@ -287,7 +281,8 @@
 				return;
 			}
 			//$("#logout").click(function(){
-				alert("로그아웃하였습니다.");
+				/* alert("로그아웃하였습니다."); */
+				swal("Notice","로그아웃하였습니다.");
 				
 				history.replaceState({},null,null);	
 			//});

@@ -204,7 +204,8 @@
     $("#FAQsearchForm button").on("click", function(e){
     	
     	if(!FAQsearchForm.find("input[name='keyword']").val()){
-    		alert("검색어를 입력하세요.");
+    		/* alert("검색어를 입력하세요."); */
+    		swal("Notice","검색어를 입력하세요.");
     		return false;
     	}
     	

@@ -42,10 +42,6 @@
                     <a class="nav-link" href="/FAQ">FAQ</a>
                   </li>
               </ul>            
-              <!-- Navbar text
-              <span class="navbar-text">
-                Navbar text
-              </span> -->            
         </nav>
     </div>
 	<!-- 네비 ------>
