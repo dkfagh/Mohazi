@@ -106,7 +106,7 @@
 }
 
 .input-group{
-	width:450px;
+	width:400px;
 	padding-top:40px;
 	margin:auto;
 }
