@@ -28,7 +28,6 @@
 	<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Nanum+Gothic+Coding&display=swap" rel="stylesheet">
 	<!-- Sweet Alert -->
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 	
 <style>
 
