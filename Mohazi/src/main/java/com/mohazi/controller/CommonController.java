@@ -84,7 +84,7 @@ public class CommonController {
 		usersService.insertAuth(auth);
 		
 		// 회원가입 완료시 창띄움
-		rttr.addFlashAttribute("successSignup","회원가입 완료!");
+		rttr.addFlashAttribute("successSignup","회원가입 완료! 로그인 해 주세요.");
 		
 		return "redirect:/customLogin";
 		/* return "redirect:successSignup"; */
