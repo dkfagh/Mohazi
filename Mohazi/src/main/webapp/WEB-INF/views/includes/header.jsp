@@ -207,9 +207,18 @@
 
 		// 로그아웃 버튼 클릭시
 		$("#btnLogout").click(function(){
-			if(confirm("로그아웃하시겠습니까?")){
-				$("#logoutForm").submit();
-			}
+			
+			swal({
+			     title: "NOTICE",
+			     text: "로그아웃 하시겠습니까?",
+			     buttons: ["YES", "NO"],
+			}).then((YES) => {
+			     if (YES) {
+			    	 return;
+			     } else {
+			    	 $("#logoutForm").submit();
+			     }
+			});
 		});
 		
 		var searchForm=$("#searchForm");
