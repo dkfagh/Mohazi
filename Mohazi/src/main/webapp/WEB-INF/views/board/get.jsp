@@ -1015,7 +1015,7 @@ display:inline;
 				});
 				
 				//파티조인버튼 눌렀을때 (나의 모임에 등록하기버튼)
-				
+				var partyType = "${party.type}";
 				$("#partyJoinBtn").on("click", function(e){
 					var id = $("input[name='schedule_join']").attr("id"); 
 					var party_join = {
@@ -1027,8 +1027,12 @@ display:inline;
 						alert("로그인 해주세요");
 					}else{
 						party_joinService.add(party_join, function(){
-						alert("나의 모임에 등록 되었습니다.");
-						
+							if(partyType == "M"){
+								alert("나의 모임에 등록 되었습니다.");
+							}else if(partyType == "C"){
+								alert("나의 클래스에 등록 되었습니다.");
+							}
+
 						showScheduleList();	
 						
 					});
