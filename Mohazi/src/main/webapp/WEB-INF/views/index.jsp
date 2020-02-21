@@ -10,6 +10,7 @@
 	margin: 0 auto;
 	font-family: 'Noto Sans KR', sans-serif;
 	font-size: 16px;
+	height:100vh;
 }
 .row{
 	/* padding-top: 150px; */
@@ -23,16 +24,16 @@
     display: inline;
 }
 .main-image{
-	width: 100%;
-	height: 600px;
+	width: 90%;
+	height: auto;
 	overflow: hidden;
 	text-align: center;
 	margin: auto;
 	border-radius: 5px;
 }
 .main-image img{
-	width: auto;
-	height: 100%;
+	width: 100%;
+	height: auto%;
 }
 #menu-container{
 
@@ -105,7 +106,7 @@
 </style>
 	<div class="container-fluid" id="contents">
 		<div class="row">
-            <div class="col-sm-6" style="padding-top: 100px; padding-bottom: 200px;">
+            <div class="col-sm-6" style="padding-top: 100px; padding-left:50px; padding-bottom: 200px;">
                 <div class="main-choice">
                     <div id="main-choice-title">
                         <img src="/resources/img/mohazi_title.png" alt="mohazi logo" style="position: relative; top: 0; width: 500px;"/>
