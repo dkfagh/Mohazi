@@ -977,6 +977,8 @@ display:inline;
 					
 					showScheduleList();	
 					
+				}, function(){
+					alert("해당 일정에는 이미 참여신청을 하였습니다.");
 				});
 				};
 			});
@@ -1011,6 +1013,12 @@ display:inline;
 					
 						showScheduleList();			
 
+					}, function(){
+						if(partyType == "M"){
+							alert("이미 가입된 모임입니다.");
+						}else if(partyType == "C"){
+							alert("이미 가입된 클래스입니다.");
+						}
 					});
 				});
 				
@@ -1035,6 +1043,12 @@ display:inline;
 
 						showScheduleList();	
 						
+					}, function(){
+						if(partyType == "M"){
+							alert("이미 가입된 모임입니다.");
+						}else if(partyType == "C"){
+							alert("이미 가입된 클래스입니다.");
+						}
 					});
 					};
 					
