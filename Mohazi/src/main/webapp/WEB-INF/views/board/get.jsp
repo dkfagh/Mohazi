@@ -1173,15 +1173,28 @@ display:inline;
 			var r_no = $(this).data("r_no");
 			
 			console.log(r_no);
-						
-			if(confirm("작성한 댓글을 삭제하시겠습니까?") == true){
+
+			swal({
+			     title: "NOTICE",
+			     text: "작성한 댓글을 삭제하시겠습니까?",
+			     buttons: ["YES", "NO"],
+			}).then((YES) => {
+			     if (YES) {
+			    	 return;
+			     } else {
+			    	 reviewService.remove(r_no, function(result){
+			    		showReviewList(); 
+			    	 });
+			     }
+			});
+			/* if(confirm("작성한 댓글을 삭제하시겠습니까?") == true){
 				reviewService.remove(r_no, function(result){
 					
 					showReviewList();
 				});			
 			} else {
 				return;
-			}
+			} */
 			
 		});
 		// remove review END
@@ -1477,15 +1490,28 @@ display:inline;
 			};
 			
 			console.log(qna);
-			
-			if(confirm("작성한 답글을 삭제하시겠습니까?") == true) {
+
+			swal({
+			     title: "NOTICE",
+			     text: "작성한 답글을 삭제하시겠습니까?",
+			     buttons: ["YES", "NO"],
+			}).then((YES) => {
+			     if (YES) {
+			    	 return;
+			     } else {
+			    	 qnaService.removeAnswer(qna, function(result){
+			    		showQNAList();
+			    	 });
+			     }
+			});
+/* 			if(confirm("작성한 답글을 삭제하시겠습니까?") == true) {
 				qnaService.removeAnswer(qna, function(result){
 					
 					showQNAList();
 				});
 			} else {
 				return;
-			}
+			} */
 			
 		});
 		// remove QNA Answer END
@@ -1498,14 +1524,27 @@ display:inline;
 			
 			console.log(q_no);
 			
-			if(confirm("작성한 질문을 삭제하시겠습니까?") == true) {
+			swal({
+			     title: "NOTICE",
+			     text: "작성한 질문을 삭제하시겠습니까?",
+			     buttons: ["YES", "NO"],
+			}).then((YES) => {
+			     if (YES) {
+			    	 return;
+			     } else {
+			    	 qnaService.removeQuestion(q_no, function(result){
+			    		 showQNAList();
+			    	 });
+			     }
+			});
+/* 			if(confirm("작성한 질문을 삭제하시겠습니까?") == true) {
 				qnaService.removeQuestion(q_no, function(result){
 									
 					showQNAList();
 				});
 			} else {
 				return;
-			}
+			} */
 		});
 		// remove QNA Question END
 		
