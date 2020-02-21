@@ -163,7 +163,7 @@
 	    	<p>"<span class="resultKeyword"></span>" 입니다.</p>
 	    	<img alt="ball" src="/resources/img/ball.jpg">
 	    </div>
-	    <div class="result" id="112" data-result="익스트림 스포츠">
+	    <div class="result" id="112" data-result="익스트림">
 	    	<p>"<span class="resultKeyword"></span>" 입니다.</p>
 	    	<img alt="ball" src="/resources/img/surfer.jpg">
 	    </div>
