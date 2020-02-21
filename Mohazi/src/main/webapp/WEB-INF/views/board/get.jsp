@@ -382,6 +382,10 @@ display:inline;
 	padding-top:2px;
 	padding-right:8px;
 }
+
+.arrow{
+	width:13px;
+}
 </style>
 
 	<div class="container" id="contents">
@@ -1245,7 +1249,7 @@ display:inline;
 						if (list[i].answer != null) {
 							str += "		<div id='answer'>";
 							str += "			<div class='header'>";
-							str += "				<i class='fas fa-share'></i>";
+							str += "				<img src='/resources/img/arrow.png' class='arrow'/>";
 							str += "				<strong>HOST</strong>";
 							str += "				<small class='text-muted'>" + qnaService.displayTime(list[i].a_regdate) + "</small>";
 							if (hostId == userId){
