@@ -78,7 +78,7 @@
 <body>
  <div class="container" id="contents">
  	<!-- 화면영역 시작 -->
-    <div align="center"> <img src="resources/img/logoImg.png" width="200"> </div>
+    <div align="center"> <img src="/resources/img/logoImg.png" width="200"> </div>
     <h2 align="center">SQL 접근에러!!</h2>
 	<h3 align="center">뒤로 돌아가 다시 수행해주세요!</h3>
 	<a align="center" id="loginBtn" type="button">로그인하기</a>

@@ -707,69 +707,40 @@ display:inline;
     	
     	//이미지 데이터 가져오는 부분
     	(function(){
-    	
-    	$.ajax({
-    		type : "get",
-    		url : "/board/getAttachList",
-    		data : {p_no:p_noValue},
-    		dataType : "json",
-    		async: false,
-    		success : function(arr){
-    			console.log(arr);
-    	    	
-        		
-        		var str = "";
-        		
-        		if(!arr.length){
-        			str += "	<li>";
-        			str += "		<div style='width:700px; height:400px; display:flex; align-items:center; overflow:hidden;'>";
-        			str += "			<img src='/resources/img/default_thumbnail.png' style='display:block; margin:auto;'>";
-        			str += "		</div>";
-        			str += "	</li>";
-        		} else {
-        			$(arr).each(function(i,attach){
-            			var fileCallPath = encodeURIComponent( attach.uploadPath +"/"+ attach.uuid +"_"+ attach.fileName);
-            			console.log(attach);
-        	    			str += "	<li>";
-        	    			str += "		<div style='width:700px; height:400px; display:flex; align-items:center; overflow:hidden;'>";
-        	    			str += "			<img src='/display?fileName=" + fileCallPath + "' style='display:block; margin:auto; max-height:100%; width:auto;'>";
-        	    			str += "		</div>";
-        	    			str += "	</li>";
-            		});
-        		}
-        		
-        		$(".bxslider").html(str);
-    		}
-    	});
-    	/* $.getJSON("/board/getAttachList", {p_no:p_noValue},function(arr){
-    		
-    		console.log(arr);
-    	
-    		
-    		var str = "";
-    		
-    		if(!arr.length){
-    			str += "	<li>";
-    			str += "		<div style='width:700px; height:400px; display:flex; align-items:center; overflow:hidden;'>";
-    			str += "			<img src='/resources/img/default_thumbnail.png' style='display:block; margin:auto;'>";
-    			str += "		</div>";
-    			str += "	</li>";
-    		} else {
-    			$(arr).each(function(i,attach){
-        			var fileCallPath = encodeURIComponent( attach.uploadPath +"/"+ attach.uuid +"_"+ attach.fileName);
-        			console.log(attach);
-    	    			str += "	<li>";
-    	    			str += "		<div style='width:700px; height:400px; display:flex; align-items:center; overflow:hidden;'>";
-    	    			str += "			<img src='/display?fileName=" + fileCallPath + "' style='display:block; margin:auto; max-height:100%; width:auto;'>";
-    	    			str += "		</div>";
-    	    			str += "	</li>";
-        		});
-    		}
-    		
-    		$(".bxslider").html(str);
-    		
-    		}); */ //end getjson
-    	})();//end function
+	    	$.ajax({
+	    		type : "get",
+	    		url : "/board/getAttachList",
+	    		data : {p_no:p_noValue},
+	    		dataType : "json",
+	    		async: false,
+	    		success : function(arr){
+	    			console.log(arr);
+	    	    	
+	        		
+	        		var str = "";
+	        		
+	        		if(!arr.length){
+	        			str += "	<li>";
+	        			str += "		<div style='width:700px; height:400px; display:flex; align-items:center; overflow:hidden;'>";
+	        			str += "			<img src='/resources/img/default_thumbnail.png' style='display:block; margin:auto;'>";
+	        			str += "		</div>";
+	        			str += "	</li>";
+	        		} else {
+	        			$(arr).each(function(i,attach){
+	            			var fileCallPath = encodeURIComponent( attach.uploadPath +"/"+ attach.uuid +"_"+ attach.fileName);
+	            			console.log(attach);
+	        	    			str += "	<li>";
+	        	    			str += "		<div style='width:700px; height:400px; display:flex; align-items:center; overflow:hidden;'>";
+	        	    			str += "			<img src='/display?fileName=" + fileCallPath + "' style='display:block; margin:auto; max-height:100%; width:auto;'>";
+	        	    			str += "		</div>";
+	        	    			str += "	</li>";
+	            		});
+	        		}
+	        		
+	        		$(".bxslider").html(str);
+	    		}
+	    	});		// end ajax
+    	})();		// end function
     	
     	
 		//bxslider
@@ -897,7 +868,7 @@ display:inline;
 		var hostInfoDiv = $("#hostInfo");
 		showHostInfo();
 		function showHostInfo(){
-			console.log("=========여여여여영여여=====hostId: "+hostId);
+			// console.log("=========여여여여영여여=====hostId: "+hostId);
 			usersService.read(hostId, function(read){				
 				var str="";
 				console.log(read);
@@ -954,11 +925,7 @@ display:inline;
 			  	schedule_join.s_no = s_no;
 			  	schedule_join.id = id;
 			  	console.log("schedule join : " + schedule_join);
-					/* var schedule_join = {
-							s_no: s_no,
-							id: id
-							
-					};	 */				
+		
 				console.log("schedule_join.s_no : "+ schedule_join.s_no+"schedule_join.id : "+schedule_join.id);			
 									
 			});
@@ -1011,14 +978,7 @@ display:inline;
 						modal.find("input").val("");
 						modal.modal("hide");
 					
-						showScheduleList();			
-
-					}, function(){
-						if(partyType == "M"){
-							alert("이미 가입된 모임입니다.");
-						}else if(partyType == "C"){
-							alert("이미 가입된 클래스입니다.");
-						}
+						showScheduleList();
 					});
 				});
 				
@@ -1041,7 +1001,7 @@ display:inline;
 								alert("나의 클래스에 등록 되었습니다.");
 							}
 
-						showScheduleList();	
+							showCount();
 						
 					}, function(){
 						if(partyType == "M"){
