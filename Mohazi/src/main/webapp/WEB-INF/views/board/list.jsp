@@ -358,7 +358,7 @@ function showThumbnail(p_no){
 	                                    </li>
 	                                </ul>
 	                            </li>
-                                <li class="menu"><input type="submit" class="btn btn-large" id="go" value="Go! List"></li>
+                                <li class="menu"><input type="submit" class="btn btn-large" id="go" value="찾기"></li>
                             </ul>
                         </form>
                     </div> 
