@@ -204,7 +204,7 @@ select::-ms-expand {
   display: none;
 }
 
-.input-title{position: relative; width:200px}
+.input-title{position: relative; width:600px}
 #inputBox {
     width: 100%;
 

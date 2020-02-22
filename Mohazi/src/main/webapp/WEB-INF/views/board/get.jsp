@@ -386,6 +386,30 @@ display:inline;
 .arrow{
 	width:13px;
 }
+
+.modal {
+        text-align: center;
+}
+ 
+@media screen and (min-width: 768px) { 
+        .modal:before {
+                display: inline-block;
+                vertical-align: middle;
+                content: " ";
+                height: 100%;
+        }
+}
+ 
+.modal-dialog {
+        display: inline-block;
+        text-align: left;
+        vertical-align: middle;
+}
+
+.btnModal{
+	background-color:#e9faf2;
+	color:#66a385;
+}
 </style>
 
 	<div class="container" id="contents">
@@ -572,7 +596,12 @@ display:inline;
 				<div class="sub-confirm">
 					<div class="class-confirm01">
 						<div class="text01">
-							모임 일정 
+							<c:if test="${(party.type).toString() eq 'C'}">
+								클래스 일정
+							</c:if>
+							<c:if test="${(party.type).toString() eq 'M'}">
+								모임 일정
+							</c:if>
 						</div>
 						<div class="text02">날짜/인원 확인 후 신청하기 버튼을 눌러주세요.</div>
 					</div>									
@@ -650,27 +679,27 @@ display:inline;
 			<div class="modal-body">
 							
 				 <div class="form-group">
-					 <label>날짜</label>
+					 <label style="width:150px">날짜</label>
 					 <input class="result" type="text" id="modaldate" placeholder="날짜를 선택해주세요" name="date">
 				 </div>
 				 <div class="form-group">
-					 <label>시간</label>
+					 <label style="width:150px">시간</label>
 					 <input class="result" type="text" id="modaltime" placeholder="시간을 선택해주세요" name="time">
 				</div>	
 				 <div class="form-group">
-					 <label>최소 참가인원</label>
+					 <label style="width:150px">최소 참가인원</label>
 					 <input class="result" type="text" id="modal_min" placeholder="숫자만 입력해주세요" name="minPeople">
 				 </div>				 
 				  <div class="form-group">
-					 <label>최대 참가인원</label>
+					 <label style="width:150px">최대 참가인원</label>
 						<input class="result" type="text" id="modal_max" placeholder="숫자만 입력해주세요" name="maxPeople">
 				 </div>							
 			</div>
 	  
 			<!-- Modal footer -->
 			<div class="modal-footer">	      	
-				 <button id="modalAddSchedulBtn" type="submit" class="btn btn-primary">등록완료</button>				 
-				<button id="modalCloseBtn" type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+				<button id="modalAddSchedulBtn" type="submit" class="btn btnModal">등록완료</button>				 
+				<button id="modalCloseBtn" type="button" class="btn btnModal" data-dismiss="modal">닫기</button>
 			</div>
 			
 		  </div>

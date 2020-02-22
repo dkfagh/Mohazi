@@ -104,6 +104,7 @@
     
     #goList{
      text-decoration:none;
+     color:#66a385;
     }
     
     footer{
